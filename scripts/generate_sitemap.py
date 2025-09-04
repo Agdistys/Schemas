@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 import os, sys, subprocess, datetime
 from urllib.parse import quote
+from xml.sax.saxutils import escape as xml_escape
 
 # --- CONFIG ---
-BASE_URL = "https://agdistys.github.io/Schemas"  # URL publique de ton site (sans / final)
-IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}  # extensions incluses
+BASE_URL = "https://agdistys.github.io/Schemas"  # sans slash final
+IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
 OUTPUT = "sitemap.xml"
 # --------------
 
 def git_lastmod(path):
+    """Dernière date ISO 8601 depuis git, sinon mtime fichier."""
     try:
         ts = subprocess.check_output(
             ["git", "log", "-1", "--format=%cI", "--", path],
@@ -18,59 +20,52 @@ def git_lastmod(path):
             return ts
     except Exception:
         pass
-    # fallback: mtime locale → ISO 8601 (approx)
     dt = datetime.datetime.utcfromtimestamp(os.path.getmtime(path))
     return dt.replace(microsecond=0).isoformat() + "Z"
 
 def iter_images(root="."):
     for dirpath, dirnames, filenames in os.walk(root):
-        # ignore dossiers cachés
         dirnames[:] = [d for d in dirnames if not d.startswith(".") and d != ".git"]
         for fn in filenames:
-            if fn.startswith("."): 
+            if fn.startswith("."):
                 continue
             ext = os.path.splitext(fn)[1].lower()
             if ext in IMAGE_EXT:
                 rel = os.path.relpath(os.path.join(dirpath, fn), root)
                 yield rel
 
-def make_xml(url_entries):
-    # sitemap images (namespace image:)
-    head = (
+def make_entry(rel_path):
+    # garde les "/" et encode espaces, &, etc.
+    encoded = quote(rel_path.replace(os.sep, "/"), safe="/")
+    url = f"{BASE_URL}/{encoded}"
+    lastmod = git_lastmod(rel_path)
+
+    url_xml = xml_escape(url)
+    caption_xml = xml_escape(os.path.basename(rel_path))
+
+    return (
+        "  <url>\n"
+        f"    <loc>{url_xml}</loc>\n"
+        f"    <lastmod>{lastmod}</lastmod>\n"
+        f"    <image:image>\n"
+        f"      <image:loc>{url_xml}</image:loc>\n"
+        f"      <image:caption>{caption_xml}</image:caption>\n"
+        f"    </image:image>\n"
+        "  </url>\n"
+    )
+
+def main():
+    entries = [make_entry(rel) for rel in sorted(iter_images("."))]
+    xml = (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
         '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+        + "".join(entries) +
+        "</urlset>\n"
     )
-    tail = '</urlset>\n'
-    return head + "".join(url_entries) + tail
-
-def main():
-    entries = []
-    count = 0
-    for rel in sorted(iter_images(".")):
-        # URL encodée (respecte espaces, & …)
-        loc = f"{BASE_URL}/{quote(rel.replace(os.sep, '/'))}"
-        lastmod = git_lastmod(rel)
-
-        # On crée une entrée <url> par image (loc = l’URL de l’image)
-        entry = (
-            "  <url>\n"
-            f"    <loc>{loc}</loc>\n"
-            f"    <lastmod>{lastmod}</lastmod>\n"
-            f"    <image:image>\n"
-            f"      <image:loc>{loc}</image:loc>\n"
-            f"      <image:caption>{os.path.basename(rel)}</image:caption>\n"
-            f"    </image:image>\n"
-            "  </url>\n"
-        )
-        entries.append(entry)
-        count += 1
-
-    xml = make_xml(entries)
     with open(OUTPUT, "w", encoding="utf-8") as f:
         f.write(xml)
-
-    print(f"Generated {OUTPUT} with {count} image(s).")
+    print(f"Generated {OUTPUT} with {len(entries)} image(s).")
     return 0
 
 if __name__ == "__main__":
