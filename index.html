@@ -6,20 +6,21 @@
   <title>Galerie – Agdistys</title>
   <style>
     :root { --w: 1200px; }
-    body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; display: grid; place-items: start center; }
-    main { width: 100%; max-width: var(--w); }
-    h1 { margin: 0 0 12px; font-size: 24px; }
-    .sec { margin: 28px 0; }
-    .sec h2 { margin: 0 0 10px; font-size: 20px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-    .card { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-    .thumb { width: 100%; height: 200px; object-fit: contain; background: #fafafa; display: block; }
-    .cap { font-size: 12px; padding: 6px 8px; color: #333; word-break: break-word; }
-    .empty { opacity: .7; font-size: 14px; padding: 4px 0 0 2px; }
-    .err { color: #b00020; font-size: 13px; white-space: pre-wrap; padding: 4px 0 0 2px; }
-    .topbar { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:8px; }
-    .pill { border:1px solid #e5e7eb; border-radius:999px; padding:6px 10px; font-size:13px; background:#fff; }
-    footer { margin: 40px 0 10px; font-size: 12px; opacity: .7; }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;display:grid;place-items:start center;background:#111;color:#eee}
+    main{width:100%;max-width:var(--w)}
+    h1{margin:0 0 12px;font-size:24px}
+    .topbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+    .pill{border:1px solid #444;border-radius:999px;padding:6px 10px;font-size:13px;background:#222;color:#eee;text-decoration:none}
+    .pill:hover{background:#333}
+    .sec{margin:28px 0}
+    .sec h2{margin:0 0 10px;font-size:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+    .card{border:1px solid #444;border-radius:12px;overflow:hidden;background:#1a1a1a;box-shadow:0 1px 2px rgba(0,0,0,.4)}
+    .thumb{width:100%;height:200px;object-fit:contain;background:#000;display:block}
+    .cap{font-size:12px;padding:6px 8px;color:#ccc;word-break:break-word}
+    .empty{opacity:.7;font-size:14px;padding:4px 0 0 2px}
+    .err{color:#f88;font-size:13px;white-space:pre-wrap;padding:4px 0 0 2px}
+    footer{margin:40px 0 10px;font-size:12px;opacity:.7}
   </style>
 </head>
 <body>
@@ -27,71 +28,96 @@
     <div class="topbar">
       <h1>Galerie – Agdistys</h1>
       <span class="pill">CC BY-SA 4.0</span>
-      <a class="pill" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Licence</a>
-      <a class="pill" href="https://github.com/Agdistys/Schemas" target="_blank">Dépôt GitHub</a>
+      <a class="pill" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Licence</a>
+      <a class="pill" href="https://github.com/Agdistys/Schemas" target="_blank" rel="noopener">Dépôt GitHub</a>
     </div>
     <div id="gallery"></div>
     <footer>© Diane Serant (Agdistys) — ConScience aMi : Vérité = Respect, Mensonge = Violence.</footer>
   </main>
 
   <script>
+    // ====== CONFIG ======
     const OWNER = "Agdistys";
-    const REPO = "Schemas";
-    const BASE_PATH = ""; // tes dossiers sont à la racine
-    const FOLDERS = ["", "ADDICTOLOGIE", "CANCER"]; // mets ici les noms EXACTS de tes dossiers
-    const IMAGE_EXT = ["png","jpg","jpeg","webp","gif","svg"];
+    const REPO  = "Schemas";
+    const IMAGE_EXT = ["png","jpg","jpeg","webp","gif","svg"]; // extensions affichées
+    // ====================
+
     const apiBase = `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
 
-    const publicUrl = (relativePath) => {
-      const prefix = BASE_PATH ? `/${encodeURI(BASE_PATH)}` : "";
-      return `${prefix}/${relativePath.split("/").map(encodeURI).join("/")}`;
-    };
+    function isImage(name){ const ext=name.split(".").pop().toLowerCase(); return IMAGE_EXT.includes(ext); }
+    function urlFor(path){ return path.split("/").map(encodeURI).join("/"); } // ✅ correction OK
 
-    async function listPath(path) {
-      const full = [BASE_PATH, path].filter(Boolean).map(encodeURIComponent).join("/");
-      const url = `${apiBase}/${full}`;
+    async function list(path="") {
+      const url = `${apiBase}/${path ? encodeURIComponent(path) : ""}`;
       const res = await fetch(url, { headers: { "Accept":"application/vnd.github.v3+json" }});
-      if (!res.ok) throw new Error(`${path||"Racine"} → ${res.status} ${res.statusText}`);
+      if(!res.ok) throw new Error(`${path||"Racine"} → ${res.status} ${res.statusText}`);
       return res.json();
     }
 
-    function isImage(name) {
-      const ext = name.split(".").pop().toLowerCase();
-      return IMAGE_EXT.includes(ext);
+    function section(title){
+      const sec=document.createElement("section");
+      sec.className="sec";
+      sec.innerHTML=`<h2>${title}</h2><div class="grid"></div>`;
+      return sec;
     }
 
-    async function renderGallery() {
-      const container = document.getElementById("gallery");
-      for (const folder of FOLDERS) {
-        const sec = document.createElement("div");
-        sec.className = "sec";
-        const title = folder || "Racine";
-        sec.innerHTML = `<h2>${title}</h2><div class="grid"></div>`;
-        container.appendChild(sec);
+    async function renderRootAndFolders(){
+      const root = document.getElementById("gallery");
+      root.innerHTML = "";
+
+      // 1) Lister la racine
+      let entries;
+      try {
+        entries = await list("");
+      } catch (e) {
+        const err=document.createElement("div"); err.className="err";
+        err.textContent = "Erreur de listing racine : " + e.message;
+        root.appendChild(err); return;
+      }
+
+      const dirs  = entries.filter(x => x.type === "dir").map(x => x.name);
+      const files = entries.filter(x => x.type === "file" && isImage(x.name));
+
+      // 2) Section Racine
+      if (files.length) {
+        const sec = section("Racine");
         const grid = sec.querySelector(".grid");
-        try {
-          const items = await listPath(folder);
-          const imgs = items.filter(f => f.type==="file" && isImage(f.name));
-          if (imgs.length === 0) {
+        for(const f of files){
+          const card=document.createElement("div"); card.className="card";
+          card.innerHTML = `<a href="${urlFor(f.path)}" target="_blank" rel="noopener">
+            <img class="thumb" loading="lazy" src="${urlFor(f.path)}" alt="${f.name}">
+            <div class="cap">${f.name}</div></a>`;
+          grid.appendChild(card);
+        }
+        root.appendChild(sec);
+      }
+
+      // 3) Dossiers
+      for(const d of dirs){
+        const sec = section(d);
+        const grid = sec.querySelector(".grid");
+        root.appendChild(sec);
+        try{
+          const items = await list(d);
+          const imgs = items.filter(x => x.type==="file" && isImage(x.name));
+          if(imgs.length===0){
             grid.innerHTML = `<div class="empty">Aucune image trouvée ici</div>`;
           } else {
-            for (const f of imgs) {
-              const card = document.createElement("div");
-              card.className = "card";
-              card.innerHTML = `
-                <img class="thumb" src="${publicUrl(f.path)}" alt="${f.name}" />
-                <div class="cap">${f.name}</div>
-              `;
+            for(const f of imgs){
+              const card=document.createElement("div"); card.className="card";
+              card.innerHTML = `<a href="${urlFor(f.path)}" target="_blank" rel="noopener">
+                <img class="thumb" loading="lazy" src="${urlFor(f.path)}" alt="${f.name}">
+                <div class="cap">${f.name}</div></a>`;
               grid.appendChild(card);
             }
           }
-        } catch (err) {
-          grid.innerHTML = `<div class="err">Erreur liste: [${title}] ${err.message}</div>`;
+        } catch(e){
+          grid.innerHTML = `<div class="err">Erreur de listing [${d}] : ${e.message}</div>`;
         }
       }
     }
 
-    renderGallery();
+    renderRootAndFolders();
   </script>
 </body>
 </html>
