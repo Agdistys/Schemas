@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agdistys.github.io/Schemas/sitemap.xml
