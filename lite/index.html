@@ -38,8 +38,9 @@
   <script>
     // ====== CONFIG ======
     const OWNER="Agdistys", REPO="Schemas";
+    const PROJECT="Schemas";                  // <-- nom du repo (base absolue)
     const IMAGE_EXT=["png","jpg","jpeg","webp","gif","svg"];
-    const MAX_IMAGES=9999; // limite si besoin
+    const MAX_IMAGES=9999;
     // ====================
 
     const apiBase=`https://api.github.com/repos/${OWNER}/${REPO}/contents`;
@@ -48,7 +49,11 @@
     const DIR = (params.get("dir")||"").trim();
 
     function isImage(n){ const e=n.split(".").pop().toLowerCase(); return IMAGE_EXT.includes(e); }
-    function urlFor(p){ return p.split("/").map(encodeURI).join("/"); }
+    function urlFor(p){
+      // encode chaque segment et préfixe par /Schemas/ (absolu)
+      const encoded = p.split("/").map(encodeURIComponent).join("/");
+      return `/${PROJECT}/${encoded}`;
+    }
 
     async function list(path){
       const url = `${apiBase}/${encodeURIComponent(path)}`;
