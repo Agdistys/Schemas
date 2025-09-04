@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Galerie (lite) – Agdistys</title>
+  <style>
+    :root { --w: 1200px; }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:18px;display:grid;place-items:start center;background:#111;color:#eee}
+    main{width:100%;max-width:var(--w)}
+    h1{margin:0 0 10px;font-size:20px}
+    .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+    .pill{border:1px solid #444;border-radius:999px;padding:6px 10px;font-size:13px;background:#222;color:#eee;text-decoration:none}
+    .pill:hover{background:#333}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+    .card{border:1px solid #444;border-radius:10px;overflow:hidden;background:#1a1a1a}
+    .thumb{width:100%;height:180px;object-fit:contain;background:#000;display:block}
+    .cap{font-size:12px;padding:6px 8px;color:#ccc;word-break:break-word}
+    .msg{opacity:.85;padding:6px 0}
+    .err{color:#f88;white-space:pre-wrap}
+    footer{margin:20px 0 6px;font-size:12px;opacity:.7}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="bar">
+      <h1 id="title">Galerie (lite)</h1>
+      <a class="pill" href="https://agdistys.github.io/Schemas/" target="_blank" rel="noopener">Version complète ↗</a>
+      <a class="pill" href="../sitemap.xml" target="_blank" rel="noopener">Sitemap</a>
+    </div>
+
+    <div id="notice" class="msg"></div>
+    <div id="grid" class="grid"></div>
+
+    <footer>© Diane Serant (Agdistys) — CC BY-SA 4.0.</footer>
+  </main>
+
+  <script>
+    // ====== CONFIG ======
+    const OWNER="Agdistys", REPO="Schemas";
+    const IMAGE_EXT=["png","jpg","jpeg","webp","gif","svg"];
+    const MAX_IMAGES=9999; // limite si besoin
+    // ====================
+
+    const apiBase=`https://api.github.com/repos/${OWNER}/${REPO}/contents`;
+    const $ = (s)=>document.querySelector(s);
+    const params = new URLSearchParams(location.search);
+    const DIR = (params.get("dir")||"").trim();
+
+    function isImage(n){ const e=n.split(".").pop().toLowerCase(); return IMAGE_EXT.includes(e); }
+    function urlFor(p){ return p.split("/").map(encodeURI).join("/"); }
+
+    async function list(path){
+      const url = `${apiBase}/${encodeURIComponent(path)}`;
+      const res = await fetch(url, { headers: { "Accept":"application/vnd.github.v3+json" }});
+      if(!res.ok) throw new Error(`${path} → ${res.status} ${res.statusText}`);
+      return res.json();
+    }
+
+    async function render(){
+      if(!DIR){
+        $("#notice").innerHTML = 'Passe un dossier dans l’URL, ex. <code>?dir=ADDICTOLOGIE</code>';
+        return;
+      }
+      $("#title").textContent = `Galerie (lite) — ${DIR}`;
+      $("#notice").textContent = "Chargement…";
+
+      try{
+        const items = await list(DIR);
+        const imgs  = items.filter(x=>x.type==="file" && isImage(x.name))
+                           .slice(0, MAX_IMAGES);
+        const grid  = $("#grid");
+        grid.innerHTML = "";
+        if(!imgs.length){
+          $("#notice").textContent = "Aucune image trouvée dans ce dossier.";
+          return;
+        }
+        $("#notice").textContent = `Images : ${imgs.length}`;
+        for(const f of imgs){
+          const url = urlFor(f.path);
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `<a href="${url}" target="_blank" rel="noopener">
+              <img class="thumb" loading="lazy" src="${url}" alt="${f.name}">
+              <div class="cap">${f.name}</div>
+            </a>`;
+          grid.appendChild(card);
+        }
+      } catch(e){
+        $("#notice").className = "msg err";
+        $("#notice").textContent = "Erreur : " + e.message + "\nVérifie le nom exact du dossier.";
+      }
+    }
+    render();
+  </script>
+</body>
+</html>
