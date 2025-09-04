@@ -1,42 +1,72 @@
-name: Generate image sitemap
+#!/usr/bin/env python3
+import os, sys, subprocess, datetime
+from urllib.parse import quote
+from xml.sax.saxutils import escape as xml_escape
 
-on:
-  push:
-    branches: [ "main" ]
-  schedule:
-    - cron: "17 3 * * *"   # 1×/jour
-  workflow_dispatch:
+# --- CONFIG ---
+BASE_URL = "https://agdistys.github.io/Schemas"  # sans slash final
+IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
+OUTPUT = "sitemap.xml"
+# --------------
 
-permissions:
-  contents: write   # <-- clé pour pouvoir pousser
+def git_lastmod(path):
+    """Dernière date ISO 8601 depuis git, sinon mtime fichier."""
+    try:
+        ts = subprocess.check_output(
+            ["git", "log", "-1", "--format=%cI", "--", path],
+            stderr=subprocess.DEVNULL
+        ).decode().strip()
+        if ts:
+            return ts
+    except Exception:
+        pass
+    dt = datetime.datetime.utcfromtimestamp(os.path.getmtime(path))
+    return dt.replace(microsecond=0).isoformat() + "Z"
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}   # <-- explicite
+def iter_images(root="."):
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if not d.startswith(".") and d != ".git"]
+        for fn in filenames:
+            if fn.startswith("."):
+                continue
+            ext = os.path.splitext(fn)[1].lower()
+            if ext in IMAGE_EXT:
+                rel = os.path.relpath(os.path.join(dirpath, fn), root)
+                yield rel
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.x"
+def make_entry(rel_path):
+    # URL encodée pour l’attribut loc (espaces, &, etc.)
+    url = f"{BASE_URL}/{quote(rel_path.replace(os.sep, '/'))}"
+    lastmod = git_lastmod(rel_path)
 
-      - name: Generate sitemap.xml
-        run: |
-          python scripts/generate_sitemap.py
+    # Échappement XML pour les contenus textuels (caption, loc par sûreté)
+    url_xml = xml_escape(url)
+    caption_xml = xml_escape(os.path.basename(rel_path))
 
-      - name: Commit & push if changed
-        run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add sitemap.xml
-            git commit -m "chore: update sitemap.xml"
-            git push
-          else
-            echo "No changes to commit."
-          fi
+    return (
+        "  <url>\n"
+        f"    <loc>{url_xml}</loc>\n"
+        f"    <lastmod>{lastmod}</lastmod>\n"
+        f"    <image:image>\n"
+        f"      <image:loc>{url_xml}</image:loc>\n"
+        f"      <image:caption>{caption_xml}</image:caption>\n"
+        f"    </image:image>\n"
+        "  </url>\n"
+    )
+
+def main():
+    entries = [make_entry(rel) for rel in sorted(iter_images("."))]
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+        '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+        + "".join(entries) +
+        '</urlset>\n'
+    )
+    with open(OUTPUT, "w", encoding="utf-8") as f:
+        f.write(xml)
+    print(f"Generated {OUTPUT} with {len(entries)} image(s).")
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
