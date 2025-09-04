@@ -10,8 +10,11 @@
     main{width:100%;max-width:var(--w)}
     h1{margin:0 0 12px;font-size:24px}
     .topbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
-    .pill{border:1px solid #444;border-radius:999px;padding:6px 10px;font-size:13px;background:#222;color:#eee;text-decoration:none}
-    .pill:hover{background:#333}
+    .pill, .control a{border:1px solid #444;border-radius:999px;padding:6px 10px;font-size:13px;background:#222;color:#eee;text-decoration:none}
+    .pill:hover,.control a:hover{background:#333}
+    .control{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0 18px}
+    select{background:#222;color:#eee;border:1px solid #444;border-radius:10px;padding:6px 10px}
+    label{font-size:13px;opacity:.9}
     .sec{margin:28px 0}
     .sec h2{margin:0 0 10px;font-size:20px}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
@@ -21,6 +24,7 @@
     .empty{opacity:.7;font-size:14px;padding:4px 0 0 2px}
     .err{color:#f88;font-size:13px;white-space:pre-wrap;padding:4px 0 0 2px}
     footer{margin:40px 0 10px;font-size:12px;opacity:.7}
+    .hidden{display:none}
   </style>
 </head>
 <body>
@@ -31,93 +35,152 @@
       <a class="pill" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Licence</a>
       <a class="pill" href="https://github.com/Agdistys/Schemas" target="_blank" rel="noopener">Dépôt GitHub</a>
     </div>
+
+    <!-- Contrôles -->
+    <div class="control">
+      <label for="folderSel">Aller au dossier :</label>
+      <select id="folderSel">
+        <option value="">— (tout) —</option>
+      </select>
+      <label><input type="checkbox" id="isolateChk"> Isoler ce dossier</label>
+      <a href="#" id="resetView">Réinitialiser</a>
+    </div>
+
     <div id="gallery"></div>
-    <footer>© Diane Serant (Agdistys) — ConScience aMi : Vérité = Respect, Mensonge = Violence.</footer>
+
+    <footer>
+      © Diane Serant (Agdistys) — ConScience aMi : Vérité = Respect, Mensonge = Violence ·
+      Sitemap images : <a href="https://agdistys.github.io/Schemas/sitemap.xml" target="_blank" rel="noopener" style="color:#9cf">ouvrir</a>
+    </footer>
   </main>
 
   <script>
-    // ====== CONFIG ======
-    const OWNER = "Agdistys";
-    const REPO  = "Schemas";
-    const IMAGE_EXT = ["png","jpg","jpeg","webp","gif","svg"]; // extensions affichées
-    // ====================
+    const OWNER="Agdistys", REPO="Schemas";
+    const IMAGE_EXT=["png","jpg","jpeg","webp","gif","svg"];
+    const apiBase=`https://api.github.com/repos/${OWNER}/${REPO}/contents`;
 
-    const apiBase = `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
+    const params=new URLSearchParams(location.search);
+    const PARAM_DIR=(params.get("dir")||"").trim();
 
-    function isImage(name){ const ext=name.split(".").pop().toLowerCase(); return IMAGE_EXT.includes(ext); }
-    function urlFor(path){ return path.split("/").map(encodeURI).join("/"); } // ✅ correction OK
+    function isImage(n){const e=n.split(".").pop().toLowerCase();return IMAGE_EXT.includes(e)}
+    function urlFor(p){return p.split("/").map(encodeURI).join("/")}
 
-    async function list(path="") {
-      const url = `${apiBase}/${path ? encodeURIComponent(path) : ""}`;
-      const res = await fetch(url, { headers: { "Accept":"application/vnd.github.v3+json" }});
+    async function list(path=""){
+      const url=`${apiBase}/${path?encodeURIComponent(path):""}`;
+      const res=await fetch(url,{headers:{"Accept":"application/vnd.github.v3+json"}});
       if(!res.ok) throw new Error(`${path||"Racine"} → ${res.status} ${res.statusText}`);
       return res.json();
     }
 
-    function section(title){
-      const sec=document.createElement("section");
-      sec.className="sec";
-      sec.innerHTML=`<h2>${title}</h2><div class="grid"></div>`;
-      return sec;
+    function section(title,id){
+      const s=document.createElement("section"); s.className="sec"; s.dataset.section=id;
+      s.innerHTML=`<h2 id="${encodeURIComponent(id)}">${title}</h2><div class="grid"></div>`;
+      return s;
     }
 
-    async function renderRootAndFolders(){
-      const root = document.getElementById("gallery");
-      root.innerHTML = "";
+    function addOption(sel, text, value){
+      const o=document.createElement("option"); o.textContent=text; o.value=value; sel.appendChild(o);
+    }
 
-      // 1) Lister la racine
-      let entries;
-      try {
-        entries = await list("");
-      } catch (e) {
-        const err=document.createElement("div"); err.className="err";
-        err.textContent = "Erreur de listing racine : " + e.message;
-        root.appendChild(err); return;
-      }
+    function scrollToId(id){
+      const el=document.getElementById(encodeURIComponent(id));
+      if(el){ el.scrollIntoView({behavior:"smooth", block:"start"}); }
+    }
 
-      const dirs  = entries.filter(x => x.type === "dir").map(x => x.name);
-      const files = entries.filter(x => x.type === "file" && isImage(x.name));
+    function isolateSection(id, on){
+      document.querySelectorAll(".sec").forEach(sec=>{
+        const match = (sec.dataset.section===id) || (id==="" && sec.dataset.section==="Racine");
+        sec.classList.toggle("hidden", on && !match);
+      });
+    }
 
-      // 2) Section Racine
-      if (files.length) {
-        const sec = section("Racine");
-        const grid = sec.querySelector(".grid");
-        for(const f of files){
+    async function renderDir(root, dir){
+      const sec=section(dir, dir); root.appendChild(sec);
+      const grid=sec.querySelector(".grid");
+      try{
+        const items=await list(dir);
+        const imgs=items.filter(x=>x.type==="file" && isImage(x.name));
+        if(imgs.length===0){ grid.innerHTML=`<div class="empty">Aucune image trouvée ici</div>`; return; }
+        for(const f of imgs){
+          const url=urlFor(f.path);
           const card=document.createElement("div"); card.className="card";
-          card.innerHTML = `<a href="${urlFor(f.path)}" target="_blank" rel="noopener">
-            <img class="thumb" loading="lazy" src="${urlFor(f.path)}" alt="${f.name}">
+          card.innerHTML=`<a href="${url}" target="_blank" rel="noopener">
+            <img class="thumb" loading="lazy" src="${url}" alt="${f.name}">
+            <div class="cap">${f.name}</div></a>`;
+          grid.appendChild(card);
+        }
+      }catch(e){ grid.innerHTML=`<div class="err">Erreur de listing [${dir}] : ${e.message}</div>`; }
+    }
+
+    async function renderAll(){
+      const root=document.getElementById("gallery");
+      root.innerHTML="";
+
+      // Liste racine
+      let entries;
+      try{ entries=await list(""); }catch(e){
+        const err=document.createElement("div"); err.className="err";
+        err.textContent="Erreur de listing racine : "+e.message; root.appendChild(err); return;
+      }
+      const dirs=entries.filter(x=>x.type==="dir").map(x=>x.name);
+      const files=entries.filter(x=>x.type==="file" && isImage(x.name));
+
+      // Remplir le menu
+      const sel=document.getElementById("folderSel");
+      sel.innerHTML=""; addOption(sel,"— (tout) —","");
+      if(files.length) addOption(sel,"Racine","Racine");
+      dirs.forEach(d=>addOption(sel,d,d));
+
+      // Section Racine
+      if(files.length){
+        const sec=section("Racine","Racine"); const grid=sec.querySelector(".grid");
+        for(const f of files){
+          const url=urlFor(f.path);
+          const card=document.createElement("div"); card.className="card";
+          card.innerHTML=`<a href="${url}" target="_blank" rel="noopener">
+            <img class="thumb" loading="lazy" src="${url}" alt="${f.name}">
             <div class="cap">${f.name}</div></a>`;
           grid.appendChild(card);
         }
         root.appendChild(sec);
       }
 
-      // 3) Dossiers
-      for(const d of dirs){
-        const sec = section(d);
-        const grid = sec.querySelector(".grid");
-        root.appendChild(sec);
-        try{
-          const items = await list(d);
-          const imgs = items.filter(x => x.type==="file" && isImage(x.name));
-          if(imgs.length===0){
-            grid.innerHTML = `<div class="empty">Aucune image trouvée ici</div>`;
-          } else {
-            for(const f of imgs){
-              const card=document.createElement("div"); card.className="card";
-              card.innerHTML = `<a href="${urlFor(f.path)}" target="_blank" rel="noopener">
-                <img class="thumb" loading="lazy" src="${urlFor(f.path)}" alt="${f.name}">
-                <div class="cap">${f.name}</div></a>`;
-              grid.appendChild(card);
-            }
-          }
-        } catch(e){
-          grid.innerHTML = `<div class="err">Erreur de listing [${d}] : ${e.message}</div>`;
-        }
+      // Dossiers
+      for(const d of dirs){ await renderDir(root,d); }
+
+      // Pré-sélection via ?dir=…
+      const isolateChk=document.getElementById("isolateChk");
+      if(PARAM_DIR){
+        sel.value = PARAM_DIR;
+        isolateChk.checked = true;
+        isolateSection(PARAM_DIR, true);
+        scrollToId(PARAM_DIR);
       }
+
+      // Événements UI
+      sel.addEventListener("change", ()=>{
+        const id = sel.value;
+        if(document.getElementById("isolateChk").checked){
+          isolateSection(id || "Racine", true);
+        } else {
+          isolateSection("", false);
+          if(id) scrollToId(id);
+          else window.scrollTo({top:0, behavior:"smooth"});
+        }
+      });
+      isolateChk.addEventListener("change", ()=>{
+        const id = sel.value || "Racine";
+        isolateSection(id, isolateChk.checked);
+      });
+      document.getElementById("resetView").addEventListener("click",(e)=>{
+        e.preventDefault();
+        sel.value=""; isolateChk.checked=false; isolateSection("", false);
+        window.scrollTo({top:0, behavior:"smooth"});
+        history.replaceState(null, "", location.pathname); // retire ?dir
+      });
     }
 
-    renderRootAndFolders();
+    renderAll();
   </script>
 </body>
 </html>
