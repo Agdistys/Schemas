@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sitemap Viewer – Agdistys</title>
+<style>
+  :root{--w:1200px}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:18px;display:grid;place-items:start center;background:#111;color:#eee}
+  main{width:100%;max-width:var(--w)}
+  h1{margin:0 0 10px;font-size:22px}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .pill{border:1px solid #444;border-radius:999px;padding:6px 10px;font-size:13px;background:#222;color:#eee;text-decoration:none}
+  .pill:hover{background:#333}
+  input,select{background:#1c1c1c;color:#eee;border:1px solid #444;border-radius:10px;padding:6px 10px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .card{border:1px solid #444;border-radius:12px;overflow:hidden;background:#1a1a1a}
+  .thumb{width:100%;height:200px;object-fit:contain;background:#000;display:block}
+  .cap{font-size:12px;color:#ccc;padding:6px 8px;word-break:break-word}
+  .msg{opacity:.85;margin:6px 0}
+  .err{color:#f88;white-space:pre-wrap}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+  .right{margin-left:auto}
+  footer{margin:24px 0 6px;font-size:12px;opacity:.7}
+  button{background:#222;color:#eee;border:1px solid #444;border-radius:10px;padding:6px 10px;cursor:pointer}
+  button:hover{background:#333}
+</style>
+</head>
+<body>
+<main>
+  <div class="bar">
+    <h1>Sitemap Viewer</h1>
+    <a class="pill" href="../" target="_blank" rel="noopener">Galerie complète ↗</a>
+    <a class="pill" id="smLink" target="_blank" rel="noopener">Sitemap ↗</a>
+  </div>
+
+  <div class="row">
+    <label>Rechercher : <input id="q" placeholder="nom de fichier…"></label>
+    <label>Dossier : <select id="folder"><option value="">(tous)</option></select></label>
+    <span id="count" class="right"></span>
+  </div>
+
+  <div id="notice" class="msg"></div>
+  <div id="grid" class="grid"></div>
+  <div class="row"><button id="more" style="display:none">Charger plus</button></div>
+
+  <footer>© Diane Serant (Agdistys) — CC BY-SA 4.0.</footer>
+</main>
+
+<script>
+(async function(){
+  const $=s=>document.querySelector(s);
+  const params=new URLSearchParams(location.search);
+  const DEFAULT_SITEMAP=new URL("../sitemap.xml", location.href).href;
+  const SITEMAP=params.get("sitemap")||DEFAULT_SITEMAP;
+  const PRE_DIR=(params.get("dir")||"").trim();
+  const PAGE=60; // nb d’images par lot
+  let all=[], filtered=[], page=0;
+
+  $("#smLink").href=SITEMAP;
+
+  function parseXML(str){
+    const xml=new DOMParser().parseFromString(str,"application/xml");
+    const err=xml.getElementsByTagName("parsererror")[0];
+    if(err) throw new Error("XML invalide : "+err.textContent.trim());
+    return xml;
+  }
+  function text(n){return n && n.textContent ? n.textContent.trim() : "";}
+  function folderFromUrl(u){
+    try{
+      const url=new URL(u);
+      const parts=url.pathname.split("/").filter(Boolean);
+      // essaie d’ancrer sur /Schemas/ si présent
+      const i=parts.indexOf("Schemas");
+      const within=(i>=0)?parts.slice(i+1):parts;
+      const folder=within.slice(0, -1).join("/") || "Racine";
+      return decodeURIComponent(folder);
+    }catch(_){ return "Racine"; }
+  }
+  function filename(u){ try{ return decodeURIComponent(u.split("/").pop()); } catch { return u; } }
+
+  async function loadSitemap(){
+    $("#notice").textContent="Chargement du sitemap…";
+    const res=await fetch(SITEMAP, {cache:"no-store"});
+    if(!res.ok) throw new Error(res.status+" "+res.statusText);
+    const xml=parseXML(await res.text());
+
+    const nsUrl="http://www.sitemaps.org/schemas/sitemap/0.9";
+    const nsImg="http://www.google.com/schemas/sitemap-image/1.1";
+    const urls=xml.getElementsByTagNameNS(nsUrl,"url");
+
+    const set=new Set();
+    for (const u of urls){
+      const imgNodes=u.getElementsByTagNameNS(nsImg,"loc");
+      if (imgNodes.length){
+        for (const n of imgNodes){
+          set.add(text(n));
+        }
+      } else {
+        const loc=u.getElementsByTagNameNS(nsUrl,"loc")[0];
+        if(loc) set.add(text(loc));
+      }
+    }
+    // transforme en objets avec dossier/fichier
+    all=[...set].map(href=>({href, folder:folderFromUrl(href), name:filename(href)}));
+    all.sort((a,b)=>a.folder.localeCompare(b.folder)||a.name.localeCompare(b.name));
+    $("#notice").textContent="";
+  }
+
+  function buildFolderSelect(){
+    const folders=[...new Set(all.map(x=>x.folder))].sort();
+    const sel=$("#folder"); sel.innerHTML='<option value="">(tous)</option>';
+    folders.forEach(f=>{ const o=document.createElement("option"); o.value=f; o.textContent=f; sel.appendChild(o); });
+    if(PRE_DIR && folders.includes(PRE_DIR)) sel.value=PRE_DIR;
+  }
+
+  function applyFilters(){
+    const q=$("#q").value.toLowerCase().trim();
+    const dir=$("#folder").value;
+    filtered=all.filter(x=>{
+      const okDir = dir? x.folder===dir : true;
+      const okQ   = q? (x.name.toLowerCase().includes(q) || x.folder.toLowerCase().includes(q)) : true;
+      return okDir && okQ;
+    });
+    page=0;
+    $("#grid").innerHTML="";
+    $("#count").textContent = `${filtered.length} image${filtered.length>1?"s":""}`;
+    renderMore();
+  }
+
+  function renderMore(){
+    const start=page*PAGE;
+    const slice=filtered.slice(start, start+PAGE);
+    const grid=$("#grid");
+    for(const f of slice){
+      const card=document.createElement("div");
+      card.className="card";
+      card.innerHTML=`<a href="${f.href}" target="_blank" rel="noopener">
+          <img class="thumb" loading="lazy" src="${f.href}" alt="${f.name}">
+          <div class="cap">${f.folder} — ${f.name}</div>
+        </a>`;
+      grid.appendChild(card);
+    }
+    page++;
+    $("#more").style.display = (page*PAGE<filtered.length) ? "inline-block" : "none";
+  }
+
+  try{
+    await loadSitemap();
+    buildFolderSelect();
+    applyFilters();
+  }catch(e){
+    $("#notice").className="msg err";
+    $("#notice").textContent="Erreur : "+e.message+"\nVérifie l’URL du sitemap (paramètre ?sitemap=).";
+    console.error(e);
+  }
+
+  $("#q").addEventListener("input", ()=>applyFilters());
+  $("#folder").addEventListener("change", ()=>applyFilters());
+  $("#more").addEventListener("click", ()=>renderMore());
+})();
+</script>
+</body>
+</html>
