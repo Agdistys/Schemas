@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<title>Galerie — Agdistys (auto)</title>
+<style>
+  :root{--gap:14px}
+  body{margin:0;background:#fafafa}
+  .wrap{max-width:1100px;margin:24px auto;padding:0 12px;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  h1{font-size:22px;margin:0 0 12px;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap)}
+  .card{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff}
+  .card a{display:block;text-decoration:none;color:inherit}
+  .card img{display:block;width:100%;height:180px;object-fit:cover;background:#f3f4f6}
+  .card figcaption{padding:10px 12px}
+  .title{font-weight:600;font-size:14px;margin:0 0 4px}
+  .date{color:#6b7280;font-size:12px}
+</style>
+<div class="wrap">
+  <h1>Galerie — Agdistys</h1>
+  <div id="grid" class="grid">Chargement…</div>
+</div>
+<script>
+(async () => {
+  const nsSM  = "http://www.sitemaps.org/schemas/sitemap/0.9";
+  const nsIMG = "http://www.google.com/schemas/sitemap-image/1.1";
+  const res = await fetch('sitemap.xml', { cache: 'no-store' });
+  const xml = new DOMParser().parseFromString(await res.text(), 'application/xml');
+
+  const urls = xml.getElementsByTagNameNS(nsSM, 'url');
+  const items = [];
+  for (const url of urls) {
+    const pageLoc = url.getElementsByTagNameNS(nsSM, 'loc')[0]?.textContent.trim() || '';
+    const lastmod = url.getElementsByTagNameNS(nsSM, 'lastmod')[0]?.textContent.trim() || '';
+    const imgs = url.getElementsByTagNameNS(nsIMG, 'image');
+    for (const img of imgs) {
+      const loc = img.getElementsByTagNameNS(nsIMG, 'loc')[0]?.textContent.trim() || '';
+      const caption = img.getElementsByTagNameNS(nsIMG, 'caption')[0]?.textContent.trim() || '';
+      if (loc) items.push({ loc, caption, lastmod, pageLoc });
+    }
+  }
+
+  // tri par date décroissante si dispo
+  items.sort((a,b)=> (b.lastmod||'').localeCompare(a.lastmod||''));
+
+  const grid = document.getElementById('grid');
+  if (!items.length) { grid.textContent = "Aucune image trouvée dans le sitemap."; return; }
+
+  grid.innerHTML = items.map(({loc, caption, lastmod}) => `
+    <figure class="card">
+      <a href="${loc}" target="_blank" rel="noopener">
+        <img src="${loc}" loading="lazy" decoding="async" alt="${(caption||'').replace(/"/g,'&quot;')}">
+        <figcaption>
+          <div class="title">${caption || loc.split('/').pop()}</div>
+          ${lastmod ? `<div class="date">${lastmod}</div>` : ``}
+        </figcaption>
+      </a>
+    </figure>
+  `).join('');
+})();
+</script>
+</html>
