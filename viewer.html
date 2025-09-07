@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lecteur de documents — Schemas</title>
+  <style>
+    :root{
+      --bg:#0b0e14; --fg:#e6e6e6; --muted:#9aa4b2; --card:#111826; --accent:#8bd3dd;
+      --border:#1f2a3a; --btn:#1b2332; --btnh:#242f43;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"}
+    .wrap{min-height:100%;display:flex;flex-direction:column}
+    header{padding:16px 20px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#0e1320,#0b0e14)}
+    header h1{margin:0;font-size:20px;font-weight:600}
+    header p{margin:6px 0 0;color:var(--muted);font-size:14px}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:14px 20px;background:#0d1320;border-bottom:1px solid var(--border)}
+    select, button, a.btn{appearance:none;border:1px solid var(--border);background:var(--btn);color:var(--fg);padding:10px 12px;border-radius:10px}
+    select{min-width:260px}
+    button:hover, a.btn:hover{background:var(--btnh)}
+    button:active, a.btn:active{transform:translateY(1px)}
+    a.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+    .viewer{flex:1;display:flex}
+    .viewer object{flex:1;border:0;width:100%;height:calc(100vh - 148px);background:#101521}
+    .status{padding:10px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+    .spacer{flex:1}
+    .badge{border:1px solid var(--border);padding:4px 8px;border-radius:999px;font-size:12px;color:var(--muted)}
+    .links{display:flex;gap:8px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Lecteur de documents — ConScience aMi</h1>
+    <p>Sélectionne un document pour l’ouvrir instantanément. Les liens IA (RAW) et téléchargement sont fournis.</p>
+  </header>
+
+  <div class="controls">
+    <label for="docSelect" class="badge">Document</label>
+    <select id="docSelect" aria-label="Choisir un document"></select>
+    <div class="spacer"></div>
+    <div class="links">
+      <a id="openTab" class="btn" target="_blank" rel="noopener">Ouvrir dans un onglet</a>
+      <a id="download" class="btn" download> Télécharger</a>
+      <button id="copyRaw">Copier lien IA (RAW)</button>
+      <button id="refresh">Forcer rafraîchissement</button>
+    </div>
+  </div>
+
+  <main class="viewer">
+    <object id="pdf" type="application/pdf" data="" aria-label="Visionneuse PDF">
+      <p>Ce PDF ne peut pas être affiché ici. 
+        <a id="fallbackLink" href="#" target="_blank" rel="noopener">Ouvrir le document</a>.
+      </p>
+    </object>
+  </main>
+
+  <div class="status" id="status">Prêt.</div>
+</div>
+
+<script>
+(function(){
+  // Base absolue de ton site GitHub Pages
+  const PAGES_BASE = 'https://agdistys.github.io/Schemas/';
+  const RAW_BASE   = 'https://raw.githubusercontent.com/Agdistys/Schemas/main/';
+
+  // Tes documents (ajoute-en d'autres ici si besoin)
+  const DOCS = [
+    { title: 'Formation-Deni (PDF ~24 Mo)', path: 'Document/Formation-Deni.pdf' },
+    { title: 'Consommer Autrement (PDF)', path: 'Document/Consommer Autrement.pdf' },
+    { title: "Liste d'achat (PDF)",      path: "Document/Liste d'achat.pdf" },
+  ];
+
+  // Helpers
+  const $ = (sel)=>document.querySelector(sel);
+  function encodePathSegments(p){ return p.split('/').map(encodeURIComponent).join('/'); }
+  function qs(name){ return new URLSearchParams(location.search).get(name); }
+  function setStatus(msg){ $('#status').textContent = msg; }
+
+  // Build select
+  const sel = $('#docSelect');
+  DOCS.forEach((d,i)=>{
+    const o = document.createElement('option');
+    o.value = i;
+    o.textContent = d.title;
+    sel.appendChild(o);
+  });
+
+  // Load doc into viewer
+  function loadDoc(idx, forceBust=false){
+    const doc = DOCS[idx];
+    const encoded = encodePathSegments(doc.path);
+    const pagesURL = PAGES_BASE + encoded + (forceBust ? ('?v=' + Date.now()) : '');
+    const rawURL   = RAW_BASE   + encoded;
+
+    // Update viewer
+    const obj = $('#pdf');
+    obj.setAttribute('data', pagesURL + '#view=FitH');
+
+    // Update links
+    $('#openTab').href = pagesURL;
+    $('#download').href = rawURL; // téléchargement direct depuis RAW
+    $('#fallbackLink').href = pagesURL;
+
+    // Copy button stores current raw url on dataset
+    $('#copyRaw').dataset.url = rawURL;
+
+    // Reflect selection in URL (?file=...)
+    const url = new URL(location.href);
+    url.searchParams.set('file', encoded);
+    history.replaceState(null, '', url.toString());
+
+    setStatus('Ouverture : ' + doc.title);
+  }
+
+  // Initial selection: from ?file=...
+  (function initFromQuery(){
+    const qf = qs('file');
+    let index = 0;
+    if(qf){
+      const decoded = decodeURIComponent(qf);
+      const found = DOCS.findIndex(d => encodePathSegments(d.path) === decoded || d.path === decoded);
+      if(found >= 0) index = found;
+    }
+    sel.value = String(index);
+    loadDoc(index);
+  })();
+
+  // Events
+  sel.addEventListener('change', ()=> loadDoc(Number(sel.value)) );
+  $('#copyRaw').addEventListener('click', async (e)=>{
+    const u = e.currentTarget.dataset.url;
+    try { await navigator.clipboard.writeText(u); setStatus('Lien IA (RAW) copié dans le presse‑papiers.'); }
+    catch { setStatus('Impossible de copier. Clique droit → Copier le lien.'); }
+  });
+  $('#refresh').addEventListener('click', ()=> loadDoc(Number(sel.value), true) );
+})();
+</script>
+</body>
+</html>
