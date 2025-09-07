@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Présentation — Galerie</title>
+  <style>
+    :root{
+      --bg:#0b0e14; --fg:#e6e6e6; --muted:#9aa4b2; --card:#111826; --accent:#8bd3dd; --border:#1f2a3a;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    header{position:sticky;top:0;z-index:2;background:linear-gradient(180deg,#0f1422,#0b0e14);border-bottom:1px solid var(--border);padding:14px 18px;display:flex;gap:12px;align-items:center}
+    h1{margin:0;font-size:18px}
+    .muted{color:var(--muted)}
+    .controls{margin-left:auto;display:flex;gap:10px;align-items:center}
+    select,button{appearance:none;border:1px solid var(--border);background:#121a29;color:var(--fg);padding:8px 10px;border-radius:10px}
+    button:hover{background:#152033}
+    main{padding:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+    .thumb{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+    .cap{padding:8px 10px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+    .cap b{color:var(--fg);font-weight:600}
+    .cap a{color:inherit;text-decoration:none}
+    .cap a:hover{color:#fff;text-decoration:underline}
+    .status{padding:8px 16px;color:var(--muted);border-top:1px solid var(--border)}
+    /* Lightbox */
+    dialog{border:0;padding:0;background:transparent}
+    dialog::backdrop{background:rgba(0,0,0,.75)}
+    .light{display:flex;align-items:center;justify-content:center;min-width:100vw;min-height:100vh}
+    .light img{max-width:90vw;max-height:88vh;border-radius:14px;border:1px solid var(--border);background:#000}
+    .nav{position:fixed;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;pointer-events:none}
+    .nav button{pointer-events:auto;background:rgba(0,0,0,.5);border:1px solid var(--border);padding:10px 14px;border-radius:12px}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Présentation <span class="muted">— Galerie tri naturel</span></h1>
+    <div class="controls">
+      <label class="muted" for="sort">Tri :</label>
+      <select id="sort">
+        <option value="natural-asc">Naturel (1,2,10) ↑</option>
+        <option value="natural-desc">Naturel (…10,2,1) ↓</option>
+        <option value="name-asc">Nom A→Z</option>
+        <option value="name-desc">Nom Z→A</option>
+      </select>
+      <button id="refresh">Rafraîchir</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <div class="status" id="status">Chargement…</div>
+
+  <dialog id="box">
+    <div class="light">
+      <img id="full" alt="Aperçu" />
+    </div>
+    <div class="nav">
+      <button id="prev" aria-label="Précédent">◀</button>
+      <button id="next" aria-label="Suivant">▶</button>
+    </div>
+  </dialog>
+
+<script>
+(function(){
+  // === CONFIG ===
+  const OWNER = 'Agdistys';
+  const REPO  = 'Schemas';
+  const BRANCH = 'main';
+  const FOLDER = 'Presentation'; // <- mets le nom de ton dossier ici
+
+  // Liens de base
+  const API = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(FOLDER)}?ref=${BRANCH}`;
+  const PAGES_BASE = `https://${OWNER.toLowerCase()}.github.io/${REPO}/`;
+
+  const grid = document.getElementById('grid');
+  const status = document.getElementById('status');
+  const sortSel = document.getElementById('sort');
+
+  let items = []; // {name, urlPages}
+  let current = 0; // index pour lightbox
+
+  const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+
+  function sortItems(mode){
+    const byName = (a,b)=> a.name.localeCompare(b.name);
+    const byNameDesc =(a,b)=> b.name.localeCompare(a.name);
+    const byNatural =(a,b)=> collator.compare(a.name,b.name);
+    const byNaturalDesc=(a,b)=> collator.compare(b.name,a.name);
+
+    switch(mode){
+      case 'name-asc': items.sort(byName); break;
+      case 'name-desc': items.sort(byNameDesc); break;
+      case 'natural-desc': items.sort(byNaturalDesc); break;
+      case 'natural-asc':
+      default: items.sort(byNatural); break;
+    }
+  }
+
+  async function load(){
+    status.textContent = 'Chargement de la liste…';
+    const r = await fetch(API);
+    if(!r.ok){ status.textContent = 'Erreur de chargement ('+r.status+').'; return; }
+    const data = await r.json();
+
+    // Garde images uniquement
+    const exts = new Set(['.png','.jpg','.jpeg','.webp','.gif','.svg']);
+    items = data
+      .filter(x => x.type === 'file' && exts.has(x.name.toLowerCase().replace(/.*(\.[^.]+)$/,'$1')))
+      .map(x => ({ name: x.name, urlPages: PAGES_BASE + FOLDER + '/' + encodeURIComponent(x.name) }));
+
+    sortItems(sortSel.value);
+    render();
+  }
+
+  function render(){
+    grid.innerHTML = '';
+    items.forEach((it, i)=>{
+      const card = document.createElement('figure');
+      card.className = 'card';
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.alt = it.name;
+      img.src = it.urlPages; // pages URL → bonne compatibilité
+      img.className = 'thumb';
+      img.addEventListener('click', ()=> openLightbox(i));
+      const cap = document.createElement('figcaption');
+      cap.className = 'cap';
+      cap.innerHTML = `<b>${it.name}</b> <a href="${it.urlPages}" target="_blank" rel="noopener">Ouvrir</a>`;
+      card.appendChild(img);
+      card.appendChild(cap);
+      grid.appendChild(card);
+    });
+    status.textContent = items.length ? `${items.length} image(s).` : 'Aucune image trouvée.';
+  }
+
+  // Lightbox très simple
+  const box = document.getElementById('box');
+  const full = document.getElementById('full');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+
+  function openLightbox(i){ current = i; updateLightbox(); box.showModal(); }
+  function updateLightbox(){ full.src = items[current].urlPages; full.alt = items[current].name; }
+  function step(d){ current = (current + d + items.length) % items.length; updateLightbox(); }
+
+  prev.addEventListener('click', ()=> step(-1));
+  next.addEventListener('click', ()=> step(1));
+  box.addEventListener('click', (e)=>{ if(e.target === box) box.close(); });
+  window.addEventListener('keydown', (e)=>{
+    if(!box.open) return;
+    if(e.key === 'Escape') box.close();
+    if(e.key === 'ArrowLeft') step(-1);
+    if(e.key === 'ArrowRight') step(1);
+  });
+
+  sortSel.addEventListener('change', ()=>{ sortItems(sortSel.value); render(); });
+  document.getElementById('refresh').addEventListener('click', ()=> load());
+
+  load();
+})();
+</script>
+</body>
+</html>
