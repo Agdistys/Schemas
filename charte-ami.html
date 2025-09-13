@@ -4,7 +4,6 @@
   const GH_REPO   = "Schemas";
   const GH_BRANCH = "main";
 
-  // --- utils ---
   async function ghFetch(url){
     const res = await fetch(url, { headers: { "Accept":"application/vnd.github+json" }, cache:"no-store" });
     if(!res.ok) throw new Error("GitHub "+res.status+": "+url);
@@ -21,15 +20,12 @@
     }
     return el;
   }
-  // URL helpers
   function toViewUrl(path){
     if(/\.(md|html)$/i.test(path)){
       return `https://github.com/${GH_OWNER}/${GH_REPO}/blob/${GH_BRANCH}/${encodeURIComponent(path)}`;
     }
-    // Pour PDF/images → GitHub Pages si sous Schemas/
     const pages = `https://${GH_OWNER.toLowerCase()}.github.io/${GH_REPO}/` + encodeURIComponent(path.replace(/^Schemas\//, ""));
     if (/\.(pdf|png|jpe?g|webp|gif|svg)$/i.test(path)) return pages;
-    // Sinon RAW
     return `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${encodeURIComponent(path)}`;
   }
   function humanLabelFromPath(path){
@@ -40,7 +36,6 @@
       .replace(/\b\w/g, c => c.toUpperCase());
   }
 
-  // --- section ---
   const SEC_CERTS = `
   <section id="certificats" style="margin:28px 0">
     <h2 style="margin:0 0 10px;font:600 18px/1.3 system-ui">Certificats — Naissance & Reconnaissance</h2>
@@ -48,27 +43,31 @@
       <div>Chargement…</div>
     </div>
     <p class="foot" style="color:#9aa4b2;font-size:13px;margin-top:10px">
-      Cette liste s’alimente automatiquement depuis <span class="mono">Schemas/Certificats/</span>
-      et tout fichier contenant « naissance » ou « reconnaissance ».
+      Sources : <span class="mono">Schemas/Certificats/</span>, <span class="mono">Schemas/Document/certificats/</span>,
+      et tout chemin sous <span class="mono">Schemas/</span> contenant « naissance » ou « reconnaissance ».
     </p>
   </section>`;
 
-  // --- sources & filtre ---
   async function fetchRepoTreeRecursive(){
     const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/git/trees/${GH_BRANCH}?recursive=1`;
     const data = await ghFetch(url);
     return (data.tree || []).map(n => n.path);
   }
+
   function isCertPath(p){
     const s = p.toLowerCase();
-    // Fichiers acceptés
+    if (!/^schemas\//.test(s)) return false;
     const okExt = /\.(md|html|pdf|png|jpe?g|webp|gif|svg)$/i.test(s);
-    if(!okExt) return false;
-    // 1) dossier dédié
-    const inFolder = /^schemas\/certificats\//.test(s);
-    // 2) mots-clés partout sous Schemas/
-    const hasKeyword = /^schemas\//.test(s) && /(naissance|reconnaissance)/.test(s);
-    return inFolder || hasKeyword;
+    if (!okExt) return false;
+
+    // Dossiers dédiés acceptés (casse insensible)
+    const inMainFolder     = /^schemas\/certificats\//i.test(p);
+    const inDocumentFolder = /^schemas\/document\/certificats\//i.test(p);
+
+    // Mots-clés acceptés n'importe où sous Schemas/
+    const hasKeywords = /(naissance|reconnaissance)/i.test(p);
+
+    return inMainFolder || inDocumentFolder || hasKeywords;
   }
 
   async function renderCertificats(){
@@ -78,146 +77,41 @@
       const tree = await fetchRepoTreeRecursive();
       let files = tree.filter(isCertPath);
 
-      // Dé-dup au cas où et tri: dossiers dédiés d’abord, puis alpha
+      // dé-dup + tri (dossiers dédiés d'abord, puis alpha)
       const seen = new Set();
-      files = files.filter(p => (seen.has(p)? false : (seen.add(p), true)));
+      files = files.filter(p => (seen.has(p) ? false : (seen.add(p), true)));
       files.sort((a,b)=>{
-        const aIn = /^Schemas\/Certificats\//i.test(a) ? 0 : 1;
-        const bIn = /^Schemas\/Certificats\//i.
+        const aScore = /^Schemas\/(Certificats|Document\/certificats)\//i.test(a) ? 0 : 1;
+        const bScore = /^Schemas\/(Certificats|Document\/certificats)\//i.test(b) ? 0 : 1;
+        if (aScore !== bScore) return aScore - bScore;
+        return humanLabelFromPath(a).localeCompare(humanLabelFromPath(b));
+      });
 
+      if(!files.length){
+        grid.innerHTML = `<p>Aucun certificat détecté pour l’instant.</p>`;
+        return;
+      }
 
-
-<script id="ami-auto-sections">
-(function(){
-  const GH_OWNER  = "Agdistys";
-  const GH_REPO   = "Schemas";
-  const GH_BRANCH = "main";
-
-  // --- utils ---
-  async function ghFetch(url){
-    const res = await fetch(url, { headers: { "Accept":"application/vnd.github+json" }, cache:"no-store" });
-    if(!res.ok) throw new Error("GitHub "+res.status+": "+url);
-    return res.json();
-  }
-  function ensureSection(id, html){
-    let el = document.getElementById(id);
-    if(!el){
-      const main = document.querySelector("main") || document.body;
-      const tmp = document.createElement("div");
-      tmp.innerHTML = html.trim();
-      el = tmp.firstElementChild;
-      main.appendChild(el);
-    }
-    return el;
-  }
-
-  // --- sections auto (créées si absentes) ---
-  const SEC_RECENT = `
-  <section id="dernier-ajout" style="margin:28px 0">
-    <h2 style="margin:0 0 10px;font:600 18px/1.3 system-ui">Derniers ajouts (Schemas/)</h2>
-    <ul class="feed" style="margin:0;padding-left:18px">
-      <li>Chargement…</li>
-    </ul>
-  </section>`;
-  const SEC_OUTILS = `
-  <section id="outils" style="margin:28px 0">
-    <h2 style="margin:0 0 10px;font:600 18px/1.3 system ui">Outils</h2>
-    <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
-      <div>Chargement…</div>
-    </div>
-  </section>`;
-
-  // --- Derniers ajouts : tous dossiers sous Schemas/ ---
-  async function fetchLatestSchemasCommits({ perPage = 30, sinceISO = null } = {}){
-    const q = new URLSearchParams({ per_page:String(perPage), path:"Schemas" });
-    if(sinceISO) q.set("since", sinceISO);
-    const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/commits?${q}`;
-    const commits = await ghFetch(url);
-    const uniq = new Map();
-    for(const c of commits) uniq.set(c.sha, c);
-    return [...uniq.values()].sort((a,b) =>
-      new Date(b.commit?.author?.date || b.commit?.committer?.date || 0) -
-      new Date(a.commit?.author?.date || a.commit?.committer?.date || 0)
-    );
-  }
-  async function renderDernierAjout(){
-    const root = document.querySelector("#dernier-ajout .feed");
-    if(!root) return;
-    try{
-      const commits = await fetchLatestSchemasCommits({ perPage: 30 });
-      if(!commits.length){ root.innerHTML = "<li>Aucun commit trouvé.</li>"; return; }
-      root.innerHTML = commits.slice(0, 12).map(c=>{
-        const date = new Date(c.commit.author?.date || c.commit.committer?.date || Date.now()).toLocaleString();
-        const msg  = (c.commit.message || "").split("\n")[0] || "(commit)";
-        return `<li><a href="${c.html_url}" target="_blank" rel="noopener">${msg}</a><small> — ${date}</small></li>`;
-      }).join("");
-    }catch(e){
-      console.error(e);
-      root.innerHTML = "<li>Impossible de charger les derniers ajouts.</li>";
-    }
-  }
-
-  // --- Outils : détection auto partout sous Schemas/ ---
-  async function fetchRepoTreeRecursive(){
-    const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/git/trees/${GH_BRANCH}?recursive=1`;
-    const data = await ghFetch(url);
-    return (data.tree || []).map(n => n.path);
-  }
-  function isToolPath(p){
-    const s = p.toLowerCase();
-    const validExt = /\.(md|html|ipynb|js|ts)$/.test(s);
-    if(!validExt) return false;
-    const inToolsDir   = /^schemas\/(outils|tools)\//.test(s);
-    const looksLikeTool= /\/(tool-|outil-)/.test(s);
-    return (inToolsDir || looksLikeTool);
-  }
-  function toViewUrl(path){
-    if(/\.(md|html)$/i.test(path)){
-      return `https://github.com/${GH_OWNER}/${GH_REPO}/blob/${GH_BRANCH}/${encodeURIComponent(path)}`;
-    }
-    return `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${encodeURIComponent(path)}`;
-  }
-  function humanLabelFromPath(path){
-    const base = path.split("/").pop();
-    return base
-      .replace(/^tool-|^outil-/i, "")
-      .replace(/\.(md|html|ipynb|js|ts)$/i, "")
-      .replace(/[-_]/g, " ")
-      .replace(/\b\w/g, c => c.toUpperCase());
-  }
-  async function renderOutils(){
-    const grid = document.querySelector("#outils .grid");
-    if(!grid) return;
-    try{
-      const tree  = await fetchRepoTreeRecursive();
-      const files = tree.filter(p => p.toLowerCase().startsWith("schemas/")).filter(isToolPath);
-      if(!files.length){ grid.innerHTML = "<p>Aucun outil détecté.</p>"; return; }
-      files.sort((a,b)=> humanLabelFromPath(a).localeCompare(humanLabelFromPath(b)));
       grid.innerHTML = files.map(p=>{
         const label = humanLabelFromPath(p);
         const url   = toViewUrl(p);
         const crumb = p.replace(/^Schemas\//, "");
         return `
-        <a class="card" href="${url}" target="_blank" rel="noopener" style="
-          display:block;padding:12px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;color:#111;text-decoration:none">
-          <strong style="display:block;margin-bottom:4px">${label}</strong>
-          <small style="color:#6b7280">${crumb}</small>
-        </a>`;
+          <a class="card" href="${url}" target="_blank" rel="noopener" style="
+            display:block;padding:12px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;color:#111;text-decoration:none">
+            <strong style="display:block;margin-bottom:4px">${label}</strong>
+            <small style="color:#6b7280">${crumb}</small>
+          </a>`;
       }).join("");
     }catch(e){
       console.error(e);
-      grid.innerHTML = "<p>Impossible de charger les outils.</p>";
+      grid.innerHTML = `<p>Impossible de charger les certificats.</p>`;
     }
   }
 
-  // --- boot ---
   document.addEventListener("DOMContentLoaded", ()=>{
-    // Crée les sections si absentes (aucun doublon si elles existent déjà)
-    ensureSection("dernier-ajout", SEC_RECENT);
-    ensureSection("outils", SEC_OUTILS);
-
-    renderDernierAjout();
-    renderOutils();
+    ensureSection("certificats", SEC_CERTS);
+    renderCertificats();
   });
 })();
 </script>
