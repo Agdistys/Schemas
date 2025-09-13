@@ -122,6 +122,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/COGNITIF/Tableau%20PsychoBiologie.png</loc>
+    <lastmod>2025-09-13T20:35:40+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/COGNITIF/Tableau%20PsychoBiologie.png</image:loc>
+      <image:caption>Tableau PsychoBiologie.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/COGNITIF/pense%CC%81es.png</loc>
     <lastmod>2025-09-04T19:14:21+02:00</lastmod>
     <image:image>
@@ -887,14 +895,6 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Spectre%20Sexe%20%26%20Genre.webp</image:loc>
       <image:caption>Spectre Sexe &amp; Genre.webp</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://agdistys.github.io/Schemas/Tableau%20PsychoBiologie.png</loc>
-    <lastmod>2025-09-07T02:58:26+02:00</lastmod>
-    <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/Tableau%20PsychoBiologie.png</image:loc>
-      <image:caption>Tableau PsychoBiologie.png</image:caption>
     </image:image>
   </url>
   <url>
