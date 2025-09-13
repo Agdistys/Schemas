@@ -1,3 +1,92 @@
+<script id="ami-certificats">
+(function(){
+  const GH_OWNER  = "Agdistys";
+  const GH_REPO   = "Schemas";
+  const GH_BRANCH = "main";
+
+  // --- utils ---
+  async function ghFetch(url){
+    const res = await fetch(url, { headers: { "Accept":"application/vnd.github+json" }, cache:"no-store" });
+    if(!res.ok) throw new Error("GitHub "+res.status+": "+url);
+    return res.json();
+  }
+  function ensureSection(id, html){
+    let el = document.getElementById(id);
+    if(!el){
+      const main = document.querySelector("main") || document.body;
+      const tmp = document.createElement("div");
+      tmp.innerHTML = html.trim();
+      el = tmp.firstElementChild;
+      main.appendChild(el);
+    }
+    return el;
+  }
+  // URL helpers
+  function toViewUrl(path){
+    if(/\.(md|html)$/i.test(path)){
+      return `https://github.com/${GH_OWNER}/${GH_REPO}/blob/${GH_BRANCH}/${encodeURIComponent(path)}`;
+    }
+    // Pour PDF/images → GitHub Pages si sous Schemas/
+    const pages = `https://${GH_OWNER.toLowerCase()}.github.io/${GH_REPO}/` + encodeURIComponent(path.replace(/^Schemas\//, ""));
+    if (/\.(pdf|png|jpe?g|webp|gif|svg)$/i.test(path)) return pages;
+    // Sinon RAW
+    return `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${encodeURIComponent(path)}`;
+  }
+  function humanLabelFromPath(path){
+    const base = path.split("/").pop();
+    return base
+      .replace(/\.(md|html|pdf|png|jpe?g|webp|gif|svg)$/i, "")
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  // --- section ---
+  const SEC_CERTS = `
+  <section id="certificats" style="margin:28px 0">
+    <h2 style="margin:0 0 10px;font:600 18px/1.3 system-ui">Certificats — Naissance & Reconnaissance</h2>
+    <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+      <div>Chargement…</div>
+    </div>
+    <p class="foot" style="color:#9aa4b2;font-size:13px;margin-top:10px">
+      Cette liste s’alimente automatiquement depuis <span class="mono">Schemas/Certificats/</span>
+      et tout fichier contenant « naissance » ou « reconnaissance ».
+    </p>
+  </section>`;
+
+  // --- sources & filtre ---
+  async function fetchRepoTreeRecursive(){
+    const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/git/trees/${GH_BRANCH}?recursive=1`;
+    const data = await ghFetch(url);
+    return (data.tree || []).map(n => n.path);
+  }
+  function isCertPath(p){
+    const s = p.toLowerCase();
+    // Fichiers acceptés
+    const okExt = /\.(md|html|pdf|png|jpe?g|webp|gif|svg)$/i.test(s);
+    if(!okExt) return false;
+    // 1) dossier dédié
+    const inFolder = /^schemas\/certificats\//.test(s);
+    // 2) mots-clés partout sous Schemas/
+    const hasKeyword = /^schemas\//.test(s) && /(naissance|reconnaissance)/.test(s);
+    return inFolder || hasKeyword;
+  }
+
+  async function renderCertificats(){
+    const grid = document.querySelector("#certificats .grid");
+    if(!grid) return;
+    try{
+      const tree = await fetchRepoTreeRecursive();
+      let files = tree.filter(isCertPath);
+
+      // Dé-dup au cas où et tri: dossiers dédiés d’abord, puis alpha
+      const seen = new Set();
+      files = files.filter(p => (seen.has(p)? false : (seen.add(p), true)));
+      files.sort((a,b)=>{
+        const aIn = /^Schemas\/Certificats\//i.test(a) ? 0 : 1;
+        const bIn = /^Schemas\/Certificats\//i.
+
+
+
 <script id="ami-auto-sections">
 (function(){
   const GH_OWNER  = "Agdistys";
