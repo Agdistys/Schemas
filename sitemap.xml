@@ -962,19 +962,19 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/violence%20et%20conflit.png</loc>
+    <lastmod>2025-09-13T20:40:04+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/violence%20et%20conflit.png</image:loc>
+      <image:caption>violence et conflit.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/la%20vie%20est%20un%20jeu.png</loc>
     <lastmod>2025-09-04T19:32:02+02:00</lastmod>
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/la%20vie%20est%20un%20jeu.png</image:loc>
       <image:caption>la vie est un jeu.png</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://agdistys.github.io/Schemas/violence%20et%20conflit.png</loc>
-    <lastmod>2025-09-04T19:32:02+02:00</lastmod>
-    <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/violence%20et%20conflit.png</image:loc>
-      <image:caption>violence et conflit.png</image:caption>
     </image:image>
   </url>
 </urlset>
