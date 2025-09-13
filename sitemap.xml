@@ -538,14 +538,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://agdistys.github.io/Schemas/Le%20Grand%20Oeuvre.png</loc>
-    <lastmod>2025-09-04T19:32:02+02:00</lastmod>
-    <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/Le%20Grand%20Oeuvre.png</image:loc>
-      <image:caption>Le Grand Oeuvre.png</image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://agdistys.github.io/Schemas/Pense%CC%81e%20ope%CC%81ratoire%20%26%20complexe.webp</loc>
     <lastmod>2025-09-07T02:58:26+02:00</lastmod>
     <image:image>
@@ -807,6 +799,14 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Societe/Justice%20%26%20Impunite%CC%81.webp</image:loc>
       <image:caption>Justice &amp; Impunité.webp</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Le%20Grand%20Oeuvre.png</loc>
+    <lastmod>2025-09-13T20:34:25+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Le%20Grand%20Oeuvre.png</image:loc>
+      <image:caption>Le Grand Oeuvre.png</image:caption>
     </image:image>
   </url>
   <url>
