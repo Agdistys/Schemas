@@ -490,6 +490,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/EGO%20%26%20ECO/Yin%20yang.jpg</loc>
+    <lastmod>2025-09-13T20:38:01+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/EGO%20%26%20ECO/Yin%20yang.jpg</image:loc>
+      <image:caption>Yin yang.jpg</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/EGO%20%26%20ECO/frise%20symbolique.png</loc>
     <lastmod>2025-09-04T19:15:14+02:00</lastmod>
     <image:image>
@@ -927,14 +935,6 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Yin%20Yang%20VIE%20Signe%CC%81.png</image:loc>
       <image:caption>Yin Yang VIE Signé.png</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://agdistys.github.io/Schemas/Yin%20yang.jpg</loc>
-    <lastmod>2025-09-04T19:26:08+02:00</lastmod>
-    <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/Yin%20yang.jpg</image:loc>
-      <image:caption>Yin yang.jpg</image:caption>
     </image:image>
   </url>
   <url>
