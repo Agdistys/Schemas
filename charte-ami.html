@@ -94,25 +94,22 @@ Si tu ne peux pas naviguer, dis-le et travaille uniquement avec le texte que je 
       <button id="copyProto">Copier le bloc protocole</button>
     </section>
 
-    <!-- Galerie Schémas -->
-    <section id="galerie" style="margin:28px 0">
-      <h2>Galerie Schémas</h2>
-      <div class="grid" id="galerie-grid"><div class="muted">Chargement…</div></div>
-      <p class="foot">Basée sur les images référencées dans <span class="mono">/Schemas/sitemap.xml</span>.</p>
-    </section>
-
-    <!-- Derniers ajouts (via sitemap) -->
-    <section id="dernier-ajout" style="margin:28px 0">
+    <!-- Derniers ajouts -->
+    <section id="dernier-ajout">
       <h2>Derniers ajouts (Schemas/)</h2>
       <div class="grid" id="recent-grid"><div class="muted">Chargement…</div></div>
-      <p class="foot">Basé sur <span class="mono">/Schemas/sitemap.xml</span> (fiable, sans limite API).</p>
     </section>
 
-    <!-- Certificats (via sitemap) -->
-    <section id="certificats" style="margin:28px 0">
+    <!-- Certificats -->
+    <section id="certificats">
       <h2>Certificats — Naissance & Reconnaissance</h2>
       <div class="grid" id="certifs-grid"><div class="muted">Chargement…</div></div>
-      <p class="foot">Filtré depuis <span class="mono">/Schemas/sitemap.xml</span> (dossiers <span class="mono">Certificats/</span> et <span class="mono">Document/certificats/</span>, ou mots-clés).</p>
+    </section>
+
+    <!-- Présentation -->
+    <section id="presentation">
+      <h2>Agdistys — Présentation</h2>
+      <div class="grid" id="pres-grid"><div class="muted">Chargement…</div></div>
     </section>
 
     <!-- Données machine -->
@@ -125,146 +122,9 @@ Si tu ne peux pas naviguer, dis-le et travaille uniquement avec le texte que je 
     <p class="foot">Ce portail est public et « toujours à jour ». Dernière mise à jour locale : <span id="ts"></span>.</p>
   </main>
 
-  <!-- Script unique (sitemap-only) -->
   <script>
   (function(){
     const SITEMAP = "https://agdistys.github.io/Schemas/sitemap.xml";
 
-    // --- utils ---
-    async function fetchText(url){
-      const res = await fetch(url, { cache:"no-store" });
-      if(!res.ok) throw new Error(url+" -> "+res.status);
-      return res.text();
-    }
-    function humanLabel(path){
-      const base = path.split("/").pop();
-      return base.replace(/\.(html|pdf|png|jpe?g|webp|gif|svg)$/i,"")
-                 .replace(/[-_]/g," ")
-                 .replace(/\b\w/g,c=>c.toUpperCase());
-    }
-    function fmtDate(iso){ try{return new Date(iso).toLocaleString();}catch{return "";} }
+    async function fetchText(url){ const r=await fetch(url,{cache:"no-store"}); if(!r.ok)throw 0; return r.text(); }
 
-    // --- sitemap parsing ---
-    function parseSitemap(xml){
-      const doc = new DOMParser().parseFromString(xml, "application/xml");
-      const nsSM  = "http://www.sitemaps.org/schemas/sitemap/0.9";
-      const nsIMG = "http://www.google.com/schemas/sitemap-image/1.1";
-      const urls = [...doc.getElementsByTagNameNS(nsSM,"url")].map(u=>{
-        const loc     = u.getElementsByTagNameNS(nsSM,"loc")[0]?.textContent?.trim()||"";
-        const lastmod = u.getElementsByTagNameNS(nsSM,"lastmod")[0]?.textContent?.trim()||"";
-        const path    = loc.replace(/^https?:\/\/[^/]+\/Schemas\//,"");
-        const images  = [...u.getElementsByTagNameNS(nsIMG,"image")].map(img=>{
-          const iloc = img.getElementsByTagNameNS(nsIMG,"loc")[0]?.textContent?.trim()||"";
-          const cap  = img.getElementsByTagNameNS(nsIMG,"caption")[0]?.textContent?.trim()||"";
-          return { loc: iloc, caption: cap, pageLoc: loc, lastmod, path };
-        });
-        return { loc, lastmod, path, images };
-      });
-      return urls.filter(x=>x.loc.includes("/Schemas/"));
-    }
-
-    // --- cartes helpers ---
-    function card(href, title, subtitle, thumbUrl){
-      const th = thumbUrl
-        ? `<img class="thumb" loading="lazy" decoding="async" src="${thumbUrl}" alt="${title}">`
-        : `<div class="placeholder"><span class="meta">Aperçu</span></div>`;
-      return `<div class="card"><a href="${href}" target="_blank" rel="noopener">${th}<div class="pad"><div class="title">${title}</div>${subtitle?`<div class="meta">${subtitle}</div>`:""}</div></a></div>`;
-    }
-
-    // --- Galerie Schémas ---
-    async function renderGalerie(){
-      const grid = document.getElementById("galerie-grid");
-      if(!grid) return;
-      try{
-        const xml  = await fetchText(SITEMAP);
-        const data = parseSitemap(xml);
-        const imgs = data.flatMap(u=>u.images).filter(it=>it.loc);
-        if(!imgs.length){ grid.innerHTML = `<div class="muted">Aucune image trouvée dans le sitemap.</div>`; return; }
-        imgs.sort((a,b)=> (b.lastmod||"").localeCompare(a.lastmod||"") || (a.caption||"").localeCompare(b.caption||""));
-        grid.innerHTML = imgs.slice(0, 30).map(it=>{
-          const title = it.caption || humanLabel(it.loc);
-          const sub   = it.lastmod ? fmtDate(it.lastmod) : "";
-          // cliquer mène à la page porteuse
-          return card(it.pageLoc || it.loc, title, sub, it.loc);
-        }).join("");
-      }catch(e){
-        console.error(e);
-        grid.innerHTML = `<div class="muted">Impossible de lire le sitemap pour la galerie.</div>`;
-      }
-    }
-
-    // --- Derniers ajouts ---
-    async function renderDernierAjout(){
-      const grid = document.getElementById("recent-grid");
-      if(!grid) return;
-      try{
-        const xml  = await fetchText(SITEMAP);
-        const data = parseSitemap(xml);
-        if(!data.length){ grid.innerHTML = `<div class="muted">Rien dans le sitemap.</div>`; return; }
-        data.sort((a,b)=> (b.lastmod||"").localeCompare(a.lastmod||""));
-        grid.innerHTML = data.slice(0, 18).map(u=>{
-          const title = humanLabel(u.path);
-          const sub   = u.lastmod ? fmtDate(u.lastmod) : "";
-          const thumb = u.images?.[0]?.loc || (/\.(png|jpe?g|webp|gif|svg)$/i.test(u.path) ? u.loc : "");
-          return card(u.loc, title, sub, thumb || null);
-        }).join("");
-      }catch(e){
-        console.error(e);
-        grid.innerHTML = `<div class="muted">Impossible de lire le sitemap.</div>`;
-      }
-    }
-
-    // --- Certificats ---
-    function isCertByPath(p){
-      const s=p.toLowerCase();
-      const okExt = /\.(html|pdf|png|jpe?g|webp|gif|svg)$/i.test(s);
-      if(!okExt) return false;
-      const inFolders = /^certificats\//.test(s) || /^document\/certificats\//.test(s);
-      const hasKey = /(naissance|reconnaissance)/.test(s);
-      return inFolders || hasKey;
-    }
-    async function renderCertificats(){
-      const grid = document.getElementById("certifs-grid");
-      const sec  = document.getElementById("certificats");
-      if(!grid || !sec) return;
-      try{
-        const xml  = await fetchText(SITEMAP);
-        const data = parseSitemap(xml).filter(u=>isCertByPath(u.path));
-        if(!data.length){ sec.style.display="none"; return; }
-        data.sort((a,b)=> (b.lastmod||"").localeCompare(a.lastmod||""));
-        grid.innerHTML = data.slice(0, 24).map(u=>{
-          const title = humanLabel(u.path);
-          const sub   = u.lastmod ? fmtDate(u.lastmod) : "";
-          const thumb = u.images?.[0]?.loc || (/\.(png|jpe?g|webp|gif|svg)$/i.test(u.path) ? u.loc : "");
-          return card(u.loc, title, sub, thumb || null);
-        }).join("");
-      }catch(e){
-        console.error(e);
-        grid.innerHTML = `<div class="muted">Impossible de lire le sitemap.</div>`;
-      }
-    }
-
-    // --- JSON + copie + timestamp ---
-    const json = document.getElementById('json');
-    if(json) json.textContent = JSON.stringify({ title:"Charte aMi — Portail", version:"1.9" }, null, 2);
-    function bindCopy(btnId,getter){
-      const btn=document.getElementById(btnId);
-      btn?.addEventListener('click',async()=>{
-        try{ await navigator.clipboard.writeText(getter()); btn.textContent="Copié ✔"; setTimeout(()=>btn.textContent=btnId==='copyJson'?'Copier le JSON':'Copier le bloc protocole',1400);}catch{}
-      });
-    }
-    bindCopy('copyJson',()=>json?.textContent||'');
-    bindCopy('copyProto',()=>document.getElementById('proto')?.textContent||'');
-
-    const ts=document.getElementById('ts'); if(ts) ts.textContent=new Date().toLocaleString();
-
-    // démarrage
-    document.addEventListener("DOMContentLoaded", ()=>{
-      renderGalerie();
-      renderDernierAjout();
-      renderCertificats();
-    });
-  })();
-  </script>
-</body>
-</html>
