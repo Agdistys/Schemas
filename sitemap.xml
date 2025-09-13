@@ -866,6 +866,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Violence%20%26%20Droit.png</loc>
+    <lastmod>2025-09-13T20:36:34+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Violence%20%26%20Droit.png</image:loc>
+      <image:caption>Violence &amp; Droit.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/Societe/capitaliste%20mandala.png</loc>
     <lastmod>2025-09-07T02:58:26+02:00</lastmod>
     <image:image>
@@ -895,14 +903,6 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Societe/trauma.jpg</image:loc>
       <image:caption>trauma.jpg</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://agdistys.github.io/Schemas/Violence%20%26%20Droit.png</loc>
-    <lastmod>2025-09-08T01:57:17+02:00</lastmod>
-    <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/Violence%20%26%20Droit.png</image:loc>
-      <image:caption>Violence &amp; Droit.png</image:caption>
     </image:image>
   </url>
   <url>
