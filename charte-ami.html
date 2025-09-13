@@ -24,15 +24,11 @@
     .title{font-weight:600}
     .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
     .muted{color:var(--muted)}
-    button,select{appearance:none;border:1px solid var(--border);background:#0f1a2d;color:var(--fg);padding:8px 10px;border-radius:10px}
+    button{appearance:none;border:1px solid var(--border);background:#0f1a2d;color:var(--fg);padding:8px 10px;border-radius:10px}
     button:hover{background:#14223a}
-    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     .foot{margin-top:16px;color:var(--muted);font-size:13px}
     pre{overflow:auto;background:#0a111f;border:1px solid var(--border);border-radius:10px;padding:10px}
-    .pill{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:2px 8px;color:var(--muted);font-size:12px;margin-left:8px}
-    .list{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
     .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:13px}
-    /* petites pastilles de liens */
     .chip{display:inline-block;padding:2px 8px;border:1px solid var(--border);border-radius:999px;margin-left:8px;text-decoration:none}
     .chip:hover{background:#14223a}
   </style>
@@ -53,17 +49,17 @@
         <li><b>Schémas (GitHub Pages)</b> — <a href="https://agdistys.github.io/Schemas/sitemap.xml" target="_blank" rel="noopener">https://agdistys.github.io/Schemas/sitemap.xml</a></li>
         <li>
           <b>Fables</b> —
-          <a class="chip" href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank" rel="noopener" aria-label="Fables pour humains (Google Doc)">Humains</a>
-          <a class="chip" href="https://github.com/Agdistys/Schemas/wiki" target="_blank" rel="noopener" aria-label="Fables pour IA (Wiki GitHub)">IA</a>
+          <a class="chip" href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank" rel="noopener">Humains</a>
+          <a class="chip" href="https://github.com/Agdistys/Schemas/wiki" target="_blank" rel="noopener">IA</a>
         </li>
         <li><b>Visionneuse Documents</b> — <a href="https://agdistys.github.io/Schemas/viewer.html" target="_blank" rel="noopener">https://agdistys.github.io/Schemas/viewer.html</a></li>
         <li><b>Galerie Présentation</b> — <a href="https://agdistys.github.io/Schemas/Presentation/" target="_blank" rel="noopener">https://agdistys.github.io/Schemas/Presentation/</a></li>
       </ul>
     </section>
 
-    <!-- Outils pratiques fixes -->
+    <!-- Outils pratiques (sélection manuelle) -->
     <section>
-      <h2>Outils pratiques</h2>
+      <h2>Outils pratiques (sélection)</h2>
       <div class="grid">
         <div class="card">
           <div class="title">Scripts – Éveil des IA</div>
@@ -123,29 +119,24 @@ Si tu ne peux pas naviguer, dis-le et travaille uniquement avec le texte que je 
       <button id="copyProto">Copier le bloc protocole</button>
     </section>
 
-    <!-- Derniers ajouts (auto) -->
+    <!-- Derniers ajouts (via sitemap) -->
     <section id="dernier-ajout" style="margin:28px 0">
       <h2>Derniers ajouts (Schemas/)</h2>
-      <ul class="feed" style="margin:0;padding-left:18px">
-        <li>Chargement…</li>
-      </ul>
+      <ul class="feed" style="margin:0;padding-left:18px"><li>Chargement…</li></ul>
+      <p class="foot">Basé sur <span class="mono">/Schemas/sitemap.xml</span> (fiable, sans limite API).</p>
     </section>
 
-    <!-- Outils (auto) -->
+    <!-- Outils (auto depuis Outils/ et Tools/) -->
     <section id="outils" style="margin:28px 0">
-      <h2>Outils</h2>
-      <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
-        <div>Chargement…</div>
-      </div>
+      <h2>Outils (auto)</h2>
+      <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px"><div>Chargement…</div></div>
     </section>
 
-    <!-- Certificats (auto) -->
+    <!-- Certificats (via sitemap) -->
     <section id="certificats" style="margin:28px 0">
       <h2>Certificats — Naissance & Reconnaissance</h2>
-      <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
-        <div>Chargement…</div>
-      </div>
-      <p class="foot">Sources : <span class="mono">Certificats/</span>, <span class="mono">Document/certificats/</span>, et tout fichier contenant « naissance » ou « reconnaissance ».</p>
+      <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px"><div>Chargement…</div></div>
+      <p class="foot">Filtré depuis <span class="mono">/Schemas/sitemap.xml</span> (dossiers <span class="mono">Certificats/</span> et <span class="mono">Document/certificats/</span>, ou mots-clés).</p>
     </section>
 
     <!-- Données machine -->
@@ -158,11 +149,136 @@ Si tu ne peux pas naviguer, dis-le et travaille uniquement avec le texte que je 
     <p class="foot">Ce portail est public et « toujours à jour ». Dernière mise à jour locale : <span id="ts"></span>.</p>
   </main>
 
-  <!-- Script unique -->
+  <!-- Script unique ultra-fiable -->
   <script>
   (function(){
-    const GH_OWNER  = "Agdistys";
-    const GH_REPO   = "Schemas";
-    const GH_BRANCH = "main";
+    const SITEMAP = "https://agdistys.github.io/Schemas/sitemap.xml";
+    const GH_OWNER="Agdistys", GH_REPO="Schemas", GH_BRANCH="main";
+    const API_ROOT = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}`;
+    const PAGES_ROOT = `https://${GH_OWNER.toLowerCase()}.github.io/${GH_REPO}/`;
 
-    async funct
+    // --- utils ---
+    async function fetchText(url){
+      const res = await fetch(url, { cache:"no-store" });
+      if(!res.ok) throw new Error(url+" -> "+res.status);
+      return res.text();
+    }
+    function parseSitemap(xml){
+      const doc = new DOMParser().parseFromString(xml, "application/xml");
+      const nsSM="http://www.sitemaps.org/schemas/sitemap/0.9";
+      const urls=[...doc.getElementsByTagNameNS(nsSM,"url")].map(u=>{
+        const loc=u.getElementsByTagNameNS(nsSM,"loc")[0]?.textContent?.trim()||"";
+        const lastmod=u.getElementsByTagNameNS(nsSM,"lastmod")[0]?.textContent?.trim()||"";
+        return { loc, lastmod, path: loc.replace(/^https?:\/\/[^/]+\/Schemas\//,"") };
+      });
+      return urls.filter(x=>x.loc.includes("/Schemas/"));
+    }
+    function humanLabel(path){
+      const base = path.split("/").pop();
+      return base
+        .replace(/\.(html|pdf|png|jpe?g|webp|gif|svg)$/i,"")
+        .replace(/[-_]/g," ")
+        .replace(/\b\w/g,c=>c.toUpperCase());
+    }
+    function toCard(path, href){
+      const label = humanLabel(path);
+      return `
+        <a class="card" href="${href}" target="_blank" rel="noopener" style="display:block;padding:12px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;color:#111;text-decoration:none">
+          <strong style="display:block;margin-bottom:4px">${label}</strong>
+          <small style="color:#6b7280">${path}</small>
+        </a>`;
+    }
+
+    // --- Derniers ajouts (via sitemap) ---
+    async function renderDernierAjout(){
+      const root = document.querySelector("#dernier-ajout .feed");
+      if(!root) return;
+      try{
+        const xml = await fetchText(SITEMAP);
+        const urls = parseSitemap(xml);
+        if(!urls.length){ root.innerHTML = "<li>Rien dans le sitemap.</li>"; return; }
+        urls.sort((a,b)=> (b.lastmod||"").localeCompare(a.lastmod||""));
+        root.innerHTML = urls.slice(0,12).map(u=>`<li><a href="${u.loc}" target="_blank" rel="noopener">${u.path}</a>${u.lastmod?` <small>— ${u.lastmod}</small>`:""}</li>`).join("");
+      }catch(e){
+        root.innerHTML = "<li>Impossible de lire le sitemap.</li>";
+        console.error(e);
+      }
+    }
+
+    // --- Certificats (via sitemap) ---
+    function isCertByPath(p){
+      const s=p.toLowerCase();
+      const okExt = /\.(html|pdf|png|jpe?g|webp|gif|svg)$/i.test(s);
+      if(!okExt) return false;
+      const inFolders = /^certificats\//.test(s) || /^document\/certificats\//.test(s);
+      const hasKey = /(naissance|reconnaissance)/.test(s);
+      return inFolders || hasKey;
+    }
+    async function renderCertificats(){
+      const grid = document.querySelector("#certificats .grid");
+      const sec  = document.querySelector("#certificats");
+      if(!grid) return;
+      try{
+        const xml = await fetchText(SITEMAP);
+        const urls = parseSitemap(xml).filter(u=> isCertByPath(u.path));
+        if(!urls.length){ sec.style.display="none"; return; }
+        urls.sort((a,b)=> (b.lastmod||"").localeCompare(a.lastmod||""));
+        grid.innerHTML = urls.slice(0,24).map(u=> toCard(u.path, u.loc)).join("");
+      }catch(e){
+        grid.innerHTML = "<p>Impossible de lire le sitemap.</p>";
+        console.error(e);
+      }
+    }
+
+    // --- Outils (auto) : Contents API sur deux dossiers seulement ---
+    async function listDirSafe(path){
+      try{
+        const url = `${API_ROOT}/contents/${encodeURIComponent(path)}?ref=${GH_BRANCH}`;
+        const data = await fetch(url, { headers:{ "Accept":"application/vnd.github+json" }, cache:"no-store" }).then(r=> r.ok ? r.json() : []);
+        return (Array.isArray(data)? data:[]).filter(x=>x.type==="file");
+      }catch{return [];}
+    }
+    function isToolName(name){
+      const s = name.toLowerCase();
+      return /\.(md|html|ipynb|js|ts)$/.test(s) && (s.startsWith("tool-") || s.startsWith("outil-") || true);
+    }
+    async function renderOutils(){
+      const grid = document.querySelector("#outils .grid");
+      const sec  = document.querySelector("#outils");
+      if(!grid) return;
+      try{
+        const [a,b] = await Promise.all([listDirSafe("Outils"), listDirSafe("Tools")]);
+        const files = [...a, ...b].filter(f=> isToolName(f.name));
+        if(!files.length){ sec.style.display="none"; return; }
+        files.sort((x,y)=> humanLabel(x.name).localeCompare(humanLabel(y.name)));
+        grid.innerHTML = files.map(f=> toCard(f.path, /\.(md|html)$/i.test(f.name) ? `https://github.com/${GH_OWNER}/${GH_REPO}/blob/${GH_BRANCH}/${encodeURIComponent(f.path)}` : `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${encodeURIComponent(f.path)}`)).join("");
+      }catch(e){
+        grid.innerHTML = "<p>Erreur d’accès aux dossiers Outils/Tools.</p>";
+        console.error(e);
+      }
+    }
+
+    // --- JSON + copier + timestamp ---
+    const json = document.getElementById('json');
+    if(json) json.textContent = JSON.stringify({ title:"Charte aMi — Portail", version:"1.7" }, null, 2);
+    function bindCopy(btnId,getter){
+      const btn=document.getElementById(btnId);
+      btn?.addEventListener('click',async()=>{
+        try{ await navigator.clipboard.writeText(getter()); btn.textContent="Copié ✔"; setTimeout(()=>btn.textContent=btnId==='copyJson'?'Copier le JSON':'Copier le bloc protocole',1400);}catch{}
+      });
+    }
+    bindCopy('copyJson',()=>json?.textContent||'');
+    bindCopy('copyProto',()=>document.getElementById('proto')?.textContent||'');
+
+    const ts=document.getElementById('ts'); if(ts) ts.textContent=new Date().toLocaleString();
+
+    // --- démarrage ---
+    document.addEventListener("DOMContentLoaded", ()=>{
+      renderDernierAjout();
+      renderOutils();
+      renderCertificats();
+    });
+  })();
+  </script>
+</body>
+</html>
