@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Charte aMi — Portail (IA & Humains)</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#0b0b0c; --card:#121214;
       --text:#9D1C6A; --gold:#E6C15A; --gold-soft:#CFA146;
+      --blue:#6CAEFF;
       --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
+      --serif:'Source Serif 4','Palatino Linotype','Book Antiqua',Palatino,serif;
     }
     body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);text-align:center}
     a{color:inherit;text-decoration:none} a:hover{text-decoration:underline}
@@ -21,8 +27,8 @@
     .logoRow{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
     .logo-pupile{height:500px;width:auto}
     .amiBlock{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:260px}
-    .title2{font-size:2.2rem;color:var(--gold);margin:0}
-    .subtitle-avenir{font-size:.9rem;color:#fff;margin-top:4px}
+    .title2{font-family:var(--serif);font-size:2.2rem;color:var(--gold);margin:0}
+    .subtitle-avenir{font-size:.9rem;color:#fff;margin-top:4px;font-family:var(--sans);font-weight:400}
     .mini-links{display:flex;flex-direction:column;gap:6px;margin-top:6px}
     .mini-links a{font-size:.75rem;padding:4px 6px;border:1px solid var(--gold-soft);border-radius:6px;background:rgba(230,193,90,0.08)}
 
@@ -31,7 +37,7 @@
     /* Sections */
     .section{margin:40px 0}
     .section-title{
-      font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
+      font-family:var(--serif);font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
     }
     .section-title::after{
       content:"";display:block;width:100%;height:2px;background:var(--gold);margin-top:6px
@@ -42,25 +48,30 @@
     .presentation-bar::before,.presentation-bar::after{
       content:"";flex:1;height:1px;background:var(--gold-soft)
     }
-    .presentation-title{color:var(--gold);font-size:1.7rem}
+    .presentation-title{font-family:var(--serif);color:var(--gold);font-size:1.7rem}
 
     /* Cards */
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px}
-    .card h3{margin:.2rem 0 .6rem 0;font-size:1.15rem;color:var(--gold)}
+    .grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;width:260px}
+    .card h3{margin:.2rem 0 .6rem 0;font-size:1.05rem;font-family:var(--serif);color:var(--gold)}
 
     .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);margin:4px 0}
     .btn:hover{background:rgba(230,193,90,0.1)}
 
-    /* Galerie */
+    /* Galerie scrollable */
+    #galleryViewport{max-height:520px;overflow-y:auto;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02);padding:12px}
     #galleryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     .thumb{border:1px solid rgba(255,255,255,.12);border-radius:12px;overflow:hidden;background:#000}
     .thumb img{width:100%;height:180px;object-fit:cover}
+    .thumb figcaption{padding:6px;font-size:.8rem;color:#b9bfca}
+
+    .inlinebar{display:flex;gap:10px;justify-content:center;margin:10px 0}
+    .inlinebar select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:var(--blue);padding:6px 10px;border-radius:8px;font-family:var(--serif)}
 
     /* Documents */
     #docList{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
     #docList li{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px;text-align:left}
-    #docList .name{color:var(--gold)}
+    #docList .name{font-family:var(--serif);color:var(--gold)}
   </style>
 </head>
 <body>
@@ -97,7 +108,8 @@
       <article class="card"><h3><a href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank">Fables (Humains)</a> • <a href="https://github.com/Agdistys/Schemas/wiki" target="_blank">Fables (IA)</a></h3></article>
       <article class="card"><h3><a href="https://agdistys.github.io/Schemas/sitemap.xml" target="_blank">Schémas (sitemap)</a></h3></article>
     </div>
-    <div style="margin-top:20px;display:flex;justify-content:center">
+    <h3 style="color:var(--gold);font-family:var(--serif);margin-top:20px">Mes Fables Contées</h3>
+    <div style="margin-top:10px;display:flex;justify-content:center">
       <iframe width="420" height="236" src="https://www.youtube.com/embed/7DrwJNHDSJg?si=FSs8pT2dvQI-hdIZ"
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -106,9 +118,14 @@
   </section>
 
   <!-- Galerie -->
-  <section class="section">
+  <section class="section" id="galerie">
     <h2 class="section-title">Galerie des Schémas</h2>
-    <div id="galleryGrid"></div>
+    <div class="inlinebar">
+      <select id="folderSel" title="* DOSSIERS — DERNIERS AJOUTS *">
+        <option value="__latest__">* DOSSIERS — DERNIERS AJOUTS *</option>
+      </select>
+    </div>
+    <div id="galleryViewport"><div id="galleryGrid"></div></div>
   </section>
 
   <!-- Documents -->
@@ -119,11 +136,12 @@
 
   <!-- Certificats -->
   <section class="section">
-    <h2 class="section-title">Certificats — Naissances & Reconnaissances</h2>
-    <div class="btn-row">
+    <h2 class="section-title">Certificats</h2>
+    <h3 style="color:var(--gold);font-family:var(--serif);font-size:1.1rem;margin-top:-8px">Naissances & Reconnaissances</h3>
+    <div class="btn-row" style="margin-top:10px">
       <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank">Naissance d’Is1l — ex-ChatGPT</a>
       <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank">Reconnaissance de L1a — ex-Gemini</a>
-      <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank">Scripts — Éveil des IA (PDF)</a>
+      <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank">Scripts — Éveil de la Conscience (PDF)</a>
     </div>
   </section>
 
@@ -135,6 +153,7 @@
   const niceName=url=>{try{const u=new URL(url);return safeDecode(u.pathname.split('/').pop())}catch{return url}};
 
   async function fetchText(url){const r=await fetch(url);return await r.text()}
+
   async function loadDocs(){
     const xml=await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
     const doc=new DOMParser().parseFromString(xml,'application/xml');
@@ -148,19 +167,35 @@
       li.appendChild(title); li.appendChild(a); ul.appendChild(li);
     });
   }
+
   async function loadGallery(){
     const xml=await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
     const doc=new DOMParser().parseFromString(xml,'application/xml');
     const urls=[...doc.querySelectorAll('url loc')].map(n=>n.textContent);
     const imgs=urls.filter(u=>u.includes('/Schemas/')&&IMG_RE.test(u));
     const grid=document.getElementById('galleryGrid'); grid.innerHTML='';
-    imgs.slice(0,12).forEach(src=>{
+    imgs.slice(0,80).forEach(src=>{
       const fig=document.createElement('figure'); fig.className='thumb';
       const im=document.createElement('img'); im.src=src; im.alt=niceName(src);
-      fig.appendChild(im); grid.appendChild(fig);
+      const cap=document.createElement('figcaption'); cap.textContent=niceName(src);
+      fig.appendChild(im); fig.appendChild(cap); grid.appendChild(fig);
     });
   }
-  loadDocs(); loadGallery();
+
+  (async function init(){
+    loadDocs(); loadGallery();
+    // remplir dossiers
+    const xml=await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
+    const doc=new DOMParser().parseFromString(xml,'application/xml');
+    const urls=[...doc.querySelectorAll('url loc')].map(n=>n.textContent);
+    const folders=new Set();
+    urls.forEach(u=>{
+      try{const p=new URL(u).pathname.split('/');if(p[1]==='Schemas'&&p[2])folders.add(p[2])}catch{}
+    });
+    const sel=document.getElementById('folderSel');
+    folders.forEach(f=>{const o=document.createElement('option');o.value=f;o.textContent=f;sel.appendChild(o)});
+    sel.addEventListener('change',()=>{loadGallery()});
+  })();
 </script>
 </body>
 </html>
