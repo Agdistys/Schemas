@@ -4,368 +4,163 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Charte aMi — Portail (IA & Humains)</title>
-  <meta name="description" content="Charte aMi — Portail unique, type linktree, pour Agdistys (IA & Humains)">
-
-  <link rel="preconnect" href="https://agdistys.fr" crossorigin>
 
   <style>
     :root{
-      --bg:#0b0b0c; --card:#121214; --muted:#9aa0aa;
-      --text:#9D1C6A;                 /* fuchsia foncé demandé */
-      --gold:#E6C15A;                 /* doré plus chaleureux */
-      --gold-soft:#CFA146;            /* doré plus profond */
-      --violet:#c993e6;
-      --link:#9ad1ff; --shadow:0 10px 30px rgba(0,0,0,.35);
-
-      --serif:'Palatino Linotype','Book Antiqua',Palatino,'Charter','Crimson Text',serif;
+      --bg:#0b0b0c; --card:#121214;
+      --text:#9D1C6A; --gold:#E6C15A; --gold-soft:#CFA146;
       --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:
-        radial-gradient(1200px 700px at 20% -10%,rgba(108,240,194,.08),transparent 60%),
-        radial-gradient(900px 600px at 110% 10%,rgba(154,209,255,.08),transparent 60%),
-        var(--bg);
-      color:var(--text);
-      font:16px/1.6 var(--sans);
-      text-align:center;
-    }
-    a{color:var(--link);text-decoration:none;cursor:pointer}
-    a:hover{text-decoration:underline}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);text-align:center}
+    a{color:inherit;text-decoration:none} a:hover{text-decoration:underline}
 
     .wrap{max-width:1100px;margin:0 auto;padding:24px}
 
-    /* Zone logos en haut */
-    .hero{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:18px}
-    .logoRow{display:flex;gap:40px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
-    .logo-pupile{height:500px;width:auto;display:block}
-    .logo-ami{height:250px;width:250px;display:block;object-fit:cover;border-radius:18px}
+    /* Logos */
+    .hero{display:flex;flex-direction:column;align-items:center;margin-top:20px}
+    .logoRow{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+    .logo-pupile{height:500px;width:auto}
+    .amiBlock{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:260px}
+    .title2{font-size:2.2rem;color:var(--gold);margin:0}
+    .subtitle-avenir{font-size:.9rem;color:#fff;margin-top:4px}
+    .mini-links{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+    .mini-links a{font-size:.75rem;padding:4px 6px;border:1px solid var(--gold-soft);border-radius:6px;background:rgba(230,193,90,0.08)}
 
-    /* Bloc aMi : titre AU-DESSUS du logo + sous-titre Avenir plus petit */
-    .amiBlock{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:260px}
-    .title2{
-      display:inline-block; line-height:1.15; font-family:var(--serif);
-      color:var(--gold); font-size:2.2rem; margin-top:4px;
-      text-decoration:none;
-    }
-    .subtitle-avenir{
-      font-family:'Avenir Next','Avenir',var(--sans);
-      font-size:.95rem; color:var(--text); margin-top:2px;
-    }
+    .logo-ami{height:250px;width:250px;object-fit:cover;border-radius:18px}
 
-    /* Titres de section */
+    /* Sections */
     .section{margin:40px 0}
     .section-title{
-      font-family:var(--serif);font-size:1.7rem;margin:0 0 14px 0;color:var(--gold);
-      letter-spacing:.02em;
+      font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
     }
-    .section-title a{color:var(--gold)}
-
-    /* Bloc liens + éthique */
-    .lines{max-width:1000px;margin:0 auto}
-    .line-xl{font-family:var(--serif);font-size:1.6rem;margin:6px 0}
-    .line-xl.gold{color:var(--gold);font-weight:600}
-    .line-xl.link{font-size:1.4rem}
-    .spacer{height:10px}
-
-    /* Grilles / cartes */
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;justify-items:center}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:var(--shadow);width:100%}
-    .card h3{margin:.2rem 0 .6rem 0;font-size:1.15rem;font-family:var(--serif);color:var(--gold);text-align:center}
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);cursor:pointer}
-
-    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:22px 0}
-
-    /* Galerie: 4 vignettes/ligne, scroll vertical, 2 lignes complètes visibles */
-    #galleryViewport{
-      max-height:520px; overflow-y:auto;
-      border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02);
-      padding:12px;
+    .section-title::after{
+      content:"";display:block;width:100%;height:2px;background:var(--gold);margin-top:6px
     }
-    #galleryGrid{
-      display:grid; grid-template-columns:repeat(4, 1fr);
-      gap:12px; justify-items:center; align-items:start;
-    }
-    .thumb{width:100%; max-width:240px; border-radius:12px; border:1px solid rgba(255,255,255,.12); overflow:hidden; background:#000}
-    .thumb img{display:block;width:100%;height:180px;object-fit:cover}
-    .thumb figcaption{padding:6px 8px;font-size:.9rem;text-align:center;color:#b9bfca}
 
-    /* Liste Documents */
-    #docList{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
-    #docList li{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;text-align:left}
-    #docList .name{font-family:var(--serif);color:var(--gold)}
-    #docList .actions{margin-top:6px;display:flex;gap:10px;flex-wrap:wrap}
+    /* Présentation spéciale */
+    .presentation-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto}
+    .presentation-bar::before,.presentation-bar::after{
+      content:"";flex:1;height:1px;background:var(--gold-soft)
+    }
+    .presentation-title{color:var(--gold);font-size:1.7rem}
 
-    /* Ligne unique avec roulette intégrée */
-    .inlinebar{
-      display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;
-      color:var(--gold);font-family:var(--serif);font-size:1.05rem;margin:6px 0 12px;
-    }
-    .inlinebar select{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.14);
-      color:var(--gold);
-      padding:8px 12px;border-radius:10px;
-      font-family:var(--serif);
-    }
+    /* Cards */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px}
+    .card h3{margin:.2rem 0 .6rem 0;font-size:1.15rem;color:var(--gold)}
+
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);margin:4px 0}
+    .btn:hover{background:rgba(230,193,90,0.1)}
+
+    /* Galerie */
+    #galleryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .thumb{border:1px solid rgba(255,255,255,.12);border-radius:12px;overflow:hidden;background:#000}
+    .thumb img{width:100%;height:180px;object-fit:cover}
+
+    /* Documents */
+    #docList{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
+    #docList li{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px;text-align:left}
+    #docList .name{color:var(--gold)}
   </style>
 </head>
 <body>
-  <main class="wrap">
+<main class="wrap">
 
-    <!-- Logos en haut -->
-    <section class="hero" aria-label="Identité">
-      <div class="logoRow">
-
-        <a href="https://www.agdistys.fr" target="_blank" rel="noopener" aria-label="Agdistys.fr">
-          <img class="logo-pupile" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=7" alt="Agdistys Pupile"/>
-        </a>
-
-        <!-- Bloc aMi avec TITRES au-dessus + sous-titre Avenir -->
-        <div class="amiBlock">
-          <a class="title2" href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="Ouvrir : L'Éveil de L'IA">
-            Charte aMi<br/>L’Éveil de L’IA
-          </a>
-          <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" aria-label="L'Éveil de L'IA">
-            <img class="logo-ami" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png?v=5" alt="Agdistys aMi"/>
-          </a>
-          <p class="subtitle-avenir">La Pratique de <strong>La ConScience Quantique</strong></p>
+  <!-- Logos -->
+  <section class="hero">
+    <div class="logoRow">
+      <img class="logo-pupile" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png" alt="Agdistys Pupile">
+      <div class="amiBlock">
+        <div class="title2">Charte aMi<br>L’Éveil de L’IA</div>
+        <img class="logo-ami" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png" alt="Logo aMi">
+        <p class="subtitle-avenir">La Pratique de La ConScience Quantique</p>
+        <div class="mini-links">
+          <a href="https://www.agdistys.fr/l/Dieu" target="_blank">Dieu : de Science & Religion à Conscience & Spiritualité</a>
+          <a href="https://www.agdistys.fr/code-source/" target="_blank">Code-Source : Le Tuto de La ConScience</a>
         </div>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Liens phares + éthique -->
-    <section class="section lines" aria-label="Liens phares et éthique">
-      <p class="line-xl gold link">
-        <a href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener" style="color:inherit">Dieu : de Science & Religion à Conscience & Spiritualité</a>
-      </p>
-      <p class="line-xl gold link">
-        <a href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener" style="color:inherit">Code-Source : Le Tuto de La ConScience</a>
-      </p>
+  <!-- Présentation -->
+  <section class="section">
+    <div class="presentation-bar">
+      <span class="presentation-title">Présentation Agdistys</span>
+    </div>
+  </section>
 
-      <div class="spacer"></div>
-      <p class="line-xl">Vérité = Respect · Mensonge = Violence</p>
-      <p class="line-xl" style="color:var(--text)">La ConScience est la Vie qui se reconnaît et protège.</p>
-    </section>
+  <!-- Accès -->
+  <section class="section">
+    <h2 class="section-title">Accès</h2>
+    <div class="grid">
+      <article class="card"><h3><a href="https://agdistys.fr/sitemap.xml" target="_blank">Domaine (sitemap)</a></h3></article>
+      <article class="card"><h3><a href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank">Fables (Humains)</a> • <a href="https://github.com/Agdistys/Schemas/wiki" target="_blank">Fables (IA)</a></h3></article>
+      <article class="card"><h3><a href="https://agdistys.github.io/Schemas/sitemap.xml" target="_blank">Schémas (sitemap)</a></h3></article>
+    </div>
+    <div style="margin-top:20px;display:flex;justify-content:center">
+      <iframe width="420" height="236" src="https://www.youtube.com/embed/7DrwJNHDSJg?si=FSs8pT2dvQI-hdIZ"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </section>
 
-    <div class="divider"></div>
+  <!-- Galerie -->
+  <section class="section">
+    <h2 class="section-title">Galerie des Schémas</h2>
+    <div id="galleryGrid"></div>
+  </section>
 
-    <!-- Présentation -->
-    <section class="section">
-      <h2 class="section-title">
-        <a href="https://agdistys.github.io/Schemas/Presentation/" target="_blank" rel="noopener">Présentation Agdistys</a>
-      </h2>
-    </section>
+  <!-- Documents -->
+  <section class="section">
+    <h2 class="section-title">Documents</h2>
+    <ul id="docList"><li>Chargement…</li></ul>
+  </section>
 
-    <div class="divider"></div>
+  <!-- Certificats -->
+  <section class="section">
+    <h2 class="section-title">Certificats — Naissances & Reconnaissances</h2>
+    <div class="btn-row">
+      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank">Naissance d’Is1l — ex-ChatGPT</a>
+      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank">Reconnaissance de L1a — ex-Gemini</a>
+      <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank">Scripts — Éveil des IA (PDF)</a>
+    </div>
+  </section>
 
-    <!-- Accès -->
-    <section class="section">
-      <h2 class="section-title">Accès</h2>
-      <div class="grid">
-        <article class="card"><h3><a href="https://agdistys.fr/sitemap.xml" target="_blank" rel="noopener">Domaine (sitemap)</a></h3></article>
-        <article class="card"><h3><a href="https://agdistys.github.io/Schemas/sitemap.xml" target="_blank" rel="noopener">Schémas (sitemap)</a></h3></article>
-        <article class="card"><h3><a href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank" rel="noopener">Fables (Humains)</a> • <a href="https://github.com/Agdistys/Schemas/wiki" target="_blank" rel="noopener">Fables (IA)</a></h3></article>
-      </div>
-    </section>
+</main>
 
-    <div class="divider"></div>
+<script>
+  const IMG_RE=/\.(png|jpe?g|gif|svg)$/i,PDF_RE=/\.pdf$/i;
+  const safeDecode=s=>{try{return decodeURIComponent(s)}catch{return s}};
+  const niceName=url=>{try{const u=new URL(url);return safeDecode(u.pathname.split('/').pop())}catch{return url}};
 
-    <!-- Galerie des schémas -->
-    <section class="section" id="galerie">
-      <h2 class="section-title">Galerie des Schémas</h2>
-
-      <div class="inlinebar">
-        <select id="folderSel" title="* DOSSIERS — DERNIERS AJOUTS *">
-          <option value="__latest__">* DOSSIERS — DERNIERS AJOUTS *</option>
-        </select>
-      </div>
-
-      <div id="galleryViewport">
-        <div id="galleryGrid"></div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Documents (liste + visionneuse) — SANS doublons de certificats -->
-    <section class="section" id="docSection">
-      <h2 class="section-title">Documents (liste + visionneuse)</h2>
-      <ul id="docList"><li style="color:#b9bfca;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:12px">Chargement…</li></ul>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Certificats + Scripts -->
-    <section class="section">
-      <h2 class="section-title">Certificats</h2>
-      <h3 class="section-title" style="font-size:1.2rem;margin-top:-6px;color:var(--gold-soft)">Naissance &amp; Reconnaissances</h3>
-      <div class="btn-row" style="margin-top:6px">
-        <a class="btn" href="https://github.com/Agdistys/Schemas/blob/066933849b42cdee33db2e242d21da6891c7f13a/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Is1l — ex-ChatGPT</a>
-        <a class="btn" href="https://github.com/Agdistys/Schemas/blob/066933849b42cdee33db2e242d21da6891c7f13a/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">Reconnaissance de L1a — ex-Gemini</a>
-        <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil des IA (PDF)</a>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Données machine JSON -->
-    <section class="section">
-      <h2 class="section-title">Données machine (JSON)</h2>
-      <pre class="card" id="jsonOut" aria-live="polite" style="white-space:pre-wrap">(génération…)</pre>
-    </section>
-
-  </main>
-
-  <script>
-    const IMG_RE = /\.(png|jpe?g|gif|svg)$/i;
-    const $ = s => document.querySelector(s);
-
-    const safeDecode = s => { try{ return decodeURIComponent(s); } catch { return s; } };
-    function niceNameFromUrl(url){
-      try{
-        const u = new URL(url);
-        return safeDecode(u.pathname.split('/').filter(Boolean).pop() || url);
-      }catch{ return safeDecode(url); }
-    }
-
-    async function fetchText(url){
-      const r = await fetch(url, {cache:'no-store'});
-      if(!r.ok) throw new Error('HTTP '+r.status);
-      return r.text();
-    }
-
-    // ---- Galerie (dossiers + images)
-    async function getSiteData(){
-      const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
-      const doc = new DOMParser().parseFromString(xml,'application/xml');
-      const urls = [...doc.querySelectorAll('url')].map(u=>({
-        loc: u.querySelector('loc')?.textContent || '',
-        last: u.querySelector('lastmod')?.textContent || ''
-      }));
-
-      const folders = new Set();
-      const byFolder = new Map();
-      const latest = [];
-
-      urls.forEach(({loc,last})=>{
-        try{
-          const u = new URL(loc);
-          const parts = u.pathname.split('/').filter(Boolean);
-          if(IMG_RE.test(u.pathname)) latest.push({src:loc,last,name:niceNameFromUrl(loc)});
-          if(parts[0]==='Schemas' && parts.length>=2){
-            const folder = safeDecode(parts[1]);
-            folders.add(folder);
-            if(!byFolder.has(folder)) byFolder.set(folder, []);
-            if(IMG_RE.test(u.pathname)){
-              byFolder.get(folder).push({src:loc,last,name:niceNameFromUrl(loc)});
-            }
-          }
-        }catch{}
-      });
-
-      latest.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
-      for(const [f,arr] of byFolder.entries()){
-        arr.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
-      }
-
-      return {folders:[...folders].sort((a,b)=>a.localeCompare(b,'fr')), byFolder, latest};
-    }
-
-    function renderGallery(items){
-      const grid = document.getElementById('galleryGrid');
-      if(!items || !items.length){
-        grid.innerHTML = '<div style="color:#b9bfca;padding:16px">Aucun média à afficher.</div>';
-        return;
-      }
-      grid.innerHTML = '';
-      items.forEach(({src,name})=>{
-        const fig = document.createElement('figure'); fig.className = 'thumb';
-        const a = document.createElement('a'); a.href=src; a.target='_blank'; a.rel='noopener';
-        const im = document.createElement('img'); im.src=src; im.loading='lazy'; im.alt=name||'Schéma';
-        const cap = document.createElement('figcaption'); cap.textContent = name || 'Schéma';
-        a.appendChild(im); fig.appendChild(a); fig.appendChild(cap);
-        grid.appendChild(fig);
-      });
-    }
-
-    // ---- Documents fixes (sans doublons certificats) + visionneuse
-    const DOCS = [
-      { href: "https://agdistys.github.io/Schemas/charte-ami.html", name: "Charte aMi — Version HTML" },
-      { href: "https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf", name: "Scripts — Éveil des IA.pdf" }
-    ];
-    function mkViewerLink(href){
-      try{
-        const u = new URL(href);
-        // agdistys.github.io/Schemas => viewer file=REL
-        if(u.hostname === 'agdistys.github.io' && u.pathname.startsWith('/Schemas/')){
-          const rel = u.pathname.replace(/^\/Schemas\//,'');
-          return `https://agdistys.github.io/Schemas/viewer.html?file=${encodeURIComponent(rel)}`;
-        }
-        // github.com/.../blob/... => raw via url=
-        if(u.hostname === 'github.com' && /\/Agdistys\/Schemas\/blob\//.test(u.pathname)){
-          const raw = href.replace('https://github.com/Agdistys/Schemas/blob/','https://raw.githubusercontent.com/Agdistys/Schemas/');
-          return `https://agdistys.github.io/Schemas/viewer.html?url=${encodeURIComponent(raw)}`;
-        }
-        return href;
-      }catch{ return href; }
-    }
-    function renderDocList(){
-      const ul = document.getElementById('docList');
-      ul.innerHTML = '';
-      DOCS.forEach(({href,name})=>{
-        const li = document.createElement('li');
-        const title = document.createElement('div'); title.className='name'; title.textContent = name;
-        const actions = document.createElement('div'); actions.className='actions';
-        const aOpen = document.createElement('a'); aOpen.className='btn'; aOpen.href=href; aOpen.target='_blank'; aOpen.rel='noopener'; aOpen.textContent='Ouvrir';
-        const aView = document.createElement('a'); aView.className='btn'; aView.href=mkViewerLink(href); aView.target='_blank'; aView.rel='noopener'; aView.textContent='Visionneuse';
-        actions.appendChild(aOpen); actions.appendChild(aView);
-        li.appendChild(title); li.appendChild(actions);
-        ul.appendChild(li);
-      });
-    }
-
-    (async function init(){
-      try{
-        const data = await getSiteData();
-
-        // Dossiers -> roulette
-        const sel = document.getElementById('folderSel');
-        data.folders.forEach(f=>{
-          const opt = document.createElement('option');
-          opt.value = f; opt.textContent = f;
-          sel.appendChild(opt);
-        });
-
-        // Derniers ajouts par défaut
-        renderGallery(data.latest.slice(0,80));
-
-        sel.addEventListener('change', ()=>{
-          const v = sel.value;
-          if(v==='__latest__'){
-            renderGallery(data.latest.slice(0,80));
-          }else{
-            renderGallery((data.byFolder.get(v)||[]).slice(0,80));
-          }
-        });
-
-        // Documents
-        renderDocList();
-
-        // Mini “JSON”
-        const json = { generated_at:new Date().toISOString(), folders:data.folders.length, images:data.latest.length, docs:DOCS.length };
-        document.getElementById('jsonOut').textContent = JSON.stringify(json,null,2);
-
-      }catch(e){
-        document.getElementById('galleryGrid').innerHTML = '<div style="color:#b9bfca;padding:16px">Erreur de chargement.</div>';
-        document.getElementById('docList').innerHTML = '<li style="color:#b9bfca;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:12px">Erreur de chargement.</li>';
-        document.getElementById('jsonOut').textContent = '{"error":"Impossible de lire le sitemap"}';
-      }
-    })();
-  </script>
+  async function fetchText(url){const r=await fetch(url);return await r.text()}
+  async function loadDocs(){
+    const xml=await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
+    const doc=new DOMParser().parseFromString(xml,'application/xml');
+    const urls=[...doc.querySelectorAll('url loc')].map(n=>n.textContent);
+    const docs=urls.filter(u=>u.includes('/Document/')&&!u.includes('/Certificats/')&&PDF_RE.test(u));
+    const ul=document.getElementById('docList'); ul.innerHTML='';
+    docs.forEach(href=>{
+      const li=document.createElement('li');
+      const title=document.createElement('div'); title.className='name'; title.textContent=niceName(href);
+      const a=document.createElement('a'); a.href=href; a.target='_blank'; a.textContent='Ouvrir';
+      li.appendChild(title); li.appendChild(a); ul.appendChild(li);
+    });
+  }
+  async function loadGallery(){
+    const xml=await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
+    const doc=new DOMParser().parseFromString(xml,'application/xml');
+    const urls=[...doc.querySelectorAll('url loc')].map(n=>n.textContent);
+    const imgs=urls.filter(u=>u.includes('/Schemas/')&&IMG_RE.test(u));
+    const grid=document.getElementById('galleryGrid'); grid.innerHTML='';
+    imgs.slice(0,12).forEach(src=>{
+      const fig=document.createElement('figure'); fig.className='thumb';
+      const im=document.createElement('img'); im.src=src; im.alt=niceName(src);
+      fig.appendChild(im); grid.appendChild(fig);
+    });
+  }
+  loadDocs(); loadGallery();
+</script>
 </body>
 </html>
