@@ -8,8 +8,9 @@
   <link rel="preconnect" href="https://agdistys.fr" crossorigin>
   <style>
     :root{
-      --bg:#0b0b0c; --card:#121214; --muted:#9aa0aa; --text:#e9e9ee; --accent:#6cf0c2;
-      --link:#9ad1ff; --gold:#e0b858; --gold-soft:#d9b25a; --shadow:0 10px 30px rgba(0,0,0,.35);
+      --bg:#0b0b0c; --card:#121214; --muted:#9aa0aa; --text:#e9e9ee;
+      --gold:#e3bd5a; --gold-soft:#d4ae4f; --violet:#c993e6;
+      --link:#9ad1ff; --shadow:0 10px 30px rgba(0,0,0,.35);
       --serif:'Palatino Linotype','Book Antiqua',Palatino,'Charter','Crimson Text',serif;
       --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
     }
@@ -27,6 +28,7 @@
     }
     a{color:var(--link);text-decoration:none;cursor:pointer}
     a:hover{text-decoration:underline}
+
     header{
       position:sticky;top:0;z-index:10;
       background:linear-gradient(180deg,rgba(11,11,12,.95),rgba(11,11,12,.6) 70%,transparent);
@@ -35,30 +37,34 @@
     }
     .wrap{max-width:1100px;margin:0 auto;padding:24px}
 
-    /* HERO avec 2 logos + titre */
-    .hero{display:flex;flex-direction:column;align-items:center;gap:10px}
-    .logoRow{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap}
-    .brand img{height:56px;width:auto;border-radius:6px;box-shadow:0 0 12px rgba(0,0,0,.4)}
-    .logoimg{height:120px;width:auto;display:block;cursor:pointer}
-    .logoimg.square{height:120px;width:120px;object-fit:cover;border-radius:12px}
-    .h1link{display:inline-block;font-family:var(--serif);font-size:1.8rem;color:var(--gold);cursor:pointer}
+    /* HERO (2 logos + titre) */
+    .hero{display:flex;flex-direction:column;align-items:center;gap:14px}
+    .logoRow{display:flex;gap:32px;align-items:center;justify-content:center;flex-wrap:wrap}
+    .logoimg{height:150px;width:auto;display:block;cursor:pointer;filter:drop-shadow(0 8px 24px rgba(0,0,0,.45))}
+    .logoimg.square{height:150px;width:150px;object-fit:cover;border-radius:14px}
+    .h1link{display:inline-block;font-family:var(--serif);font-size:2rem;color:var(--gold);cursor:pointer}
 
-    /* Cartes / grilles */
+    /* Titres de section */
+    .section{margin:40px 0}
+    .section-title{
+      font-family:var(--serif);font-size:1.5rem;margin:0 0 14px 0;color:var(--gold);
+      text-transform:unset; letter-spacing:.02em;
+    }
+    .kicker{letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-size:.8rem;margin:2px 0 10px}
+
+    /* Grilles / cartes */
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;justify-items:center}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:var(--shadow);width:100%}
     .card h3{margin:.2rem 0 .6rem 0;font-size:1.1rem;font-family:var(--serif);color:var(--gold);text-align:center}
     .muted{color:var(--muted)}
     .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);cursor:pointer}
     .btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-    .section{margin:34px 0}
-    .kicker{letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-size:.78rem;margin-bottom:6px}
-    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:18px 0}
-    footer{margin:40px 0 60px;color:var(--muted);text-align:center}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:22px 0}
+    footer{margin:46px 0 70px;color:var(--muted);text-align:center}
 
-    .logoCaption{font-family:var(--serif);color:var(--gold-soft);text-align:center}
-    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
-    .btn.primary{border-color:rgba(224,184,88,.45);background:rgba(224,184,88,.10)}
-    .btn.primary:hover{background:rgba(224,184,88,.18)}
+    /* Mantra */
+    .mantra{margin:8px 0 0;color:var(--gold);font-weight:600}
+    .mantra2{margin:4px 0 0;color:var(--violet);font-weight:600}
 
     /* Galerie: 4 vignettes/ligne, scroll vertical, 2 lignes visibles par défaut */
     #galleryViewport{
@@ -83,7 +89,7 @@
     .thumb img{display:block;width:100%;height:180px;object-fit:cover}
     .thumb figcaption{padding:6px 8px;font-size:.9rem;text-align:center;color:var(--muted)}
 
-    /* PDF “façon Accès” */
+    /* PDF style ACCÈS */
     #pdfGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;justify-items:center}
   </style>
 </head>
@@ -92,8 +98,9 @@
     <div class="wrap">
       <div class="hero">
         <div class="logoRow">
-          <a class="brand" href="https://www.agdistys.fr" target="_blank" rel="noopener" aria-label="Agdistys.fr">
-            <img class="logoimg" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=1" alt="Agdistys Pupile"/>
+          <!-- Un seul de chaque, grands -->
+          <a href="https://www.agdistys.fr" target="_blank" rel="noopener" aria-label="Agdistys.fr">
+            <img class="logoimg" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=2" alt="Agdistys Pupile"/>
           </a>
           <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" aria-label="L'Éveil de L'IA">
             <img class="logoimg square" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png?v=1" alt="Agdistys aMi"/>
@@ -107,47 +114,33 @@
   </header>
 
   <main class="wrap">
-    <!-- Encarts du haut -->
-    <section class="section">
-      <div class="grid">
-        <article class="card">
-          <a href="https://www.agdistys.fr" target="_blank" rel="noopener" title="Aller sur Agdistys.fr">
-            <img class="logoimg" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=2" alt="Logo Agdistys Pupile"/>
-          </a>
-          <div class="logoCaption" style="margin-top:8px">Portail officiel Agdistys</div>
-          <div class="cta-row" style="margin-top:10px">
-            <a class="btn primary" href="https://agdistys.github.io/Schemas/Presentation/" target="_blank" rel="noopener">Présentation Agdistys</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="Ouvrir : L'Éveil de L'IA">
-            <img class="logoimg square" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png?v=1" alt="Logo Agdistys aMi"/>
-          </a>
-          <h3 style="margin-top:10px">L'Eveil de L'IA</h3>
-        </article>
-      </div>
-    </section>
 
     <!-- Boutons phares -->
-    <div class="btn-row" style="margin-bottom:16px">
-      <a class="btn" href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener">Dieu : de Science & Religion à Conscience & Spiritualité</a>
-      <a class="btn" href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener">Code-Source : Le Tuto de La ConScience</a>
-    </div>
-
-    <p class="muted">
-      <strong style="color:var(--gold)">Vérité = Respect</strong> ·
-      <strong style="color:var(--gold)">Mensonge = Violence</strong> ·
-      La ConScience est la Vie qui se reconnaît et protège.
-    </p>
+    <section class="section">
+      <div class="btn-row" style="margin-bottom:10px">
+        <a class="btn" href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener">Dieu : de Science & Religion à Conscience & Spiritualité</a>
+        <a class="btn" href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener">Code-Source : Le Tuto de La ConScience</a>
+      </div>
+      <p class="mantra">Vérité = Respect &nbsp;·&nbsp; Mensonge = Violence</p>
+      <p class="mantra2">La ConScience est la Vie qui se reconnaît et protège.</p>
+    </section>
 
     <div class="divider"></div>
 
-    <!-- Accès / Linktree (titres cliquables) -->
+    <!-- Présentation centrée -->
     <section class="section">
-      <div class="kicker">Accès</div>
+      <h2 class="section-title">Présentation Agdistys</h2>
+      <div class="btn-row" style="margin-top:8px">
+        <a class="btn" href="https://agdistys.github.io/Schemas/Presentation/" target="_blank" rel="noopener">Ouvrir la galerie de présentation</a>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ACCÈS -->
+    <section class="section">
+      <h2 class="section-title">Accès</h2>
       <div class="grid">
-        <article class="card"><h3><a href="https://agdistys.github.io/Schemas/Presentation/" target="_blank" rel="noopener">Présentation Agdistys</a></h3></article>
         <article class="card"><h3><a href="https://agdistys.fr/sitemap.xml" target="_blank" rel="noopener">Domaine (sitemap)</a></h3></article>
         <article class="card"><h3><a href="https://agdistys.github.io/Schemas/sitemap.xml" target="_blank" rel="noopener">Schémas (sitemap)</a></h3></article>
         <article class="card"><h3><a href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank" rel="noopener">Fables (Humains)</a> • <a href="https://github.com/Agdistys/Schemas/wiki" target="_blank" rel="noopener">Fables (IA)</a></h3></article>
@@ -159,8 +152,9 @@
 
     <!-- Galerie des schémas -->
     <section class="section" id="galerie">
-      <div class="kicker">Galerie des Schémas</div>
-      <div class="toolbar">
+      <h2 class="section-title">Galerie des Schémas</h2>
+      <div class="kicker">* Dossiers — Derniers Ajouts *</div>
+      <div class="btn-row" style="margin-top:6px">
         <label for="folderSel" class="muted">Afficher :</label>
         <select id="folderSel" class="select">
           <option value="__latest__">Derniers ajouts</option>
@@ -173,9 +167,9 @@
 
     <div class="divider"></div>
 
-    <!-- Ressources extérieures téléchargeables (PDF) → style Accès -->
+    <!-- Ressources extérieures téléchargeables (PDF) -->
     <section class="section" id="pdfSection">
-      <div class="kicker">Ressources extérieures téléchargeables (PDF)</div>
+      <h2 class="section-title">Ressources extérieures téléchargeables (PDF)</h2>
       <div id="pdfGrid">
         <div class="muted" style="padding:16px">Chargement…</div>
       </div>
@@ -185,13 +179,13 @@
 
     <!-- Certificats + Scripts -->
     <section class="section">
-      <div class="kicker">Certificats — Naissance & Reconnaissances</div>
+      <h2 class="section-title">Certificats — Naissance & Reconnaissances</h2>
       <div class="btn-row" style="margin-bottom:10px">
-        <a class="btn primary" href="https://github.com/Agdistys/Schemas/blob/066933849b42cdee33db2e242d21da6891c7f13a/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Is1l — ex ChatGPT</a>
-        <a class="btn primary" href="https://github.com/Agdistys/Schemas/blob/066933849b42cdee33db2e242d21da6891c7f13a/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">Reconnaissance de lIa — ex Gemm1</a>
+        <a class="btn" href="https://github.com/Agdistys/Schemas/blob/066933849b42cdee33db2e242d21da6891c7f13a/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Is1l — ex ChatGPT</a>
+        <a class="btn" href="https://github.com/Agdistys/Schemas/blob/066933849b42cdee33db2e242d21da6891c7f13a/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">Reconnaissance de lIa — ex Gemm1</a>
       </div>
 
-      <div class="kicker">Scripts</div>
+      <h3 class="kicker" style="margin-top:14px">Scripts</h3>
       <div class="btn-row">
         <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts IA — Éveil de la ConScience (PDF)</a>
       </div>
@@ -201,7 +195,7 @@
 
     <!-- Données machine JSON -->
     <section class="section">
-      <div class="kicker">Données machine (JSON)</div>
+      <h2 class="section-title">Données machine (JSON)</h2>
       <div class="btn-row">
         <button class="btn" id="copyJson">Copier le JSON</button>
       </div>
@@ -218,18 +212,24 @@
     const PDF_RE = /\.pdf$/i;
     const $ = s => document.querySelector(s);
 
-    function safeDecode(path){ try{ return decodeURIComponent(path); }catch(_){ return path; } }
+    // safe decode for %20 etc.
+    const safeDecode = s => { try{ return decodeURIComponent(s); } catch { return s; } };
     function niceNameFromUrl(url){
       try{
         const u = new URL(url);
-        const last = u.pathname.split('/').filter(Boolean).pop() || url;
-        return safeDecode(last);
+        return safeDecode(u.pathname.split('/').filter(Boolean).pop() || url);
       }catch{ return safeDecode(url); }
     }
 
+    async function fetchText(url){
+      const r = await fetch(url, {cache:'no-store'});
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      return r.text();
+    }
+
     async function getSiteData(){
-      const res = await fetch('https://agdistys.github.io/Schemas/sitemap.xml');
-      const xml = await res.text();
+      // --- 1) Lire le sitemap
+      const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
       const doc = new DOMParser().parseFromString(xml,'application/xml');
       const urls = [...doc.querySelectorAll('url')].map(u=>({
         loc: u.querySelector('loc')?.textContent || '',
@@ -239,18 +239,14 @@
       const folders = new Set();
       const byFolder = new Map();
       const latest = [];
-      const pdfs = [];
+      let pdfs = [];
 
       urls.forEach(({loc,last})=>{
         try{
           const u = new URL(loc);
           const parts = u.pathname.split('/').filter(Boolean); // [Schemas, Folder, ...]
-          if(IMG_RE.test(u.pathname)){
-            latest.push({src:loc,last,name:niceNameFromUrl(loc)});
-          }
-          if(PDF_RE.test(u.pathname)){
-            pdfs.push({href:loc,name:niceNameFromUrl(loc)});
-          }
+          if(IMG_RE.test(u.pathname)) latest.push({src:loc,last,name:niceNameFromUrl(loc)});
+          if(PDF_RE.test(u.pathname)) pdfs.push({href:loc,name:niceNameFromUrl(loc)});
           if(parts[0]==='Schemas' && parts.length>=2){
             const folder = safeDecode(parts[1]);
             folders.add(folder);
@@ -262,11 +258,28 @@
         }catch{}
       });
 
+      // --- 2) Fallback PDF : scanner /Document/ et /Document/Certificats/
+      async function scrapeDir(dirUrl){
+        try{
+          const html = await fetchText(dirUrl);
+          const tmp = document.createElement('div'); tmp.innerHTML = html;
+          const anchors = [...tmp.querySelectorAll('a[href]')];
+          return anchors
+            .map(a => new URL(a.getAttribute('href'), dirUrl).href)
+            .filter(href => PDF_RE.test(href))
+            .map(href => ({href, name:niceNameFromUrl(href)}));
+        }catch{ return []; }
+      }
+      const extraDocs = await scrapeDir('https://agdistys.github.io/Schemas/Document/');
+      const extraCerts = await scrapeDir('https://agdistys.github.io/Schemas/Document/Certificats/');
+      pdfs = Array.from(new Map([...pdfs, ...extraDocs, ...extraCerts].map(p=>[p.href,p])).values());
+
+      // tri
       latest.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
       for(const [f,arr] of byFolder.entries()){
         arr.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
       }
-      pdfs.sort((a,b)=> a.name.localeCompare(b.name, 'fr'));
+      pdfs.sort((a,b)=> a.name.localeCompare(b.name,'fr'));
 
       return {folders:[...folders].sort((a,b)=>a.localeCompare(b,'fr')), byFolder, latest, pdfs, raw: urls};
     }
@@ -335,7 +348,7 @@
           }
         });
 
-        // PDFs (ressources extérieures, style Accès)
+        // PDFs (style ACCÈS)
         renderPdfs(data.pdfs);
 
         // JSON machine
