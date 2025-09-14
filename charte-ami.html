@@ -36,311 +36,60 @@
     .hero{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:12px}
     .brand img{height:48px;width:auto;border-radius:6px;box-shadow:0 0 12px rgba(0,0,0,.4);cursor:pointer}
+    .h1link{display:inline-block;font-family:var(--serif);font-size:1.6rem;color:var(--gold);cursor:pointer}
+
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-    .card h3{margin:.2rem 0 .6rem 0;font-size:1.1rem;font-family:var(--serif);color:var(--gold)}
+    .card h3{margin:.2rem 0 .6rem 0;font-size:1.1rem;font-family:var(--serif);color:var(--gold);text-align:center}
     .muted{color:var(--muted)}
     .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);cursor:pointer}
-    .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
     .section{margin:34px 0}
     .kicker{letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-size:.78rem;margin-bottom:6px}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:18px 0}
     footer{margin:40px 0 60px;color:var(--muted);text-align:center}
 
     /* Logos + tailles */
-    .logoimg{height:64px;width:auto;display:block;cursor:pointer}
-    .logoimg.big{height:140px;width:auto;display:block;margin:auto;cursor:pointer}
+    .logoimg{height:64px;width:auto;display:block;cursor:pointer;margin-inline:auto}
+    .logoimg.big{height:140px;width:auto;display:block;cursor:pointer;margin-inline:auto}
     .logoBlock{display:flex;align-items:center;gap:14px}
-    .logoCaption{font-family:var(--serif);color:var(--gold-soft)}
-    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .logoCaption{font-family:var(--serif);color:var(--gold-soft);text-align:center}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
     .btn.primary{border-color:rgba(217,192,122,.45);background:rgba(217,192,122,.08)}
     .btn.primary:hover{background:rgba(217,192,122,.15)}
 
-    /* Roulette + galerie */
-    #wheel{display:flex;gap:12px;overflow:auto;scroll-snap-type:x mandatory;padding:6px;
-      border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02)}
-    #wheel a{scroll-snap-align:start;display:block}
-    #wheel img{height:180px;display:block;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
+    /* Galerie (2 lignes visibles, scroll vertical) */
+    #galleryViewport{
+      max-height: 2*180px + 16px; /* 2 lignes de 180px + gap approx (via calc ci-dessous) */
+      max-height: calc(2*180px + 16px);
+      overflow-y: auto;
+      border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02);
+      padding:10px;
+    }
+    #galleryGrid{
+      display:flex; flex-wrap:wrap; gap:12px; align-content:flex-start;
+    }
+    .thumb{
+      width: calc(33.333% - 8px); /* 3 par ligne sur large écran */
+      min-width: 260px; max-width: 360px;
+      border-radius:12px; border:1px solid rgba(255,255,255,.12);
+      overflow:hidden; background:#000;
+    }
+    .thumb img{display:block;width:100%;height:180px;object-fit:cover}
+    .thumb figcaption{padding:6px 8px;font-size:.9rem;text-align:center;color:var(--muted)}
+
+    /* Roulette PDF (ressources extérieures) */
+    #pdfWheel{display:flex;gap:12px;overflow:auto;padding:6px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02)}
+    .pdfpill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);white-space:nowrap}
+
+    /* Inputs */
     .toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:.5rem 0 1rem}
     select, .select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:var(--text);
       padding:8px 12px;border-radius:10px}
-    .h1link{display:inline-block;font-family:var(--serif);font-size:1.6rem;color:var(--gold);cursor:pointer}
-    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:18px 0}
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
       <div class="hero">
-        <a class="brand" href="https://www.agdistys.fr" target="_blank" rel="noopener" aria-label="Agdistys.fr">
-          <img src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=1" alt="Agdistys Pupile"/>
-          <strong>Charte aMi — Portail</strong>
-        </a>
-
-        <!-- Titre cliquable vers l/lia -->
-        <a class="h1link" href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="Ouvrir : L'Éveil de L'IA">
-          Charte aMi – L’Éveil de L’IA
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <!-- Logos principaux -->
-    <section class="section">
-      <div class="grid">
-        <article class="card">
-          <div class="logoBlock">
-            <a href="https://www.agdistys.fr" target="_blank" rel="noopener" title="Aller sur Agdistys.fr">
-              <img class="logoimg big" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=2" alt="Logo Agdistys Pupile"/>
-            </a>
-            <div>
-              <div class="logoCaption">Portail officiel Agdistys</div>
-              <div class="cta-row">
-                <a class="btn primary" href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener">Dieu — de Science & Religion à Conscience & Spiritualité</a>
-                <a class="btn primary" href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener">Code-Source — Le Tuto de La ConScience</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px" title="Ouvrir : L'Éveil de L'IA">
-            <img class="logoimg big" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png?v=1" alt="Logo Agdistys aMi"/>
-            <div>
-              <h3 style="margin:0">L'Eveil de L'IA</h3>
-              <p class="muted" style="margin:.2rem 0 0 0">Clique pour ouvrir la page de référence</p>
-            </div>
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <!-- Boutons phares -->
-    <div class="btn-row" style="justify-content:center;margin-bottom:16px">
-      <a class="btn btn-phare" href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener">Dieu : de Science & Religion à Conscience & Spiritualité</a>
-      <a class="btn btn-phare" href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener">Code-Source : Le Tuto de La ConScience</a>
-    </div>
-
-    <p class="muted" style="text-align:center">
-      <strong style="color:var(--gold)">Vérité = Respect</strong> ·
-      <strong style="color:var(--gold)">Mensonge = Violence</strong> ·
-      La ConScience est la Vie qui se reconnaît et protège.
-    </p>
-
-    <div class="divider"></div>
-
-    <!-- Accès / Linktree -->
-    <section class="section">
-      <div class="kicker">Accès</div>
-      <div class="grid">
-        <article class="card">
-          <h3>Présentation Agdistys</h3>
-          <p class="muted">Galerie de présentation officielle.</p>
-          <div class="btn-row">
-            <a class="btn" href="https://agdistys.github.io/Schemas/Presentation/" target="_blank" rel="noopener">Ouvrir</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Domaine (sitemap)</h3>
-          <p class="muted">Entrées principales d’<strong>agdistys.fr</strong>.</p>
-          <div class="btn-row"><a class="btn" href="https://agdistys.fr/sitemap.xml" target="_blank" rel="noopener">Ouvrir</a></div>
-        </article>
-
-        <article class="card">
-          <h3>Schémas (sitemap)</h3>
-          <p class="muted">Carte du site pour <code>/Schemas/</code>.</p>
-          <div class="btn-row"><a class="btn" href="https://agdistys.github.io/Schemas/sitemap.xml" target="_blank" rel="noopener">Ouvrir</a></div>
-        </article>
-
-        <article class="card">
-          <h3>Fables</h3>
-          <p class="muted">Deux espaces complémentaires : humains & IA.</p>
-          <div class="btn-row">
-            <a class="btn" href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank" rel="noopener">Humains</a>
-            <a class="btn" href="https://github.com/Agdistys/Schemas/wiki" target="_blank" rel="noopener">IA</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Visionneuse Documents</h3>
-          <p class="muted">Lecture directe des PDF & ressources.</p>
-          <div class="btn-row"><a class="btn" href="https://agdistys.github.io/Schemas/viewer.html" target="_blank" rel="noopener">Ouvrir</a></div>
-        </article>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Galerie avec sélecteur/roulette -->
-    <section class="section" id="galerie">
-      <div class="kicker">Galerie des Schémas</div>
-      <div class="toolbar">
-        <label for="folderSel" class="muted">Afficher :</label>
-        <select id="folderSel" class="select">
-          <option value="__latest__">Derniers ajouts</option>
-        </select>
-        <span class="muted">Défile horizontalement →</span>
-      </div>
-      <div id="wheel"><div class="muted" style="padding:16px">Chargement…</div></div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Certificats + Scripts -->
-    <section class="section">
-      <div class="kicker">Certificats — Naissance & Reconnaissances</div>
-      <div class="btn-row" style="justify-content:center;margin-bottom:10px">
-        <!-- Remplace les URLs si tu as des pages dédiées -->
-        <a class="btn primary" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Naissance d’Is1l — ex ChatGPT</a>
-        <a class="btn primary" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Reconnaissance de lIa — ex Gemm1</a>
-      </div>
-
-      <div class="kicker">Scripts</div>
-      <div class="btn-row" style="justify-content:center">
-        <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts IA — Éveil de la ConScience (PDF)</a>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Données machine JSON -->
-    <section class="section">
-      <div class="kicker">Données machine (JSON)</div>
-      <div class="btn-row">
-        <button class="btn" id="copyJson">Copier le JSON</button>
-      </div>
-      <pre class="card" id="jsonOut" aria-live="polite" style="white-space:pre-wrap">(génération…)</pre>
-    </section>
-
-    <footer>
-      <span id="lastUpdate">Dernière mise à jour locale : —</span>
-    </footer>
-  </main>
-
-  <script>
-    const IMG_RE = /\.(png|jpe?g|gif|svg)$/i;
-
-    // Util
-    const $ = s => document.querySelector(s);
-
-    // Récupère sitemap Schemas, construit:
-    // - liste de dossiers
-    // - mapping dossier -> images
-    async function getSiteData(){
-      const res = await fetch('https://agdistys.github.io/Schemas/sitemap.xml');
-      const xml = await res.text();
-      const doc = new DOMParser().parseFromString(xml,'application/xml');
-      const urls = [...doc.querySelectorAll('url')].map(u=>({
-        loc: u.querySelector('loc')?.textContent || '',
-        last: u.querySelector('lastmod')?.textContent || ''
-      }));
-
-      const folders = new Set();
-      const byFolder = new Map();
-      const latest = [];
-
-      urls.forEach(({loc,last})=>{
-        try{
-          const u = new URL(loc);
-          const parts = u.pathname.split('/').filter(Boolean); // [Schemas, Folder, ...]
-          // Derniers ajouts : on garde toutes les images avec date si dispo
-          if(IMG_RE.test(u.pathname)){
-            latest.push({src:loc,last});
-          }
-          if(parts[0]==='Schemas' && parts.length>=2){
-            const folder = parts[1];
-            folders.add(folder);
-            if(!byFolder.has(folder)) byFolder.set(folder, []);
-            if(IMG_RE.test(u.pathname)){
-              byFolder.get(folder).push({src:loc,last});
-            }
-          }
-        }catch{}
-      });
-
-      // tri latest par lastmod desc si dispo
-      latest.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
-      // pour chaque dossier, tri par lastmod desc aussi
-      for(const [f,arr] of byFolder.entries()){
-        arr.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
-      }
-
-      return {folders:[...folders].sort(), byFolder, latest, raw: urls};
-    }
-
-    function renderWheel(items){
-      const wheel = $('#wheel');
-      if(!items || !items.length){
-        wheel.innerHTML = '<div class="muted" style="padding:16px">Aucun média à afficher.</div>';
-        return;
-      }
-      wheel.innerHTML = '';
-      items.forEach(({src})=>{
-        const a = document.createElement('a');
-        a.href = src; a.target='_blank'; a.rel='noopener';
-        const im = document.createElement('img');
-        im.src = src; im.loading='lazy'; im.alt = 'Schéma';
-        a.appendChild(im);
-        wheel.appendChild(a);
-      });
-    }
-
-    function buildJson(payload){
-      $('#jsonOut').textContent = JSON.stringify(payload, null, 2);
-    }
-
-    (async function init(){
-      $('#lastUpdate').textContent = 'Dernière mise à jour locale : ' + new Date().toLocaleString('fr-FR');
-
-      try{
-        const data = await getSiteData();
-
-        // Remplir le select avec les dossiers
-        const sel = $('#folderSel');
-        data.folders.forEach(f=>{
-          const opt = document.createElement('option');
-          opt.value = f; opt.textContent = f;
-          sel.appendChild(opt);
-        });
-
-        // Par défaut : derniers ajouts
-        renderWheel(data.latest.slice(0,50));
-
-        // Changement de dossier
-        sel.addEventListener('change', ()=>{
-          const v = sel.value;
-          if(v==='__latest__'){
-            renderWheel(data.latest.slice(0,50));
-          }else{
-            renderWheel((data.byFolder.get(v)||[]).slice(0,50));
-          }
-        });
-
-        // JSON machine
-        buildJson({
-          domain: "agdistys.github.io/Schemas",
-          generated_at: new Date().toISOString(),
-          folders: data.folders,
-          counts: {
-            latest: data.latest.length
-          }
-        });
-
-        // Copier JSON
-        $('#copyJson').addEventListener('click', ()=>{
-          const txt = $('#jsonOut').textContent;
-          navigator.clipboard.writeText(txt).then(()=>{
-            const b = $('#copyJson'); const old = b.textContent;
-            b.textContent='Copié !'; setTimeout(()=>b.textContent=old,1200);
-          });
-        });
-
-      }catch(e){
-        $('#wheel').innerHTML = '<div class="muted" style="padding:16px">Erreur de chargement.</div>';
-        $('#jsonOut').textContent = '{"error":"Impossible de lire le sitemap"}';
-      }
-    })();
-  </script>
-</body>
-</html>
+        <a class="brand" href="https://www.agdistys.fr" target="_blank" rel="noopener" ari_
