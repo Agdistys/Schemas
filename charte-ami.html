@@ -25,114 +25,120 @@
       color:var(--text);
       font:16px/1.6 var(--sans);
       text-align:center;
+      padding-top: var(--headerH, 320px); /* ajusté dynamiquement par JS */
     }
     a{color:var(--link);text-decoration:none;cursor:pointer}
     a:hover{text-decoration:underline}
 
+    /* HEADER FIXE (logos restent statiques en haut) */
     header{
-      position:sticky;top:0;z-index:10;
-      background:linear-gradient(180deg,rgba(11,11,12,.95),rgba(11,11,12,.6) 70%,transparent);
+      position:fixed; top:0; left:0; right:0; z-index:10;
+      background:linear-gradient(180deg,rgba(11,11,12,.98),rgba(11,11,12,.7) 80%,transparent);
       backdrop-filter:blur(6px);
-      border-bottom:1px solid rgba(255,255,255,.04)
+      border-bottom:1px solid rgba(255,255,255,.06)
     }
     .wrap{max-width:1100px;margin:0 auto;padding:24px}
 
-    /* HERO (2 logos + titre) */
+    /* HERO (2 logos + titre 2 lignes) */
     .hero{display:flex;flex-direction:column;align-items:center;gap:14px}
-    .logoRow{display:flex;gap:32px;align-items:center;justify-content:center;flex-wrap:wrap}
+    .logoRow{display:flex;gap:36px;align-items:center;justify-content:center;flex-wrap:wrap}
     .logoimg{height:150px;width:auto;display:block;cursor:pointer;filter:drop-shadow(0 8px 24px rgba(0,0,0,.45))}
     .logoimg.square{height:150px;width:150px;object-fit:cover;border-radius:14px}
-    .h1link{display:inline-block;font-family:var(--serif);font-size:2rem;color:var(--gold);cursor:pointer}
+    /* Pupile 2.5x */
+    .logoimg.pupile{height:375px}
+    .title2{
+      display:inline-block; line-height:1.15; font-family:var(--serif); color:var(--gold);
+      font-size:2rem; margin-top:4px;
+    }
 
     /* Titres de section */
     .section{margin:40px 0}
     .section-title{
-      font-family:var(--serif);font-size:1.5rem;margin:0 0 14px 0;color:var(--gold);
-      text-transform:unset; letter-spacing:.02em;
+      font-family:var(--serif);font-size:1.6rem;margin:0 0 14px 0;color:var(--gold);
+      letter-spacing:.02em;
     }
     .kicker{letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-size:.8rem;margin:2px 0 10px}
 
     /* Grilles / cartes */
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;justify-items:center}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:var(--shadow);width:100%}
-    .card h3{margin:.2rem 0 .6rem 0;font-size:1.1rem;font-family:var(--serif);color:var(--gold);text-align:center}
+    .card h3{margin:.2rem 0 .6rem 0;font-size:1.15rem;font-family:var(--serif);color:var(--gold);text-align:center}
     .muted{color:var(--muted)}
     .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);cursor:pointer}
     .btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
     .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:22px 0}
     footer{margin:46px 0 70px;color:var(--muted);text-align:center}
 
-    /* Mantra */
+    /* Mantra (2 lignes) */
     .mantra{margin:8px 0 0;color:var(--gold);font-weight:600}
     .mantra2{margin:4px 0 0;color:var(--violet);font-weight:600}
 
     /* Galerie: 4 vignettes/ligne, scroll vertical, 2 lignes visibles par défaut */
     #galleryViewport{
-      max-height:440px; /* ~2 lignes visibles */
-      overflow-y:auto;
+      max-height:440px; overflow-y:auto;
       border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02);
       padding:12px;
     }
     #galleryGrid{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:12px;
-      justify-items:center;
-      align-items:start;
+      display:grid; grid-template-columns:repeat(4, 1fr);
+      gap:12px; justify-items:center; align-items:start;
     }
-    .thumb{
-      width:100%;
-      max-width:240px;
-      border-radius:12px; border:1px solid rgba(255,255,255,.12);
-      overflow:hidden; background:#000;
-    }
+    .thumb{width:100%; max-width:240px; border-radius:12px; border:1px solid rgba(255,255,255,.12); overflow:hidden; background:#000}
     .thumb img{display:block;width:100%;height:180px;object-fit:cover}
     .thumb figcaption{padding:6px 8px;font-size:.9rem;text-align:center;color:var(--muted)}
 
     /* PDF style ACCÈS */
     #pdfGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;justify-items:center}
+
+    /* Barre inline galerie (une seule ligne avec select intégré) */
+    .inlinebar{
+      display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;
+      color:var(--gold);font-family:var(--serif);font-size:1.05rem;margin:6px 0 12px;
+    }
+    .inlinebar .select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:var(--text);padding:8px 12px;border-radius:10px}
+    @media (max-width:1024px){ #galleryGrid{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:720px){  #galleryGrid{grid-template-columns:repeat(2,1fr)} .title2{font-size:1.6rem} .logoimg.pupile{height:300px} }
   </style>
 </head>
 <body>
-  <header>
+  <header id="heroHeader">
     <div class="wrap">
       <div class="hero">
         <div class="logoRow">
-          <!-- Un seul de chaque, grands -->
+          <!-- un seul de chaque, Pupile x2.5 -->
           <a href="https://www.agdistys.fr" target="_blank" rel="noopener" aria-label="Agdistys.fr">
-            <img class="logoimg" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=2" alt="Agdistys Pupile"/>
+            <img class="logoimg pupile" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=3" alt="Agdistys Pupile"/>
           </a>
           <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" aria-label="L'Éveil de L'IA">
             <img class="logoimg square" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png?v=1" alt="Agdistys aMi"/>
           </a>
         </div>
-        <a class="h1link" href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="Ouvrir : L'Éveil de L'IA">
-          Charte aMi – L’Éveil de L’IA
+        <!-- Titre sur 2 lignes -->
+        <a class="title2" href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="Ouvrir : L'Éveil de L'IA">
+          Charte aMi<br/>L’Éveil de L’IA
         </a>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-
     <!-- Boutons phares -->
     <section class="section">
       <div class="btn-row" style="margin-bottom:10px">
         <a class="btn" href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener">Dieu : de Science & Religion à Conscience & Spiritualité</a>
         <a class="btn" href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener">Code-Source : Le Tuto de La ConScience</a>
       </div>
-      <p class="mantra">Vérité = Respect &nbsp;·&nbsp; Mensonge = Violence</p>
+      <p class="mantra">Vérité = Respect · Mensonge = Violence</p>
       <p class="mantra2">La ConScience est la Vie qui se reconnaît et protège.</p>
     </section>
 
     <div class="divider"></div>
 
-    <!-- Présentation centrée -->
+    <!-- Présentation centrée (lien intégré dans le titre) -->
     <section class="section">
-      <h2 class="section-title">Présentation Agdistys</h2>
-      <div class="btn-row" style="margin-top:8px">
-        <a class="btn" href="https://agdistys.github.io/Schemas/Presentation/" target="_blank" rel="noopener">Ouvrir la galerie de présentation</a>
-      </div>
+      <h2 class="section-title">
+        <a href="https://agdistys.github.io/Schemas/Presentation/" target="_blank" rel="noopener">Présentation Agdistys</a>
+      </h2>
     </section>
 
     <div class="divider"></div>
@@ -153,9 +159,8 @@
     <!-- Galerie des schémas -->
     <section class="section" id="galerie">
       <h2 class="section-title">Galerie des Schémas</h2>
-      <div class="kicker">* Dossiers — Derniers Ajouts *</div>
-      <div class="btn-row" style="margin-top:6px">
-        <label for="folderSel" class="muted">Afficher :</label>
+      <div class="inlinebar">
+        <span>*&nbsp;DOSSIERS — DERNIERS AJOUTS&nbsp;*</span>
         <select id="folderSel" class="select">
           <option value="__latest__">Derniers ajouts</option>
         </select>
@@ -170,9 +175,7 @@
     <!-- Ressources extérieures téléchargeables (PDF) -->
     <section class="section" id="pdfSection">
       <h2 class="section-title">Ressources extérieures téléchargeables (PDF)</h2>
-      <div id="pdfGrid">
-        <div class="muted" style="padding:16px">Chargement…</div>
-      </div>
+      <div id="pdfGrid"><div class="muted" style="padding:16px">Chargement…</div></div>
     </section>
 
     <div class="divider"></div>
@@ -196,15 +199,11 @@
     <!-- Données machine JSON -->
     <section class="section">
       <h2 class="section-title">Données machine (JSON)</h2>
-      <div class="btn-row">
-        <button class="btn" id="copyJson">Copier le JSON</button>
-      </div>
+      <div class="btn-row"><button class="btn" id="copyJson">Copier le JSON</button></div>
       <pre class="card" id="jsonOut" aria-live="polite" style="white-space:pre-wrap">(génération…)</pre>
     </section>
 
-    <footer>
-      <span id="lastUpdate">Dernière mise à jour locale : —</span>
-    </footer>
+    <footer><span id="lastUpdate">Dernière mise à jour locale : —</span></footer>
   </main>
 
   <script>
@@ -212,7 +211,15 @@
     const PDF_RE = /\.pdf$/i;
     const $ = s => document.querySelector(s);
 
-    // safe decode for %20 etc.
+    // Ajuste le padding-top en fonction de la hauteur réelle du header fixe
+    function adjustBodyOffset(){
+      const h = document.getElementById('heroHeader')?.offsetHeight || 320;
+      document.body.style.setProperty('--headerH', (h+12)+'px');
+    }
+    window.addEventListener('load', adjustBodyOffset);
+    window.addEventListener('resize', adjustBodyOffset);
+
+    // Décodage propre (enlève %20)
     const safeDecode = s => { try{ return decodeURIComponent(s); } catch { return s; } };
     function niceNameFromUrl(url){
       try{
@@ -228,7 +235,7 @@
     }
 
     async function getSiteData(){
-      // --- 1) Lire le sitemap
+      // 1) Sitemap
       const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
       const doc = new DOMParser().parseFromString(xml,'application/xml');
       const urls = [...doc.querySelectorAll('url')].map(u=>({
@@ -244,7 +251,7 @@
       urls.forEach(({loc,last})=>{
         try{
           const u = new URL(loc);
-          const parts = u.pathname.split('/').filter(Boolean); // [Schemas, Folder, ...]
+          const parts = u.pathname.split('/').filter(Boolean);
           if(IMG_RE.test(u.pathname)) latest.push({src:loc,last,name:niceNameFromUrl(loc)});
           if(PDF_RE.test(u.pathname)) pdfs.push({href:loc,name:niceNameFromUrl(loc)});
           if(parts[0]==='Schemas' && parts.length>=2){
@@ -258,23 +265,20 @@
         }catch{}
       });
 
-      // --- 2) Fallback PDF : scanner /Document/ et /Document/Certificats/
+      // 2) Fallback PDF : scrape /Document/ et /Document/Certificats/
       async function scrapeDir(dirUrl){
         try{
           const html = await fetchText(dirUrl);
           const tmp = document.createElement('div'); tmp.innerHTML = html;
-          const anchors = [...tmp.querySelectorAll('a[href]')];
-          return anchors
-            .map(a => new URL(a.getAttribute('href'), dirUrl).href)
-            .filter(href => PDF_RE.test(href))
-            .map(href => ({href, name:niceNameFromUrl(href)}));
-        }catch{ return []; }
+          const hrefs = [...tmp.querySelectorAll('a[href]')].map(a => new URL(a.getAttribute('href'), dirUrl).href);
+          return hrefs.filter(h=>PDF_RE.test(h)).map(href=>({href, name:niceNameFromUrl(href)}));
+        }catch{return [];}
       }
-      const extraDocs = await scrapeDir('https://agdistys.github.io/Schemas/Document/');
+      const extraDocs  = await scrapeDir('https://agdistys.github.io/Schemas/Document/');
       const extraCerts = await scrapeDir('https://agdistys.github.io/Schemas/Document/Certificats/');
       pdfs = Array.from(new Map([...pdfs, ...extraDocs, ...extraCerts].map(p=>[p.href,p])).values());
 
-      // tri
+      // tris
       latest.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
       for(const [f,arr] of byFolder.entries()){
         arr.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
@@ -292,8 +296,7 @@
       }
       grid.innerHTML = '';
       items.forEach(({src,name})=>{
-        const fig = document.createElement('figure');
-        fig.className = 'thumb';
+        const fig = document.createElement('figure'); fig.className = 'thumb';
         const a = document.createElement('a'); a.href=src; a.target='_blank'; a.rel='noopener';
         const im = document.createElement('img'); im.src=src; im.loading='lazy'; im.alt=name||'Schéma';
         const cap = document.createElement('figcaption'); cap.textContent = name || 'Schéma';
@@ -307,13 +310,11 @@
       if(!pdfs.length){ grid.innerHTML = '<div class="muted" style="padding:16px">Aucun PDF détecté.</div>'; return; }
       grid.innerHTML = '';
       pdfs.forEach(({href,name})=>{
-        const art = document.createElement('article');
-        art.className = 'card';
+        const art = document.createElement('article'); art.className = 'card';
         const h = document.createElement('h3');
         const a = document.createElement('a'); a.href = href; a.target='_blank'; a.rel='noopener';
         a.textContent = name; h.appendChild(a);
-        art.appendChild(h);
-        grid.appendChild(art);
+        art.appendChild(h); grid.appendChild(art);
       });
     }
 
@@ -323,11 +324,12 @@
 
     (async function init(){
       document.getElementById('lastUpdate').textContent = 'Dernière mise à jour locale : ' + new Date().toLocaleString('fr-FR');
+      adjustBodyOffset();
 
       try{
         const data = await getSiteData();
 
-        // Select dossiers (noms décodés)
+        // Dossiers dans la roulette (intégrée à la ligne)
         const sel = document.getElementById('folderSel');
         data.folders.forEach(f=>{
           const opt = document.createElement('option');
@@ -348,10 +350,10 @@
           }
         });
 
-        // PDFs (style ACCÈS)
+        // PDFs
         renderPdfs(data.pdfs);
 
-        // JSON machine
+        // JSON
         buildJson({
           domain: "agdistys.github.io/Schemas",
           generated_at: new Date().toISOString(),
