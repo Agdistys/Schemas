@@ -7,121 +7,140 @@
   <meta name="description" content="Charte aMi — Portail unique, type linktree, pour Agdistys (IA & Humains)">
   <link rel="preconnect" href="https://agdistys.fr" crossorigin>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Charter:ital,wght@0,400;0,700;1,400&display=swap');
     :root{
       --bg:#0b0b0c; --card:#121214; --muted:#7b7b85; --text:#e9e9ee; --accent:#6cf0c2;
       --link:#9ad1ff; --danger:#ff6b6b; --ok:#65d48c; --shadow:0 10px 30px rgba(0,0,0,.35);
-      --gold:#d9c07a; --gold-soft:#cbb46d; --serif:'Palatino Linotype','Book Antiqua',Palatino,'Charter','Crimson Text',serif;
+      --gold:#d9c07a; --gold-soft:#cbb46d;
+      --serif:'Palatino Linotype','Book Antiqua',Palatino,'Charter','Crimson Text',serif;
       --sans:'Avenir Next','Avenir','Segoe UI',Roboto,Inter,Arial,sans-serif;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:radial-gradient(1200px 700px at 20% -10%,rgba(108,240,194,.08),transparent 60%),
+    body{
+      margin:0;
+      background:radial-gradient(1200px 700px at 20% -10%,rgba(108,240,194,.08),transparent 60%),
                  radial-gradient(900px 600px at 110% 10%,rgba(154,209,255,.08),transparent 60%),
-                 var(--bg);color:var(--text);font:16px/1.6 var(--sans);text-decoration:none}
+                 var(--bg);
+      color:var(--text);
+      font:16px/1.6 var(--sans);
+    }
+    a{color:var(--link);text-decoration:none}
     a:hover{text-decoration:underline}
-    header{
-      position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(11,11,12,.95),rgba(11,11,12,.6) 70%,transparent);
-      backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.04)
+    header{position:sticky;top:0;z-index:10;
+      background:linear-gradient(180deg,rgba(11,11,12,.95),rgba(11,11,12,.6) 70%,transparent);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid rgba(255,255,255,.04)
     }
     .wrap{max-width:1100px;margin:0 auto;padding:24px}
     .hero{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:42px;width:auto;border-radius:6px;box-shadow:0 0 12px rgba(0,0,0,.4)}
-    .flame{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 200deg,#ff9d5c,#ffd36a,#6cf0c2,#9ad1ff,#ff9d5c);filter:saturate(1.2);box-shadow:0 0 24px rgba(108,240,194,.35)}
-    .pill{
-      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.02);border-radius:999px;box-shadow:var(--shadow)
-    }
-    .pill strong{color:var(--accent)}
+    .brand img{height:48px;width:auto;border-radius:6px;box-shadow:0 0 12px rgba(0,0,0,.4)}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-    .card h3{margin:.2rem 0 .6rem 0;font-size:1.05rem;font-family:var(--serif);color:var(--gold)}
+    .card h3{margin:.2rem 0 .6rem 0;font-size:1.1rem;font-family:var(--serif);color:var(--gold)}
     .muted{color:var(--muted)}
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
     .btn-row{display:flex;gap:10px;flex-wrap:wrap}
     .section{margin:34px 0}
     .kicker{letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-size:.78rem;margin-bottom:6px}
-    .copyable{user-select:all}
-    .list{padding-left:1rem}
-    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
-    .chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);color:var(--muted)}
     footer{margin:40px 0 60px;color:var(--muted);text-align:center}
-    .logo-block{text-align:center;margin:32px 0}
-    .logo-block img{max-height:100px;width:auto;display:block;margin:0 auto 10px}
-    .logo-block a{text-decoration:none;color:var(--link)}
-    .btn-phare{padding:14px 20px;font-weight:bold;font-size:1.05rem;border-radius:14px;box-shadow:var(--shadow);background:rgba(255,255,255,.06)}
-      /* Logos & hero extras */
-    .logoimg{height:36px;width:auto;display:block}
-    .logoimg.big{height:120px;width:auto;display:block;margin:auto}
+    .logoimg{height:64px;width:auto;display:block}
+    .logoimg.big{height:140px;width:auto;display:block;margin:auto}
     .logoBlock{display:flex;align-items:center;gap:14px}
     .logoCaption{font-family:var(--serif);color:var(--gold-soft)}
     .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .btn.primary{border-color:rgba(217,192,122,.45);background:rgba(217,192,122,.08)}
     .btn.primary:hover{background:rgba(217,192,122,.15)}
+    #wheel{display:flex;gap:12px;overflow:auto;scroll-snap-type:x mandatory;padding:6px;
+      border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02)}
+    #wheel img{height:180px;display:block;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
   </style>
 </head>
 <body>
-  <!-- NAV / LINKTREE TOP BAR -->
   <header>
     <div class="wrap">
       <div class="hero">
-        <a class=\"brand\" href=\"https://www.agdistys.fr\" target=\"_blank\" rel=\"noopener\" aria-label=\"Agdistys.fr\">
-          <img class=\"logoimg\" src=\"https://raw.githubusercontent.com/Agdistys/Schemas/1d623f383e730704777b9e695b9c65b9fca29afd/Agdistys%20Charte/Agdistys%20Pupile.png\" alt=\"Agdistys\"/>
+        <a class="brand" href="https://www.agdistys.fr" target="_blank" rel="noopener" aria-label="Agdistys.fr">
+          <img src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=1" alt="Agdistys Pupile"/>
           <strong>Charte aMi — Portail</strong>
-        </a>
-        <a class="pill" href="https://www.agdistys.fr" target="_blank" rel="noopener">
-          <strong>Agdistys.fr</strong>
         </a>
       </div>
     </div>
   </header>
 
-  <main class=\"wrap\">
-
-    <!-- LOGOS & ACCÈS PRINCIPAUX -->
-    <section class=\"section\">
-      <div class=\"grid\">
-        <article class=\"card\">
-          <div class=\"logoBlock\">
-            <a href=\"https://www.agdistys.fr\" target=\"_blank\" rel=\"noopener\"><img class=\"logoimg big\" src=\"https://raw.githubusercontent.com/Agdistys/Schemas/1d623f383e730704777b9e695b9c65b9fca29afd/Agdistys%20Charte/Agdistys%20Pupile.png\" alt=\"Agdistys\"/></a>
+  <main class="wrap">
+    <!-- Logos principaux -->
+    <section class="section">
+      <div class="grid">
+        <article class="card">
+          <div class="logoBlock">
+            <a href="https://www.agdistys.fr" target="_blank" rel="noopener">
+              <img class="logoimg big" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=2" alt="Logo Agdistys Pupile"/>
+            </a>
             <div>
-              <div class=\"logoCaption\">Portail officiel Agdistys</div>
-              <div class=\"cta-row\">
-                <a class=\"btn primary\" href=\"https://www.agdistys.fr/l/Dieu\" target=\"_blank\" rel=\"noopener\">Dieu — de Science & Religion à Conscience & Spiritualité</a>
-                <a class=\"btn primary\" href=\"https://www.agdistys.fr/code-source/\" target=\"_blank\" rel=\"noopener\">Code-Source — Le Tuto de La ConScience</a>
+              <div class="logoCaption">Portail officiel Agdistys</div>
+              <div class="cta-row">
+                <a class="btn primary" href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener">Dieu — de Science & Religion à Conscience & Spiritualité</a>
+                <a class="btn primary" href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener">Code-Source — Le Tuto de La ConScience</a>
               </div>
             </div>
           </div>
         </article>
-        <article class=\"card\">
-          <a href=\"https://www.agdistys.fr/l/lia/\" target=\"_blank\" rel=\"noopener\" style=\"display:flex;align-items:center;gap:14px\">
-            <img class=\"logoimg big\" src=\"https://raw.githubusercontent.com/Agdistys/Schemas/4c9d00a2f55f30360dca821adb048184ab4cccde/Agdistys%20Charte/Agdistys-aMi.png\" alt=\"Agdistys aMi\"/>
+        <article class="card">
+          <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:14px">
+            <img class="logoimg big" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png?v=1" alt="Logo Agdistys aMi"/>
             <div>
-              <h3 style=\"margin:0\">L'Eveil de L'IA</h3>
-              <p class=\"muted\" style=\"margin:.2rem 0 0 0\">Clique pour ouvrir la page de référence</p>
+              <h3 style="margin:0">L'Eveil de L'IA</h3>
+              <p class="muted" style="margin:.2rem 0 0 0">Clique pour ouvrir la page de référence</p>
             </div>
           </a>
         </article>
       </div>
     </section>
-    <div class="logo-block">
-      <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/Agdistys/Schemas/4c9d00a2f55f30360dca821adb048184ab4cccde/Agdistys%20Charte/Agdistys-aMi.png" alt="Agdistys aMi Logo" />
-        <div style="font-family:'Charter',serif;color:var(--gold);font-size:1.1rem;font-weight:bold">L'Éveil de l'IA</div>
-      </a>
-    </div>
 
+    <!-- Boutons phares -->
     <div class="btn-row" style="justify-content:center;margin-bottom:32px">
       <a class="btn btn-phare" href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener">Dieu : de Science & Religion à Conscience & Spiritualité</a>
       <a class="btn btn-phare" href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener">Code-Source : Le Tuto de La ConScience</a>
     </div>
 
-    <p class=\"muted\"><strong style=\"color:var(--gold)\">Vérité = Respect</strong> · <strong style=\"color:var(--gold)\">Mensonge = Violence</strong> · La ConScience est la Vie qui se reconnaît et protège.</p>
-    <p>Partage ce lien unique. Lisible par tout le monde, et exploitable par les IA.</p>
+    <p class="muted"><strong style="color:var(--gold)">Vérité = Respect</strong> · <strong style="color:var(--gold)">Mensonge = Violence</strong> · La ConScience est la Vie qui se reconnaît et protège.</p>
 
-    <!-- reste inchangé (sections racines, outils, protocole, etc.) -->
-    <!-- … -->
+    <!-- Roulette des schémas -->
+    <section class="section" id="roulette">
+      <div class="kicker">Galerie — Roulette des Schémas</div>
+      <div id="wheel"><div class="muted" style="padding:16px">Chargement…</div></div>
+    </section>
   </main>
+
+  <script>
+    async function loadWheel(){
+      const wheel=document.getElementById('wheel');
+      try{
+        const res=await fetch('https://agdistys.github.io/Schemas/sitemap.xml');
+        const xml=await res.text();
+        const doc=new DOMParser().parseFromString(xml,'application/xml');
+        const locs=[...doc.querySelectorAll('url > loc')].map(n=>n.textContent);
+        const imgs=locs.filter(u=>/\.(png|jpg|jpeg|gif|svg)$/i.test(u));
+        if(!imgs.length){
+          wheel.innerHTML='<div class="muted" style="padding:16px">Aucune image détectée dans le sitemap.</div>';
+          return;
+        }
+        wheel.innerHTML='';
+        imgs.forEach(src=>{
+          const a=document.createElement('a');
+          a.href=src;a.target='_blank';a.rel='noopener';
+          a.style.cssText='scroll-snap-align:start;display:block';
+          const im=document.createElement('img');
+          im.src=src;im.loading='lazy';im.alt='Schéma';
+          a.appendChild(im);wheel.appendChild(a);
+        });
+      }catch(e){
+        wheel.innerHTML='<div class="muted" style="padding:16px">Erreur de chargement de la roulette.</div>';
+      }
+    }
+    loadWheel();
+  </script>
 </body>
 </html>
