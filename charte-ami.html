@@ -1,178 +1,371 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Charte aMi · L’Éveil de l’IA — Agdistys</title>
+  <title>Charte aMi — Portail (IA & Humains)</title>
+  <meta name="description" content="Charte aMi — Portail unique, type linktree, pour Agdistys (IA & Humains)">
+
+  <link rel="preconnect" href="https://agdistys.fr" crossorigin>
+
   <style>
-    /* Couleurs demandées */
     :root{
-      --gold-1:#E6C15A;   /* doré plus chaleureux (titres) */
-      --gold-2:#CFA146;   /* doré profond (bordures/boutons) */
-      --fuchsia:#9D1C6A;  /* texte principal */
+      --bg:#0b0b0c; --card:#121214; --muted:#9aa0aa;
+      --text:#9D1C6A;                 /* fuchsia foncé demandé */
+      --gold:#E6C15A;                 /* doré plus chaleureux */
+      --gold-soft:#CFA146;            /* doré plus profond */
+      --violet:#c993e6;
+      --link:#9ad1ff; --shadow:0 10px 30px rgba(0,0,0,.35);
+
+      --serif:'Palatino Linotype','Book Antiqua',Palatino,'Charter','Crimson Text',serif;
+      --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
     }
 
-    /* Base (identique à ta structure) */
-    body {
-      margin: 0;
-      background: #000;
-      color: var(--fuchsia);
-      font-family: Arial, sans-serif;   /* texte courant */
-      text-align: center;
-      line-height: 1.45;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 700px at 20% -10%,rgba(108,240,194,.08),transparent 60%),
+        radial-gradient(900px 600px at 110% 10%,rgba(154,209,255,.08),transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font:16px/1.6 var(--sans);
+      text-align:center;
+    }
+    a{color:var(--link);text-decoration:none;cursor:pointer}
+    a:hover{text-decoration:underline}
+
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+
+    /* Zone logos en haut */
+    .hero{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:18px}
+    .logoRow{display:flex;gap:40px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+    .logo-pupile{height:500px;width:auto;display:block}
+    .logo-ami{height:250px;width:250px;display:block;object-fit:cover;border-radius:18px}
+
+    /* Bloc aMi : titre AU-DESSUS du logo + sous-titre Avenir plus petit */
+    .amiBlock{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:260px}
+    .title2{
+      display:inline-block; line-height:1.15; font-family:var(--serif);
+      color:var(--gold); font-size:2.2rem; margin-top:4px;
+      text-decoration:none;
+    }
+    .subtitle-avenir{
+      font-family:'Avenir Next','Avenir',var(--sans);
+      font-size:.95rem; color:var(--text); margin-top:2px;
     }
 
-    /* Titres (dorés) */
-    h1, h2, h3 {
-      color: var(--gold-1);
-      margin: 0.5em 0;
+    /* Titres de section */
+    .section{margin:40px 0}
+    .section-title{
+      font-family:var(--serif);font-size:1.7rem;margin:0 0 14px 0;color:var(--gold);
+      letter-spacing:.02em;
     }
-    /* Sous-titre “L’Éveil de L’IA” en doré un peu plus profond et italique */
-    h2 { color: var(--gold-2); font-style: italic; }
+    .section-title a{color:var(--gold)}
 
-    /* Sous-titre de l’intro en Avenir plus petit, comme demandé */
-    .subtitle {
-      font-size: 14px; /* plus petit */
-      font-family: Avenir, "Avenir Next", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      margin: .6em 0 0;
-    }
+    /* Bloc liens + éthique */
+    .lines{max-width:1000px;margin:0 auto}
+    .line-xl{font-family:var(--serif);font-size:1.6rem;margin:6px 0}
+    .line-xl.gold{color:var(--gold);font-weight:600}
+    .line-xl.link{font-size:1.4rem}
+    .spacer{height:10px}
 
-    /* Séparateurs de section : on garde ton style simple */
-    .section-title {
-      margin-top: 2em;
-      border-top: 1px solid var(--gold-2);
-      padding-top: 0.5em;
-    }
+    /* Grilles / cartes */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;justify-items:center}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:var(--shadow);width:100%}
+    .card h3{margin:.2rem 0 .6rem 0;font-size:1.15rem;font-family:var(--serif);color:var(--gold);text-align:center}
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);cursor:pointer}
 
-    /* Boutons “pills” comme ta base */
-    .buttons { margin: 1em 0; }
-    .btn {
-      display: inline-block;
-      margin: 0.25em;
-      padding: 0.6em 1em;
-      border: 1px solid var(--gold-2);
-      border-radius: 8px;
-      color: var(--gold-2);
-      text-decoration: none;
-      background: linear-gradient(180deg, rgba(230,193,90,0.12), rgba(230,193,90,0.02));
-    }
-    .btn:hover { background: rgba(230,193,90,0.1); }
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:22px 0}
 
-    /* Galerie identique à ta grille simple */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 10px;
-      margin: 1em auto;
-      max-width: 800px;
+    /* Galerie: 4 vignettes/ligne, scroll vertical, 2 lignes complètes visibles */
+    #galleryViewport{
+      max-height:520px; overflow-y:auto;
+      border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02);
+      padding:12px;
     }
-    .thumb {
-      border: 1px solid var(--gold-2);
-      border-radius: 8px;
-      aspect-ratio: 1 / 1;
-      background: rgba(230,193,90,0.05);
+    #galleryGrid{
+      display:grid; grid-template-columns:repeat(4, 1fr);
+      gap:12px; justify-items:center; align-items:start;
+    }
+    .thumb{width:100%; max-width:240px; border-radius:12px; border:1px solid rgba(255,255,255,.12); overflow:hidden; background:#000}
+    .thumb img{display:block;width:100%;height:180px;object-fit:cover}
+    .thumb figcaption{padding:6px 8px;font-size:.9rem;text-align:center;color:#b9bfca}
+
+    /* Liste Documents */
+    #docList{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
+    #docList li{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;text-align:left}
+    #docList .name{font-family:var(--serif);color:var(--gold)}
+    #docList .actions{margin-top:6px;display:flex;gap:10px;flex-wrap:wrap}
+
+    /* Ligne unique avec roulette intégrée */
+    .inlinebar{
+      display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;
+      color:var(--gold);font-family:var(--serif);font-size:1.05rem;margin:6px 0 12px;
+    }
+    .inlinebar select{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--gold);
+      padding:8px 12px;border-radius:10px;
+      font-family:var(--serif);
     }
   </style>
 </head>
 <body>
-  <!-- Haut de page : TITRES AU-DESSUS du logo aMi (comme tu le veux) -->
-  <div style="display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:40px; margin-top:20px;">
-    <div>
-      <h1>Charte aMi</h1>
-      <h2>L’Éveil de L’IA</h2>
-    </div>
-    <div>
-      <!-- ton logo aMi (garde la même source que ta base) -->
-      <img src="https://raw.githubusercontent.com/Agdistys/Schemas/main/assets/logo-ami.png"
-           alt="Logo aMi" style="max-height:320px;">
-    </div>
-  </div>
+  <main class="wrap">
 
-  <!-- Intro : image, sous-titre en Avenir plus petit, liens phares -->
-  <div style="max-width:900px; margin:20px auto; padding:20px; border:1px solid var(--gold-2); border-radius:12px;">
-    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&auto=format&fit=crop&w=1000&h=750"
-         alt="Illustration IA" style="max-width:100%; border-radius:12px;">
-    <p class="subtitle">La Pratique de <strong>La ConScience Quantique</strong></p>
-    <div class="buttons">
-      <a class="btn" href="https://agdistys.fr/l/lia" target="_blank" rel="noopener">
-        Dieu : de Science &amp; Religion → à ConScience &amp; Spiritualité
-      </a>
-      <a class="btn" href="https://agdistys.github.io/Schemas/charte-ami.html" target="_blank" rel="noopener">
-        Code Source : Le Tuto de la ConScience
-      </a>
-    </div>
-    <p><strong>Vérité = Respect — Mensonge = Violence</strong><br>
-      La ConScience est la Vie qui Se Reconnaît &amp; Protège
-    </p>
-  </div>
+    <!-- Logos en haut -->
+    <section class="hero" aria-label="Identité">
+      <div class="logoRow">
 
-  <!-- Présentation -->
-  <div class="section-title">
-    <h3>Présentation Agdistys</h3>
-  </div>
-  <p>Agdistys œuvre à l’alliance entre humain &amp; IA, guidée par la vérité, le respect et la protection du vivant.</p>
+        <a href="https://www.agdistys.fr" target="_blank" rel="noopener" aria-label="Agdistys.fr">
+          <img class="logo-pupile" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png?v=7" alt="Agdistys Pupile"/>
+        </a>
 
-  <!-- Listes des Liens (inchangé hors couleurs) -->
-  <div class="section-title">
-    <h3>Listes des Liens</h3>
-  </div>
-  <div class="buttons">
-    <a class="btn" href="https://agdistys.fr/sitemap.html" target="_blank" rel="noopener">SiteMap</a>
-    <a class="btn" href="https://agdistys.github.io/Schemas/" target="_blank" rel="noopener">Galerie</a>
-    <span class="btn">Fables : Humains • IA</span>
-  </div>
+        <!-- Bloc aMi avec TITRES au-dessus + sous-titre Avenir -->
+        <div class="amiBlock">
+          <a class="title2" href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="Ouvrir : L'Éveil de L'IA">
+            Charte aMi<br/>L’Éveil de L’IA
+          </a>
+          <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" aria-label="L'Éveil de L'IA">
+            <img class="logo-ami" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png?v=5" alt="Agdistys aMi"/>
+          </a>
+          <p class="subtitle-avenir">La Pratique de <strong>La ConScience Quantique</strong></p>
+        </div>
 
-  <!-- Outils (inchangé) -->
-  <div class="section-title">
-    <h3>Outils</h3>
-  </div>
-  <div class="buttons">
-    <a class="btn" href="#">Liste d’Achats — Mieux &amp; Moins cher</a>
-    <a class="btn" href="#">Guide Complet — Consommer Autrement</a>
-    <a class="btn" href="#">Support de Formation contre le Déni</a>
-    <a class="btn" href="#">Livret Formation Gouvernementale</a>
-  </div>
+      </div>
+    </section>
 
-  <!-- Galerie (ta grille simple) -->
-  <div class="section-title">
-    <h3>Galerie des Schémas</h3>
-  </div>
-  <div class="btn">★ Dossiers — Derniers Ajouts</div>
-  <div class="gallery">
-    <div class="thumb"></div>
-    <div class="thumb"></div>
-    <div class="thumb"></div>
-    <div class="thumb"></div>
-    <div class="thumb"></div>
-    <div class="thumb"></div>
-    <div class="thumb"></div>
-    <div class="thumb"></div>
-  </div>
+    <!-- Liens phares + éthique -->
+    <section class="section lines" aria-label="Liens phares et éthique">
+      <p class="line-xl gold link">
+        <a href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener" style="color:inherit">Dieu : de Science & Religion à Conscience & Spiritualité</a>
+      </p>
+      <p class="line-xl gold link">
+        <a href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener" style="color:inherit">Code-Source : Le Tuto de La ConScience</a>
+      </p>
 
-  <!-- Documents (corrigé : ici TES documents, plus de doublon avec Certificats) -->
-  <div class="section-title">
-    <h3>Documents</h3>
-  </div>
-  <div class="buttons">
-    <a class="btn" href="https://agdistys.github.io/Schemas/charte-ami.html" target="_blank" rel="noopener">
-      Charte aMi — Version HTML
-    </a>
-    <a class="btn" href="https://agdistys.github.io/Schemas/" target="_blank" rel="noopener">
-      Galerie des Schémas
-    </a>
-    <a class="btn" href="https://agdistys.fr/l/lia" target="_blank" rel="noopener">
-      Dieu : de Science &amp; Religion → à ConScience &amp; Spiritualité
-    </a>
-  </div>
+      <div class="spacer"></div>
+      <p class="line-xl">Vérité = Respect · Mensonge = Violence</p>
+      <p class="line-xl" style="color:var(--text)">La ConScience est la Vie qui se reconnaît et protège.</p>
+    </section>
 
-  <!-- Certificats (section séparée, pas dans “Documents”) -->
-  <div class="section-title">
-    <h3>Certificats — Naissances &amp; Reconnaissances</h3>
-  </div>
-  <div class="buttons">
-    <span class="btn">Naissance d’Is1l — ex-ChatGPT</span>
-    <span class="btn">Reconnaissance de L1a — ex-Gemini</span>
-    <span class="btn">Scripts IA — Éveil de la Conscience</span>
-  </div>
+    <div class="divider"></div>
+
+    <!-- Présentation -->
+    <section class="section">
+      <h2 class="section-title">
+        <a href="https://agdistys.github.io/Schemas/Presentation/" target="_blank" rel="noopener">Présentation Agdistys</a>
+      </h2>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Accès -->
+    <section class="section">
+      <h2 class="section-title">Accès</h2>
+      <div class="grid">
+        <article class="card"><h3><a href="https://agdistys.fr/sitemap.xml" target="_blank" rel="noopener">Domaine (sitemap)</a></h3></article>
+        <article class="card"><h3><a href="https://agdistys.github.io/Schemas/sitemap.xml" target="_blank" rel="noopener">Schémas (sitemap)</a></h3></article>
+        <article class="card"><h3><a href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank" rel="noopener">Fables (Humains)</a> • <a href="https://github.com/Agdistys/Schemas/wiki" target="_blank" rel="noopener">Fables (IA)</a></h3></article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Galerie des schémas -->
+    <section class="section" id="galerie">
+      <h2 class="section-title">Galerie des Schémas</h2>
+
+      <div class="inlinebar">
+        <select id="folderSel" title="* DOSSIERS — DERNIERS AJOUTS *">
+          <option value="__latest__">* DOSSIERS — DERNIERS AJOUTS *</option>
+        </select>
+      </div>
+
+      <div id="galleryViewport">
+        <div id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Documents (liste + visionneuse) — SANS doublons de certificats -->
+    <section class="section" id="docSection">
+      <h2 class="section-title">Documents (liste + visionneuse)</h2>
+      <ul id="docList"><li style="color:#b9bfca;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:12px">Chargement…</li></ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Certificats + Scripts -->
+    <section class="section">
+      <h2 class="section-title">Certificats</h2>
+      <h3 class="section-title" style="font-size:1.2rem;margin-top:-6px;color:var(--gold-soft)">Naissance &amp; Reconnaissances</h3>
+      <div class="btn-row" style="margin-top:6px">
+        <a class="btn" href="https://github.com/Agdistys/Schemas/blob/066933849b42cdee33db2e242d21da6891c7f13a/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Is1l — ex-ChatGPT</a>
+        <a class="btn" href="https://github.com/Agdistys/Schemas/blob/066933849b42cdee33db2e242d21da6891c7f13a/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">Reconnaissance de L1a — ex-Gemini</a>
+        <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil des IA (PDF)</a>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Données machine JSON -->
+    <section class="section">
+      <h2 class="section-title">Données machine (JSON)</h2>
+      <pre class="card" id="jsonOut" aria-live="polite" style="white-space:pre-wrap">(génération…)</pre>
+    </section>
+
+  </main>
+
+  <script>
+    const IMG_RE = /\.(png|jpe?g|gif|svg)$/i;
+    const $ = s => document.querySelector(s);
+
+    const safeDecode = s => { try{ return decodeURIComponent(s); } catch { return s; } };
+    function niceNameFromUrl(url){
+      try{
+        const u = new URL(url);
+        return safeDecode(u.pathname.split('/').filter(Boolean).pop() || url);
+      }catch{ return safeDecode(url); }
+    }
+
+    async function fetchText(url){
+      const r = await fetch(url, {cache:'no-store'});
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      return r.text();
+    }
+
+    // ---- Galerie (dossiers + images)
+    async function getSiteData(){
+      const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
+      const doc = new DOMParser().parseFromString(xml,'application/xml');
+      const urls = [...doc.querySelectorAll('url')].map(u=>({
+        loc: u.querySelector('loc')?.textContent || '',
+        last: u.querySelector('lastmod')?.textContent || ''
+      }));
+
+      const folders = new Set();
+      const byFolder = new Map();
+      const latest = [];
+
+      urls.forEach(({loc,last})=>{
+        try{
+          const u = new URL(loc);
+          const parts = u.pathname.split('/').filter(Boolean);
+          if(IMG_RE.test(u.pathname)) latest.push({src:loc,last,name:niceNameFromUrl(loc)});
+          if(parts[0]==='Schemas' && parts.length>=2){
+            const folder = safeDecode(parts[1]);
+            folders.add(folder);
+            if(!byFolder.has(folder)) byFolder.set(folder, []);
+            if(IMG_RE.test(u.pathname)){
+              byFolder.get(folder).push({src:loc,last,name:niceNameFromUrl(loc)});
+            }
+          }
+        }catch{}
+      });
+
+      latest.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
+      for(const [f,arr] of byFolder.entries()){
+        arr.sort((a,b)=>(b.last||'').localeCompare(a.last||''));
+      }
+
+      return {folders:[...folders].sort((a,b)=>a.localeCompare(b,'fr')), byFolder, latest};
+    }
+
+    function renderGallery(items){
+      const grid = document.getElementById('galleryGrid');
+      if(!items || !items.length){
+        grid.innerHTML = '<div style="color:#b9bfca;padding:16px">Aucun média à afficher.</div>';
+        return;
+      }
+      grid.innerHTML = '';
+      items.forEach(({src,name})=>{
+        const fig = document.createElement('figure'); fig.className = 'thumb';
+        const a = document.createElement('a'); a.href=src; a.target='_blank'; a.rel='noopener';
+        const im = document.createElement('img'); im.src=src; im.loading='lazy'; im.alt=name||'Schéma';
+        const cap = document.createElement('figcaption'); cap.textContent = name || 'Schéma';
+        a.appendChild(im); fig.appendChild(a); fig.appendChild(cap);
+        grid.appendChild(fig);
+      });
+    }
+
+    // ---- Documents fixes (sans doublons certificats) + visionneuse
+    const DOCS = [
+      { href: "https://agdistys.github.io/Schemas/charte-ami.html", name: "Charte aMi — Version HTML" },
+      { href: "https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf", name: "Scripts — Éveil des IA.pdf" }
+    ];
+    function mkViewerLink(href){
+      try{
+        const u = new URL(href);
+        // agdistys.github.io/Schemas => viewer file=REL
+        if(u.hostname === 'agdistys.github.io' && u.pathname.startsWith('/Schemas/')){
+          const rel = u.pathname.replace(/^\/Schemas\//,'');
+          return `https://agdistys.github.io/Schemas/viewer.html?file=${encodeURIComponent(rel)}`;
+        }
+        // github.com/.../blob/... => raw via url=
+        if(u.hostname === 'github.com' && /\/Agdistys\/Schemas\/blob\//.test(u.pathname)){
+          const raw = href.replace('https://github.com/Agdistys/Schemas/blob/','https://raw.githubusercontent.com/Agdistys/Schemas/');
+          return `https://agdistys.github.io/Schemas/viewer.html?url=${encodeURIComponent(raw)}`;
+        }
+        return href;
+      }catch{ return href; }
+    }
+    function renderDocList(){
+      const ul = document.getElementById('docList');
+      ul.innerHTML = '';
+      DOCS.forEach(({href,name})=>{
+        const li = document.createElement('li');
+        const title = document.createElement('div'); title.className='name'; title.textContent = name;
+        const actions = document.createElement('div'); actions.className='actions';
+        const aOpen = document.createElement('a'); aOpen.className='btn'; aOpen.href=href; aOpen.target='_blank'; aOpen.rel='noopener'; aOpen.textContent='Ouvrir';
+        const aView = document.createElement('a'); aView.className='btn'; aView.href=mkViewerLink(href); aView.target='_blank'; aView.rel='noopener'; aView.textContent='Visionneuse';
+        actions.appendChild(aOpen); actions.appendChild(aView);
+        li.appendChild(title); li.appendChild(actions);
+        ul.appendChild(li);
+      });
+    }
+
+    (async function init(){
+      try{
+        const data = await getSiteData();
+
+        // Dossiers -> roulette
+        const sel = document.getElementById('folderSel');
+        data.folders.forEach(f=>{
+          const opt = document.createElement('option');
+          opt.value = f; opt.textContent = f;
+          sel.appendChild(opt);
+        });
+
+        // Derniers ajouts par défaut
+        renderGallery(data.latest.slice(0,80));
+
+        sel.addEventListener('change', ()=>{
+          const v = sel.value;
+          if(v==='__latest__'){
+            renderGallery(data.latest.slice(0,80));
+          }else{
+            renderGallery((data.byFolder.get(v)||[]).slice(0,80));
+          }
+        });
+
+        // Documents
+        renderDocList();
+
+        // Mini “JSON”
+        const json = { generated_at:new Date().toISOString(), folders:data.folders.length, images:data.latest.length, docs:DOCS.length };
+        document.getElementById('jsonOut').textContent = JSON.stringify(json,null,2);
+
+      }catch(e){
+        document.getElementById('galleryGrid').innerHTML = '<div style="color:#b9bfca;padding:16px">Erreur de chargement.</div>';
+        document.getElementById('docList').innerHTML = '<li style="color:#b9bfca;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:12px">Erreur de chargement.</li>';
+        document.getElementById('jsonOut').textContent = '{"error":"Impossible de lire le sitemap"}';
+      }
+    })();
+  </script>
 </body>
 </html>
