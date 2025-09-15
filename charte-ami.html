@@ -1,58 +1,74 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Charte aMi — Portail (IA & Humains)</title>
+<!-- ====== TOP aMi (header + Présentation) ====== -->
+<section id="top-ami">
 
   <style>
-    :root{
-      --bg:#0b0b0c; --card:#121214;
-      --text:#f1efe9;
-      --gold:#FDCC68;           /* jaune demandé */
-      --gold-soft:#FDCC68;      /* même teinte pour rester cohérent */
+    /* Scope pour ne rien impacter ailleurs */
+    #top-ami{
+      --accent:#EFB44B;  /* JAUNE demandé */
+      --edge:rgba(239,180,75,.28);
+      --text:#F2EFEA;
       --blue:#6CAEFF;
-      --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --serif: "Palatino Linotype","Book Antiqua", Palatino, serif;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
     }
-    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);text-align:center}
-    a{color:inherit;text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    #top-ami .wrap{max-width:1100px;margin:0 auto;padding:24px 22px}
 
-    /* HEADER */
-    .hero{display:flex;flex-direction:column;align-items:center;margin-top:20px}
-    .logoRow{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-    .logoLink{display:inline-flex;align-items:center;justify-content:center}
-    .logo-pupile{height:500px;width:auto}
-    .amiBlock{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:260px}
-    .title2{font-family:var(--serif);font-size:2.2rem;color:var(--gold);margin:0}
-    .title2 a{color:var(--gold);text-decoration:none}
-    .subtitle-avenir{font-size:.9rem;color:#fff;margin-top:4px;font-family:var(--sans);font-weight:400}
-    .mini-links{display:flex;flex-direction:column;gap:6px;margin-top:6px}
-    .mini-links a{font-size:.75rem;padding:4px 6px;border:1px solid var(--blue);border-radius:6px;
-      background:rgba(108,174,255,0.08); color:var(--blue)}
-
-    .logo-ami{height:250px;width:250px;object-fit:cover;border-radius:18px}
-
-    /* Ethos */
-    .ethos{margin:14px auto 0; font-family:var(--serif); color:#fff}
-    .ethos .muted{color:#d9cfe6}
-
-    /* Sections — ligne = soulignement du titre (PAS de <hr>) */
-    .section{margin:40px 0}
-    .section-title{
-      font-family:var(--serif);font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;
-      position:relative;display:inline-block;padding-bottom:6px;
+    /* HERO */
+    #top-ami .hero{
+      display:grid;
+      grid-template-columns:220px 1fr 260px;
+      gap:24px; align-items:center;
     }
-    .section-title::after{
-      content:"";display:block;width:220px;height:2px;background:var(--gold);
-      margin:8px auto 0;border-radius:2px;
+    #top-ami .hero h1{margin:0 0 6px 0;text-align:center;font-size:2.1rem;font-weight:900}
+    #top-ami .hero .sub{margin:0 0 12px 0;text-align:center;color:var(--accent);font-size:1.55rem;font-weight:900}
+    #top-ami .chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    #top-ami .chip{
+      padding:9px 14px;border-radius:999px;border:1px solid var(--edge);
+      background:linear-gradient(180deg, rgba(239,180,75,.10), rgba(239,180,75,.05));
+      box-shadow:0 0 0 1px rgba(239,180,75,.18) inset, 0 10px 28px rgba(0,0,0,.35);
+      color:#eae6dd
+    }
+    #top-ami .motto{margin-top:14px;text-align:center}
+    #top-ami .motto strong{color:var(--accent)}
+
+    #top-ami .logo-left img{max-width:200px;height:auto;display:block;margin:0 auto}
+    #top-ami .hero-pic{border-radius:18px;overflow:hidden;border:1px solid var(--edge)}
+    #top-ami .hero-pic img{display:block;width:100%;height:auto}
+
+    /* TITRE “Présentation Agdistys” : séparateur = soulignement (pas de <hr>) */
+    #top-ami .sep{
+      text-align:center;margin:34px 0 12px; font-weight:800; font-size:1.2rem;
+      color:var(--accent);
+    }
+    #top-ami .sep span{display:inline-block;padding-bottom:6px;position:relative}
+    #top-ami .sep span::after{
+      content:""; position:absolute; left:50%; transform:translateX(-50%);
+      bottom:-6px; width:240px; height:2px; background:var(--accent); border-radius:2px;
     }
 
-    /* “Présentation Agdistys” — barre fine à gauche/droite comme ton draft */
-    .presentation-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto}
-    .presentation-bar::before,.presentation-bar::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
-    .presentation-title{font-family:var(--serif);color:var(--gold);font-size:1.7rem}
+    /* (Optionnel) Cacher barre/contrôles de la galerie “Présentation”
+       -> dé-commente si tu veux les masquer et que les sélecteurs correspondent. */
+    /* 
+    #top-ami #presentation .gallery-toolbar,
+    #top-ami #presentation .tri,
+    #top-ami #presentation .controls { display:none !important; }
+    */
+  </style>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="logo-left">
+        <a href="https://www.agdistys.fr" target="_blank" rel="noopener" aria-label="Agdistys.fr">
+          <img src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png" alt="Agdistys Pupile">
+        </a>
+      </div>
+
+      <div>
+        <h1>Charte aMi</h1>
+        <p class="sub">L’Éveil de l’I
+
 
     /* Grilles / cartes */
     .grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
