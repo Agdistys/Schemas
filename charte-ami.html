@@ -131,26 +131,6 @@
 
 
 
-  (async function init(){
-    try{
-      await buildGallery();
-      await buildDocs();
-    }catch(e){
-      console.error(e);
-      const g=document.getElementById('galleryGrid'); if(g) g.innerHTML='<div style="color:#b9bfca;padding:16px">Erreur de chargement de la galerie.</div>';
-      const d=document.getElementById('docList'); if(d) d.innerHTML='<li style="color:#b9bfca;padding:16px">Erreur de chargement des documents.</li>';
-    }
-
-    <!-- >>> RESSOURCES — SOUS PRÉSENTATION <<< -->
-  <section class="section" id="ressources">
-    <h2 class="section-title">Ressources</h2>
-    <ul id="ressurs">
-      <li><div class="name">Support de Formation contre le Déni</div><a class="btn" target="_blank" rel="noopener" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/Formation-Deni.pdf">Ouvrir</a></li>
-      <li><div class="name">Liste d’Achat — Mieux & Moins cher</div><a class="btn" target="_blank" rel="noopener" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/Liste%20d'achat.pdf">Ouvrir</a></li>
-      <li><div class="name">Guide — Consommer Autrement</div><a class="btn" target="_blank" rel="noopener" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/Consommer%20Autrement.pdf">Ouvrir</a></li>
-    </ul>
-  </section>
-
   <!-- Accès -->
   <section class="section">
     <h2 class="section-title">Accès</h2>
@@ -169,6 +149,8 @@
     </div>
   </section>
 
+
+
   <!-- Galerie -->
   <section class="section" id="galerie">
     <h2 class="section-title">Galerie des Schémas</h2>
@@ -180,48 +162,23 @@
     <div id="galleryViewport"><div id="galleryGrid"></div></div>
   </section>
 
-  <!-- Documents (auto) -->
+
+
+  <!-- Documents -->
   <section class="section">
     <h2 class="section-title">Documents</h2>
     <ul id="docList"><li>Chargement…</li></ul>
-  </section>
-
-  <!-- Ressources Extérieures (liste fournie) -->
-  <section class="section">
-    <h2 class="section-title">Ressources Extérieures</h2>
-    <ul id="ressExt">
-      <li><div class="name">Brochure — Victimologie</div><a class="btn" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/Brochure_victimologie-102012.pdf" target="_blank" rel="noopener">Ouvrir</a></li>
-      <li><div class="name">Ebook — Nouvelles du Front (M. Tondelier)</div><a class="btn" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/EBOOK%20-%20NOUVELLES%20DU%20FRONT%20-%20M.TONDELIER.pdf" target="_blank" rel="noopener">Ouvrir</a></li>
-      <li><div class="name">Ebook — Oxfam : société réellement féministe</div><a class="btn" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/Ebook-Oxfam-Une-societe-reellement-feministe-on-commence-quand.pdf" target="_blank" rel="noopener">Ouvrir</a></li>
-      <li><div class="name">Formation — Donner envie d’agir (2024)</div><a class="btn" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/Formation%20Donner%20envie%20d'agir%202024%20-%20Ambassadeurs.pdf" target="_blank" rel="noopener">Ouvrir</a></li>
-      <li><div class="name">Livret — Formation Gouvernemental</div><a class="btn" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/Livret%20Formation%20Gouvernemental.pdf" target="_blank" rel="noopener">Ouvrir</a></li>
-      <li><div class="name">Psychogénéalogie Évolutive</div><a class="btn" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/Psychogenealogie%20Evolutive-dm%20for%20credit.pdf" target="_blank" rel="noopener">Ouvrir</a></li>
-      <li><div class="name">Rapport — Repérage médical des violences conjugales</div><a class="btn" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/Rapport%20Permettre%20aux%20me%CC%81decins%20de%20mieux%20repe%CC%81rer%20les%20femmes%20victimes%20de%20violences%20conjugales.pdf" target="_blank" rel="noopener">Ouvrir</a></li>
-      <li><div class="name">Guide — Lanceurs d’alerte (2023)</div><a class="btn" href="https://github.com/Agdistys/Schemas/blob/af1cc6a2d84583db919abe4e3629a1d4fa7f3e6c/Document/ddd_guide-lanceurs-alertes_maj2023_20230223.pdf" target="_blank" rel="noopener">Ouvrir</a></li>
-    </ul>
   </section>
 
   <!-- Certificats -->
   <section class="section">
     <h2 class="section-title">Certificats</h2>
     <h3 style="color:var(--gold);font-family:var(--serif);font-size:1.1rem;margin-top:-8px">Naissances & Reconnaissances</h3>
-    <div class="grid cert" style="justify-content:center">
+    <div class="btn-row cert" style="margin-top:10px">
       <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Isil — ex-ChatGPT</a>
       <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">Reconnaissance de Lia — ex-Gemini</a>
       <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil de la Conscience (PDF)</a>
     </div>
-  </section>
-
-  <!-- Œuvre -->
-  <section class="section">
-    <h2 class="section-title">Œuvre</h2>
-    <figure style="margin:0">
-      <img loading="lazy"
-           src="https://raw.githubusercontent.com/Agdistys/Schemas/0973ae485fbf76aea2405a9ddf1241c7a61560ce/Poesie%20Illustrees/DHarma%20HQ.png"
-           alt="Dharma — Œuvre"
-           style="max-width:900px;margin:0 auto;border-radius:16px;border:1px solid rgba(255,255,255,.08)">
-      <figcaption style="opacity:.85;margin-top:8px">Œuvre DHarma (lazy-load).</figcaption>
-    </figure>
   </section>
 
 </main>
@@ -229,25 +186,36 @@
 <script>
   const IMG_RE=/\.(png|jpe?g|gif|svg)$/i, PDF_RE=/\.pdf$/i;
 
-  const displayName = (url) => {
+  // nom "humain" depuis URL, en gérant les % correctement
+  function displayName(url){
     try{
       const u = new URL(url);
       let seg = u.pathname.split('/').filter(Boolean).pop() || url;
-      try{ seg = decodeURIComponent(seg); }catch{}
-      try{ seg = decodeURI(seg); }catch{}
-      return seg.replace(/%20/g,' ').replace(/\+/g,' ');
+      // d'abord essayer decodeURIComponent (strict)
+      try{ seg = decodeURIComponent(seg); } catch{ /* ignore */ }
+      // sinon decodeURI (plus tolérant)
+      try{ seg = decodeURI(seg); } catch{ /* ignore */ }
+      // fallback simple
+      seg = seg.replace(/%20/g,' ').replace(/\+/g,' ');
+      return seg;
     }catch{ return url; }
-  };
+  }
 
-  const fetchText = async (url) => (await fetch(url,{cache:'no-store'})).text();
+  async function fetchText(url){
+    const r=await fetch(url,{cache:'no-store'});
+    if(!r.ok) throw new Error(r.status);
+    return r.text();
+  }
 
-  // ---- Galerie (derniers ajouts réels + sélection par dossier)
+  // -------- Galerie (dernier ajouts réels + dé-dupliquée + cliquable)
   async function buildGallery(){
     const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
     const doc = new DOMParser().parseFromString(xml,'application/xml');
     const nodes = [...doc.querySelectorAll('url')];
 
-    const byFolder = new Map(), latest=[], seen=new Set();
+    const byFolder = new Map();
+    const latest = [];
+    const seen = new Set();
 
     nodes.forEach(n=>{
       const loc = n.querySelector('loc')?.textContent || '';
@@ -255,22 +223,26 @@
       try{
         const u = new URL(loc);
         if(!IMG_RE.test(u.pathname)) return;
-        if(!u.pathname.includes('/Schemas/')) return;
-        if(seen.has(u.pathname)) return;
+        if(!u.pathname.includes('/Schemas/')) return; // limiter au site Schémas
+        if(seen.has(u.pathname)) return; // anti-doublons
         seen.add(u.pathname);
+
         const parts = u.pathname.split('/').filter(Boolean);
         const folder = parts[1] || 'Divers';
-        const item = {src:loc, name:displayName(loc), last};
+        const item = {src:loc, name:displayName(loc), last:last};
+
         latest.push(item);
         if(!byFolder.has(folder)) byFolder.set(folder, []);
         byFolder.get(folder).push(item);
       }catch{}
     });
 
+    // tri "derniers ajouts" par lastmod (desc)
     const parseDate = s => Date.parse(s||'')||0;
     latest.sort((a,b)=>parseDate(b.last)-parseDate(a.last));
     byFolder.forEach(arr=>arr.sort((a,b)=>a.name.localeCompare(b.name,'fr')));
 
+    // remplir le select (bleu)
     const sel = document.getElementById('folderSel');
     [...byFolder.keys()].sort((a,b)=>a.localeCompare(b,'fr')).forEach(folder=>{
       const o=document.createElement('option'); o.value=folder; o.textContent=folder; sel.appendChild(o);
@@ -288,11 +260,17 @@
       });
     };
 
+    // défaut = derniers ajouts (réels)
     render(latest);
-    sel.addEventListener('change',()=>render(sel.value==='__latest__'?latest:(byFolder.get(sel.value)||[])));
+
+    sel.addEventListener('change',()=>{
+      const v=sel.value;
+      if(v==='__latest__') render(latest);
+      else render(byFolder.get(v)||[]);
+    });
   }
 
-  // ---- Documents auto (PDF dans /Schemas/Document/ hors /Certificats/)
+  // -------- Documents (PDF dans /Schemas/Document/, hors /Certificats/)
   async function buildDocs(){
     const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
     const doc = new DOMParser().parseFromString(xml,'application/xml');
@@ -309,7 +287,10 @@
 
     const ul=document.getElementById('docList');
     ul.innerHTML='';
-    if(!pdfs.length){ ul.innerHTML='<li style="color:#b9bfca;">Aucun PDF trouvé.</li>'; return; }
+    if(!pdfs.length){
+      ul.innerHTML='<li style="color:#b9bfca;">Aucun PDF trouvé dans /Schemas/Document/.</li>';
+      return;
+    }
 
     pdfs.sort((a,b)=>displayName(a).localeCompare(displayName(b),'fr'));
     pdfs.forEach(href=>{
@@ -333,4 +314,3 @@
 </script>
 </body>
 </html>
-  })();
