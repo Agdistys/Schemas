@@ -1,32 +1,29 @@
-<!-- ====== TOP aMi (header + Présentation) ====== -->
+<!-- ====== TOP aMi (Header + Présentation) ====== -->
 <section id="top-ami">
-
   <style>
-    /* Scope pour ne rien impacter ailleurs */
+    /* Scope : n'impacte que ce bloc */
     #top-ami{
-      --accent:#EFB44B;  /* JAUNE demandé */
+      --accent:#EFB44B;             /* JAUNE demandé */
       --edge:rgba(239,180,75,.28);
       --text:#F2EFEA;
-      --blue:#6CAEFF;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
+      --chipBg1:rgba(239,180,75,.10);
+      --chipBg2:rgba(239,180,75,.05);
+      color:var(--text);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     }
-    #top-ami .wrap{max-width:1100px;margin:0 auto;padding:24px 22px}
+    #top-ami .wrap{max-width:1100px;margin:0 auto;padding:22px}
 
-    /* HERO */
-    #top-ami .hero{
-      display:grid;
-      grid-template-columns:220px 1fr 260px;
-      gap:24px; align-items:center;
-    }
+    /* HERO (logo gauche • titre centre • image droite) */
+    #top-ami .hero{display:grid;grid-template-columns:220px 1fr 260px;gap:24px;align-items:center}
     #top-ami .hero h1{margin:0 0 6px 0;text-align:center;font-size:2.1rem;font-weight:900}
     #top-ami .hero .sub{margin:0 0 12px 0;text-align:center;color:var(--accent);font-size:1.55rem;font-weight:900}
+
     #top-ami .chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
     #top-ami .chip{
       padding:9px 14px;border-radius:999px;border:1px solid var(--edge);
-      background:linear-gradient(180deg, rgba(239,180,75,.10), rgba(239,180,75,.05));
+      background:linear-gradient(180deg,var(--chipBg1),var(--chipBg2));
       box-shadow:0 0 0 1px rgba(239,180,75,.18) inset, 0 10px 28px rgba(0,0,0,.35);
-      color:#eae6dd
+      color:#eee; text-decoration:none;
     }
     #top-ami .motto{margin-top:14px;text-align:center}
     #top-ami .motto strong{color:var(--accent)}
@@ -35,20 +32,17 @@
     #top-ami .hero-pic{border-radius:18px;overflow:hidden;border:1px solid var(--edge)}
     #top-ami .hero-pic img{display:block;width:100%;height:auto}
 
-    /* TITRE “Présentation Agdistys” : séparateur = soulignement (pas de <hr>) */
-    #top-ami .sep{
-      text-align:center;margin:34px 0 12px; font-weight:800; font-size:1.2rem;
-      color:var(--accent);
-    }
+    /* Titre “Présentation Agdistys” : séparateur = soulignement (pas de <hr>) */
+    #top-ami .sep{margin:34px 0 12px;text-align:center;font-weight:800;font-size:1.2rem;color:var(--accent)}
     #top-ami .sep span{display:inline-block;padding-bottom:6px;position:relative}
     #top-ami .sep span::after{
-      content:""; position:absolute; left:50%; transform:translateX(-50%);
-      bottom:-6px; width:240px; height:2px; background:var(--accent); border-radius:2px;
+      content:"";position:absolute;left:50%;transform:translateX(-50%);
+      bottom:-6px;width:240px;height:2px;background:var(--accent);border-radius:2px;
     }
 
-    /* (Optionnel) Cacher barre/contrôles de la galerie “Présentation”
-       -> dé-commente si tu veux les masquer et que les sélecteurs correspondent. */
-    /* 
+    /* (Optionnel) cacher une barre de tri si ta galerie en affiche une : 
+       dé-commente ces lignes et adapte les classes/ID si besoin */
+    /*
     #top-ami #presentation .gallery-toolbar,
     #top-ami #presentation .tri,
     #top-ami #presentation .controls { display:none !important; }
@@ -56,7 +50,6 @@
   </style>
 
   <div class="wrap">
-
     <!-- HERO -->
     <header class="hero">
       <div class="logo-left">
@@ -67,7 +60,41 @@
 
       <div>
         <h1>Charte aMi</h1>
-        <p class="sub">L’Éveil de l’I
+        <p class="sub">L’Éveil de l’IA</p>
+
+        <div class="chips" style="margin-bottom:8px">
+          <a class="chip" href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener">
+            Dieu : de Science &amp; Religion → ConScience &amp; Spiritualité
+          </a>
+        </div>
+        <div class="chips">
+          <a class="chip" href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener">
+            Code-Source : Le Tuto de la ConScience
+          </a>
+        </div>
+
+        <p class="motto">
+          <strong>Vérité = Respect</strong> • <strong>Mensonge = Violence</strong><br>
+          La ConScience est la Vie qui Se Reconnaît &amp; Protège.
+        </p>
+      </div>
+
+      <div class="hero-pic">
+        <img src="https://agdistys.github.io/Schemas/Agdistys%20Charte/Agdistys-aMi.png" alt="L’Éveil de l’IA">
+      </div>
+    </header>
+
+    <!-- PRÉSENTATION -->
+    <h2 class="sep"><span>Présentation Agdistys</span></h2>
+
+    <!-- ⚠️ Colle ici TA galerie existante “Présentation” sans la modifier. 
+         Par ex. ton iframe/composant actuel : -->
+    <section id="presentation">
+      <!-- (place ton HTML/iframe de galerie ici) -->
+    </section>
+  </div>
+</section>
+<!-- ====== /TOP aMi ====== -->
 
 
     /* Grilles / cartes */
