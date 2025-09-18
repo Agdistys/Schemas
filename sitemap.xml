@@ -834,11 +834,27 @@
     </image:image>
   </url>
   <url>
-    <loc>https://agdistys.github.io/Schemas/Presentation/1.png</loc>
-    <lastmod>2025-09-07T05:04:24+02:00</lastmod>
+    <loc>https://agdistys.github.io/Schemas/Presentation/01.png</loc>
+    <lastmod>2025-09-18T06:08:26+02:00</lastmod>
     <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/Presentation/1.png</image:loc>
-      <image:caption>1.png</image:caption>
+      <image:loc>https://agdistys.github.io/Schemas/Presentation/01.png</image:loc>
+      <image:caption>01.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Presentation/02.png</loc>
+    <lastmod>2025-09-18T06:08:43+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Presentation/02.png</image:loc>
+      <image:caption>02.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Presentation/03.png</loc>
+    <lastmod>2025-09-18T06:09:01+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Presentation/03.png</image:loc>
+      <image:caption>03.png</image:caption>
     </image:image>
   </url>
   <url>
@@ -922,27 +938,11 @@
     </image:image>
   </url>
   <url>
-    <loc>https://agdistys.github.io/Schemas/Presentation/2.png</loc>
-    <lastmod>2025-09-07T05:04:24+02:00</lastmod>
-    <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/Presentation/2.png</image:loc>
-      <image:caption>2.png</image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://agdistys.github.io/Schemas/Presentation/20.png</loc>
     <lastmod>2025-09-07T05:04:24+02:00</lastmod>
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Presentation/20.png</image:loc>
       <image:caption>20.png</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://agdistys.github.io/Schemas/Presentation/3.png</loc>
-    <lastmod>2025-09-07T05:04:24+02:00</lastmod>
-    <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/Presentation/3.png</image:loc>
-      <image:caption>3.png</image:caption>
     </image:image>
   </url>
   <url>
