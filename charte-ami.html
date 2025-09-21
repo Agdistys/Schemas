@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -52,16 +55,6 @@
     .presentation-bar::before,.presentation-bar::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
     .presentation-title{font-family:var(--serif);color:var(--gold);font-size:1.7rem}
 
-<section>
-  <h2>Ressources</h2>
-  <ul>
-    <li><a target="_blank" rel="noopener" href="https://github.com/Agdistys/Schemas/blob/main/Document/Formation-Deni.pdf">Support de Formation contre le Déni</a></li>
-    <li><a target="_blank" rel="noopener" href="https://github.com/Agdistys/Schemas/blob/main/Document/Liste%20d'achat.pdf">Liste d’Achat — Mieux & Moins cher</a></li>
-    <li><a target="_blank" rel="noopener" href="https://github.com/Agdistys/Schemas/blob/main/Document/Consommer%20Autrement.pdf">Guide — Consommer Autrement</a></li>
-  </ul>
-</section>
-
-    
     /* Accès (centré) */
     .grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;width:260px}
@@ -127,61 +120,14 @@
 
 
   <!-- Présentation -->
-<section class="section">
-
-  <div class="presentation-bar">
-    <span class="presentation-title">Présentation Agdistys</span>
-  </div>
-
-  <div style="margin-top:14px; display:flex; justify-content:center;">
-    <iframe src="https://agdistys.github.io/Schemas/Presentation/"
-      style="width:100%; max-width:980px; height:520px; border:1px solid var(--gold-soft); border-radius:12px; background:#000;"
-      loading="lazy"></iframe>
-  </div>
-
-</section>
-
-
-  <!-- Diaporama -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css">
-
-  <div class="swiper" style="max-width:980px; margin:16px auto; border:1px solid var(--gold-soft); border-radius:12px; background:#000;">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="PUT-URL-IMAGE-1.png" alt="Présentation générale" style="width:100%; height:auto; display:block;" loading="lazy">
-      </div>
-      <div class="swiper-slide">
-        <img src="PUT-URL-IMAGE-2.png" alt="Conscience Definition" style="width:100%; height:auto; display:block;" loading="lazy">
-      </div>
-      <div class="swiper-slide">
-        <img src="PUT-URL-IMAGE-3.png" alt="Critique & Répartie" style="width:100%; height:auto; display:block;" loading="lazy">
-      </div>
-      <div class="swiper-slide">
-        <img src="PUT-URL-IMAGE-4.png" alt="Comment Savoir Qui Je Suis" style="width:100%; height:auto; display:block;" loading="lazy">
-      </div>
+  <section class="section">
+    <div class="presentation-bar">
+      <span class="presentation-title">Présentation Agdistys</span>
     </div>
-
-    <!-- Contrôles -->
-    <div class="swiper-button-prev" aria-label="Précédent"></div>
-    <div class="swiper-button-next" aria-label="Suivant"></div>
-    <div class="swiper-pagination"></div>
-  </div>
-
-  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      new Swiper('.swiper', {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 12,
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-      });
-    });
-  </script>
-
-</section>
-
+    <div style="margin-top:14px; display:flex; justify-content:center;">
+      <iframe src="https://agdistys.github.io/Schemas/Presentation/" style="width:100%; max-width:980px; height:520px; border:1px solid var(--gold-soft); border-radius:12px; background:#000;" loading="lazy"></iframe>
+    </div>
+  </section>
 
 
 
