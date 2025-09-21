@@ -119,15 +119,64 @@
 
 
 
-  <!-- Présentation -->
-  <section class="section">
-    <div class="presentation-bar">
-      <span class="presentation-title">Présentation Agdistys</span>
-    </div>
-    <div style="margin-top:14px; display:flex; justify-content:center;">
-      <iframe src="https://agdistys.github.io/Schemas/Presentation/" style="width:100%; max-width:980px; height:520px; border:1px solid var(--gold-soft); border-radius:12px; background:#000;" loading="lazy"></iframe>
-    </div>
-  </section>
+<!-- Présentation -->
+<section class="section">
+  <div class="presentation-bar">
+    <span class="presentation-title">Présentation Agdistys</span>
+  </div>
+
+  <!-- Swiper CSS (local à la section) -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css">
+
+  <div id="preso-swiper" class="swiper" style="max-width:980px; margin:16px auto; border:1px solid var(--gold-soft); border-radius:12px; background:#000;">
+    <div class="swiper-wrapper"><!-- slides injectées en JS --></div>
+
+    <!-- Contrôles -->
+    <div class="swiper-button-prev" aria-label="Précédent"></div>
+    <div class="swiper-button-next" aria-label="Suivant"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS + initialisation -->
+  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    (function(){
+      const BASE = 'https://agdistys.github.io/Schemas/Presentation/'; // ton dossier "Presentation"
+      const EXT  = 'png';  // mets 'jpg' si besoin
+      const MAX  = 20;     // 01..20 (tu peux augmenter/réduire)
+      const wrap = document.querySelector('#preso-swiper .swiper-wrapper');
+
+      // injecte 01.png → 20.png (tri numérique par padStart)
+      for(let i=1;i<=MAX;i++){
+        const n = String(i).padStart(2,'0');
+        const url = BASE + n + '.' + EXT;
+
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Présentation ' + n;
+        img.loading = 'lazy';
+        img.style = 'width:100%;height:auto;display:block;object-fit:contain;background:#000';
+
+        slide.appendChild(img);
+        wrap.appendChild(slide);
+      }
+
+      new Swiper('#preso-swiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 12,
+        centeredSlides: true,
+        keyboard: { enabled: true },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+      });
+    })();
+  </script>
+</section>
+
 
 
 
