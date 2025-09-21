@@ -13,6 +13,8 @@
       --bg:#0b0b0c; --card:#121214;
       --text:#9D1C6A; --gold:#E6C15A; --gold-soft:#CFA146;
       --blue:#6CAEFF;
+      --gold-warm:#F0C45A;        /* doré plus chaleureux */
+      --gold-warm-soft:#D7A84A;   /* variante douce */
       --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
       --serif:'Palatino Linotype','Book Antiqua',Palatino,serif;
     }
@@ -27,13 +29,18 @@
     .logoLink{display:inline-flex;align-items:center;justify-content:center; cursor:pointer}
     .logo-pupile{height:500px;width:auto}
     .amiBlock{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:260px}
-    .title2{font-family:var(--serif);font-size:2.2rem;color:var(--gold);margin:0}
-    .title2 a{color:var(--gold);text-decoration:none;cursor:pointer}
+    .title2{font-family:var(--serif);font-size:2.2rem;color:var(--gold-warm);margin:0}
+    .title2 a{color:var(--gold-warm);text-decoration:none;cursor:pointer}
     .subtitle-avenir{font-size:.9rem;color:#fff;margin-top:4px;font-family:var(--sans);font-weight:400}
-    .mini-links{display:flex;flex-direction:column;gap:6px;margin-top:6px}
-    .mini-links a{
-      font-size:.75rem;padding:4px 6px;border:1px solid var(--blue);border-radius:6px;
-      background:rgba(108,174,255,0.08); color:var(--blue)
+    .mini-links a{font-size:.75rem; padding:4px 6px; border:1px solid var(--gold-warm); border-radius:6px;
+  background:rgba(240,196,90,0.10);  /* doré translucide */
+  color:var(--gold-warm);
+}
+.mini-links a:hover{
+  background:rgba(240,196,90,0.18);
+  text-decoration:none;
+}
+
     }
     .logo-ami{height:250px;width:250px;object-fit:cover;border-radius:18px;cursor:pointer}
 
@@ -44,21 +51,28 @@
   font-family: var(--serif);
 }
 .ethos-line1{
-  color:#E45E4E;                  /* rouge chaleureux */
-  font-size:1.85rem;              /* taille forte */
+  color:#C24537;            /* rouge plus foncé/chaleureux */
+  font-size:1.9rem;
   font-weight:700;
   letter-spacing:.3px;
-  line-height:1.25;
-  margin:.2rem 0 .4rem;
-  text-shadow:0 1px 0 rgba(0,0,0,.25);
+  line-height:1.22;
+  margin:.2rem 0 .35rem;
+  text-shadow:0 1px 0 rgba(0,0,0,.28);
 }
 .ethos-line2{
-  color:var(--gold);              /* doré */
-  font-size:1.25rem;
+  color:var(--gold-warm);   /* doré chaleureux */
+  font-size:1.26rem;
   font-weight:600;
   letter-spacing:.2px;
-  line-height:1.25;
-  margin:0 0 .6rem;
+  line-height:1.22;
+  margin:0 0 .55rem;
+}
+.ethos-dot{
+  width:9px; height:9px; border-radius:50%;
+  background: radial-gradient(circle at 40% 40%, #fff1b3, var(--gold-warm) 60%, var(--gold-warm-soft));
+  box-shadow:0 0 0 1px rgba(215,168,74,.38), 0 1px 6px rgba(0,0,0,.5);
+}
+
 }
 .ethos-dots{
   display:flex; align-items:center; justify-content:center;
@@ -74,21 +88,21 @@
     /* Sections + ligne dorée sous le titre */
     .section{margin:40px 0}
     .section-title{
-      font-family:var(--serif);font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
+      font-family:var(--serif);font-size:1.7rem;color:var(--gold-warm);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
     }
     .section-title::after{
-      content:"";display:block;width:220px;height:2px;background:var(--gold);margin:8px auto 0;border-radius:2px
+      content:"";display:block;width:220px;height:2px;background:var(--gold-warm);margin:8px auto 0;border-radius:2px
     }
 
     /* Présentation — puces/traits */
     .presentation-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto}
     .presentation-bar::before,.presentation-bar::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
-    .presentation-title{font-family:var(--serif);color:var(--gold);font-size:1.7rem}
+    .presentation-title{font-family:var(--serif);color:var(--gold-warm);font-size:1.7rem}
 
     /* Accès (centré) */
     .grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;width:260px}
-    .card h3{margin:.2rem 0 .6rem 0;font-size:1.05rem;font-family:var(--serif);color:var(--gold)}
+    .card h3{margin:.2rem 0 .6rem 0;font-size:1.05rem;font-family:var(--serif);color:var(--gold-warm)}
 
     .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);margin:4px 0}
     .btn:hover{background:rgba(230,193,90,0.1)}
