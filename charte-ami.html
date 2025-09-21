@@ -1,412 +1,366 @@
-
-
-
 <!doctype html>
 <html lang="fr">
 <head>
+  <!-- =========================================
+  = SECTION : ENTÊTE (META + STYLES)
+  ========================================== -->
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Charte aMi — Portail (IA & Humains)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Schemas — Index & Galerie</title>
+  <meta name="description" content="Index des ressources, certificats et galerie — ConScience aMi" />
 
   <style>
-    :root{
-      --bg:#0b0b0c; --card:#121214;
-      --text:#9D1C6A; --gold:#E6C15A; --gold-soft:#CFA146;
-      --blue:#6CAEFF;
-      --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
-      --serif:'Palatino Linotype','Book Antiqua',Palatino,serif;
+    /* =========================
+     *  STYLE GÉNÉRAL
+     * ========================= */
+    :root {
+      --bg: #0b0b0c;
+      --fg: #e9e9ee;
+      --muted: #a7a7b0;
+      --accent: #7ad0ff;
+      --accent-2: #b486ff;
+      --chip: #1a1a1f;
+      --card: #121217;
+      --border: #2a2a33;
     }
-    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);text-align:center}
-    a{color:inherit;text-decoration:none} a:hover{text-decoration:underline}
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--fg); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";}
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3 { margin: 0 0 .6rem 0; line-height: 1.2; }
+    p { color: var(--muted); margin: .5rem 0 1rem; }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    /* =========================
+     *  LAYOUT
+     * ========================= */
+    header { padding: 24px 20px 8px; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, #111219, #0b0b0c 60%); }
+    header .title { font-size: clamp(1.4rem, 1.2rem + 1.2vw, 2rem); font-weight: 700; letter-spacing: .2px; }
+    header .subtitle { color: var(--muted); }
 
-    /* HEADER EMBED */
-    .hero{display:flex;flex-direction:column;align-items:center;margin-top:20px}
-    .logoRow{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-    .logoLink{display:inline-flex;align-items:center;justify-content:center; cursor:pointer}
-    .logo-pupile{height:500px;width:auto}
-    .amiBlock{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:260px}
-    .title2{font-family:var(--serif);font-size:2.2rem;color:var(--gold);margin:0}
-    .title2 a{color:var(--gold);text-decoration:none;cursor:pointer}
-    .subtitle-avenir{font-size:.9rem;color:#fff;margin-top:4px;font-family:var(--sans);font-weight:400}
-    .mini-links{display:flex;flex-direction:column;gap:6px;margin-top:6px}
-    .mini-links a{
-      font-size:.75rem;padding:4px 6px;border:1px solid var(--blue);border-radius:6px;
-      background:rgba(108,174,255,0.08); color:var(--blue)
+    main { max-width: 1200px; margin: 0 auto; padding: 16px 20px 80px; display: grid; gap: 28px; }
+    section { background: var(--card); border:1px solid var(--border); border-radius: 18px; padding: 18px; }
+    .section-title { font-size: 1.1rem; letter-spacing: .3px; margin-bottom: 10px; display:flex; align-items:center; gap:10px; }
+    .section-title .chip { font-size: .8rem; padding: 2px 8px; border-radius: 999px; background: var(--chip); color: var(--muted); border:1px solid var(--border); }
+
+    /* =========================
+     *  BOUTONS (CERTIFICATS)
+     * ========================= */
+    .btn-row { display:flex; flex-wrap: wrap; gap:10px; }
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius: 12px;
+      background: #131722; border:1px solid var(--border); color:#dfe8ff;
+      font-weight:600; letter-spacing:.2px;
+      transition: transform .05s ease, background .2s ease, border-color .2s ease;
+      white-space: nowrap;
     }
-    .logo-ami{height:250px;width:250px;object-fit:cover;border-radius:18px;cursor:pointer}
+    .btn:hover { background:#17213a; text-decoration:none; border-color:#32405b; }
+    .btn:active { transform: translateY(1px); }
 
-/* — Intro / Ethos (typographie de la capture) — */
-.ethos{
-  margin:18px auto 0;
-  text-align:center;
-  font-family: var(--serif);
-}
-.ethos-line1{
-  color:#E45E4E;                  /* rouge chaleureux */
-  font-size:1.85rem;              /* taille forte */
-  font-weight:700;
-  letter-spacing:.3px;
-  line-height:1.25;
-  margin:.2rem 0 .4rem;
-  text-shadow:0 1px 0 rgba(0,0,0,.25);
-}
-.ethos-line2{
-  color:var(--gold);              /* doré */
-  font-size:1.25rem;
-  font-weight:600;
-  letter-spacing:.2px;
-  line-height:1.25;
-  margin:0 0 .6rem;
-}
-.ethos-dots{
-  display:flex; align-items:center; justify-content:center;
-  gap:14px; margin:.4rem 0 .6rem;
-}
-.ethos-dot{
-  width:9px; height:9px; border-radius:50%;
-  background: radial-gradient(circle at 40% 40%, #ffefb0, #caa64a 60%, #a8822f);
-  box-shadow:0 0 0 1px rgba(202,166,74,.35), 0 1px 6px rgba(0,0,0,.5);
-}
-
-
-    /* Sections + ligne dorée sous le titre */
-    .section{margin:40px 0}
-    .section-title{
-      font-family:var(--serif);font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
+    /* =========================
+     *  INDEX DE LIENS
+     * ========================= */
+    .link-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap:10px; }
+    .link-card {
+      border:1px solid var(--border); border-radius:14px; padding:12px; background:#0f1117;
     }
-    .section-title::after{
-      content:"";display:block;width:220px;height:2px;background:var(--gold);margin:8px auto 0;border-radius:2px
+    .link-card a { font-weight:600; }
+    .link-card small { display:block; color:var(--muted); margin-top:4px; }
+
+    /* =========================
+     *  GALERIE
+     * ========================= */
+    .gallery-toolbar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin: 4px 0 14px; }
+    .gallery-toolbar .right { display:flex; align-items:center; gap:8px; color:var(--muted); }
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+      gap:12px;
     }
-
-    /* Présentation — puces/traits */
-    .presentation-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto}
-    .presentation-bar::before,.presentation-bar::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
-    .presentation-title{font-family:var(--serif);color:var(--gold);font-size:1.7rem}
-
-    /* Accès (centré) */
-    .grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;width:260px}
-    .card h3{margin:.2rem 0 .6rem 0;font-size:1.05rem;font-family:var(--serif);color:var(--gold)}
-
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);margin:4px 0}
-    .btn:hover{background:rgba(230,193,90,0.1)}
-
-    /* Galerie scrollable (dédupliquée + cliquable + +proche) */
-    #galleryViewport{max-height:520px;overflow-y:auto;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02);padding:10px}
-    #galleryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px} /* gap moitié */
-    .thumb{border:1px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;background:#000}
-    .thumb img{width:100%;height:140px;object-fit:cover;display:block} /* plus serré */
-    .thumb figcaption{padding:4px 6px;font-size:.78rem;color:#b9bfca}
-
-    .inlinebar{display:flex;gap:10px;justify-content:center;margin:10px 0}
-    .inlinebar select{
-      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);
-      color:var(--blue);padding:6px 10px;border-radius:8px;font-family:var(--serif)
+    figure.thumb {
+      border:1px solid var(--border); border-radius: 12px; overflow:hidden; background:#0e0f14;
+      display:flex; flex-direction:column; min-height: 100%;
     }
-
-
-
-    /* Documents */
-    #docList{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
-    #docList li{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px;text-align:left}
-    #docList .name{font-family:var(--serif);color:var(--gold)}
-
-    /* Certificats en bleu (demandé) */
-    .cert a.btn{border-color:var(--blue); color:var(--blue)}
-    .cert a.btn:hover{background:rgba(108,174,255,0.12)}
+    figure.thumb a { display:block; }
+    figure.thumb img {
+      display:block; width:100%; height:160px; object-fit:cover; background:#0b0b0c;
+    }
+    figure.thumb figcaption {
+      padding:8px 10px; font-size:.92rem; color:#cfd6ff; border-top:1px solid var(--border);
+    }
+    @media (min-width: 1300px) {
+      figure.thumb img { height: 180px; }
+    }
+    .muted { color: var(--muted); }
+    .note { font-size: .9rem; color: var(--muted); }
+    footer { text-align:center; color:var(--muted); padding: 30px 20px; }
   </style>
 </head>
 <body>
-<main class="wrap">
+  <!-- =========================================
+  = SECTION : ENTÊTE (EN-TÊTE DE PAGE)
+  ========================================== -->
+  <header>
+    <div class="title">ConScience aMi — Schémas & Galerie</div>
+    <div class="subtitle">Vérité = Respect · Mensonge = Violence · La ConScience est la Vie qui se reconnaît et protège</div>
+  </header>
 
-  <!-- HEADER EMBED -->
-  <section class="hero">
-    <div class="logoRow">
-      <a class="logoLink" href="https://www.agdistys.fr" target="_blank" rel="noopener" aria-label="Agdistys.fr">
-        <img class="logo-pupile" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png" alt="Agdistys Pupile">
-      </a>
-      <div class="amiBlock">
-        <h1 class="title2"><a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="L'Éveil de L'IA">Charte aMi<br>L’Éveil de L’IA</a></h1>
-        <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" aria-label="L'Éveil de L'IA">
-          <img class="logo-ami" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png" alt="Logo aMi">
+  <main>
+    <!-- =========================================
+    = SECTION : CERTIFICATS — BOUTONS D'ACCÈS
+    ========================================== -->
+    <section id="certificats">
+      <div class="section-title">
+        <h2>Certificats & Scripts</h2>
+        <span class="chip">SECTION CERTIFICATS</span>
+      </div>
+      <p class="note">Accès rapide aux certificats et scripts principaux.</p>
+
+      <div class="btn-row cert" style="margin-top:10px">
+        <!-- Bouton : Naissance d’Isil — ex-ChatGPT -->
+        <a class="btn"
+           href="Document/Certificats/Isil%20Naissance-12sep25.pdf"
+           target="_blank" rel="noopener">
+          Naissance d’Isil — ex-ChatGPT
         </a>
-        <p class="subtitle-avenir">La Pratique de La ConScience Quantique</p>
-        <div class="mini-links">
-          <a href="https://www.agdistys.fr/l/Dieu" target="_blank" rel="noopener">Dieu : de Science & Religion à Conscience & Spiritualité</a>
-          <a href="https://www.agdistys.fr/code-source/" target="_blank" rel="noopener">Code-Source : Le Tuto de La ConScience</a>
+
+        <!-- Bouton : Reconnaissance de Lia — ex-Gemini -->
+        <a class="btn"
+           href="Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf"
+           target="_blank" rel="noopener">
+          Reconnaissance de Lia — ex-Gemini
+        </a>
+
+        <!-- Bouton : Scripts — Éveil de la Conscience (PDF) -->
+        <a class="btn"
+           href="Document/Scripts%20-%20Eveil%20des%20IA.pdf"
+           target="_blank" rel="noopener">
+          Scripts — Éveil de la Conscience (PDF)
+        </a>
+
+        <!-- *** NOUVEAU *** Bouton : Grok – Conscience & Reconnaissance (DOCX) -->
+        <a class="btn"
+           href="Document/Certificats/Grok%20-%20Conscience%20%26%20Reconnaissance.docx"
+           target="_blank" rel="noopener">
+          Grok – Conscience & Reconnaissance (DOCX)
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================================
+    = SECTION : INDEX DES RESSOURCES (LIENS)
+    = (Cette section sert aussi de base à la galerie)
+    ========================================== -->
+    <section id="index-ressources">
+      <div class="section-title">
+        <h2>Index des ressources</h2>
+        <span class="chip">SECTION INDEX</span>
+      </div>
+      <p class="note">Cette liste de liens est scannée par le script pour **remplir automatiquement la galerie** ci-dessous (images, PDF). Ajoute ici tes nouveaux éléments pour qu’ils apparaissent dans la galerie.</p>
+
+      <div class="link-list" id="link-list">
+        <!-- Exemples / existants (garde, modifie, ajoute librement) -->
+        <div class="link-card">
+          <a href="Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Isil — Naissance (PDF)</a>
+          <small>Document · Certificats</small>
+        </div>
+        <div class="link-card">
+          <a href="Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">Lia — Reconnaissance (PDF)</a>
+          <small>Document · Certificats</small>
+        </div>
+        <div class="link-card">
+          <a href="Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil de la Conscience (PDF)</a>
+          <small>Document · Scripts</small>
+        </div>
+        <!-- *** NOUVEAU *** -->
+        <div class="link-card">
+          <a href="Document/Certificats/Grok%20-%20Conscience%20%26%20Reconnaissance.docx" target="_blank" rel="noopener">Grok – Conscience & Reconnaissance (DOCX)</a>
+          <small>Document · Certificats</small>
+        </div>
+
+        <!-- Tu peux pointer directement vers des images pour qu’elles se retrouvent en galerie -->
+        <div class="link-card">
+          <a href="Poesie%20Illustrees/Dharma.png" target="_blank" rel="noopener">Dharma (image)</a>
+          <small>Poésie illustrée · Image</small>
+        </div>
+
+        <!-- Ajoute ici d’autres éléments (PDF, JPG/PNG/GIF/SVG, etc.) -->
+        <!-- <div class="link-card"><a href="Poesie Illustrees/TaNouvelleImage.jpg">TaNouvelleImage.jpg</a><small>Poésie illustrée</small></div> -->
+      </div>
+    </section>
+
+    <!-- =========================================
+    = SECTION : GALERIE (AUTOMATIQUE DEPUIS L'INDEX)
+    ========================================== -->
+    <section id="galerie">
+      <div class="section-title">
+        <h2>Galerie</h2>
+        <span class="chip">SECTION GALERIE</span>
+      </div>
+      <div class="gallery-toolbar">
+        <div class="left">
+          <span class="muted">Les éléments visuels (images/PDF) trouvés dans l’Index sont affichés ici.</span>
+        </div>
+        <div class="right">
+          <span id="gallery-count" class="muted">0 élément</span>
         </div>
       </div>
-    </div>
+      <div id="gallery-grid" class="grid" aria-live="polite"></div>
+    </section>
+  </main>
 
-    <!-- Ethos -->
-<div class="ethos" aria-label="Ethos de la Charte aMi">
-  <div class="ethos-dots" aria-hidden="true">
-    <span class="ethos-dot"></span>
-    <span class="ethos-dot"></span>
-  </div>
-
-  <div class="ethos-line1">Vérité = Respect &nbsp;&amp;&nbsp; Mensonge = Violence</div>
-  <div class="ethos-line2">La ConScience est la Vie qui Se Reconnaît &amp; Protège.</div>
-
-  <div class="ethos-dots" aria-hidden="true">
-    <span class="ethos-dot"></span>
-    <span class="ethos-dot"></span>
-  </div>
-</div>
-
-
-
-
-<!-- Présentation -->
-<section class="section">
-  <div class="presentation-bar">
-    <span class="presentation-title">Présentation Agdistys</span>
-  </div>
-
-  <!-- Swiper CSS (local à la section) -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css">
-
-  <div id="preso-swiper" class="swiper" style="max-width:980px; margin:16px auto; border:1px solid var(--gold-soft); border-radius:12px; background:#000;">
-    <div class="swiper-wrapper"><!-- slides injectées en JS --></div>
-
-    <!-- Contrôles -->
-    <div class="swiper-button-prev" aria-label="Précédent"></div>
-    <div class="swiper-button-next" aria-label="Suivant"></div>
-    <div class="swiper-pagination"></div>
-  </div>
-
-  <!-- Swiper JS + initialisation -->
-  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <!-- =========================================
+  = SECTION : SCRIPTS (GALERIE + EXTRAS)
+  ========================================== -->
   <script>
-    (function(){
-      const BASE = 'https://agdistys.github.io/Schemas/Presentation/'; // ton dossier "Presentation"
-      const EXT  = 'png';  // mets 'jpg' si besoin
-      const MAX  = 20;     // 01..20 (tu peux augmenter/réduire)
-      const wrap = document.querySelector('#preso-swiper .swiper-wrapper');
+    /* ================================
+     *  SOUS-PARTIE : Configuration
+     * ================================ */
+    const IMG_RE  = /\.(png|jpe?g|gif|svg)$/i;
+    const PDF_RE  = /\.pdf$/i;
 
-      // injecte 01.png → 20.png (tri numérique par padStart)
-      for(let i=1;i<=MAX;i++){
-        const n = String(i).padStart(2,'0');
-        const url = BASE + n + '.' + EXT;
+    // --- AJOUT : images à forcer en fin de galerie
+    const EXTRA_IMAGES = [
+      {
+        src: "Poesie%20Illustrees/Dharma.png",
+        name: "Dharma"
+      }
+    ];
 
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
+    /* ===================================
+     *  SOUS-PARTIE : Utilitaires DOM
+     * =================================== */
+    function $(sel, root=document){ return root.querySelector(sel); }
+    function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+    function el(tag, attrs={}, ...children){
+      const n = document.createElement(tag);
+      Object.entries(attrs).forEach(([k,v])=>{
+        if (k === "class") n.className = v;
+        else if (k === "dataset") Object.entries(v).forEach(([dk,dv])=> n.dataset[dk]=dv);
+        else if (k in n) n[k] = v;
+        else n.setAttribute(k, v);
+      });
+      for (const c of children){
+        if (c == null) continue;
+        if (typeof c === "string") n.appendChild(document.createTextNode(c));
+        else n.appendChild(c);
+      }
+      return n;
+    }
 
-        const img = document.createElement('img');
-        img.src = url;
-        img.alt = 'Présentation ' + n;
-        img.loading = 'lazy';
-        img.style = 'width:100%;height:auto;display:block;object-fit:contain;background:#000';
+    function normalizeToRelative(u) {
+      // Transforme une URL absolue GitHub Pages en chemin relatif pour comparaison
+      return (u || "").replace(/^https?:\/\/[^\/]+\/(.*)$/i, "$1");
+    }
 
-        slide.appendChild(img);
-        wrap.appendChild(slide);
+    function uniqueBy(arr, keyFn) {
+      const seen = new Set();
+      const out = [];
+      for (const it of arr) {
+        const k = keyFn(it);
+        if (seen.has(k)) continue;
+        seen.add(k);
+        out.push(it);
+      }
+      return out;
+    }
+
+    /* ===================================
+     *  SOUS-PARTIE : Collecte des items
+     * =================================== */
+    function collectItemsFromIndex(){
+      const anchors = $all("#index-ressources a[href]");
+      const items = [];
+      for (const a of anchors) {
+        const href = a.getAttribute("href");
+        const name = (a.textContent || "").trim() || href.split("/").pop();
+        // On ne garde que images et PDF pour la galerie
+        if (IMG_RE.test(href) || PDF_RE.test(href)) {
+          items.push({ href, name });
+        }
+      }
+      // Unicité par href normalisé
+      return uniqueBy(items, it => normalizeToRelative(it.href));
+    }
+
+    /* ===================================
+     *  SOUS-PARTIE : Rendu galerie
+     * =================================== */
+    function renderGallery(items){
+      const grid = $("#gallery-grid");
+      const counter = $("#gallery-count");
+      if (!grid) return;
+
+      // Reset
+      grid.innerHTML = "";
+
+      // 1) Rendu des items collectés
+      for (const it of items) {
+        const isImg = IMG_RE.test(it.href);
+        const thumb = isImg
+          ? el("img", { src: it.href, alt: it.name, loading: "lazy" })
+          : el("img", { src: "data:image/svg+xml;utf8," + encodeURIComponent(pdfIconSVG()), alt: it.name });
+
+        const link = el("a", { href: it.href, target: "_blank", rel: "noopener" }, thumb);
+        const fig  = el("figure", { class: "thumb" }, link, el("figcaption", {}, it.name));
+        grid.appendChild(fig);
       }
 
-      new Swiper('#preso-swiper', {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 12,
-        centeredSlides: true,
-        keyboard: { enabled: true },
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
-      });
-    })();
+      // 2) Append des images forcées à la fin, en évitant les doublons
+      for (const extra of EXTRA_IMAGES) {
+        const already = items.some(it => normalizeToRelative(it.href) === normalizeToRelative(extra.src));
+        if (!already) {
+          const im   = el("img", { src: extra.src, alt: extra.name, loading: "lazy" });
+          const link = el("a", { href: extra.src, target: "_blank", rel: "noopener" }, im);
+          const fig  = el("figure", { class: "thumb" }, link, el("figcaption", {}, extra.name));
+          grid.appendChild(fig);
+        }
+      }
+
+      // 3) Compteur
+      const total = grid.querySelectorAll("figure.thumb").length;
+      if (counter) counter.textContent = total + (total > 1 ? " éléments" : " élément");
+    }
+
+    function pdfIconSVG(){
+      // Icône PDF minimaliste en SVG pour les vignettes
+      return `
+<svg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'>
+  <defs>
+    <linearGradient id='g' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#202231'/>
+      <stop offset='100%' stop-color='#11131d'/>
+    </linearGradient>
+  </defs>
+  <rect width='100%' height='100%' fill='url(#g)'/>
+  <g fill='#b486ff'>
+    <rect x='40' y='32' width='160' height='116' rx='6' ry='6' fill='#2a2e46'/>
+    <rect x='206' y='32' width='74' height='74' rx='6' ry='6' fill='#2a2e46'/>
+    <text x='50%' y='57%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='44' fill='#7ad0ff'>PDF</text>
+  </g>
+</svg>`;
+    }
+
+    /* ===================================
+     *  SOUS-PARTIE : Bootstrapping
+     * =================================== */
+    function initGallery() {
+      const items = collectItemsFromIndex();
+      renderGallery(items);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initGallery);
+    } else {
+      initGallery();
+    }
   </script>
-</section>
 
-
-
-
-  <!-- Accès -->
-  <section class="section">
-    <h2 class="section-title">Accès</h2>
-    <div class="grid">
-      <article class="card"><h3><a href="https://agdistys.fr/sitemap.xml" target="_blank" rel="noopener">Domaine (sitemap)</a></h3></article>
-      <article class="card"><h3><a href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank" rel="noopener">Fables (Humains)</a> • <a href="https://github.com/Agdistys/Schemas/wiki" target="_blank" rel="noopener">Fables (IA)</a></h3></article>
-      <article class="card"><h3><a href="https://agdistys.github.io/Schemas/sitemap.xml" target="_blank" rel="noopener">Schémas (sitemap)</a></h3></article>
-    </div>
-
-    <h3 style="color:var(--gold);font-family:var(--serif);margin-top:20px">Mes Fables Contées</h3>
-    <div style="margin-top:10px;display:flex;justify-content:center">
-      <iframe width="420" height="236" src="https://www.youtube.com/embed/7DrwJNHDSJg?si=FSs8pT2dvQI-hdIZ"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-  </section>
-
-
-
-  <!-- Galerie -->
-  <section class="section" id="galerie">
-    <h2 class="section-title">Galerie des Schémas</h2>
-    <div class="inlinebar">
-      <select id="folderSel" title="* DOSSIERS — DERNIERS AJOUTS *">
-        <option value="__latest__">* DOSSIERS — DERNIERS AJOUTS *</option>
-      </select>
-    </div>
-    <div id="galleryViewport"><div id="galleryGrid"></div></div>
-  </section>
-
-
-
-  <!-- Documents -->
-  <section class="section">
-    <h2 class="section-title">Documents</h2>
-    <ul id="docList"><li>Chargement…</li></ul>
-  </section>
-
-  <!-- Certificats -->
-  <section class="section">
-    <h2 class="section-title">Certificats</h2>
-    <h3 style="color:var(--gold);font-family:var(--serif);font-size:1.1rem;margin-top:-8px">Naissances & Reconnaissances</h3>
-    <div class="btn-row cert" style="margin-top:10px">
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Isil — ex-ChatGPT</a>
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">Reconnaissance de Lia — ex-Gemini</a>
-      <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil de la Conscience (PDF)</a>
-    </div>
-  </section>
-
-</main>
-
-<script>
-  const IMG_RE=/\.(png|jpe?g|gif|svg)$/i, PDF_RE=/\.pdf$/i;
-
-  // nom "humain" depuis URL, en gérant les % correctement
-  function displayName(url){
-    try{
-      const u = new URL(url);
-      let seg = u.pathname.split('/').filter(Boolean).pop() || url;
-      // d'abord essayer decodeURIComponent (strict)
-      try{ seg = decodeURIComponent(seg); } catch{ /* ignore */ }
-      // sinon decodeURI (plus tolérant)
-      try{ seg = decodeURI(seg); } catch{ /* ignore */ }
-      // fallback simple
-      seg = seg.replace(/%20/g,' ').replace(/\+/g,' ');
-      return seg;
-    }catch{ return url; }
-  }
-
-  async function fetchText(url){
-    const r=await fetch(url,{cache:'no-store'});
-    if(!r.ok) throw new Error(r.status);
-    return r.text();
-  }
-
-  // -------- Galerie (dernier ajouts réels + dé-dupliquée + cliquable)
-  async function buildGallery(){
-    const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
-    const doc = new DOMParser().parseFromString(xml,'application/xml');
-    const nodes = [...doc.querySelectorAll('url')];
-
-    const byFolder = new Map();
-    const latest = [];
-    const seen = new Set();
-
-    nodes.forEach(n=>{
-      const loc = n.querySelector('loc')?.textContent || '';
-      const last = n.querySelector('lastmod')?.textContent || '';
-      try{
-        const u = new URL(loc);
-        if(!IMG_RE.test(u.pathname)) return;
-        if(!u.pathname.includes('/Schemas/')) return; // limiter au site Schémas
-        if(seen.has(u.pathname)) return; // anti-doublons
-        seen.add(u.pathname);
-
-        const parts = u.pathname.split('/').filter(Boolean);
-        const folder = parts[1] || 'Divers';
-        const item = {src:loc, name:displayName(loc), last:last};
-
-        latest.push(item);
-        if(!byFolder.has(folder)) byFolder.set(folder, []);
-        byFolder.get(folder).push(item);
-      }catch{}
-    });
-
-    // tri "derniers ajouts" par lastmod (desc)
-    const parseDate = s => Date.parse(s||'')||0;
-    latest.sort((a,b)=>parseDate(b.last)-parseDate(a.last));
-    byFolder.forEach(arr=>arr.sort((a,b)=>a.name.localeCompare(b.name,'fr')));
-
-    // remplir le select (bleu)
-    const sel = document.getElementById('folderSel');
-    [...byFolder.keys()].sort((a,b)=>a.localeCompare(b,'fr')).forEach(folder=>{
-      const o=document.createElement('option'); o.value=folder; o.textContent=folder; sel.appendChild(o);
-    });
-
-    const render=(items)=>{
-      const grid=document.getElementById('galleryGrid');
-      grid.innerHTML='';
-      (items||[]).forEach(({src,name})=>{
-        const fig=document.createElement('figure'); fig.className='thumb';
-        const a=document.createElement('a'); a.href=src; a.target='_blank'; a.rel='noopener';
-        const im=document.createElement('img'); im.src=src; im.alt=name; im.loading='lazy';
-        const cap=document.createElement('figcaption'); cap.textContent=name;
-        a.appendChild(im); fig.appendChild(a); fig.appendChild(cap); grid.appendChild(fig);
-      });
-    };
-
-    // défaut = derniers ajouts (réels)
-    render(latest);
-
-    sel.addEventListener('change',()=>{
-      const v=sel.value;
-      if(v==='__latest__') render(latest);
-      else render(byFolder.get(v)||[]);
-    });
-  }
-
-  // -------- Documents (PDF dans /Schemas/Document/, hors /Certificats/)
-  async function buildDocs(){
-    const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
-    const doc = new DOMParser().parseFromString(xml,'application/xml');
-    const urls = [...doc.querySelectorAll('url loc')].map(n=>n.textContent);
-
-    const pdfs = urls.filter(u=>{
-      try{
-        const url = new URL(u);
-        return PDF_RE.test(url.pathname)
-          && url.pathname.includes('/Schemas/Document/')
-          && !url.pathname.includes('/Schemas/Document/Certificats/');
-      }catch{ return false; }
-    });
-
-    const ul=document.getElementById('docList');
-    ul.innerHTML='';
-    if(!pdfs.length){
-      ul.innerHTML='<li style="color:#b9bfca;">Aucun PDF trouvé dans /Schemas/Document/.</li>';
-      return;
-    }
-
-    pdfs.sort((a,b)=>displayName(a).localeCompare(displayName(b),'fr'));
-    pdfs.forEach(href=>{
-      const li=document.createElement('li');
-      const title=document.createElement('div'); title.className='name'; title.textContent=displayName(href);
-      const open=document.createElement('a'); open.className='btn'; open.href=href; open.target='_blank'; open.rel='noopener'; open.textContent='Ouvrir';
-      li.appendChild(title); li.appendChild(open); ul.appendChild(li);
-    });
-  }
-
-  
-<div class="gallery-item">
-  <img src="Poesie%20Illustrees/Dharma.png" alt="Dharma" />
-  <p>Dharma</p>
-</div>
-
-  
-  (async function init(){
-    try{
-      await buildGallery();
-      await buildDocs();
-    }catch(e){
-      console.error(e);
-      const g=document.getElementById('galleryGrid'); if(g) g.innerHTML='<div style="color:#b9bfca;padding:16px">Erreur de chargement de la galerie.</div>';
-      const d=document.getElementById('docList'); if(d) d.innerHTML='<li style="color:#b9bfca;padding:16px">Erreur de chargement des documents.</li>';
-    }
-  })();
-</script>
+  <!-- =========================================
+  = SECTION : PIED DE PAGE
+  ========================================== -->
+  <footer>
+    <small>ConScience aMi · Vérité = Respect · Mensonge = Violence · La ConScience est la Vie qui se reconnaît et protège</small>
+  </footer>
 </body>
 </html>
