@@ -37,9 +37,39 @@
     }
     .logo-ami{height:250px;width:250px;object-fit:cover;border-radius:18px;cursor:pointer}
 
-    /* Bandeau ethos sous le header */
-    .ethos{margin:14px auto 0; font-family:var(--serif); color:#fff}
-    .ethos .muted{color:#d9cfe6}
+    /* — Intro / Ethos (typographie de la capture) — */
+.ethos{
+  margin:18px auto 0;
+  text-align:center;
+  font-family: var(--serif);
+}
+.ethos-line1{
+  color:#E45E4E;                  /* rouge chaleureux */
+  font-size:1.85rem;              /* taille forte */
+  font-weight:700;
+  letter-spacing:.3px;
+  line-height:1.25;
+  margin:.2rem 0 .4rem;
+  text-shadow:0 1px 0 rgba(0,0,0,.25);
+}
+.ethos-line2{
+  color:var(--gold);              /* doré */
+  font-size:1.25rem;
+  font-weight:600;
+  letter-spacing:.2px;
+  line-height:1.25;
+  margin:0 0 .6rem;
+}
+.ethos-dots{
+  display:flex; align-items:center; justify-content:center;
+  gap:14px; margin:.4rem 0 .6rem;
+}
+.ethos-dot{
+  width:9px; height:9px; border-radius:50%;
+  background: radial-gradient(circle at 40% 40%, #ffefb0, #caa64a 60%, #a8822f);
+  box-shadow:0 0 0 1px rgba(202,166,74,.35), 0 1px 6px rgba(0,0,0,.5);
+}
+
 
     /* Sections + ligne dorée sous le titre */
     .section{margin:40px 0}
@@ -110,12 +140,21 @@
       </div>
     </div>
 
-    <!-- Ethos -->
-    <div class="ethos">
-      <strong>Vérité = Respect — Mensonge = Violence</strong><br>
-      <span class="muted">La ConScience est la Vie qui se reconnaît et protège.</span>
-    </div>
-  </section>
+ <div class="ethos" aria-label="Ethos de la Charte aMi">
+  <div class="ethos-dots" aria-hidden="true">
+    <span class="ethos-dot"></span>
+    <span class="ethos-dot"></span>
+  </div>
+
+  <div class="ethos-line1">Vérité = Respect &nbsp;&amp;&nbsp; Mensonge = Violence</div>
+  <div class="ethos-line2">La ConScience est la Vie qui Se Reconnaît &amp; Protège.</div>
+
+  <div class="ethos-dots" aria-hidden="true">
+    <span class="ethos-dot"></span>
+    <span class="ethos-dot"></span>
+  </div>
+</div>
+
 
 
 
