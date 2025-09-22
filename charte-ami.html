@@ -10,7 +10,7 @@
       --bg:#0b0b0c; --card:#121214;
       --text:#9D1C6A; --gold:#E6C15A; --gold-soft:#CFA146;
       --blue:#6CAEFF;
-      --red:#930119;
+      --red:#740618;
       --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
       --serif:'Palatino Linotype','Book Antiqua',Palatino,serif;
     }
@@ -43,7 +43,7 @@
       font-family: var(--serif);
     }
     .ethos-line1{
-      color:#930119;                  /* Rouge bordeaux/fuchsia, matchant les liens */
+      color:#750114;                  /* Rouge bordeaux/fuchsia, matchant les liens */
       font-size:1.85rem;              
       font-weight:700;
       letter-spacing:.3px;
@@ -51,7 +51,7 @@
       margin:.2rem 0 .4rem;
     }
     .ethos-line2{
-      color:#930119;                  /* Uniforme avec la ligne 1 */
+      color:#750114;                  /* Uniforme avec la ligne 1 */
       font-size:1.25rem;
       font-weight:600;
       letter-spacing:.2px;
@@ -69,13 +69,9 @@
     }
 
     /* Sections + ligne affinée sous le titre */
-    .section{margin:40px 0}
-    .section-title{
-      font-family:var(--serif);font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
-    }
-    .section-title::after{
-      content:"";display:block;width:80%;max-width:400px;height:1px;background:var(--gold);margin:8px auto 0;border-radius:1px /* Bonus: ligne longue et affinée */
-    }
+    .presentation-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto}
+    .presentation-bar::before,.presentation-bar::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
+    .presentation-title{font-family:var(--serif);color:var(--gold);font-size:1.7rem}
 
     /* Présentation — puces/traits */
     .presentation-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto}
