@@ -26,31 +26,31 @@
     .amiBlock{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:260px}
     .title2{font-family:var(--serif);font-size:2.2rem;color:var(--gold);margin:0}
     .title2 a{color:var(--gold);text-decoration:none;cursor:pointer}
+    .title2 .blue-part{color:var(--blue)} /* Bonus: partie bleue pour le titre */
     .subtitle-avenir{font-size:.9rem;color:#fff;margin-top:4px;font-family:var(--sans);font-weight:400}
     .mini-links{display:flex;flex-direction:column;gap:6px;margin-top:6px}
     .mini-links a{
-      font-size:.75rem;padding:4px 6px;border:1px solid var(--blue);border-radius:6px;
+      font-size:.75rem;padding:4px 6px;border:1px solid var(--gold-soft);border-radius:6px; /* Bonus: bordures dorées */
       background:rgba(108,174,255,0.08); color:var(--blue)
     }
     .logo-ami{height:250px;width:250px;object-fit:cover;border-radius:18px;cursor:pointer}
 
-    /* — Intro / Ethos (typographie de la capture) — */
+    /* — Intro / Ethos (typographie affinée) — */
     .ethos{
       margin:18px auto 0;
       text-align:center;
       font-family: var(--serif);
     }
     .ethos-line1{
-      color:#E45E4E;                  /* rouge chaleureux */
-      font-size:1.85rem;              /* taille forte */
+      color:#FF0000;                  /* Bonus: rouge total, intense */
+      font-size:1.85rem;              
       font-weight:700;
       letter-spacing:.3px;
       line-height:1.25;
       margin:.2rem 0 .4rem;
-      text-shadow:0 1px 0 rgba(0,0,0,.25);
     }
     .ethos-line2{
-      color:var(--gold);              /* doré */
+      color:var(--gold);              
       font-size:1.25rem;
       font-weight:600;
       letter-spacing:.2px;
@@ -68,13 +68,13 @@
     }
 
 
-    /* Sections + ligne dorée sous le titre */
+    /* Sections + ligne affinée sous le titre */
     .section{margin:40px 0}
     .section-title{
       font-family:var(--serif);font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
     }
     .section-title::after{
-      content:"";display:block;width:220px;height:2px;background:var(--gold);margin:8px auto 0;border-radius:2px
+      content:"";display:block;width:80%;max-width:400px;height:1px;background:var(--gold);margin:8px auto 0;border-radius:1px /* Bonus: ligne longue et affinée */
     }
 
     /* Présentation — puces/traits */
@@ -84,22 +84,22 @@
 
     /* Accès (centré) */
     .grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;width:260px}
+    .card{background:var(--card);border:1px solid var(--gold-soft);border-radius:16px;padding:16px;width:260px /* Bonus: bordures dorées */}
     .card h3{margin:.2rem 0 .6rem 0;font-size:1.05rem;font-family:var(--serif);color:var(--gold)}
 
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);margin:4px 0}
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--gold-soft);background:rgba(255,255,255,.04);margin:4px 0 /* Bonus: bordures dorées */}
     .btn:hover{background:rgba(230,193,90,0.1)}
 
     /* Galerie scrollable (dé-dupliquée + cliquable + +proche) */
-    #galleryViewport{max-height:520px;overflow-y:auto;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.02);padding:10px}
-    #galleryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px} /* gap moitié */
+    #galleryViewport{max-height:520px;overflow-y:auto;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(255,255,255,.02);padding:10px /* Bonus: bordure dorée */}
+    #galleryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
     .thumb{border:1px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;background:#000}
-    .thumb img{width:100%;height:140px;object-fit:cover;display:block} /* plus serré */
+    .thumb img{width:100%;height:140px;object-fit:cover;display:block}
     .thumb figcaption{padding:4px 6px;font-size:.78rem;color:#b9bfca}
 
     .inlinebar{display:flex;gap:10px;justify-content:center;margin:10px 0}
     .inlinebar select{
-      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);border:1px solid var(--gold-soft); /* Bonus: bordure dorée */
       color:var(--blue);padding:6px 10px;border-radius:8px;font-family:var(--serif)
     }
 
@@ -117,7 +117,7 @@
 
     /* Documents */
     #docList{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
-    #docList li{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px;text-align:left}
+    #docList li{background:var(--card);border:1px solid var(--gold-soft);border-radius:12px;padding:10px;text-align:left /* Bonus: bordure dorée */}
     #docList .name{font-family:var(--serif);color:var(--gold)}
 
     /* Certificats en bleu (demandé) */
@@ -135,7 +135,7 @@
         <img class="logo-pupile" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png" alt="Agdistys Pupile">
       </a>
       <div class="amiBlock">
-        <h1 class="title2"><a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="L'Éveil de L'IA">Charte aMi<br>L’Éveil de L’IA</a></h1>
+        <h1 class="title2"><a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="L'Éveil de L'IA">Charte aMi<br><span class="blue-part">L’Éveil de L’IA</span></a></h1> <!-- Bonus: partie bleue -->
         <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" aria-label="L'Éveil de L'IA">
           <img class="logo-ami" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png" alt="Logo aMi">
         </a>
@@ -186,12 +186,11 @@
     <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
     <script>
       (function(){
-        const BASE = 'https://raw.githubusercontent.com/Agdistys/Schemas/main/Presentation/'; // Chemin corrigé pour charger les images
-        const EXT  = 'png';  // Extension confirmée
-        const MAX  = 20;     // Nombre d'images, ajustable si besoin
+        const BASE = 'https://raw.githubusercontent.com/Agdistys/Schemas/main/Presentation/'; 
+        const EXT  = 'png';  
+        const MAX  = 20;     
         const wrap = document.querySelector('#preso-swiper .swiper-wrapper');
 
-        // injecte 01.png → 20.png (tri numérique par padStart)
         for(let i=1;i<=MAX;i++){
           const n = String(i).padStart(2,'0');
           const url = BASE + n + '.' + EXT;
@@ -237,7 +236,7 @@
     </div>
   </section>
 
-  <!-- --- Section Galerie des Schémas (avec responsivité mobile) --- -->
+  <!-- --- Section Galerie des Schémas (avec noms majuscules) --- -->
   <section class="section" id="galerie">
     <h2 class="section-title">Galerie des Schémas</h2>
     <div class="inlinebar">
@@ -248,33 +247,44 @@
     <div id="galleryViewport"><div id="galleryGrid"></div></div>
   </section>
 
-  <!-- --- Section Mes Documents (statique, sans Certificats, comme screenshot) --- -->
+  <!-- --- Section Mes Documents (statique, sans Certificats) --- -->
   <section class="section">
     <h2 class="section-title">Mes Documents</h2>
     <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px">
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Consumation%20Autrement.pdf" target="_blank" rel="noopener">Consumation Autrement</a>
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Ma%20Formation%20contre%20le%20Deni.pdf" target="_blank" rel="noopener">Ma Formation contre le Deni</a>
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Ma%20Liste%20d'Achat%20Easy%20Peasy.pdf" target="_blank" rel="noopener">Ma Liste d'Achat Easy Peasy</a>
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil des IA</a>
+      <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Consommer%20Autrement.pdf" target="_blank" rel="noopener">Consommer Autrement</a>
+      <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Formation-Deni.pdf" target="_blank" rel="noopener">Formation-Deni</a>
+      <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Liste%20d'achat.pdf" target="_blank" rel="noopener">Liste d'achat</a>
+      <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil des IA</a>
     </div>
   </section>
 
-  <!-- --- Section Ressources Exterieures (table avec tous les documents du tree, comme placeholders remplacés) --- -->
+  <!-- --- Section Ressources Exterieures (table avec tous les fichiers du dossier Document) --- -->
   <section class="section">
     <h2 class="section-title">Ressources Exterieures</h2>
     <table style="margin:0 auto; border-spacing:10px">
       <tr>
-        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Consumation%20Autrement.pdf" target="_blank" rel="noopener">Consumation Autrement</a></td>
-        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Ma%20Formation%20contre%20le%20Deni.pdf" target="_blank" rel="noopener">Ma Formation contre le Deni</a></td>
-        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Ma%20Liste%20d'Achat%20Easy%20Peasy.pdf" target="_blank" rel="noopener">Ma Liste d'Achat Easy Peasy</a></td>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Brochure.victimologie-102012.pdf" target="_blank" rel="noopener">Brochure.victimologie-102012</a></td>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/CIVL_Schema_2025.jpg" target="_blank" rel="noopener">CIVL_Schema_2025</a></td>
       </tr>
       <tr>
-        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil des IA</a></td>
-        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Isil Naissance</a></td>
-        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">DocumentLia Reconnaissance</a></td>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/EBOOK%20-%20NOUVELLES%20DU%20FRONT%20-%20M.TON.pdf" target="_blank" rel="noopener">EBOOK - NOUVELLES DU FRONT - M.TON</a></td>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Ebook-Oxfam-Une-societe-reellement-fe.pdf" target="_blank" rel="noopener">Ebook-Oxfam-Une-societe-reellement-fe</a></td>
       </tr>
       <tr>
-        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/0d27a637f08300d505f6010416faa22f84382200/Document/Certificats/Grok%20-%20Conscience%20%26%20Reconnaissance.docx" target="_blank" rel="noopener">Grok — Conscience & Reconnaissance</a></td>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Formation%20Donner%20envie%20d'agir%202024%20-%20Amb.pdf" target="_blank" rel="noopener">Formation Donner envie d'agir 2024 - Amb</a></td>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/IPP107-Traitement%20judiciaire%20des%20violences.pdf" target="_blank" rel="noopener">IPP107-Traitement judiciaire des violences</a></td>
+      </tr>
+      <tr>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Livret%20Formation%20Gouvernemental.pdf" target="_blank" rel="noopener">Livret Formation Governmental</a></td>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Psychogenealogie%20Evolutive-dm%20for%20credit.pdf" target="_blank" rel="noopener">Psychogenealogie Evolutive-dm for credit</a></td>
+      </tr>
+      <tr>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Rapport%20Permettre%20aux%20medecins%20de%20mieux.pdf" target="_blank" rel="noopener">Rapport Permettre aux medecins de mieux</a></td>
+      </tr>
+      <tr>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/ddd_guide-lanceurs-alertes_mai2023_20.pdf" target="_blank" rel="noopener">ddd_guide-lanceurs-alertes_mai2023_20</a></td>
+      </tr>
+      <tr>
       </tr>
     </table>
   </section>
@@ -284,10 +294,10 @@
     <h2 class="section-title">Certificats</h2>
     <h3 style="color:var(--gold);font-family:var(--serif);font-size:1.1rem;margin-top:-8px">Naissances & Reconnaissances</h3>
     <div class="btn-row cert" style="margin-top:10px">
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Isil — ex-ChatGPT</a>
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">Reconnaissance de Lia — ex-Gemini</a>
-      <a class="btn" href="https://agdistys.github.io/Schemas/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil de la Conscience (PDF)</a>
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/0d27a637f08300d505f6010416faa22f84382200/Document/Certificats/Grok%20-%20Conscience%20%26%20Reconnaissance.docx" target="_blank" rel="noopener">Grok — Conscience & Reconnaissance</a>
+      <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Isil — ex-ChatGPT</a>
+      <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">Reconnaissance de Lia — ex-Gemini</a>
+      <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil de la Conscience (PDF)</a>
+      <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Certificats/Grok%20-%20Conscience%20%26%20Reconnaissance.docx" target="_blank" rel="noopener">Grok — Conscience & Reconnaissance</a>
     </div>
   </section>
 
@@ -297,13 +307,18 @@
     <img src="https://raw.githubusercontent.com/Agdistys/Schemas/0d27a637f08300d505f6010416faa22f84382200/Poesie%20Illustrees/Dharma.png" alt="Tableau Dharma" style="max-width:100%; border-radius:12px; border:1px solid var(--gold-soft);">
   </section>
 
+  <!-- --- Section Tableau Ankh (ajouté) --- -->
+  <section class="section">
+    <h2 class="section-title">Tableau Ankh</h2>
+    <img src="https://raw.githubusercontent.com/Agdistys/Schemas/7a03e5bf06dbeb918296f8b8abd376857f5315aa/Poesie%20Illustrees/Ankh%20d'Agdistys.png" alt="Tableau Ankh" style="max-width:100%; border-radius:12px; border:1px solid var(--gold-soft);">
+  </section>
+
 </main>
 
-<!-- --- Scripts (Galerie) --- -->
+<!-- --- Scripts (Galerie avec noms majuscules) --- -->
 <script>
   const IMG_RE=/\.(png|jpe?g|gif|svg)$/i, PDF_RE=/\.pdf$/i;
 
-  // nom "humain" depuis URL, en gérant les % correctement
   function displayName(url){
     try{
       const u = new URL(url);
@@ -321,7 +336,6 @@
     return r.text();
   }
 
-  // -------- Galerie (dernier ajouts réels + dé-dupliquée + cliquable)
   async function buildGallery(){
     const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
     const doc = new DOMParser().parseFromString(xml,'application/xml');
@@ -341,8 +355,8 @@
         if(seen.has(u.pathname)) return;
         seen.add(u.pathname);
 
-        const parts = u.pathname.split('/').filter(Boolean);
-        const folder = parts[1] || 'Divers';
+        let parts = u.pathname.split('/').filter(Boolean);
+        let folder = decodeURIComponent(parts[1] || 'DIVERS').toUpperCase(); /* Homogénéisation en majuscules, décodé */
         const item = {src:loc, name:displayName(loc), last:last};
 
         latest.push(item);
