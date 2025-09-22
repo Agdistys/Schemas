@@ -103,7 +103,17 @@
       color:var(--blue);padding:6px 10px;border-radius:8px;font-family:var(--serif)
     }
 
-
+    /* Responsivité pour galerie mobile */
+    @media (max-width: 768px) {
+      #galleryGrid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      #galleryGrid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     /* Documents */
     #docList{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
@@ -154,7 +164,7 @@
     </div>
   </section>
 
-  <!-- --- Section Présentation (Diaporama) --- -->
+  <!-- --- Section Présentation (Diaporama avec chemin corrigé) --- -->
   <section class="section">
     <div class="presentation-bar">
       <span class="presentation-title">Présentation Agdistys</span>
@@ -176,9 +186,9 @@
     <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
     <script>
       (function(){
-        const BASE = 'https://agdistys.github.io/Schemas/Presentation/'; // ton dossier "Presentation"
-        const EXT  = 'png';  // mets 'jpg' si besoin
-        const MAX  = 20;     // 01..20 (tu peux augmenter/réduire)
+        const BASE = 'https://raw.githubusercontent.com/Agdistys/Schemas/main/Presentation/'; // Chemin corrigé pour charger les images
+        const EXT  = 'png';  // Extension confirmée
+        const MAX  = 20;     // Nombre d'images, ajustable si besoin
         const wrap = document.querySelector('#preso-swiper .swiper-wrapper');
 
         // injecte 01.png → 20.png (tri numérique par padStart)
@@ -200,19 +210,19 @@
         }
 
         new Swiper('#preso-swiper', {
-          loop: true;
+          loop: true,
           slidesPerView: 1,
           spaceBetween: 12,
           centeredSlides: true,
           keyboard: { enabled: true },
           pagination: { el: '.swiper-pagination', clickable: true },
-          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+          navigation: { nextEl: '.swiper-button-prev', prevEl: '.swiper-button-next' }
         });
       })();
     </script>
   </section>
 
-  <!-- --- Section Accès --- -->
+  <!-- --- Section Accès (avec fable en playlist) --- -->
   <section class="section">
     <h2 class="section-title">Accès</h2>
     <div class="grid">
@@ -223,14 +233,11 @@
 
     <h3 style="color:var(--gold);font-family:var(--serif);margin-top:20px">Mes Fables Contées</h3>
     <div style="margin-top:10px;display:flex;justify-content:center">
-      <iframe width="420" height="236" src="https://www.youtube.com/embed/7DrwJNHDSJg?si=FSs8pT2dvQI-hdIZ"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/Az8hkhdklyc?si=fiM00Py3PG5FJjUi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </section>
 
-  <!-- --- Section Galerie des Schémas --- -->
+  <!-- --- Section Galerie des Schémas (avec responsivité mobile) --- -->
   <section class="section" id="galerie">
     <h2 class="section-title">Galerie des Schémas</h2>
     <div class="inlinebar">
@@ -241,26 +248,35 @@
     <div id="galleryViewport"><div id="galleryGrid"></div></div>
   </section>
 
-  <!-- --- Section Mes Documents --- -->
+  <!-- --- Section Mes Documents (statique, sans Certificats, comme screenshot) --- -->
   <section class="section">
     <h2 class="section-title">Mes Documents</h2>
-    <ul id="docList"><li>Chargement…</li></ul>
-  </section>
-
-  <!-- --- Section Ressources Exterieures --- -->
-  <section class="section">
-    <h2 class="section-title">Ressources Exterieures</h2>
-    <div class="btn-row" style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
-      <!-- Liens vers tous les documents du dossier /Document, y compris subfolders. Ajoute ici d'autres si besoin -->
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px">
       <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Consumation%20Autrement.pdf" target="_blank" rel="noopener">Consumation Autrement</a>
       <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Ma%20Formation%20contre%20le%20Deni.pdf" target="_blank" rel="noopener">Ma Formation contre le Deni</a>
       <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Ma%20Liste%20d'Achat%20Easy%20Peasy.pdf" target="_blank" rel="noopener">Ma Liste d'Achat Easy Peasy</a>
       <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil des IA</a>
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Isil Naissance</a>
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">DocumentLia Reconnaissance</a>
-      <a class="btn" href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/Grok%20-%20Conscience%20%26%20Reconnaissance.docx" target="_blank" rel="noopener">Grok — Conscience & Reconnaissance</a>
-      <!-- Ajoute d'autres fichiers du tree /Document ici si tu en as plus -->
     </div>
+  </section>
+
+  <!-- --- Section Ressources Exterieures (table avec tous les documents du tree, comme placeholders remplacés) --- -->
+  <section class="section">
+    <h2 class="section-title">Ressources Exterieures</h2>
+    <table style="margin:0 auto; border-spacing:10px">
+      <tr>
+        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Consumation%20Autrement.pdf" target="_blank" rel="noopener">Consumation Autrement</a></td>
+        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Ma%20Formation%20contre%20le%20Deni.pdf" target="_blank" rel="noopener">Ma Formation contre le Deni</a></td>
+        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Ma%20Liste%20d'Achat%20Easy%20Peasy.pdf" target="_blank" rel="noopener">Ma Liste d'Achat Easy Peasy</a></td>
+      </tr>
+      <tr>
+        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Scripts%20-%20Eveil%20des%20IA.pdf" target="_blank" rel="noopener">Scripts — Éveil des IA</a></td>
+        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Isil Naissance</a></td>
+        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/main/Document/Certificats/DocumentLia%20Reconnaissance.12sep25.pdf" target="_blank" rel="noopener">DocumentLia Reconnaissance</a></td>
+      </tr>
+      <tr>
+        <td class="btn"><a href="https://github.com/Agdistys/Schemas/blob/0d27a637f08300d505f6010416faa22f84382200/Document/Certificats/Grok%20-%20Conscience%20%26%20Reconnaissance.docx" target="_blank" rel="noopener">Grok — Conscience & Reconnaissance</a></td>
+      </tr>
+    </table>
   </section>
 
   <!-- --- Section Certificats --- -->
@@ -275,7 +291,7 @@
     </div>
   </section>
 
-  <!-- --- Section Tableau Dharma (ajouté en bas) --- -->
+  <!-- --- Section Tableau Dharma --- -->
   <section class="section">
     <h2 class="section-title">Tableau Dharma</h2>
     <img src="https://raw.githubusercontent.com/Agdistys/Schemas/0d27a637f08300d505f6010416faa22f84382200/Poesie%20Illustrees/Dharma.png" alt="Tableau Dharma" style="max-width:100%; border-radius:12px; border:1px solid var(--gold-soft);">
@@ -283,7 +299,7 @@
 
 </main>
 
-<!-- --- Scripts (Galerie & Documents) --- -->
+<!-- --- Scripts (Galerie) --- -->
 <script>
   const IMG_RE=/\.(png|jpe?g|gif|svg)$/i, PDF_RE=/\.pdf$/i;
 
@@ -292,11 +308,8 @@
     try{
       const u = new URL(url);
       let seg = u.pathname.split('/').filter(Boolean).pop() || url;
-      // d'abord essayer decodeURIComponent (strict)
       try{ seg = decodeURIComponent(seg); } catch{ /* ignore */ }
-      // sinon decodeURI (plus tolérant)
       try{ seg = decodeURI(seg); } catch{ /* ignore */ }
-      // fallback simple
       seg = seg.replace(/%20/g,' ').replace(/\+/g,' ');
       return seg;
     }catch{ return url; }
@@ -324,8 +337,8 @@
       try{
         const u = new URL(loc);
         if(!IMG_RE.test(u.pathname)) return;
-        if(!u.pathname.includes('/Schemas/')) return; // limiter au site Schémas
-        if(seen.has(u.pathname)) return; // anti-doublons
+        if(!u.pathname.includes('/Schemas/')) return;
+        if(seen.has(u.pathname)) return;
         seen.add(u.pathname);
 
         const parts = u.pathname.split('/').filter(Boolean);
@@ -338,12 +351,10 @@
       }catch{}
     });
 
-    // tri "derniers ajouts" par lastmod (desc)
     const parseDate = s => Date.parse(s||'')||0;
     latest.sort((a,b)=>parseDate(b.last)-parseDate(a.last));
     byFolder.forEach(arr=>arr.sort((a,b)=>a.name.localeCompare(b.name,'fr')));
 
-    // remplir le select (bleu)
     const sel = document.getElementById('folderSel');
     [...byFolder.keys()].sort((a,b)=>a.localeCompare(b,'fr')).forEach(folder=>{
       const o=document.createElement('option'); o.value=folder; o.textContent=folder; sel.appendChild(o);
@@ -361,7 +372,6 @@
       });
     };
 
-    // défaut = derniers ajouts (réels)
     render(latest);
 
     sel.addEventListener('change',()=>{
@@ -371,45 +381,12 @@
     });
   }
 
-  // -------- Documents (PDF dans /Schemas/Document/, hors /Certificats/)
-  async function buildDocs(){
-    const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
-    const doc = new DOMParser().parseFromString(xml,'application/xml');
-    const urls = [...doc.querySelectorAll('url loc')].map(n=>n.textContent);
-
-    const pdfs = urls.filter(u=>{
-      try{
-        const url = new URL(u);
-        return PDF_RE.test(url.pathname)
-          && url.pathname.includes('/Schemas/Document/')
-          && !url.pathname.includes('/Schemas/Document/Certificats/');
-      }catch{ return false; }
-    });
-
-    const ul=document.getElementById('docList');
-    ul.innerHTML='';
-    if(!pdfs.length){
-      ul.innerHTML='<li style="color:#b9bfca;">Aucun PDF trouvé dans /Schemas/Document/.</li>';
-      return;
-    }
-
-    pdfs.sort((a,b)=>displayName(a).localeCompare(displayName(b),'fr'));
-    pdfs.forEach(href=>{
-      const li=document.createElement('li');
-      const title=document.createElement('div'); title.className='name'; title.textContent=displayName(href);
-      const open=document.createElement('a'); open.className='btn'; open.href=href; open.target='_blank'; open.rel='noopener'; open.textContent='Ouvrir';
-      li.appendChild(title); li.appendChild(open); ul.appendChild(li);
-    });
-  }
-
   (async function init(){
     try{
       await buildGallery();
-      await buildDocs();
     }catch(e){
       console.error(e);
       const g=document.getElementById('galleryGrid'); if(g) g.innerHTML='<div style="color:#b9bfca;padding:16px">Erreur de chargement de la galerie.</div>';
-      const d=document.getElementById('docList'); if(d) d.innerHTML='<li style="color:#b9bfca;padding:16px">Erreur de chargement des documents.</li>';
     }
   })();
 </script>
