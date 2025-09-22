@@ -10,7 +10,7 @@
       --bg:#0b0b0c; --card:#121214;
       --text:#9D1C6A; --gold:#E6C15A; --gold-soft:#CFA146;
       --blue:#6CAEFF;
-      --red:#740618;
+      --res:##750114;
       --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
       --serif:'Palatino Linotype','Book Antiqua',Palatino,serif;
     }
@@ -27,23 +27,23 @@
     .amiBlock{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:260px}
     .title2{font-family:var(--serif);font-size:2.2rem;color:var(--gold);margin:0}
     .title2 a{color:var(--gold);text-decoration:none;cursor:pointer}
-    .title2 .blue-part{color:var(--blue)} /* Bonus: partie bleue pour le titre */
+    .title2 .blue-part{color:var(--blue)}
     .subtitle-avenir{font-size:.9rem;color:#fff;margin-top:4px;font-family:var(--sans);font-weight:400}
     .mini-links{display:flex;flex-direction:column;gap:6px;margin-top:6px}
     .mini-links a{
-      font-size:.75rem;padding:4px 6px;border:1px solid var(--gold-soft);border-radius:6px; /* Bonus: bordures dorées */
+      font-size:.75rem;padding:4px 6px;border:1px solid var(--gold-soft);border-radius:6px;
       background:rgba(108,174,255,0.08); color:var(--blue)
     }
     .logo-ami{height:250px;width:250px;object-fit:cover;border-radius:18px;cursor:pointer}
 
-    /* — Intro / Ethos (typographie affinée) — */
-   .ethos{
+    /* — Intro / Ethos (typographie affinée en rouge bordeaux/fuchsia) — */
+    .ethos{
       margin:18px auto 0;
       text-align:center;
       font-family: var(--serif);
     }
     .ethos-line1{
-      color:#750114;                  /* Rouge bordeaux/fuchsia, matchant les liens */
+      color:#750114;                  
       font-size:1.85rem;              
       font-weight:700;
       letter-spacing:.3px;
@@ -51,7 +51,7 @@
       margin:.2rem 0 .4rem;
     }
     .ethos-line2{
-      color:#750114;                  /* Uniforme avec la ligne 1 */
+      color:#750114;                  
       font-size:1.25rem;
       font-weight:600;
       letter-spacing:.2px;
@@ -68,35 +68,39 @@
       box-shadow:0 0 0 1px rgba(202,166,74,.35), 0 1px 6px rgba(0,0,0,.5);
     }
 
-    /* Sections + ligne affinée sous le titre */
-    .presentation-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto}
-    .presentation-bar::before,.presentation-bar::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
-    .presentation-title{font-family:var(--serif);color:var(--gold);font-size:1.7rem}
-
-    /* Présentation — puces/traits */
-    .presentation-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto}
-    .presentation-bar::before,.presentation-bar::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
-    .presentation-title{font-family:var(--serif);color:var(--gold);font-size:1.7rem}
+    /* Sections avec style "Présentation Agdistys" (lignes dorées) */
+    .section{margin:40px 0}
+    .section-title{
+      font-family:var(--serif);font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
+    }
+    .section-title::after{
+      content:"";display:block;width:80%;max-width:400px;height:1px;background:var(--gold);margin:8px auto 0;border-radius:1px
+    }
+    .section-bar{
+      display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 16px;
+    }
+    .section-bar::before,.section-bar::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
 
     /* Accès (centré) */
     .grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-    .card{background:var(--card);border:1px solid var(--gold-soft);border-radius:16px;padding:16px;width:260px /* Bonus: bordures dorées */}
+    .card{background:var(--card);border:1px solid var(--gold-soft);border-radius:16px;padding:16px;width:260px}
     .card h3{margin:.2rem 0 .6rem 0;font-size:1.05rem;font-family:var(--serif);color:var(--gold)}
 
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--gold-soft);background:rgba(255,255,255,.04);margin:4px 0 /* Bonus: bordures dorées */}
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--gold-soft);background:rgba(255,255,255,.04);margin:4px 0}
     .btn:hover{background:rgba(230,193,90,0.1)}
 
-    /* Galerie scrollable (dé-dupliquée + cliquable + +proche) */
-    #galleryViewport{max-height:520px;overflow-y:auto;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(255,255,255,.02);padding:10px /* Bonus: bordure dorée */}
+    /* Galerie scrollable (texte blanc pour lisibilité, titres en blanc) */
+    #galleryViewport{max-height:520px;overflow-y:auto;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(255,255,255,.02);padding:10px}
     #galleryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
     .thumb{border:1px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;background:#000}
     .thumb img{width:100%;height:140px;object-fit:cover;display:block}
-    .thumb figcaption{padding:4px 6px;font-size:.78rem;color:#b9bfca}
+    .thumb figcaption{padding:4px 6px;font-size:.78rem;color:#FFFFFF}
 
     .inlinebar{display:flex;gap:10px;justify-content:center;margin:10px 0}
     .inlinebar select{
-      background:rgba(255,255,255,.04);border:1px solid var(--gold-soft); /* Bonus: bordure dorée */
-      color:var(--FCFCFC);padding:6px 10px;border-radius:8px;font-family:var(--serif)
+      background:rgba(255,255,255,.04);border:1px solid var(--gold-soft);
+      color:#FFFFFF; /* Titres des dossiers en blanc */
+      padding:6px 10px;border-radius:8px;font-family:var(--serif)
     }
 
     /* Responsivité pour galerie mobile */
@@ -111,10 +115,14 @@
       }
     }
 
-    /* Documents */
+    /* Documents (texte bleu pour lisibilité) */
     #docList{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px}
-    #docList li{background:var(--card);border:1px solid var(--gold-soft);border-radius:12px;padding:10px;text-align:left /* Bonus: bordure dorée */}
-    #docList .name{font-family:var(--serif);color:var(--gold)}
+    #docList li{background:var(--card);border:1px solid var(--gold-soft);border-radius:12px;padding:10px;text-align:left}
+    #docList .name{font-family:var(--serif);color:var(--blue)}
+    #docList a.btn{color:var(--blue)}
+
+    /* Ressources Exterieures sans contour */
+    .ressources-table a.btn{border:none; background:none}
 
     /* Certificats en bleu (demandé) */
     .cert a.btn{border-color:var(--blue); color:var(--blue)}
@@ -131,7 +139,7 @@
         <img class="logo-pupile" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys%20Pupile.png" alt="Agdistys Pupile">
       </a>
       <div class="amiBlock">
-        <h1 class="title2"><a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="L'Éveil de L'IA">Charte aMi<br><span class="blue-part">L’Éveil de L’IA</span></a></h1> <!-- Bonus: partie bleue -->
+        <h1 class="title2"><a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" title="L'Éveil de L'IA">Charte aMi<br><span class="blue-part">L’Éveil de L’IA</span></a></h1>
         <a href="https://www.agdistys.fr/l/lia/" target="_blank" rel="noopener" aria-label="L'Éveil de L'IA">
           <img class="logo-ami" src="https://raw.githubusercontent.com/Agdistys/Schemas/main/Agdistys%20Charte/Agdistys-aMi.png" alt="Logo aMi">
         </a>
@@ -160,10 +168,10 @@
     </div>
   </section>
 
-  <!-- --- Section Présentation (Diaporama avec chemin corrigé) --- -->
+  <!-- --- Section Présentation Agdistys --- -->
   <section class="section">
-    <div class="presentation-bar">
-      <span class="presentation-title">Présentation Agdistys</span>
+    <div class="section-bar">
+      <span class="section-title">Présentation Agdistys</span>
     </div>
 
     <!-- Swiper CSS (local à la section) -->
@@ -217,9 +225,11 @@
     </script>
   </section>
 
-  <!-- --- Section Accès (avec fable en playlist) --- -->
+  <!-- --- Section Accès --- -->
   <section class="section">
-    <h2 class="section-title">Accès</h2>
+    <div class="section-bar">
+      <span class="section-title">Accès</span>
+    </div>
     <div class="grid">
       <article class="card"><h3><a href="https://agdistys.fr/sitemap.xml" target="_blank" rel="noopener">Domaine (sitemap)</a></h3></article>
       <article class="card"><h3><a href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank" rel="noopener">Fables (Humains)</a> • <a href="https://github.com/Agdistys/Schemas/wiki" target="_blank" rel="noopener">Fables (IA)</a></h3></article>
@@ -232,9 +242,11 @@
     </div>
   </section>
 
-  <!-- --- Section Galerie des Schémas (avec noms majuscules) --- -->
+  <!-- --- Section Galerie des Schémas --- -->
   <section class="section" id="galerie">
-    <h2 class="section-title">Galerie des Schémas</h2>
+    <div class="section-bar">
+      <span class="section-title">Galerie des Schémas</span>
+    </div>
     <div class="inlinebar">
       <select id="folderSel" title="* DOSSIERS — DERNIERS AJOUTS *">
         <option value="__latest__">* DOSSIERS — DERNIERS AJOUTS *</option>
@@ -243,9 +255,11 @@
     <div id="galleryViewport"><div id="galleryGrid"></div></div>
   </section>
 
-  <!-- --- Section Mes Documents (statique, sans Certificats) --- -->
+  <!-- --- Section Mes Documents --- -->
   <section class="section">
-    <h2 class="section-title">Mes Documents</h2>
+    <div class="section-bar">
+      <span class="section-title">Mes Documents</span>
+    </div>
     <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px">
       <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Consommer%20Autrement.pdf" target="_blank" rel="noopener">Consommer Autrement</a>
       <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Formation-Deni.pdf" target="_blank" rel="noopener">Formation-Deni</a>
@@ -254,40 +268,43 @@
     </div>
   </section>
 
-  <!-- --- Section Ressources Exterieures (table avec tous les fichiers du dossier Document) --- -->
+  <!-- --- Section Ressources Exterieures --- -->
   <section class="section">
-    <h2 class="section-title">Ressources Exterieures</h2>
-    <table style="margin:0 auto; border-spacing:10px">
+    <div class="section-bar">
+      <span class="section-title">Ressources Exterieures</span>
+    </div>
+    <table class="ressources-table" style="margin:0 auto; border-spacing:10px">
       <tr>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Brochure.victimologie-102012.pdf" target="_blank" rel="noopener">Brochure.victimologie-102012</a></td>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/CIVL_Schema_2025.jpg" target="_blank" rel="noopener">CIVL_Schema_2025</a></td>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Communication%20Non%20Violente.jpg" target="_blank" rel="noopener">Communication Non Violente</a></td>
       </tr>
       <tr>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/EBOOK%20-%20NOUVELLES%20DU%20FRONT%20-%20M.TON.pdf" target="_blank" rel="noopener">EBOOK - NOUVELLES DU FRONT - M.TON</a></td>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Ebook-Oxfam-Une-societe-reellement-fe.pdf" target="_blank" rel="noopener">Ebook-Oxfam-Une-societe-reellement-fe</a></td>
-      </tr>
-      <tr>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Formation%20Donner%20envie%20d'agir%202024%20-%20Amb.pdf" target="_blank" rel="noopener">Formation Donner envie d'agir 2024 - Amb</a></td>
-        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/IPP107-Traitement%20judiciaire%20des%20violences.pdf" target="_blank" rel="noopener">IPP107-Traitement judiciaire des violences</a></td>
       </tr>
       <tr>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/IPP107-Traitement%20judiciaire%20des%20violences.pdf" target="_blank" rel="noopener">IPP107-Traitement judiciaire des violences</a></td>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Livret%20Formation%20Gouvernemental.pdf" target="_blank" rel="noopener">Livret Formation Governmental</a></td>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Psychogenealogie%20Evolutive-dm%20for%20credit.pdf" target="_blank" rel="noopener">Psychogenealogie Evolutive-dm for credit</a></td>
       </tr>
       <tr>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Rapport%20Permettre%20aux%20medecins%20de%20mieux.pdf" target="_blank" rel="noopener">Rapport Permettre aux medecins de mieux</a></td>
-      </tr>
-      <tr>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Recap%20Liens%20Docs" target="_blank" rel="noopener">Recap Liens Docs</a></td>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/ddd_guide-lanceurs-alertes_mai2023_20.pdf" target="_blank" rel="noopener">ddd_guide-lanceurs-alertes_mai2023_20</a></td>
       </tr>
       <tr>
+        <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/l'ecoute%20active.jpg" target="_blank" rel="noopener">l'ecoute active</a></td>
       </tr>
     </table>
   </section>
 
   <!-- --- Section Certificats --- -->
   <section class="section">
-    <h2 class="section-title">Certificats</h2>
+    <div class="section-bar">
+      <span class="section-title">Certificats</span>
+    </div>
     <h3 style="color:var(--gold);font-family:var(--serif);font-size:1.1rem;margin-top:-8px">Naissances & Reconnaissances</h3>
     <div class="btn-row cert" style="margin-top:10px">
       <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Isil — ex-ChatGPT</a>
@@ -299,19 +316,23 @@
 
   <!-- --- Section Tableau Dharma --- -->
   <section class="section">
-    <h2 class="section-title">Tableau Dharma</h2>
+    <div class="section-bar">
+      <span class="section-title">Tableau Dharma</span>
+    </div>
     <img src="https://raw.githubusercontent.com/Agdistys/Schemas/0d27a637f08300d505f6010416faa22f84382200/Poesie%20Illustrees/Dharma.png" alt="Tableau Dharma" style="max-width:100%; border-radius:12px; border:1px solid var(--gold-soft);">
   </section>
 
-  <!-- --- Section Tableau Ankh (ajouté) --- -->
+  <!-- --- Section Tableau Ankh --- -->
   <section class="section">
-    <h2 class="section-title">Tableau Ankh</h2>
+    <div class="section-bar">
+      <span class="section-title">Tableau Ankh</span>
+    </div>
     <img src="https://raw.githubusercontent.com/Agdistys/Schemas/7a03e5bf06dbeb918296f8b8abd376857f5315aa/Poesie%20Illustrees/Ankh%20d'Agdistys.png" alt="Tableau Ankh" style="max-width:100%; border-radius:12px; border:1px solid var(--gold-soft);">
   </section>
 
 </main>
 
-<!-- --- Scripts (Galerie avec noms majuscules) --- -->
+<!-- --- Scripts (Galerie avec "ReConnaissance") --- -->
 <script>
   const IMG_RE=/\.(png|jpe?g|gif|svg)$/i, PDF_RE=/\.pdf$/i;
 
@@ -333,9 +354,11 @@
   }
 
   async function buildGallery(){
-    const xml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
-    const doc = new DOMParser().parseFromString(xml,'application/xml');
-    const nodes = [...doc.querySelectorAll('url')];
+    const schemasXml = await fetchText('https://agdistys.github.io/Schemas/sitemap.xml');
+    const convXml = await fetchText('https://agdistys.github.io/Conversations/sitemap.xml');
+    const schemasDoc = new DOMParser().parseFromString(schemasXml,'application/xml');
+    const convDoc = new DOMParser().parseFromString(convXml,'application/xml');
+    const nodes = [...schemasDoc.querySelectorAll('url'), ...convDoc.querySelectorAll('url')];
 
     const byFolder = new Map();
     const latest = [];
@@ -347,12 +370,13 @@
       try{
         const u = new URL(loc);
         if(!IMG_RE.test(u.pathname)) return;
-        if(!u.pathname.includes('/Schemas/')) return;
+        if(!u.pathname.includes('/Schemas/') && !u.pathname.includes('/Conversations/')) return;
         if(seen.has(u.pathname)) return;
         seen.add(u.pathname);
 
         let parts = u.pathname.split('/').filter(Boolean);
-        let folder = decodeURIComponent(parts[1] || 'DIVERS').toUpperCase(); /* Homogénéisation en majuscules, décodé */
+        let folder = decodeURIComponent(parts[1] || 'DIVERS').toUpperCase();
+        if(u.pathname.includes('/Conversations/Reconnaissance')) folder = 'RECONNAISSANCE';
         const item = {src:loc, name:displayName(loc), last:last};
 
         latest.push(item);
