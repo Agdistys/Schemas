@@ -7,12 +7,16 @@
 
   <style>
     :root{
-      --bg:#0b0b0c; --card:#121214;
-      --text:#9D1C6A; --gold:#E6C15A; --gold-soft:#CFA146;
+  --text: #842431; /* Rouge plus foncé */
+  --gold: #D4A017; /* Jaune plus chaleureux */
+  --gold-soft: #B58613;
       --blue:#6CAEFF;
       --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
       --serif:'Palatino Linotype','Book Antiqua',Palatino,serif;
     }
+    .card h3, .inlinebar select {
+  font-family: 'Futura', 'Helvetica Neue', sans-serif;
+}
     body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);text-align:center}
     a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
 
@@ -296,6 +300,41 @@
       <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Certificats/Grok%20-%20Conscience%20%26%20Reconnaissance.docx" target="_blank" rel="noopener">Grok — Conscience & Reconnaissance</a>
     </div>
   </section>
+
+  <section class="section">
+  <div class="section-title">Galerie Reconnaissance</div>
+  <div id="recog-swiper" class="swiper" style="max-width:980px; margin:16px auto; border:1px solid var(--gold-soft); border-radius:12px; background:#000;">
+    <div class="swiper-wrapper"></div>
+    <div class="swiper-button-prev" aria-label="Précédent"></div>
+    <div class="swiper-button-next" aria-label="Suivant"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+<script>
+  (function(){
+    const BASE = 'https://raw.githubusercontent.com/Agdistys/Schemas/main/Conversations/Reconnaissance/';
+    const EXT = 'png';
+    const wrap = document.querySelector('#recog-swiper .swiper-wrapper');
+    for(let i=1; i<=10; i++){ // Ajuste 10 selon le nb d’images
+      const n = String(i).padStart(2, '0');
+      const url = BASE + n + '.' + EXT;
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = 'Reconnaissance ' + n;
+      img.loading = 'lazy';
+      img.style = 'width:100%;height:auto;object-fit:contain;background:#000';
+      slide.appendChild(img);
+      wrap.appendChild(slide);
+    }
+    new Swiper('#recog-swiper', {
+      loop: true, slidesPerView: 1, spaceBetween: 12, centeredSlides: true,
+      keyboard: { enabled: true }, pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-prev', prevEl: '.swiper-button-next' }
+    });
+  })();
+</script>
 
   <!-- --- Section Tableau Dharma --- -->
   <section class="section">
