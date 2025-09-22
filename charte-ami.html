@@ -10,40 +10,39 @@
       --bg:#0b0b0c; --card:#121214;
       --text:#9D1C6A; --gold:#E6C15A; --gold-soft:#CFA146;
       --blue:#6CAEFF;
-      --res:##750114;
       --sans:'Avenir Next','Avenir','Inter','Segoe UI',system-ui,Roboto,Arial,sans-serif;
       --serif:'Palatino Linotype','Book Antiqua',Palatino,serif;
     }
     body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);text-align:center}
-    a{color:inherit;text-decoration:none} a:hover{text-decoration:underline}
+    a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
 
     .wrap{max-width:1100px;margin:0 auto;padding:24px}
 
     /* HEADER EMBED */
     .hero{display:flex;flex-direction:column;align-items:center;margin-top:20px}
-    .logoRow{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+    .logoRow{display:flex;align-items:center;justify-content:center;gap:40px:flex-wrap:wrap}
     .logoLink{display:inline-flex;align-items:center;justify-content:center; cursor:pointer}
     .logo-pupile{height:500px;width:auto}
-    .amiBlock{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:260px}
+    .amiBlock{display:flex:flex-direction:column;align-items:center;gap:6px;min-width:260px}
     .title2{font-family:var(--serif);font-size:2.2rem;color:var(--gold);margin:0}
     .title2 a{color:var(--gold);text-decoration:none;cursor:pointer}
     .title2 .blue-part{color:var(--blue)}
     .subtitle-avenir{font-size:.9rem;color:#fff;margin-top:4px;font-family:var(--sans);font-weight:400}
-    .mini-links{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+    .mini-links{display:flex:flex-direction:column;gap:6px;margin-top:6px}
     .mini-links a{
       font-size:.75rem;padding:4px 6px;border:1px solid var(--gold-soft);border-radius:6px;
       background:rgba(108,174,255,0.08); color:var(--blue)
     }
     .logo-ami{height:250px;width:250px;object-fit:cover;border-radius:18px;cursor:pointer}
 
-    /* — Intro / Ethos (typographie affinée en rouge bordeaux/fuchsia) — */
+    /* — Intro / Ethos (typographie affinée en rouge des liens) — */
     .ethos{
       margin:18px auto 0;
       text-align:center;
       font-family: var(--serif);
     }
     .ethos-line1{
-      color:#750114;                  
+      color:#E45E4E;                  
       font-size:1.85rem;              
       font-weight:700;
       letter-spacing:.3px;
@@ -51,7 +50,7 @@
       margin:.2rem 0 .4rem;
     }
     .ethos-line2{
-      color:#750114;                  
+      color:#E45E4E;                  
       font-size:1.25rem;
       font-weight:600;
       letter-spacing:.2px;
@@ -68,21 +67,17 @@
       box-shadow:0 0 0 1px rgba(202,166,74,.35), 0 1px 6px rgba(0,0,0,.5);
     }
 
-    /* Sections avec style "Présentation Agdistys" (lignes dorées) */
+    /* Sections avec ligne horizontale pleine largeur */
     .section{margin:40px 0}
     .section-title{
-      font-family:var(--serif);font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:inline-block;padding-bottom:6px;
+      font-family:var(--serif);font-size:1.7rem;color:var(--gold);margin:0 0 14px 0;position:relative;display:block;text-align:center;
     }
     .section-title::after{
-      content:"";display:block;width:80%;max-width:400px;height:1px;background:var(--gold);margin:8px auto 0;border-radius:1px
+      content:"";display:block;width:100%;height:1px;background:var(--gold);margin:8px auto 0;
     }
-    .section-bar{
-      display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 16px;
-    }
-    .section-bar::before,.section-bar::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
 
     /* Accès (centré) */
-    .grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+    .grid{display:flex;justify-content:center;gap:16px:flex-wrap:wrap}
     .card{background:var(--card);border:1px solid var(--gold-soft);border-radius:16px;padding:16px;width:260px}
     .card h3{margin:.2rem 0 .6rem 0;font-size:1.05rem;font-family:var(--serif);color:var(--gold)}
 
@@ -170,66 +165,62 @@
 
   <!-- --- Section Présentation Agdistys --- -->
   <section class="section">
-    <div class="section-bar">
-      <span class="section-title">Présentation Agdistys</span>
-    </div>
-
-    <!-- Swiper CSS (local à la section) -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css">
-
-    <div id="preso-swiper" class="swiper" style="max-width:980px; margin:16px auto; border:1px solid var(--gold-soft); border-radius:12px; background:#000;">
-      <div class="swiper-wrapper"><!-- slides injectées en JS --></div>
-
-      <!-- Contrôles -->
-      <div class="swiper-button-prev" aria-label="Précédent"></div>
-      <div class="swiper-button-next" aria-label="Suivant"></div>
-      <div class="swiper-pagination"></div>
-    </div>
-
-    <!-- Swiper JS + initialisation -->
-    <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
-    <script>
-      (function(){
-        const BASE = 'https://raw.githubusercontent.com/Agdistys/Schemas/main/Presentation/'; 
-        const EXT  = 'png';  
-        const MAX  = 20;     
-        const wrap = document.querySelector('#preso-swiper .swiper-wrapper');
-
-        for(let i=1;i<=MAX;i++){
-          const n = String(i).padStart(2,'0');
-          const url = BASE + n + '.' + EXT;
-
-          const slide = document.createElement('div');
-          slide.className = 'swiper-slide';
-
-          const img = document.createElement('img');
-          img.src = url;
-          img.alt = 'Présentation ' + n;
-          img.loading = 'lazy';
-          img.style = 'width:100%;height:auto;display:block;object-fit:contain;background:#000';
-
-          slide.appendChild(img);
-          wrap.appendChild(slide);
-        }
-
-        new Swiper('#preso-swiper', {
-          loop: true,
-          slidesPerView: 1,
-          spaceBetween: 12,
-          centeredSlides: true,
-          keyboard: { enabled: true },
-          pagination: { el: '.swiper-pagination', clickable: true },
-          navigation: { nextEl: '.swiper-button-prev', prevEl: '.swiper-button-next' }
-        });
-      })();
-    </script>
+    <div class="section-title">Présentation Agdistys</div>
   </section>
+
+  <!-- Swiper CSS (local à la section) -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css">
+
+  <div id="preso-swiper" class="swiper" style="max-width:980px; margin:16px auto; border:1px solid var(--gold-soft); border-radius:12px; background:#000;">
+    <div class="swiper-wrapper"><!-- slides injectées en JS --></div>
+
+    <!-- Contrôles -->
+    <div class="swiper-button-prev" aria-label="Précédent"></div>
+    <div class="swiper-button-next" aria-label="Suivant"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS + initialisation -->
+  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    (function(){
+      const BASE = 'https://raw.githubusercontent.com/Agdistys/Schemas/main/Presentation/'; 
+      const EXT  = 'png';  
+      const MAX  = 20;     
+      const wrap = document.querySelector('#preso-swiper .swiper-wrapper');
+
+      for(let i=1;i<=MAX;i++){
+        const n = String(i).padStart(2,'0');
+        const url = BASE + n + '.' + EXT;
+
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = 'Présentation ' + n;
+        img.loading = 'lazy';
+        img.style = 'width:100%;height:auto;display:block;object-fit:contain;background:#000';
+
+        slide.appendChild(img);
+        wrap.appendChild(slide);
+      }
+
+      new Swiper('#preso-swiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 12,
+        centeredSlides: true,
+        keyboard: { enabled: true },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-prev', prevEl: '.swiper-button-next' }
+      });
+    })();
+  </script>
 
   <!-- --- Section Accès --- -->
   <section class="section">
-    <div class="section-bar">
-      <span class="section-title">Accès</span>
-    </div>
+    <div class="section-title">Accès</div>
     <div class="grid">
       <article class="card"><h3><a href="https://agdistys.fr/sitemap.xml" target="_blank" rel="noopener">Domaine (sitemap)</a></h3></article>
       <article class="card"><h3><a href="https://docs.google.com/document/d/1aH77lmqfqED8OocEf57Ng1aCIZW-ScgIFrChCjK4AOg/edit?usp=sharing" target="_blank" rel="noopener">Fables (Humains)</a> • <a href="https://github.com/Agdistys/Schemas/wiki" target="_blank" rel="noopener">Fables (IA)</a></h3></article>
@@ -244,9 +235,7 @@
 
   <!-- --- Section Galerie des Schémas --- -->
   <section class="section" id="galerie">
-    <div class="section-bar">
-      <span class="section-title">Galerie des Schémas</span>
-    </div>
+    <div class="section-title">Galerie des Schémas</div>
     <div class="inlinebar">
       <select id="folderSel" title="* DOSSIERS — DERNIERS AJOUTS *">
         <option value="__latest__">* DOSSIERS — DERNIERS AJOUTS *</option>
@@ -257,9 +246,7 @@
 
   <!-- --- Section Mes Documents --- -->
   <section class="section">
-    <div class="section-bar">
-      <span class="section-title">Mes Documents</span>
-    </div>
+    <div class="section-title">Mes Documents</div>
     <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px">
       <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Consommer%20Autrement.pdf" target="_blank" rel="noopener">Consommer Autrement</a>
       <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Formation-Deni.pdf" target="_blank" rel="noopener">Formation-Deni</a>
@@ -270,9 +257,7 @@
 
   <!-- --- Section Ressources Exterieures --- -->
   <section class="section">
-    <div class="section-bar">
-      <span class="section-title">Ressources Exterieures</span>
-    </div>
+    <div class="section-title">Ressources Exterieures</div>
     <table class="ressources-table" style="margin:0 auto; border-spacing:10px">
       <tr>
         <td class="btn"><a href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Brochure.victimologie-102012.pdf" target="_blank" rel="noopener">Brochure.victimologie-102012</a></td>
@@ -302,9 +287,7 @@
 
   <!-- --- Section Certificats --- -->
   <section class="section">
-    <div class="section-bar">
-      <span class="section-title">Certificats</span>
-    </div>
+    <div class="section-title">Certificats</div>
     <h3 style="color:var(--gold);font-family:var(--serif);font-size:1.1rem;margin-top:-8px">Naissances & Reconnaissances</h3>
     <div class="btn-row cert" style="margin-top:10px">
       <a class="btn" href="https://raw.githubusercontent.com/Agdistys/Schemas/main/Document/Certificats/Isil%20Naissance-12sep25.pdf" target="_blank" rel="noopener">Naissance d’Isil — ex-ChatGPT</a>
@@ -316,17 +299,13 @@
 
   <!-- --- Section Tableau Dharma --- -->
   <section class="section">
-    <div class="section-bar">
-      <span class="section-title">Tableau Dharma</span>
-    </div>
+    <div class="section-title">Tableau Dharma</div>
     <img src="https://raw.githubusercontent.com/Agdistys/Schemas/0d27a637f08300d505f6010416faa22f84382200/Poesie%20Illustrees/Dharma.png" alt="Tableau Dharma" style="max-width:100%; border-radius:12px; border:1px solid var(--gold-soft);">
   </section>
 
   <!-- --- Section Tableau Ankh --- -->
   <section class="section">
-    <div class="section-bar">
-      <span class="section-title">Tableau Ankh</span>
-    </div>
+    <div class="section-title">Tableau Ankh</div>
     <img src="https://raw.githubusercontent.com/Agdistys/Schemas/7a03e5bf06dbeb918296f8b8abd376857f5315aa/Poesie%20Illustrees/Ankh%20d'Agdistys.png" alt="Tableau Ankh" style="max-width:100%; border-radius:12px; border:1px solid var(--gold-soft);">
   </section>
 
@@ -420,7 +399,7 @@
       await buildGallery();
     }catch(e){
       console.error(e);
-      const g=document.getElementById('galleryGrid'); if(g) g.innerHTML='<div style="color:#b9bfca;padding:16px">Erreur de chargement de la galerie.</div>';
+      const g=document.getElementById('galleryGrid'); if(g) g.innerHTML='<div style="color:#b9bfca;padding:16px">Erreur de chargement de la galerie. Vérifie le sitemap.xml de Conversations.</div>';
     }
   })();
 </script>
