@@ -274,6 +274,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Completude%20Alignement.png</loc>
+    <lastmod>2025-09-23T05:10:46+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Completude%20Alignement.png</image:loc>
+      <image:caption>Completude Alignement.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Cooperation%20%26%20Competition.png</loc>
     <lastmod>2025-09-07T03:06:47+02:00</lastmod>
     <image:image>
@@ -303,6 +311,14 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/De%CC%81che%CC%81ances%20%26%20Evolution.png</image:loc>
       <image:caption>Déchéances &amp; Evolution.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Diable%20%26%20Divinite%CC%81%20-%20Maladie%20%26%20Sante%CC%81.png</loc>
+    <lastmod>2025-09-23T05:10:46+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Diable%20%26%20Divinite%CC%81%20-%20Maladie%20%26%20Sante%CC%81.png</image:loc>
+      <image:caption>Diable &amp; Divinité - Maladie &amp; Santé.png</image:caption>
     </image:image>
   </url>
   <url>
@@ -386,11 +402,27 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Representation%20Symboliques%20PsychloBiologiques.png</loc>
+    <lastmod>2025-09-23T05:10:46+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Representation%20Symboliques%20PsychloBiologiques.png</image:loc>
+      <image:caption>Representation Symboliques PsychloBiologiques.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Representation%20de%20l%27ame.png</loc>
     <lastmod>2025-09-07T03:06:47+02:00</lastmod>
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Representation%20de%20l%27ame.png</image:loc>
       <image:caption>Representation de l'ame.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Symbolique%20Biologique.png</loc>
+    <lastmod>2025-09-23T05:10:46+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/De%CC%81finition%20Symbolique/Symbolique%20Biologique.png</image:loc>
+      <image:caption>Symbolique Biologique.png</image:caption>
     </image:image>
   </url>
   <url>
