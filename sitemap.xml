@@ -122,6 +122,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/COGNITIF/Conscience%20%26%20Connaissance%20-%20de%20Soi.png</loc>
+    <lastmod>2025-09-30T01:56:54+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/COGNITIF/Conscience%20%26%20Connaissance%20-%20de%20Soi.png</image:loc>
+      <image:caption>Conscience &amp; Connaissance - de Soi.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/COGNITIF/Conscience%20Definition.png</loc>
     <lastmod>2025-09-18T03:10:32+02:00</lastmod>
     <image:image>
@@ -495,14 +503,6 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/De%CC%81ni%20%26%20Conscience/FEM%202D.png</image:loc>
       <image:caption>FEM 2D.png</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://agdistys.github.io/Schemas/De%CC%81ni%20%26%20Conscience/Le%20Savoir-E%CC%82tre.png</loc>
-    <lastmod>2025-09-28T23:36:18+02:00</lastmod>
-    <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/De%CC%81ni%20%26%20Conscience/Le%20Savoir-E%CC%82tre.png</image:loc>
-      <image:caption>Le Savoir-Être.png</image:caption>
     </image:image>
   </url>
   <url>
