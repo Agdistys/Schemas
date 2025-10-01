@@ -10,7 +10,7 @@ OUTPUT_SITEMAP = "sitemap.xml"
 OUTPUT_UPDATES = "latest-updates.json"
 # --------------
 
-# --- SECTION 1 : FONCTIONS POUR LE SITEMAP (EXISTANT) ---
+# --- SECTION 1 : FONCTIONS POUR LE SITEMAP ---
 def git_lastmod(path):
     """Dernière date ISO 8601 depuis git, sinon mtime fichier."""
     try:
@@ -53,10 +53,10 @@ def make_entry(rel_path):
         " </url>\n"
     )
 
-# --- SECTION 2 : FONCTION POUR LES DERNIERS AJOUTS ---
-def get_latest_commits():
-    """Récupère les 10 derniers commits avec message et date formatée."""
-    result = subprocess.run(['git', 'log', '--pretty=format:%s|%ad', '-n', '10'],
+# --- SECTION 2 : FONCTION POUR TOUS LES DERNIERS AJOUTS ---
+def get_all_updates():
+    """Récupère tous les commits avec message et date formatée."""
+    result = subprocess.run(['git', 'log', '--pretty=format:%s|%ad'],
                            capture_output=True, text=True)
     commits = result.stdout.strip().split('\n')
     updates = []
@@ -64,7 +64,7 @@ def get_latest_commits():
         if commit:
             message, date_str = commit.split('|', 1)
             date = datetime.datetime.strptime(date_str, '%a %b %d %H:%M:%S %Y %z').strftime('%d/%m/%Y')
-            updates.append({"title": message, "date": date})
+            updates.append({"title": message, "date": date, "url": f"{BASE_URL}/{quote(message.replace(' ', '_'), safe='/')}.png"})
     return updates
 
 # --- SECTION 3 : FONCTION PRINCIPALE ---
@@ -81,8 +81,8 @@ def main():
     with open(OUTPUT_SITEMAP, "w", encoding="utf-8") as f:
         f.write(xml)
 
-    # Génère les derniers ajouts
-    updates = get_latest_commits()
+    # Génère tous les ajouts
+    updates = get_all_updates()
     with open(OUTPUT_UPDATES, "w", encoding="utf-8") as f:
         import json
         json.dump(updates, f, ensure_ascii=False, indent=2)
