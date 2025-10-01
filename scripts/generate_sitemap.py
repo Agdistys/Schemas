@@ -56,7 +56,7 @@ def make_entry(rel_path):
 # --- SECTION 2 : FONCTION POUR LES DERNIERS AJOUTS ---
 def get_latest_commits():
     """Récupère les 10 derniers commits avec message et date formatée."""
-    result = subprocess.run(['git', 'log', '--pretty=format:%s|%ad', '-n', '10'], 
+    result = subprocess.run(['git', 'log', '--pretty=format:%s|%ad', '-n', '10'],
                            capture_output=True, text=True)
     commits = result.stdout.strip().split('\n')
     updates = []
@@ -69,10 +69,23 @@ def get_latest_commits():
 
 # --- SECTION 3 : FONCTION PRINCIPALE ---
 def main():
-    # Génère le sitemap (partie existante)
+    # Génère le sitemap
     entries = [make_entry(rel) for rel in sorted(iter_images("."))]
     xml = (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+        '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' +
+        "".join(entries) +
+        "</urlset>\n"
+    )
+    with open(OUTPUT_SITEMAP, "w", encoding="utf-8") as f:
+        f.write(xml)
+
+    # Génère les derniers ajouts
+    updates = get_latest_commits()
+    with open(OUTPUT_UPDATES, "w", encoding="utf-8") as f:
+        import json
+        json.dump(updates, f, ensure_ascii=False, indent=2)
+
 if __name__ == "__main__":
-    sys.exit(main()))
+    sys.exit(main())
