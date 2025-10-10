@@ -16,24 +16,44 @@ OUTPUT_UPDATES = "latest-updates.json"
 
 # --- SECTION 1 : FONCTIONS POUR LE SITEMAP ---
 def git_lastmod(path):
-    """Dernière date ISO 8601 depuis git, sinon mtime fichier."""
+    """Dernière date ISO 8601 depuis git, sinon mtime fichier. Debug prints."""
+    print(f"DEBUG: git_lastmod called for path: {path}", file=sys.stderr)
     try:
+        # Assure-toi que le path est absolu pour git
+        abs_path = os.path.abspath(path)
         ts = subprocess.check_output(
-            ["git", "log", "-1", "--format=%cI", "--", path],
-            stderr=subprocess.DEVNULL
+            ["git", "log", "-1", "--format=%cI", "--", abs_path],
+            stderr=subprocess.STDOUT,  # Capture stderr pour debug
+            cwd=os.getcwd()  # Force cwd
         ).decode().strip()
         if ts:
+            print(f"DEBUG: Git ts found: {ts}", file=sys.stderr)
             return ts
-    except Exception:
-        pass
+    except subprocess.CalledProcessError as e:
+        print(f"DEBUG: Git subprocess error for {path}: {e.returncode}, output: {e.output.decode()}", file=sys.stderr)
+    except Exception as e:
+        print(f"DEBUG: Unexpected error in git_lastmod for {path}: {e}", file=sys.stderr)
+    
+    # Fallback mtime
     try:
-        dt = datetime.datetime.fromtimestamp(os.path.getmtime(path), tz=datetime.timezone.utc)
-        return dt.replace(microsecond=0).isoformat() + "Z"
-    except Exception:
-        return datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"  # Fallback actuel si erreur
+        if os.path.exists(path):
+            dt = datetime.datetime.fromtimestamp(os.path.getmtime(path), tz=datetime.timezone.utc)
+            ts = dt.replace(microsecond=0).isoformat() + "Z"
+            print(f"DEBUG: Using mtime: {ts}", file=sys.stderr)
+            return ts
+        else:
+            print(f"DEBUG: Path {path} does not exist for mtime", file=sys.stderr)
+    except Exception as e:
+        print(f"DEBUG: mtime error: {e}", file=sys.stderr)
+    
+    # Ultimate fallback
+    ts = datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+    print(f"DEBUG: Using now: {ts}", file=sys.stderr)
+    return ts
 
 def iter_images(root="."):
-    """Itère sur les images, ignorant .git et fichiers cachés."""
+    """Itère sur les images, debug count."""
+    images = []
     for dirpath, dirnames, filenames in os.walk(root):
         dirnames[:] = [d for d in dirnames if not d.startswith(".") and d != ".git"]
         for fn in filenames:
@@ -42,7 +62,9 @@ def iter_images(root="."):
             ext = os.path.splitext(fn)[1].lower()
             if ext in IMAGE_EXT:
                 rel = os.path.relpath(os.path.join(dirpath, fn), root)
-                yield rel
+                images.append(rel)
+    print(f"DEBUG: Found {len(images)} images", file=sys.stderr)
+    return sorted(images)
 
 def make_entry(rel_path):
     """Crée une entrée XML pour l'image."""
@@ -64,10 +86,11 @@ def make_entry(rel_path):
 
 # --- SECTION 2 : FONCTION POUR LES DERNIERS AJOUTS ---
 def get_latest_commits():
-    """Récupère les 10 derniers commits avec message et date formatée, gérant erreurs."""
+    """Récupère les 10 derniers commits, debug."""
+    print("DEBUG: Starting get_latest_commits", file=sys.stderr)
     try:
         result = subprocess.run(['git', 'log', '--pretty=format:%s|%ad', '-n', '10'],
-                               capture_output=True, text=True, check=True)
+                               capture_output=True, text=True, check=True, cwd=os.getcwd())
         commits = result.stdout.strip().split('\n')
         updates = []
         for commit in commits:
@@ -80,16 +103,25 @@ def get_latest_commits():
                 else:
                     date = datetime.datetime.utcnow().strftime('%d/%m/%Y')
                 updates.append({"title": message, "date": date})
+        print(f"DEBUG: Found {len(updates)} commits", file=sys.stderr)
         return updates
+    except subprocess.CalledProcessError as e:
+        print(f"DEBUG: Git log called error: {e.returncode}, output: {e.output}", file=sys.stderr)
+    except ValueError as e:  # Pour strptime
+        print(f"DEBUG: Date parse error: {e}", file=sys.stderr)
     except Exception as e:
-        print(f"Erreur git log: {e}", file=sys.stderr)
-        return []  # Retourne vide si erreur, évite crash
+        print(f"DEBUG: Unexpected in get_latest_commits: {e}", file=sys.stderr)
+    return []
 
 # --- SECTION 3 : FONCTION PRINCIPALE ---
 def main():
+    print("DEBUG: Starting main()", file=sys.stderr)
     try:
-        # Génère le sitemap
-        entries = [make_entry(rel) for rel in sorted(iter_images("."))]
+        # Images
+        images = list(iter_images("."))
+        entries = [make_entry(rel) for rel in images]
+        print(f"DEBUG: Generated {len(entries)} entries", file=sys.stderr)
+        
         xml = (
             '<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
@@ -99,15 +131,20 @@ def main():
         )
         with open(OUTPUT_SITEMAP, "w", encoding="utf-8") as f:
             f.write(xml)
+        print(f"DEBUG: Wrote sitemap with {len(entries)} urls", file=sys.stderr)
 
-        # Génère les updates
+        # Updates
         updates = get_latest_commits()
         with open(OUTPUT_UPDATES, "w", encoding="utf-8") as f:
             json.dump(updates, f, ensure_ascii=False, indent=2)
+        print(f"DEBUG: Wrote updates with {len(updates)} items", file=sys.stderr)
 
+        print("DEBUG: All good, exit 0", file=sys.stderr)
         return 0
     except Exception as e:
-        print(f"Erreur principale: {e}", file=sys.stderr)
+        print(f"ERREUR FATALE: {e}", file=sys.stderr)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
         return 1
 
 if __name__ == "__main__":
