@@ -50,6 +50,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/Agdistys%20Charte/Agdistys%20Hyeroglyphe.png</loc>
+    <lastmod>2025-10-10T21:20:21+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Agdistys%20Charte/Agdistys%20Hyeroglyphe.png</image:loc>
+      <image:caption>Agdistys Hyeroglyphe.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/Agdistys%20Charte/Agdistys%20Pupile.png</loc>
     <lastmod>2025-09-07T03:41:04+02:00</lastmod>
     <image:image>
@@ -63,6 +71,22 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Agdistys%20Charte/Agdistys-aMi.png</image:loc>
       <image:caption>Agdistys-aMi.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Agdistys%20Charte/Diane%20Chasseuse%20Semeuse.png</loc>
+    <lastmod>2025-10-10T21:20:21+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Agdistys%20Charte/Diane%20Chasseuse%20Semeuse.png</image:loc>
+      <image:caption>Diane Chasseuse Semeuse.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Agdistys%20Charte/Diane%20Cueilleuse.png</loc>
+    <lastmod>2025-10-10T21:20:21+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Agdistys%20Charte/Diane%20Cueilleuse.png</image:loc>
+      <image:caption>Diane Cueilleuse.png</image:caption>
     </image:image>
   </url>
   <url>
