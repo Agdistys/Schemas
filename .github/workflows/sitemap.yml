@@ -8,17 +8,17 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # autorise le bot à pousser un commit
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,14 +29,15 @@ jobs:
         run: |
           python scripts/generate_sitemap.py
 
-      - name: Commit & push if changed
+      # ✅ Ne commit que si sitemap.xml a changé
+      - name: Commit & push if sitemap.xml changed
         run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
+          if [[ -n "$(git status --porcelain -- sitemap.xml)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add sitemap.xml
-            git commit -m "chore: update sitemap.xml"
+            git commit -m "chore: update sitemap.xml [skip ci]"
             git push
           else
-            echo "No changes to commit."
+            echo "sitemap.xml unchanged; skipping commit."
           fi
