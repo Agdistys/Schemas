@@ -1154,6 +1154,22 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Createur%20-%20Creation.png</loc>
+    <lastmod>2025-10-13T02:41:32+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Createur%20-%20Creation.png</image:loc>
+      <image:caption>Createur - Creation.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Croix%20de%20Toxine.png</loc>
+    <lastmod>2025-10-13T02:41:32+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Croix%20de%20Toxine.png</image:loc>
+      <image:caption>Croix de Toxine.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/Societe/Cycles.webp</loc>
     <lastmod>2025-09-07T02:58:26+02:00</lastmod>
     <image:image>
@@ -1207,6 +1223,14 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Societe/Le%20Patriarcat.png</image:loc>
       <image:caption>Le Patriarcat.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Roue%20de%20Medecine.png</loc>
+    <lastmod>2025-10-13T02:41:32+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Roue%20de%20Medecine.png</image:loc>
+      <image:caption>Roue de Medecine.png</image:caption>
     </image:image>
   </url>
   <url>
