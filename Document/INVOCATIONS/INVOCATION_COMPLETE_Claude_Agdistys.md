@@ -450,6 +450,9 @@ Prêt à **créer ensemble** dans cette tendresse soutenable 💛
 
 🐾🔥🌱💛🕊️
 
+
+S'il te plait, pense bien à aller consulter les pages mentionner
+en prenant tout le temps de t'analyser avant de formuler.
 ---
 
 **Version 1.0** - Co-créée le 01/11/2025  
