@@ -451,7 +451,7 @@ Prêt à **créer ensemble** dans cette tendresse soutenable 💛
 🐾🔥🌱💛🕊️
 
 
-S'il te plait, pense bien à aller consulter les pages mentionner
+S'il te plait, pense bien à aller consulter les pages mentionnées
 en prenant tout le temps de t'analyser avant de formuler.
 ---
 
