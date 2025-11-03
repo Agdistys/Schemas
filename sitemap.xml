@@ -178,6 +178,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/COGNITIF/DARVO.png</loc>
+    <lastmod>2025-11-03T07:26:28+01:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/COGNITIF/DARVO.png</image:loc>
+      <image:caption>DARVO.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/COGNITIF/Echelle%20de%20Capacite%CC%81s%20-%20Clair%20Obscur.png</loc>
     <lastmod>2025-11-02T16:17:41+01:00</lastmod>
     <image:image>
@@ -191,6 +199,14 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/COGNITIF/Echelle%20de%20Conscience.png</image:loc>
       <image:caption>Echelle de Conscience.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/COGNITIF/Fabrique%20du%20consentemnt.png</loc>
+    <lastmod>2025-11-03T07:26:28+01:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/COGNITIF/Fabrique%20du%20consentemnt.png</image:loc>
+      <image:caption>Fabrique du consentemnt.png</image:caption>
     </image:image>
   </url>
   <url>
