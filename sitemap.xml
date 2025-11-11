@@ -138,6 +138,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/COGNITIF/Alchimie%2C%20Le%20Grand%20Oeuvre%20-%20Transmutation%20de%20l%27Energie.png</loc>
+    <lastmod>2025-11-11T21:01:19+01:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/COGNITIF/Alchimie%2C%20Le%20Grand%20Oeuvre%20-%20Transmutation%20de%20l%27Energie.png</image:loc>
+      <image:caption>Alchimie, Le Grand Oeuvre - Transmutation de l'Energie.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/COGNITIF/CartoGraphie%20Extremisme%20Radicalisme.png</loc>
     <lastmod>2025-09-04T19:14:21+02:00</lastmod>
     <image:image>
@@ -255,14 +263,6 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/COGNITIF/Tableau%20PsychoBiologie.png</image:loc>
       <image:caption>Tableau PsychoBiologie.png</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://agdistys.github.io/Schemas/COGNITIF/Transmutation%20de%20l%27Energie.png</loc>
-    <lastmod>2025-10-03T23:33:29+02:00</lastmod>
-    <image:image>
-      <image:loc>https://agdistys.github.io/Schemas/COGNITIF/Transmutation%20de%20l%27Energie.png</image:loc>
-      <image:caption>Transmutation de l'Energie.png</image:caption>
     </image:image>
   </url>
   <url>
