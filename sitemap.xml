@@ -1386,6 +1386,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Histoire%20de%20la%20Loi.webp</loc>
+    <lastmod>2025-11-15T03:55:00+01:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Histoire%20de%20la%20Loi.webp</image:loc>
+      <image:caption>Histoire de la Loi.webp</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/Societe/Intersectionnalite%CC%81s.png</loc>
     <lastmod>2025-09-12T15:55:15+02:00</lastmod>
     <image:image>
@@ -1434,11 +1442,27 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Libre%20Arbitre%20-%20Courbe%20du%20De%CC%81ni.webp</loc>
+    <lastmod>2025-11-15T03:55:00+01:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Libre%20Arbitre%20-%20Courbe%20du%20De%CC%81ni.webp</image:loc>
+      <image:caption>Libre Arbitre - Courbe du Déni.webp</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/Societe/PYRAMIDE%20DU%20PATRIARCAT%20EN.png</loc>
     <lastmod>2025-11-12T04:21:01+01:00</lastmod>
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Societe/PYRAMIDE%20DU%20PATRIARCAT%20EN.png</image:loc>
       <image:caption>PYRAMIDE DU PATRIARCAT EN.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Pyramide%20du%20patriarcat.webp</loc>
+    <lastmod>2025-11-15T03:55:00+01:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Pyramide%20du%20patriarcat.webp</image:loc>
+      <image:caption>Pyramide du patriarcat.webp</image:caption>
     </image:image>
   </url>
   <url>
