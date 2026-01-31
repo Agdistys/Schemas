@@ -1482,6 +1482,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/La%20Sante%CC%81.png</loc>
+    <lastmod>2026-01-31T22:31:21+01:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/La%20Sante%CC%81.png</image:loc>
+      <image:caption>La Santé.png</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/Societe/Le%20Grand%20Oeuvre.png</loc>
     <lastmod>2025-09-13T20:34:25+02:00</lastmod>
     <image:image>
@@ -1495,6 +1503,14 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Societe/Le%20Patriarcat.png</image:loc>
       <image:caption>Le Patriarcat.png</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Le%20Trauma.png</loc>
+    <lastmod>2026-01-31T22:31:21+01:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Le%20Trauma.png</image:loc>
+      <image:caption>Le Trauma.png</image:caption>
     </image:image>
   </url>
   <url>
