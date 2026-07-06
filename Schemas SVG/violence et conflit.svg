@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1094.67 914.11">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        font-family: Charter-Roman, Charter;
+      }
+
+      .cls-1, .cls-7, .cls-8, .cls-9, .cls-4, .cls-10 {
+        font-size: 18.7px;
+      }
+
+      .cls-1, .cls-11, .cls-12, .cls-13, .cls-14 {
+        fill: #0d0d18;
+      }
+
+      .cls-2 {
+        fill: #662483;
+      }
+
+      .cls-2, .cls-15, .cls-5, .cls-13 {
+        font-size: 14.02px;
+      }
+
+      .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21 {
+        font-family: Avenir-Roman, Avenir;
+      }
+
+      .cls-16, .cls-22 {
+        letter-spacing: 0em;
+      }
+
+      .cls-23 {
+        fill: #be1622;
+      }
+
+      .cls-24, .cls-25, .cls-26, .cls-9 {
+        stroke: #fff;
+      }
+
+      .cls-24, .cls-25, .cls-15, .cls-9, .cls-27, .cls-13, .cls-14 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-24, .cls-27 {
+        fill: none;
+      }
+
+      .cls-3, .cls-28, .cls-29 {
+        fill: #f2c468;
+      }
+
+      .cls-17, .cls-18, .cls-30, .cls-26, .cls-31, .cls-9, .cls-4, .cls-32 {
+        fill: #fff;
+      }
+
+      .cls-33 {
+        fill: #929292;
+      }
+
+      .cls-7, .cls-10, .cls-34 {
+        font-family: Charter-Bold, Charter;
+        font-weight: 700;
+      }
+
+      .cls-18 {
+        font-size: 10px;
+      }
+
+      .cls-30 {
+        font-family: Avenir-Black, Avenir;
+        font-size: 28.31px;
+        font-weight: 800;
+      }
+
+      .cls-35 {
+        font-size: 47px;
+        letter-spacing: .1em;
+      }
+
+      .cls-35, .cls-36, .cls-19, .cls-37, .cls-38 {
+        fill: #e30613;
+      }
+
+      .cls-35, .cls-15, .cls-9, .cls-13 {
+        font-family: 28DaysLater, '28 Days Later', sans-serif;
+      }
+
+      .cls-36, .cls-29 {
+        font-family: Avenir-Oblique, Avenir;
+      }
+
+      .cls-36, .cls-29, .cls-39 {
+        font-style: oblique;
+      }
+
+      .cls-25 {
+        stroke-width: .5px;
+      }
+
+      .cls-12 {
+        font-family: AppleColorEmoji, 'Apple Color Emoji';
+        font-size: 30.27px;
+        letter-spacing: .2em;
+      }
+
+      .cls-40 {
+        letter-spacing: 0em;
+      }
+
+      .cls-41 {
+        letter-spacing: 0em;
+      }
+
+      .cls-15, .cls-9, .cls-13 {
+        stroke-width: .25px;
+      }
+
+      .cls-15, .cls-13 {
+        letter-spacing: .1em;
+      }
+
+      .cls-42 {
+        letter-spacing: 0em;
+      }
+
+      .cls-9 {
+        letter-spacing: .2em;
+      }
+
+      .cls-10 {
+        fill: #b3105e;
+      }
+
+      .cls-21, .cls-43 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-39 {
+        font-family: Avenir-BookOblique, Avenir;
+      }
+
+      .cls-34 {
+        font-size: 47.19px;
+      }
+
+      .cls-27, .cls-13 {
+        stroke: #0d0d18;
+      }
+
+      .cls-44 {
+        letter-spacing: -.1em;
+      }
+
+      .cls-5 {
+        fill: #009640;
+      }
+
+      .cls-45 {
+        letter-spacing: -.07em;
+      }
+
+      .cls-46 {
+        letter-spacing: -.09em;
+      }
+
+      .cls-47 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-48 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-49 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-50 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-51 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-52 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-53 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-54 {
+        letter-spacing: -.05em;
+      }
+
+      .cls-32, .cls-38 {
+        stroke: #e30613;
+      }
+
+      .cls-6 {
+        fill: #f9b233;
+        font-size: 19.45px;
+      }
+
+      .cls-14 {
+        stroke: url(#Dégradé_sans_nom_12);
+        stroke-width: 9px;
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_12" data-name="Dégradé sans nom 12" x1="1094.67" y1="457.05" x2="0" y2="457.05" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f9b233"/>
+      <stop offset=".47" stop-color="#fff"/>
+      <stop offset="1" stop-color="#e30613"/>
+    </linearGradient>
+  </defs>
+  <g id="Calque_1-2" data-name="Calque 1">
+    <rect class="cls-14" x="4.5" y="4.5" width="1085.67" height="905.11"/>
+    <text class="cls-8" transform="translate(86.29 457.99)"><tspan class="cls-37"><tspan class="cls-20" x="0" y="0">L&apos;ag</tspan><tspan class="cls-21" x="35.68" y="0">r</tspan><tspan class="cls-20" x="41.92" y="0">esseur conçoit la vic</tspan><tspan class="cls-16" x="209.63" y="0">t</tspan><tspan class="cls-20" x="216.23" y="0">ime, </tspan><tspan class="cls-39" x="257.44" y="0">la femme</tspan><tspan class="cls-20" x="335.02" y="0">, comme </tspan></tspan><tspan class="cls-19"><tspan x="-9.68" y="22.44">une part de lui-meme à domine</tspan><tspan class="cls-46" x="255.32" y="22.44">r</tspan><tspan x="260.18" y="22.44">, à maitriser et non </tspan></tspan><tspan class="cls-19"><tspan x="9.84" y="44.88">comme une en</tspan><tspan class="cls-22" x="134.6" y="44.88">t</tspan><tspan x="141.2" y="44.88">ité p</tspan><tspan class="cls-43" x="179.29" y="44.88">r</tspan><tspan x="185.53" y="44.88">op</tspan><tspan class="cls-43" x="208.07" y="44.88">r</tspan><tspan x="214.31" y="44.88">e à chérir et soutenir : </tspan></tspan><tspan class="cls-19"><tspan x="101.34" y="67.31">laisser viv</tspan><tspan class="cls-43" x="180.64" y="67.31">r</tspan><tspan x="186.89" y="67.31">e &amp; p</tspan><tspan class="cls-43" x="232.61" y="67.31">r</tspan><tspan x="238.85" y="67.31">ospé</tspan><tspan class="cls-43" x="279.75" y="67.31">r</tspan><tspan x="285.99" y="67.31">e</tspan><tspan class="cls-46" x="296.39" y="67.31">r</tspan><tspan x="301.25" y="67.31">.</tspan></tspan><tspan class="cls-17"><tspan x="35.88" y="112.19">A</tspan><tspan class="cls-22" x="49.05" y="112.19">t</tspan><tspan x="55.65" y="112.19">teinte à </tspan><tspan class="cls-22" x="124.59" y="112.19">l</tspan><tspan x="129.09" y="112.19">&apos;intégrité physique et morale </tspan></tspan><tspan class="cls-17"><tspan x="19.56" y="134.63">- cont</tspan><tspan class="cls-43" x="68.08" y="134.63">r</tspan><tspan x="74.33" y="134.63">ole de la situa</tspan><tspan class="cls-22" x="191.06" y="134.63">t</tspan><tspan x="197.66" y="134.63">ion par une personne - </tspan></tspan><tspan class="cls-17"><tspan x="11.28" y="157.07">emprise - peur - insécurité - tension constante </tspan></tspan><tspan class="cls-17"><tspan x="61.16" y="179.51">- but destructeur sur sa partenai</tspan><tspan class="cls-43" x="329.99" y="179.51">r</tspan><tspan x="336.23" y="179.51">e </tspan></tspan><tspan class="cls-17"><tspan x="2.26" y="201.94">- les violences s&apos;accumulent et s&apos;accelè</tspan><tspan class="cls-43" x="327.22" y="201.94">r</tspan><tspan x="333.47" y="201.94">ent dans </tspan></tspan><tspan class="cls-17"><tspan x="102.22" y="224.38">«le cycle des violences».</tspan></tspan><tspan class="cls-17"><tspan x="115.52" y="246.82">Béton : Pas Ques</tspan><tspan class="cls-22" x="259.68" y="246.82">t</tspan><tspan x="266.28" y="246.82">ion</tspan></tspan><tspan class="cls-36"><tspan x="78.47" y="291.7">Les mé</tspan><tspan class="cls-22" x="137.7" y="291.7">d</tspan><tspan x="149.15" y="291.7">ia</tspan><tspan class="cls-22" x="163.34" y="291.7">t</tspan><tspan x="169.94" y="291.7">ions sont inte</tspan><tspan class="cls-43" x="282.2" y="291.7">r</tspan><tspan class="cls-22" x="288.45" y="291.7">d</tspan><tspan x="299.89" y="291.7">ites </tspan></tspan><tspan class="cls-36"><tspan x="36.9" y="314.13">car les ag</tspan><tspan class="cls-43" x="116.57" y="314.13">r</tspan><tspan x="122.82" y="314.13">esseurs ne pensent qu&apos;à eux :</tspan></tspan><tspan class="cls-36"><tspan x="77.44" y="336.57">aucun comp</tspan><tspan class="cls-43" x="180.02" y="336.57">r</tspan><tspan x="186.26" y="336.57">omis est possible</tspan></tspan></text>
+    <text class="cls-8" transform="translate(706.93 475.01)"><tspan class="cls-3"><tspan x="0" y="0">Les deux sont des entités </tspan></tspan><tspan class="cls-3"><tspan x="-.35" y="22.44">reconnues à part entière.</tspan></tspan><tspan class="cls-17"><tspan x="12.16" y="134.63">Négocia</tspan><tspan class="cls-22" x="82.84" y="134.63">t</tspan><tspan x="89.44" y="134.63">ion - Ecoute</tspan></tspan><tspan class="cls-17"><tspan x="-17.27" y="157.07">Débat - Remise en Ques</tspan><tspan class="cls-22" x="187.46" y="157.07">t</tspan><tspan x="194.07" y="157.07">ion</tspan></tspan><tspan class="cls-17"><tspan x="3" y="179.51">Apaisement </tspan><tspan class="cls-52" x="108.65" y="179.51">r</tspan><tspan x="114.9" y="179.51">écip</tspan><tspan class="cls-51" x="150.22" y="179.51">r</tspan><tspan x="156.46" y="179.51">oque</tspan></tspan><tspan class="cls-29"><tspan x="17.73" y="291.7">Ce schéma est juste </tspan></tspan><tspan class="cls-29"><tspan x="-55.76" y="314.13">une aut</tspan><tspan class="cls-52" x="7.31" y="314.13">r</tspan><tspan x="13.56" y="314.13">e </tspan><tspan class="cls-51" x="29.16" y="314.13">r</tspan><tspan x="35.4" y="314.13">ep</tspan><tspan class="cls-52" x="57.22" y="314.13">r</tspan><tspan x="63.47" y="314.13">ésenta</tspan><tspan class="cls-22" x="118.91" y="314.13">t</tspan><tspan x="125.51" y="314.13">ion du yin yang.</tspan></tspan></text>
+    <path class="cls-31" d="M859.93,293.75c0,37.78-20.04,70.88-50.07,89.25,15.87,9.71,34.53,15.32,54.5,15.32,57.75,0,104.57-46.82,104.57-104.57s-46.82-104.57-104.57-104.57c-19.97,0-38.63,5.6-54.5,15.32,30.03,18.37,50.07,51.47,50.07,89.25Z"/>
+    <path class="cls-25" d="M755.36,398.32c19.97,0,38.63-5.6,54.5-15.32-30.03-18.37-50.07-51.47-50.07-89.25s20.04-70.88,50.07-89.25c-15.87-9.71-34.53-15.32-54.5-15.32-57.75,0-104.57,46.82-104.57,104.57s46.82,104.57,104.57,104.57Z"/>
+    <path class="cls-28" d="M759.79,293.75c0,37.78,20.04,70.88,50.07,89.25,30.03-18.37,50.07-51.47,50.07-89.25s-20.04-70.88-50.07-89.25c-30.03,18.37-50.07,51.47-50.07,89.25Z"/>
+    <text class="cls-1" transform="translate(887.85 301.41)"><tspan x="0" y="0">Homme</tspan></text>
+    <text class="cls-10" transform="translate(778.27 301.47)"><tspan x="0" y="0">Couple</tspan></text>
+    <text class="cls-4" transform="translate(665.11 301.41)"><tspan class="cls-47" x="0" y="0">F</tspan><tspan x="8.85" y="0">emme</tspan></text>
+    <g>
+      <circle class="cls-33" cx="292.92" cy="293.75" r="109.73"/>
+      <ellipse class="cls-23" cx="292.92" cy="355.18" rx="70.17" ry="43.14"/>
+      <text class="cls-9" transform="translate(238.06 271.33)"><tspan x="0" y="0">Agresseur</tspan></text>
+      <text class="cls-7" transform="translate(260.49 360.41)"><tspan class="cls-48" x="0" y="0">V</tspan><tspan x="11.37" y="0">ictime</tspan></text>
+      <g>
+        <line class="cls-24" x1="292.92" y1="275.16" x2="292.92" y2="325.16"/>
+        <polygon class="cls-31" points="289.22 322.35 292.92 323.92 296.62 322.35 292.92 331.13 289.22 322.35"/>
+      </g>
+    </g>
+    <g>
+      <line class="cls-24" x1="734.92" y1="297.16" x2="769.34" y2="297.16"/>
+      <polygon class="cls-31" points="766.9 300.38 768.27 297.16 766.9 293.93 774.53 297.16 766.9 300.38"/>
+    </g>
+    <g>
+      <line class="cls-27" x1="882.1" y1="297.16" x2="849.54" y2="297.16"/>
+      <polygon class="cls-11" points="851.99 293.93 850.62 297.16 851.99 300.38 844.35 297.16 851.99 293.93"/>
+    </g>
+    <text class="cls-12" transform="translate(277.78 397.07)"><tspan x="0" y="0">🩸</tspan></text>
+    <text class="cls-12" transform="translate(794.72 289.09)"><tspan x="0" y="0">🌱</tspan></text>
+    <text class="cls-12" transform="translate(800.59 180.33)"><tspan x="0" y="0">✨</tspan></text>
+    <text class="cls-12" transform="translate(277.78 250.34)"><tspan x="0" y="0">⛓️</tspan></text>
+    <text class="cls-12" transform="translate(795.54 377.33)"><tspan x="0" y="0">⚡️</tspan></text>
+    <text class="cls-12" transform="translate(275.05 350.7)"><tspan x="0" y="0">💥</tspan></text>
+    <text transform="translate(741.92 83.19)"><tspan class="cls-34"><tspan class="cls-28" x="0" y="0">Conflit</tspan><tspan class="cls-31" x="147.62" y="0"> </tspan></tspan><tspan class="cls-30"><tspan x="-69.56" y="33.98">Equité - Horizontalité</tspan></tspan></text>
+    <text class="cls-5" transform="translate(785.04 320.83)"><tspan class="cls-44" x="0" y="0">T</tspan><tspan x="7.03" y="0">ension </tspan><tspan x="-4.19" y="16.83">Créatrice</tspan></text>
+    <text class="cls-15" transform="translate(235 300.24)"><tspan class="cls-26" x="0" y="0">Tension</tspan><tspan class="cls-32" x="52.7" y="0" xml:space="preserve">  </tspan><tspan class="cls-38" x="62.35" y="0">Destructrice</tspan></text>
+    <text class="cls-13" transform="translate(254.63 216.31)"><tspan x="0" y="0">Perversion</tspan></text>
+    <text class="cls-2" transform="translate(772.72 254.77)"><tspan x="0" y="0">Sublimation</tspan></text>
+    <text transform="translate(192.94 85.38)"><tspan class="cls-35"><tspan x="0" y="0">Violence</tspan></tspan><tspan class="cls-30"><tspan x="-58.09" y="33.98">Domination - </tspan><tspan class="cls-54" x="121.67" y="33.98">V</tspan><tspan x="140.04" y="33.98">erticalité</tspan></tspan></text>
+    <text class="cls-6" transform="translate(451.98 853.5)"><tspan x="0" y="0">Agdistys • Diane Serant</tspan></text>
+    <text class="cls-18" transform="translate(194.11 877.89)"><tspan x="0" y="0">Mission interministerie</tspan><tspan class="cls-41" x="100.93" y="0">l</tspan><tspan x="103.34" y="0">le pour la p</tspan><tspan class="cls-53" x="154.47" y="0">r</tspan><tspan x="157.81" y="0">otec</tspan><tspan class="cls-41" x="177.65" y="0">t</tspan><tspan x="181.18" y="0">ion des femmes cont</tspan><tspan class="cls-53" x="274.75" y="0">r</tspan><tspan x="278.09" y="0">e les violences et la lu</tspan><tspan class="cls-41" x="375.72" y="0">t</tspan><tspan x="379.25" y="0">te cont</tspan><tspan class="cls-53" x="410.95" y="0">r</tspan><tspan x="414.29" y="0">e la traite des êt</tspan><tspan class="cls-53" x="487.28" y="0">r</tspan><tspan x="490.62" y="0">es humains - Forma</tspan><tspan class="cls-41" x="577.88" y="0">t</tspan><tspan x="581.41" y="0">ion 2023 - Ministe</tspan><tspan class="cls-53" x="661.99" y="0">r</tspan><tspan x="665.33" y="0">e cha</tspan><tspan class="cls-49" x="689.24" y="0">r</tspan><tspan class="cls-42" x="692.58" y="0">gé de </tspan><tspan class="cls-41" x="79.11" y="12">l</tspan><tspan x="81.52" y="12">’éga</tspan><tspan class="cls-40" x="101.16" y="12">l</tspan><tspan x="103.57" y="12">ité ent</tspan><tspan class="cls-50" x="132.47" y="12">r</tspan><tspan x="135.81" y="12">e les femmes &amp; les hommes, de la </tspan><tspan class="cls-41" x="291.24" y="12">d</tspan><tspan x="297.36" y="12">iversité et de </tspan><tspan class="cls-41" x="358.49" y="12">l</tspan><tspan x="360.9" y="12">’éga</tspan><tspan class="cls-41" x="380.54" y="12">l</tspan><tspan x="382.95" y="12">ité des chances. Plus </tspan><tspan class="cls-41" x="478.18" y="12">d</tspan><tspan x="484.3" y="12">’info : ar</tspan><tspan class="cls-53" x="521.18" y="12">r</tspan><tspan x="524.52" y="12">etonslesviolences .gou</tspan><tspan class="cls-45" x="626.06" y="12">v</tspan><tspan x="630.14" y="12">.fr</tspan></text>
+  </g>
+</svg>

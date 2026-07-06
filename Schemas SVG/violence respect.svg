@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1954.31 1197.75">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        font-weight: 800;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-6 {
+        font-family: Avenir-Black, Avenir;
+      }
+
+      .cls-1, .cls-3, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-6 {
+        font-size: 48px;
+      }
+
+      .cls-2 {
+        letter-spacing: .02em;
+      }
+
+      .cls-3 {
+        font-size: 45px;
+      }
+
+      .cls-8, .cls-13, .cls-14, .cls-15 {
+        font-size: 36px;
+      }
+
+      .cls-8, .cls-16, .cls-12 {
+        font-family: Avenir-Medium, Avenir;
+        font-weight: 500;
+      }
+
+      .cls-13, .cls-15, .cls-17, .cls-5, .cls-18 {
+        fill: #ebcb69;
+      }
+
+      .cls-14, .cls-19, .cls-20 {
+        fill: #eb5b28;
+      }
+
+      .cls-21, .cls-22 {
+        stroke: #eb5b28;
+      }
+
+      .cls-21, .cls-22, .cls-23, .cls-24 {
+        fill: none;
+      }
+
+      .cls-21, .cls-22, .cls-23, .cls-24, .cls-9, .cls-25, .cls-5, .cls-19, .cls-11 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-21, .cls-23, .cls-24, .cls-9 {
+        stroke-width: 15px;
+      }
+
+      .cls-22 {
+        stroke-width: 13px;
+      }
+
+      .cls-15, .cls-26, .cls-17 {
+        font-family: Charter-Roman, Charter;
+      }
+
+      .cls-23, .cls-24, .cls-9, .cls-5 {
+        stroke: #ebcb69;
+      }
+
+      .cls-24, .cls-9 {
+        stroke-linecap: round;
+      }
+
+      .cls-27 {
+        fill: #f2c468;
+      }
+
+      .cls-17 {
+        font-size: 30.63px;
+        letter-spacing: .02em;
+      }
+
+      .cls-25 {
+        fill: #0d0d18;
+        stroke: url(#Dégradé_sans_nom_105);
+        stroke-width: 21px;
+      }
+
+      .cls-25, .cls-6 {
+        fill: #010101;
+      }
+
+      .cls-5, .cls-19 {
+        font-size: 60px;
+      }
+
+      .cls-5, .cls-7 {
+        font-family: Charter-Black, Charter;
+      }
+
+      .cls-19 {
+        font-family: 28DaysLater, '28 Days Later', sans-serif;
+        stroke: #e94e1b;
+      }
+
+      .cls-11 {
+        stroke: #fff;
+        stroke-width: 7px;
+      }
+
+      .cls-28 {
+        letter-spacing: -.09em;
+      }
+
+      .cls-29 {
+        letter-spacing: -.11em;
+      }
+
+      .cls-30 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-31 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-12 {
+        font-size: 30.57px;
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_105" data-name="Dégradé sans nom 105" x1="1954.31" y1="598.88" x2="0" y2="598.88" gradientUnits="userSpaceOnUse">
+      <stop offset=".01" stop-color="#e6bd4f"/>
+      <stop offset=".52" stop-color="#fff"/>
+      <stop offset="1" stop-color="#e30613"/>
+    </linearGradient>
+  </defs>
+  <g id="iolence_et_respect" data-name="iolence et respect">
+    <rect class="cls-25" x="10.5" y="10.5" width="1933.31" height="1176.75"/>
+    <rect class="cls-27" x="557.02" y="58.97" width="827.65" height="65.69"/>
+    <text class="cls-6" transform="translate(637.17 106.25)"><tspan x="0" y="0">Le Respect est la Base de </tspan><tspan class="cls-29" x="591.93" y="0">T</tspan><tspan x="614.15" y="0">out</tspan></text>
+    <text class="cls-1" transform="translate(461.66 1021.75)"><tspan x="0" y="0">La Justice n’est pas une Opinion qu’on se fait,</tspan><tspan x="279.93" y="57.6">C’est un Etat de Fait.</tspan></text>
+    <text class="cls-19" transform="translate(353.33 839.65)"><tspan x="0" y="0">Violence</tspan></text>
+    <text class="cls-5" transform="translate(1351.44 836.92)"><tspan class="cls-31" x="0" y="0">R</tspan><tspan x="43.1" y="0">espect</tspan></text>
+    <text class="cls-15" transform="translate(1204.16 265.87)"><tspan x="0" y="0">opinion</tspan></text>
+    <text class="cls-15" transform="translate(1412.58 265.87)"><tspan x="0" y="0">opinion</tspan></text>
+    <text class="cls-15" transform="translate(1620.99 265.87)"><tspan x="0" y="0">opinion</tspan></text>
+    <text class="cls-12" transform="translate(813.77 889.33)"><tspan x="0" y="0">Choix que chacun.e fait.</tspan><tspan x="-223.34" y="36.68">Il su</tspan><tspan class="cls-30" x="-168.45" y="36.68">f</tspan><tspan x="-158.82" y="36.68">fit d’une seule personne violente pour tout bloque</tspan><tspan class="cls-28" x="539.36" y="36.68">r</tspan><tspan x="547.86" y="36.68">.</tspan></text>
+    <text class="cls-8" transform="translate(699.68 164.87)"><tspan x="0" y="0">Pas de Respect = pas d’évolution</tspan></text>
+    <text class="cls-13" transform="translate(1237.3 500.71)"><tspan class="cls-26"><tspan x="0" y="0">s’en suit les sujets sur lesquels</tspan></tspan><tspan class="cls-26"><tspan x="-16.72" y="43.2">on peut discuter ouvertement et </tspan></tspan><tspan class="cls-7"><tspan x="-66.94" y="86.4">on grandit, on évolue ensemble,</tspan></tspan><tspan class="cls-7"><tspan x="-41.23" y="129.6">on s’apprend, on se découvre</tspan></tspan></text>
+    <text class="cls-14" transform="translate(365.97 471.63)"><tspan class="cls-4" x="0" y="0">Ca boucle </tspan><tspan class="cls-16" x="177.98" y="0">:</tspan><tspan class="cls-16" x="-90.4" y="43.2">s’en suit un schéma de</tspan><tspan class="cls-4" x="278.38" y="43.2"> </tspan><tspan class="cls-4" x="-132.95" y="86.4">domination et soumission</tspan><tspan class="cls-16" x="300.92" y="86.4" xml:space="preserve"> :</tspan><tspan class="cls-4"><tspan x="-10.33" y="129.6">c’est bloqué </tspan></tspan><tspan class="cls-16" x="-131.69" y="172.8">car la personne est </tspan><tspan class="cls-4" x="187.09" y="172.8">fe</tspan><tspan class="cls-2" x="221.07" y="172.8">r</tspan><tspan class="cls-4" x="236.37" y="172.8">mée. </tspan></text>
+    <line class="cls-9" x1="1472.41" y1="420.27" x2="1296.93" y2="297.69"/>
+    <line class="cls-9" x1="1472.41" y1="420.27" x2="1647.89" y2="297.69"/>
+    <line class="cls-9" x1="1472.41" y1="420.27" x2="1472.41" y2="287.21"/>
+    <line class="cls-21" x1="459.97" y1="663.22" x2="459.97" y2="775.39"/>
+    <line class="cls-24" x1="1472.41" y1="663.22" x2="1472.41" y2="775.39"/>
+    <g>
+      <text class="cls-3" transform="translate(786.55 772.58)"><tspan x="0" y="0">Interaction sociale</tspan></text>
+      <g>
+        <line class="cls-21" x1="980.27" y1="819.89" x2="745.75" y2="819.89"/>
+        <polygon class="cls-20" points="719.27 819.89 756.58 804.65 747.73 819.89 756.58 835.13 719.27 819.89"/>
+      </g>
+      <g>
+        <line class="cls-23" x1="982.47" y1="819.89" x2="1206.9" y2="819.89"/>
+        <polygon class="cls-18" points="1233.37 819.89 1196.06 835.14 1204.92 819.89 1196.06 804.65 1233.37 819.89"/>
+      </g>
+      <circle class="cls-11" cx="980.43" cy="818.54" r="13.54"/>
+    </g>
+    <g>
+      <path class="cls-22" d="M414.21,893.31c-141.32-21.99-249.47-144.22-249.47-291.7,0-163.05,132.18-295.23,295.23-295.23s295.23,132.18,295.23,295.23-132.18,295.23-295.23,295.23"/>
+      <polygon class="cls-20" points="459.97 896.83 397.86 864.84 410.83 892.51 393.23 917.48 459.97 896.83"/>
+    </g>
+    <path class="cls-10" d="M543.5,1102.82l27.38-.53,27.38-.4,54.76-.78c36.51-.41,73.02-.78,109.52-1.02,36.51-.32,73.02-.39,109.52-.58l109.52-.19,109.52.18c36.51.2,73.02.26,109.52.58l54.76.44,54.76.58,54.76.79,27.38.4,27.38.53-27.38.53-27.38.4-54.76.79-54.76.58-54.76.44c-36.51.33-73.02.39-109.52.58l-109.52.18-109.52-.19c-36.51-.19-73.02-.26-109.52-.58-36.51-.23-73.02-.61-109.52-1.02l-54.76-.78-27.38-.4-27.38-.53Z"/>
+    <text class="cls-17" transform="translate(819.09 1162.34)"><tspan x="0" y="0">©Agdistys • Diane Serant</tspan></text>
+  </g>
+</svg>

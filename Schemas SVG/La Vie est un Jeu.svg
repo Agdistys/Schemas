@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 744.75 274.96">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0d0d18;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #ebcb69;
+        stroke-dasharray: 12;
+        stroke-width: 3px;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        font-size: 28.69px;
+        stroke: #fff;
+      }
+
+      .cls-3, .cls-4 {
+        font-family: Charter-Roman, Charter;
+      }
+
+      .cls-5 {
+        letter-spacing: -.09em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        fill: #ebcb69;
+        font-size: 21.45px;
+        letter-spacing: .02em;
+      }
+
+      .cls-8 {
+        letter-spacing: .02em;
+      }
+
+      .cls-9 {
+        letter-spacing: .02em;
+      }
+    </style>
+  </defs>
+  <g id="santé">
+    <rect class="cls-1" width="744.75" height="274.96" rx="12" ry="12"/>
+    <text class="cls-4" transform="translate(231.67 242.83)"><tspan x="0" y="0">©Agdistys • Diane Serant</tspan></text>
+    <text class="cls-3" transform="translate(257.83 62.18)"><tspan class="cls-9" x="0" y="0">La </tspan><tspan class="cls-7" x="39.16" y="0">V</tspan><tspan class="cls-9" x="56.7" y="0">ie est un Jeu.</tspan><tspan class="cls-9" x="-78.85" y="34.43">Maltraiter la </tspan><tspan class="cls-7" x="93.01" y="34.43">V</tspan><tspan class="cls-9" x="110.55" y="34.43">ie c’est le Déni.</tspan><tspan class="cls-9" x="-104" y="68.87">Maltraiter la </tspan><tspan class="cls-7" x="67.86" y="68.87">V</tspan><tspan class="cls-9" x="85.4" y="68.87">ie n’est pas un Jeu.</tspan><tspan class="cls-9" x="-56.37" y="103.3">Jouer est dans Le </tspan><tspan class="cls-6" x="178.11" y="103.3">R</tspan><tspan class="cls-8" x="196.2" y="103.3">espect.</tspan><tspan class="cls-9" x="-214.63" y="137.73">Sinon c’est Maltraite</tspan><tspan class="cls-5" x="53.41" y="137.73">r</tspan><tspan class="cls-9" x="61.79" y="137.73">, Oppresse</tspan><tspan class="cls-5" x="198.15" y="137.73">r</tspan><tspan class="cls-8" x="206.53" y="137.73">, dans la </tspan><tspan class="cls-7" x="325.32" y="137.73">V</tspan><tspan class="cls-8" x="342.86" y="137.73">iolence.</tspan></text>
+    <rect class="cls-2" x="16.68" y="19.19" width="711.38" height="240.19" rx="12" ry="12"/>
+  </g>
+</svg>
