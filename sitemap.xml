@@ -1602,6 +1602,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://agdistys.github.io/Schemas/Schemas%20SVG/Arbre%20Culturel%20aMi.svg</loc>
+    <lastmod>2026-07-30T12:49:49+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Schemas%20SVG/Arbre%20Culturel%20aMi.svg</image:loc>
+      <image:caption>Arbre Culturel aMi.svg</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://agdistys.github.io/Schemas/Schemas%20SVG/Echelle%20de%20Conscience.svg</loc>
     <lastmod>2026-07-07T01:50:49+02:00</lastmod>
     <image:image>
@@ -1727,6 +1735,14 @@
     <image:image>
       <image:loc>https://agdistys.github.io/Schemas/Schemas%20SVG/violence%20respect.svg</image:loc>
       <image:caption>violence respect.svg</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/Arbre%20Culturel%20aMi.webp</loc>
+    <lastmod>2026-07-30T12:49:29+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/Arbre%20Culturel%20aMi.webp</image:loc>
+      <image:caption>Arbre Culturel aMi.webp</image:caption>
     </image:image>
   </url>
   <url>
