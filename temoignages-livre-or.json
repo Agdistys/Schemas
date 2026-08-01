@@ -1,0 +1,49 @@
+{
+  "_lisez_moi": "Livre d'Or civilisationnel — fichier des témoignages publiés. À déposer sur GitHub (repo Schemas), le widget le lit automatiquement. Chaque entrée n'est ajoutée qu'APRÈS relecture humaine.",
+  "_regles": [
+    "Personne ne s'inscrit soi-même : seul celui qui a REÇU peut témoigner.",
+    "On décrit le GESTE, on ne loue pas la personne.",
+    "L'anonymat est possible des deux côtés (auteur et destinataire).",
+    "Aucun nom de famille, aucune adresse, aucun élément ré-identifiant un tiers.",
+    "Le champ 'accord' doit être true : la personne citée a donné son accord, ou elle est anonymisée."
+  ],
+  "_derniere_maj": "2026-07-31",
+  "temoignages": [
+    {
+      "id": "LO-0001",
+      "date": "2026-07-31",
+      "geste": "Elle est restée assise à côté de moi pendant deux heures sans rien dire, le soir où je n'arrivais plus à parler. Elle n'a pas cherché à comprendre, elle n'a pas donné de conseil. Elle est restée.",
+      "effet": "J'ai compris ce soir-là qu'on pouvait être accompagnée sans avoir à expliquer. Je le refais pour d'autres maintenant.",
+      "recu_de": "Une amie",
+      "temoin": "M.",
+      "lieu": "Lyon",
+      "quand": "hiver 2023",
+      "champ": "presence",
+      "accord": true
+    },
+    {
+      "id": "LO-0002",
+      "date": "2026-07-31",
+      "geste": "Un inconnu dans le métro s'est placé entre moi et l'homme qui me suivait, sans un mot, et il est descendu à ma station pour vérifier que je rentrais bien.",
+      "effet": "Je n'ai jamais su son nom. Depuis, je regarde autour de moi dans les transports, et il m'est arrivé de faire pareil.",
+      "recu_de": "Un inconnu",
+      "temoin": "Anonyme",
+      "lieu": "Paris",
+      "quand": "2021",
+      "champ": "protection",
+      "accord": true
+    },
+    {
+      "id": "LO-0003",
+      "date": "2026-07-31",
+      "geste": "Mon professeur de troisième m'a dit devant toute la classe qu'il n'était pas d'accord avec ce qu'il avait écrit sur ma copie la semaine d'avant, et qu'il avait relu.",
+      "effet": "C'est la première fois que je voyais un adulte se corriger publiquement. Ça m'a appris que reconnaître une erreur n'enlève rien à l'autorité — ça la fonde.",
+      "recu_de": "Un enseignant",
+      "temoin": "D.",
+      "lieu": "Non précisé",
+      "quand": "il y a longtemps",
+      "champ": "transmission",
+      "accord": true
+    }
+  ]
+}
