@@ -1,0 +1,1028 @@
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les Contrats du Respect aMi</title>
+
+
+<main class="respect-contracts" id="respectContracts">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      background: #05050a;
+    }
+
+    .respect-contracts {
+      --night: #08070d;
+      --panel: #12101b;
+      --gold: #f4df91;
+      --green: #90f0aa;
+      --rose: #ff729b;
+      --blue: #91d9ff;
+      --text: #fff7df;
+      --muted: #c9c0d7;
+      --line: rgba(244, 223, 145, .28);
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(244, 223, 145, .14), transparent 34%),
+        radial-gradient(circle at 92% 14%, rgba(255, 114, 155, .10), transparent 30%),
+        linear-gradient(145deg, rgba(144, 240, 170, .07), transparent 42%),
+        var(--night);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 26px 80px rgba(0, 0, 0, .48);
+      overflow: hidden;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .respect-contracts * { box-sizing: border-box; }
+
+    .rc-hero {
+      padding: 30px clamp(18px, 4vw, 42px) 22px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), transparent);
+    }
+
+    .rc-kicker {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .respect-contracts h1,
+    .respect-contracts h2,
+    .respect-contracts h3 {
+      margin: 0;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .respect-contracts h1 {
+      font-size: clamp(2.05rem, 6vw, 5rem);
+      line-height: .98;
+    }
+
+    .rc-mantra {
+      margin: 16px 0 0;
+      max-width: 780px;
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.08rem, 2.25vw, 1.58rem);
+      line-height: 1.36;
+    }
+
+    .rc-intro {
+      display: grid;
+      gap: 10px;
+      max-width: 860px;
+      margin-top: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .rc-intro em {
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.08rem;
+    }
+
+    .rc-alert {
+      padding: 13px 15px;
+      color: #fff8e8;
+      background: rgba(255, 114, 155, .09);
+      border: 1px solid rgba(255, 114, 155, .28);
+      border-left: 4px solid var(--rose);
+      border-radius: 12px;
+    }
+
+    .rc-tabs {
+      display: flex;
+      gap: 10px;
+      padding: 14px clamp(12px, 3vw, 28px);
+      overflow-x: auto;
+      background: rgba(0, 0, 0, .24);
+      border-bottom: 1px solid var(--line);
+      scrollbar-color: rgba(244, 223, 145, .45) transparent;
+    }
+
+    .rc-tab {
+      flex: 0 0 auto;
+      appearance: none;
+      border: 1px solid rgba(244, 223, 145, .26);
+      color: var(--muted);
+      background: rgba(255, 255, 255, .035);
+      border-radius: 999px;
+      padding: 11px 15px;
+      font: inherit;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .rc-tab[aria-selected="true"] {
+      color: #0c0a10;
+      background: linear-gradient(135deg, var(--gold), #f8c870);
+      border-color: rgba(244, 223, 145, .9);
+      box-shadow: 0 0 0 3px rgba(244, 223, 145, .12);
+    }
+
+    .rc-body {
+      display: grid;
+      grid-template-columns: minmax(300px, .41fr) minmax(0, .59fr);
+      gap: 18px;
+      align-items: stretch;
+      padding: clamp(16px, 3vw, 28px);
+    }
+
+    .rc-side,
+    .rc-reader {
+      min-width: 0;
+      height: clamp(980px, 88vh, 1080px);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018));
+      border: 1px solid rgba(244, 223, 145, .22);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .rc-side-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+      padding: 18px;
+    }
+
+    .rc-side h2 {
+      font-size: clamp(1.38rem, 3vw, 2.2rem);
+      line-height: 1.08;
+    }
+
+    .rc-subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .rc-pill {
+      display: inline-flex;
+      margin-top: 16px;
+      padding: 9px 12px;
+      color: var(--gold);
+      background: rgba(244, 223, 145, .08);
+      border: 1px solid rgba(244, 223, 145, .26);
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .rc-meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .rc-meta div {
+      padding: 11px;
+      color: var(--muted);
+      background: rgba(0, 0, 0, .24);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 12px;
+      line-height: 1.45;
+    }
+
+    .rc-meta strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--gold);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .rc-form {
+      display: flex;
+      flex: 1 1 0;
+      flex-direction: column;
+      min-height: 0;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(244, 223, 145, .18);
+      overflow: hidden;
+    }
+
+    .rc-form-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .rc-form-head h3 { font-size: 1.2rem; }
+
+    .rc-fill-count {
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .rc-form-scroll {
+      flex: 1 1 auto;
+      min-height: 160px;
+      overflow: auto;
+      padding-right: 6px;
+      scrollbar-color: rgba(244, 223, 145, .45) rgba(255,255,255,.04);
+    }
+
+    .rc-field { margin-bottom: 11px; }
+
+    .rc-field label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .rc-field input,
+    .rc-field textarea,
+    .rc-field select {
+      width: 100%;
+      color: var(--text);
+      background: rgba(5, 5, 10, .82);
+      border: 1px solid rgba(244, 223, 145, .26);
+      border-radius: 11px;
+      padding: 10px 11px;
+      font: inherit;
+      font-size: .92rem;
+      line-height: 1.45;
+      outline: none;
+    }
+
+    .rc-field textarea {
+      min-height: 76px;
+      resize: vertical;
+    }
+
+    .rc-field input:focus,
+    .rc-field textarea:focus,
+    .rc-field select:focus {
+      border-color: rgba(144, 240, 170, .72);
+      box-shadow: 0 0 0 3px rgba(144, 240, 170, .12);
+    }
+
+    .rc-actions {
+      display: flex;
+      flex: 0 0 auto;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(244, 223, 145, .16);
+      background: linear-gradient(180deg, rgba(8, 7, 13, .92), rgba(8, 7, 13, .98));
+    }
+
+    .rc-actions button {
+      appearance: none;
+      border: 1px solid rgba(244, 223, 145, .46);
+      color: var(--gold);
+      background: linear-gradient(135deg, rgba(244, 223, 145, .16), rgba(144, 240, 170, .08));
+      border-radius: 999px;
+      padding: 10px 13px;
+      font: inherit;
+      font-size: .88rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .rc-actions .rc-pack {
+      color: #0b0a10;
+      background: linear-gradient(135deg, var(--green), var(--gold));
+      border-color: rgba(144, 240, 170, .75);
+    }
+
+    .rc-actions .rc-soft {
+      color: var(--muted);
+      border-color: rgba(255,255,255,.14);
+      background: rgba(255,255,255,.035);
+    }
+
+    .rc-reader-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(244, 223, 145, .18);
+      background: rgba(0, 0, 0, .20);
+    }
+
+    .rc-reader {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .rc-reader-head h3 { font-size: clamp(1.25rem, 3vw, 1.9rem); }
+
+    .rc-progress {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .rc-scroll-note {
+      display: block;
+      margin-top: 4px;
+      color: var(--green);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .rc-text {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: auto;
+      padding: 22px 22px 84px;
+      white-space: pre-wrap;
+      color: #fff8e7;
+      line-height: 1.62;
+      scrollbar-color: rgba(244, 223, 145, .5) rgba(255,255,255,.05);
+      scroll-padding-top: 24px;
+    }
+
+    .rc-status {
+      flex: 0 0 auto;
+      min-height: 22px;
+      margin-top: 12px;
+      color: var(--green);
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    @media (max-width: 900px) {
+      body { padding: 14px; }
+      .rc-body { grid-template-columns: 1fr; }
+      .rc-side,
+      .rc-reader {
+        height: auto;
+      }
+      .rc-text {
+        flex: none;
+        height: 620px;
+        min-height: 0;
+      }
+      .rc-form-scroll {
+        flex: none;
+        max-height: 520px;
+        overflow: auto;
+        padding-right: 6px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      body { padding: 10px; }
+      .rc-hero { padding: 22px 16px 18px; }
+      .rc-body { padding: 12px; }
+      .rc-side, .rc-reader { border-radius: 13px; }
+      .rc-actions button { width: 100%; }
+      .rc-form-head { align-items: flex-start; flex-direction: column; }
+      .rc-text { height: 560px; min-height: 0; padding: 18px 16px 78px; }
+    }
+  </style>
+
+  <section class="rc-hero">
+    <p class="rc-kicker">Pactes · Respect · Conscientement</p>
+    <h1>👑 Les Contrats du Respect</h1>
+    <p class="rc-mantra">Pour que l'Amour soit Inconditionnel,<br>Il Faut La Base du Contractuel<br>Pour un Engagement Relationnel.</p>
+    <div class="rc-intro">
+      <em>Relation = Engagement<br>de base normalement.</em>
+      <p>Alors Qui Ose Signer Une Relation ? Si Pas Prêt à Signer = Pas Prêt à S'Engager, donc 🚨 Alerte Sécurité.</p>
+      <p>📜 1. Reconnaissance de Toutes les Attentes Personnelles<br>✍️ 2. Trace de Sécurité pour la Confiance Relationnelle</p>
+      <p>Le pacte aMi est la base sur laquelle se rajoute le pacte A(i)mant et/ou le pacte de Vie : les différentes strates d'intimité et de proximité sont clairement délimitées entre le cercle proche et le cercle socio-professionnel.</p>
+      <p class="rc-alert">🛑 Contre le Déni : Sa Trahison &amp; Son Abandon,<br>➝ Je Plante La Confiance en La Relation 🌱</p>
+    </div>
+  </section>
+
+  <nav class="rc-tabs" aria-label="Choisir un contrat">
+    <button class="rc-tab" type="button" data-id="ami" aria-selected="true">🤝 0. Pacte aMi</button>
+    <button class="rc-tab" type="button" data-id="aimant" aria-selected="false">🫦 1. Pacte A(i)mant</button>
+    <button class="rc-tab" type="button" data-id="vie" aria-selected="false">💍 2. Pacte de Vie</button>
+    <button class="rc-tab" type="button" data-id="pro" aria-selected="false">🛡️ +. Clauses Universelles</button>
+  </nav>
+
+  <section class="rc-body">
+    <aside class="rc-side">
+      <div class="rc-side-inner">
+        <h2 id="rcTitle"></h2>
+        <p class="rc-subtitle" id="rcSubtitle"></p>
+        <span class="rc-pill" id="rcPill"></span>
+        <div class="rc-meta">
+          <div><strong>Seuil</strong><span id="rcStep"></span></div>
+          <div><strong>Garde-fou</strong><span id="rcGuard"></span></div>
+          <div><strong>Signature</strong><span id="rcSignature"></span></div>
+        </div>
+
+        <section class="rc-form" aria-label="Remplir le contrat">
+          <div class="rc-form-head">
+            <h3>Remplir</h3>
+            <span class="rc-fill-count" id="rcFillCount"></span>
+          </div>
+          <div class="rc-form-scroll" id="rcForm"></div>
+        </section>
+
+        <div class="rc-actions">
+          <button type="button" id="rcCopy">📋 Copier rempli</button>
+          <button type="button" id="rcDownload">⬇️ Télécharger rempli</button>
+          <button type="button" class="rc-pack" id="rcPack">🌟 L'UN-PACT</button>
+          <button type="button" class="rc-soft" id="rcTop">↑ Début du texte</button>
+          <button type="button" class="rc-soft" id="rcClear">↺ Effacer cet onglet</button>
+        </div>
+        <div class="rc-status" id="rcStatus" aria-live="polite"></div>
+      </div>
+    </aside>
+
+    <article class="rc-reader">
+      <div class="rc-reader-head">
+        <h3 id="rcReaderTitle"></h3>
+        <div>
+          <span class="rc-progress" id="rcProgress"></span>
+          <span class="rc-scroll-note">zone de lecture scrollable</span>
+        </div>
+      </div>
+      <div class="rc-text" id="rcText"></div>
+    </article>
+  </section>
+
+  <script>
+    (() => {
+      const commonFields = [
+        { name: "personneA", label: "Personne A", type: "text", placeholder: "Nom, prénom, pseudo, coordonnées" },
+        { name: "personneB", label: "Personne B", type: "text", placeholder: "Nom, prénom, pseudo, coordonnées" },
+        { name: "date", label: "Date", type: "text", placeholder: "Ex. 25 juillet 2026" },
+        { name: "lieu", label: "Lieu", type: "text", placeholder: "Ville / espace / contexte" },
+        { name: "temoin", label: "Témoin éventuel", type: "text", placeholder: "Nom / contact / aucun" }
+      ];
+
+      const pactes = [
+        {
+          id: "ami",
+          title: "🤝 0. Pacte aMi",
+          subtitle: "Sois Mon Ami Avant même d'Oser espérer Être Mon Amant.",
+          pill: "Base du cercle proche",
+          step: "Apprendre la présence, l'écoute, la limite, la frustration mature et la trace.",
+          guard: "Aucune amitié ne crée un droit sexuel. Une clé, une invitation ou une tendresse ne sont jamais un oui.",
+          signature: "Je signe pour créer une trace de respect, pas un droit sur l'autre.",
+          filename: "00_Pacte_aMi_rempli.txt",
+          fields: [
+            { name: "attentes", label: "Attentes personnelles", type: "textarea", placeholder: "Ce que j'attends vraiment du lien..." },
+            { name: "limitesCorps", label: "Limites du corps", type: "textarea", placeholder: "Ce qui est oui, non, pause, seulement après demande..." },
+            { name: "limitesDomicile", label: "Domicile / clés", type: "textarea", placeholder: "Accès autorisés, restitution, visites, seuils..." },
+            { name: "messages", label: "Messages / fréquence", type: "textarea", placeholder: "Horaires, rythme, canaux, délai de réponse..." },
+            { name: "sexualite", label: "Cadre sexuel", type: "textarea", placeholder: "Ex. pas de pénétration, pas de pression, flirt explicite uniquement..." },
+            { name: "signauxPause", label: "Signaux pause", type: "textarea", placeholder: "Mots, gestes, phrase d'arrêt, personne à prévenir..." },
+            { name: "trace", label: "Trace / preuves / notes", type: "textarea", placeholder: "Ce qui doit être écrit, daté, conservé..." }
+          ],
+          template: (v) => `PACTE DE SOIN RELATIONNEL
+Sois Mon Ami Avant même d'Oser espérer Être Mon Amant
+
+Relation = Engagement
+de base normalement.
+
+Catch phrase :
+On ne prend pas les reins quand on ne sait pas prendre les mains.
+
+Parties
+Personne A : ${v.personneA}
+Personne B : ${v.personneB}
+Date : ${v.date}
+Lieu : ${v.lieu}
+Témoin éventuel : ${v.temoin}
+
+Intention
+Ce pacte sert à créer une trace claire avant qu'une relation glisse dans l'ambiguïté, la pression ou le désir non mature. Il affirme qu'avant d'être amant·e·s, les personnes choisissent d'apprendre à être ami·e·s : se connaître, se respecter, entendre les limites, réparer les maladresses, traverser la frustration sans chantage, et prouver par les actes que le lien est plus important que la consommation du corps.
+
+Ce pacte n'est pas une promesse de couple.
+Ce pacte n'est pas une promesse de sexualité.
+Ce pacte n'est jamais un consentement préalable.
+Ce pacte est une trace de soin, de limites et de responsabilité.
+
+Les strates
+🤝 Pacte aMi : base de confiance.
+🫦 Pacte A(i)mant : désir conscient, seulement si la base aMi tient.
+💍 Pacte de Vie : alliance durable, seulement si le soin tient.
+🛡️ Clauses Universelles : cercle socio-professionnel, clair, limité, documenté.
+
+Attentes personnelles reconnues
+${v.attentes}
+
+Je m'engage à...
+- Je m'engage à ne pas confondre accès affectif, présence, confiance, domicile, vulnérabilité ou tendresse avec un accès sexuel.
+- Je m'engage à respecter le non sans discuter, punir, bouder, insister ou déplacer la faute.
+- Je m'engage à ne jamais transformer ma frustration en pression.
+- Je m'engage à ne pas utiliser l'amitié comme stratégie pour obtenir du sexe.
+- Je m'engage à rendre les clés, objets, accès ou informations privées dès qu'ils me sont redemandés.
+- Je m'engage à ne pas mobiliser mes amis, collègues ou proches pour faire pression sur l'autre.
+- Je m'engage à reconnaître qu'être accueilli·e dans l'intimité émotionnelle de quelqu'un ne donne aucun droit sur son corps.
+
+Limites du corps
+${v.limitesCorps}
+
+Domicile / clés
+${v.limitesDomicile}
+
+Messages / fréquence
+${v.messages}
+
+Cadre sexuel
+${v.sexualite}
+
+Signaux de pause
+${v.signauxPause}
+
+Trace / documentation
+${v.trace}
+
+Rupture du pacte
+Le pacte peut être arrêté à tout moment. En cas de rupture : retour immédiat des clés, objets, documents et accès ; arrêt des visites et messages si demandé ; absence de pression via proches ou réseaux ; respect de la confidentialité ; réparation matérielle si un bien, une dépense, un logement ou un accès a été utilisé abusivement.
+
+Signature
+Je signe en reconnaissant que je n'obtiens aucun droit sur le corps, le domicile, le temps, la sexualité ou la disponibilité de l'autre. Je signe pour créer une trace de respect.
+
+Personne A :
+Personne B :`
+        },
+        {
+          id: "aimant",
+          title: "🫦 1. Pacte A(i)mant",
+          subtitle: "Conscientement · RBDSMK · Cartes du Totem.",
+          pill: "Désir conscient",
+          step: "Le désir ne s'ouvre qu'après la base aMi : sécurité, parole, limites, réparation.",
+          guard: "Le consentement n'est pas une case à cocher : c'est un art à pratiquer en temps réel.",
+          signature: "Je m'engage à jouer avec ton Oui vivant, jamais avec ta peur.",
+          filename: "01_Pacte_Aimant_Conscientement_RBDSMK_rempli.txt",
+          fields: [
+            { name: "intention", label: "Intention du désir", type: "textarea", placeholder: "Pourquoi ouvrir cet espace ? Qu'est-ce qu'on veut honorer ?" },
+            { name: "r", label: "R - Réciprocité", type: "textarea", placeholder: "Comment chacun donne, reçoit, ajuste, remercie ?" },
+            { name: "b", label: "B - Boundaries / limites", type: "textarea", placeholder: "Oui, oui conditionnels, non, zones sensibles..." },
+            { name: "d", label: "D - Désirs", type: "textarea", placeholder: "Désirs à explorer, fantasmes, curiosités, tabous..." },
+            { name: "s", label: "S - Safety / sécurité", type: "textarea", placeholder: "Signaux, pause, arrêt, aftercare, secours..." },
+            { name: "m", label: "M - Meaning / sens", type: "textarea", placeholder: "Pourquoi ce jeu ? Quelle beauté ? Quelle guérison ?" },
+            { name: "k", label: "K - Karma / conséquences", type: "textarea", placeholder: "Que se passe-t-il si une limite est franchie ? Quelle réparation effective ?" },
+            { name: "cartes", label: "Cartes du Totem", type: "textarea", placeholder: "Santé, consentement, désirs, tempo, abandon, fusion, transmission, sacralisation..." },
+            { name: "pause", label: "Pause / arrêt", type: "textarea", placeholder: "Mot de pause, geste, règle absolue..." },
+            { name: "fermeture", label: "Fermeture / après", type: "textarea", placeholder: "Comment refermer, remercier, se séparer proprement..." }
+          ],
+          template: (v) => `PACTE A(I)MANT
+Conscientement · RBDSMK · Cartes du Totem du Désir
+
+Parties
+Personne A : ${v.personneA}
+Personne B : ${v.personneB}
+Date : ${v.date}
+Lieu : ${v.lieu}
+Témoin éventuel : ${v.temoin}
+
+Préambule
+Le pacte A(i)mant ne remplace jamais le pacte aMi : il se pose dessus. Si l'amitié, la limite, la parole et la sécurité ne tiennent pas, le désir ne doit pas être ouvert.
+
+Mentir pour coucher, c'est violer le consentement.
+Le plaisir monte quand le respect augmente.
+Le corps n'est pas un territoire à prendre, mais un jardin à arroser par le Verbe qui protège.
+
+Intention du désir
+${v.intention}
+
+Conscientement
+Le Conscientement est l'acte de présence lucide où le corps, le cœur et l'esprit s'accordent dans un Oui libre. C'est dire Oui sans se trahir.
+
+Érographie
+L'Érographie est l'écriture de la sexualité consciente et sacrée, où l'union charnelle devient une prière vivante. Elle n'excite pas seulement : elle élève.
+
+RBDSMK - Boussole du lien conscient
+R - Réciprocité :
+${v.r}
+
+B - Boundaries / Limites :
+${v.b}
+
+D - Désirs :
+${v.d}
+
+S - Safety / Sécurité :
+${v.s}
+
+M - Meaning / Sens :
+${v.m}
+
+K - Karma / Conséquences :
+${v.k}
+
+Le K rappelle que tout acte a une conséquence. Une limite franchie appelle arrêt, trace, reconnaissance, réparation et, si besoin, fin du pacte. Sans Karma, le désir devient privilège. Avec Karma, le désir reste responsable.
+
+Cartes du Totem
+${v.cartes}
+
+Progression :
+1. Santé & Sécurité - Je suis sacré·e. Je suis souverain·e.
+2. Consentement Continu & Rythme - Je choisis chaque pas.
+3. Désirs & Délimitations - J'ose dire ce que je veux et ce que je ne veux pas.
+4. Tension Juste - Monter sans forcer ni s'oublier.
+5. Abandon Conscient - Confiance active, jamais naïve.
+6. Fusion & Résonance - Grandir ensemble, pas se confondre.
+7. Gratitude & Transmission - Rendre la vie plus vivante.
+∞ Sacralisation - Ouvrir, Protéger, Fermer, Honorer.
+
+Pause / arrêt
+${v.pause}
+
+Si quelque chose se tend :
+Je nomme.
+Tu accueilles.
+On ajuste.
+Personne ne supporte en silence.
+On écoute le vivant en temps réel.
+
+Fermeture / après
+${v.fermeture}
+
+Je m'engage à...
+- Je m'engage à ne jamais confondre désir et droit.
+- Je m'engage à ne pas mentir pour obtenir un accès au corps de l'autre.
+- Je m'engage à demander avant d'entrer dans un espace sensible : corps, mémoire, domicile, fantasme, douleur, histoire.
+- Je m'engage à considérer la pause comme une preuve d'envie mature, pas comme un rejet.
+- Je m'engage à écouter le corps, le cœur et le sens, pas seulement l'excitation.
+- Je m'engage à ne jamais forcer l'abandon : la confiance active n'est jamais naïveté, sidération ou emprise.
+- Je m'engage à refermer proprement le cercle après l'intensité.
+
+Ouverture
+Je me présente en Discipline du Respect et en Joie du Vivant.
+Je me montre sans me perdre.
+Tu es mon égal·e.
+Et nous sommes libres.
+
+Protection
+Vérité = Respect.
+Mensonge = Violence.
+
+Fermeture
+Merci d'avoir respecté le Vivant en moi.
+Merci d'avoir fait pousser le tien.
+Je quitte l'espace enrichi·e,
+et je te laisse enrichi·e,
+grâce à un peu de nous dans nos vies.
+
+Phrase finale
+Faire l'Amour, c'est Soigner la Vie.`
+        },
+        {
+          id: "vie",
+          title: "💍 2. Pacte de Vie",
+          subtitle: "Alliance Civile de Protection Choisie.",
+          pill: "Partenaire de Vie",
+          step: "Protéger, loger, transmettre, associer, consulter et reconnaître sans rejouer le mariage-propriété.",
+          guard: "L'alliance n'est pas une possession. La rupture elle-même doit rester responsable.",
+          signature: "Je signe pour clarifier mes responsabilités, pas pour enfermer l'autre.",
+          filename: "02_Pacte_de_Vie_Alliance_Civile_rempli.txt",
+          fields: [
+            { name: "cercle", label: "Cercle allié", type: "textarea", placeholder: "Personnes à protéger, consulter, prévenir..." },
+            { name: "logement", label: "Logement", type: "textarea", placeholder: "Maintien, départ, clés, sécurité, animaux..." },
+            { name: "transmission", label: "Transmission", type: "textarea", placeholder: "Biens, œuvres, archives, mémoire, numérique..." },
+            { name: "soin", label: "Soin / maladie", type: "textarea", placeholder: "Ce que chacun accepte/refuse en cas de maladie, handicap, vieillissement..." },
+            { name: "projet", label: "Projet de vie", type: "textarea", placeholder: "Enfants, lieu, travail, rythme, spiritualité, sexualité..." },
+            { name: "sortie", label: "Sortie responsable", type: "textarea", placeholder: "Préavis, restitution, réparation, médiation, urgence..." }
+          ],
+          template: (v) => `PACTE DE VIE
+Alliance Civile de Protection Choisie
+
+Parties
+Personne A : ${v.personneA}
+Personne B : ${v.personneB}
+Date : ${v.date}
+Lieu : ${v.lieu}
+Témoin éventuel : ${v.temoin}
+
+Intention
+Le pacte de Vie se rajoute à la base aMi quand le lien veut devenir durable, matériel, administratif, patrimonial ou familial. Il ne donne aucun droit de posséder l'autre : il clarifie comment protéger, loger, transmettre, consulter, associer et réparer.
+
+Principes non négociables
+1. Consentement continu.
+2. Non-possession.
+3. Protection du Vivant.
+4. Transparence patrimoniale.
+5. Révision mature.
+
+Cercle allié
+${v.cercle}
+
+Logement
+${v.logement}
+
+Transmission
+${v.transmission}
+
+Soin, maladie, handicap, vieillissement
+${v.soin}
+
+Je m'engage à ne pas utiliser la maladie, le handicap, la vieillesse, la grossesse, la précarité ou le traumatisme comme prétexte d'abandon brutal.
+Je m'engage à organiser une transition digne si je ne peux plus tenir une responsabilité de soin.
+
+Projet de vie
+${v.projet}
+
+Limites, conflits et violence
+Sont incompatibles avec l'alliance : violence physique, sexuelle, psychologique, économique, administrative, numérique ou spirituelle ; chantage au logement, à l'argent, aux papiers, aux enfants, aux animaux ou à la réputation ; isolement forcé ; surveillance ; humiliation ; confiscation ; dette affective imposée ; menace de suicide ou de ruine pour contrôler l'autre.
+
+Sortie responsable
+${v.sortie}
+
+Une alliance mature ne signifie pas rester à n'importe quel prix. Elle signifie que la rupture elle-même doit rester responsable. La sortie ne doit pas devenir abandon, punition, chantage ou effacement de responsabilités déjà engagées.
+
+Signature
+Je signe en reconnaissant que l'alliance ne donne aucun droit de posséder l'autre, mais crée un devoir de clarté, de soin, de protection et de responsabilité.
+
+Personne A :
+Personne B :
+Témoins :`
+        },
+        {
+          id: "pro",
+          title: "🛡️ +. Clauses Universelles",
+          subtitle: "Clause anti-violence, contrats pro et pacte de soin avec les soignant·es.",
+          pill: "Cercle socio-professionnel",
+          step: "Bail, travail, bénévolat, collaboration, prestation, soin médical, accompagnement.",
+          guard: "Aucun contrat ne peut transformer la domination en zone grise.",
+          signature: "Je m'engage à protéger le consentement, la sécurité, les accès et la dignité.",
+          filename: "Plus_Clauses_Universelles_Soin_AntiViolence_rempli.txt",
+          fields: [
+            { name: "typeContrat", label: "Type de contrat", type: "select", options: ["Contrat général", "Bail / logement", "Travail / mission", "Bénévolat / association", "Artiste / collaboration", "Avocat / prestation", "Soin avec soignant·e", "Pacte relationnel"] },
+            { name: "partiesContrat", label: "Parties concernées", type: "textarea", placeholder: "Ex. patient·e/soignant·e, propriétaire/locataire, artiste/producteur..." },
+            { name: "cadreSoin", label: "Cadre de soin / prestation", type: "textarea", placeholder: "Actes, durée, lieu, limites de compétence, information donnée..." },
+            { name: "consentementSoin", label: "Consentement aux soins", type: "textarea", placeholder: "Explications, refus possibles, deuxième avis, présence d'un tiers..." },
+            { name: "risques", label: "Risques spécifiques", type: "textarea", placeholder: "Corps, intimité, argent, clés, horaires, documents, confidentialité..." },
+            { name: "restitution", label: "Restitution / dossier / accès", type: "textarea", placeholder: "Documents, dossier médical, œuvres, fichiers, clés, paiements..." },
+            { name: "tiers", label: "Tiers / procédure", type: "textarea", placeholder: "Personne de confiance, médiation hors violence, ordre pro, recours..." }
+          ],
+          template: (v) => `CLAUSES PROFESSIONNELLES
+Clause Anti-Violence Universelle + Pacte de Soin avec les Soignant·es
+
+Type de contrat : ${v.typeContrat}
+Parties concernées :
+${v.partiesContrat}
+
+Date : ${v.date}
+Lieu : ${v.lieu}
+Témoin éventuel : ${v.temoin}
+
+Principe général
+Les parties reconnaissent que, dans le cadre du présent contrat, aucun accord contractuel ne peut justifier une violence, une pression, une humiliation, une menace, une rétention de documents, une surveillance, une intrusion, une exploitation de vulnérabilité ou une atteinte au consentement.
+
+Pacte de soin avec les soignant·es
+Le soin ne doit jamais être une confiscation du corps par l'autorité médicale, thérapeutique, administrative ou spirituelle. La personne soignée reste souveraine : elle doit être informée, écoutée, crue, respectée, et pouvoir poser une limite, refuser un acte, demander une pause, demander un deuxième avis ou être accompagnée par une personne de confiance.
+
+Cadre de soin / prestation
+${v.cadreSoin}
+
+Consentement aux soins
+${v.consentementSoin}
+
+Risques spécifiques identifiés
+${v.risques}
+
+Je m'engage à...
+- Je m'engage à ne pas utiliser un contrat, un logement, une mission, un statut, une dette, une rémunération, une clé, un accès, un dossier, une ordonnance, un diagnostic ou une information privée pour contrôler l'autre.
+- Je m'engage à respecter les limites écrites et orales exprimées dans le cadre du contrat.
+- Je m'engage à restituer clés, documents, fichiers, œuvres, accès, biens, dossiers ou informations confiées dès qu'une demande légitime est formulée.
+- Je m'engage à ne pas exercer de représailles si une personne nomme un malaise, une limite, une violence ou un danger.
+- Je m'engage à ne pas imposer de médiation en cas de violence : la sécurité de la personne concernée prime.
+- Je m'engage, en contexte de soin, à expliquer l'acte avant de toucher, demander l'accord, respecter le refus, et ne jamais confondre expertise et pouvoir sur le corps de l'autre.
+
+Restitution / dossier / accès
+${v.restitution}
+
+Chaque partie conserve le droit de poser une limite, demander une trace écrite, refuser un échange hors cadre, exiger la restitution de clés, documents, fichiers, œuvres, accès ou biens confiés, et suspendre l'exécution du contrat en cas de danger réel ou de violation grave.
+
+En cas de signalement, les priorités sont :
+1. mise en sécurité de la personne concernée ;
+2. conservation des preuves et échanges datés ;
+3. restitution des accès, clés, documents, biens ou fichiers ;
+4. interruption des contacts non nécessaires ;
+5. réparation matérielle ou symbolique si un tort est établi ;
+6. orientation vers une autorité, un tiers compétent ou une procédure adaptée si nécessaire.
+
+Tiers / procédure
+${v.tiers}
+
+Aucune clause du contrat ne peut être interprétée comme une autorisation de contrainte, d'emprise ou d'abandon d'une personne rendue dépendante par l'organisation contractuelle.
+
+Signatures :`
+        }
+      ];
+
+      const root = document.getElementById("respectContracts");
+      const tabs = [...root.querySelectorAll(".rc-tab")];
+      const title = root.querySelector("#rcTitle");
+      const subtitle = root.querySelector("#rcSubtitle");
+      const pill = root.querySelector("#rcPill");
+      const step = root.querySelector("#rcStep");
+      const guard = root.querySelector("#rcGuard");
+      const signature = root.querySelector("#rcSignature");
+      const readerTitle = root.querySelector("#rcReaderTitle");
+      const progress = root.querySelector("#rcProgress");
+      const text = root.querySelector("#rcText");
+      const form = root.querySelector("#rcForm");
+      const fillCount = root.querySelector("#rcFillCount");
+      const status = root.querySelector("#rcStatus");
+      const copyBtn = root.querySelector("#rcCopy");
+      const downloadBtn = root.querySelector("#rcDownload");
+      const packBtn = root.querySelector("#rcPack");
+      const topBtn = root.querySelector("#rcTop");
+      const clearBtn = root.querySelector("#rcClear");
+
+      const commonState = Object.fromEntries(commonFields.map(f => [f.name, ""]));
+      const state = Object.fromEntries(pactes.map(p => [p.id, Object.fromEntries(p.fields.map(f => [f.name, f.type === "select" ? (f.options[0] || "") : ""]))]));
+      let current = pactes[0];
+
+      function fieldValue(values, key) {
+        const value = values[key];
+        return value && String(value).trim() ? value : "[à remplir]";
+      }
+
+      function valuesFor(pacte) {
+        const merged = { ...commonState, ...state[pacte.id] };
+        return new Proxy(merged, {
+          get(target, prop) {
+            return fieldValue(target, prop);
+          }
+        });
+      }
+
+      function filledCount(pacte) {
+        const fields = [...commonFields, ...pacte.fields];
+        const merged = { ...commonState, ...state[pacte.id] };
+        const filled = fields.filter(f => String(merged[f.name] || "").trim()).length;
+        return { filled, total: fields.length };
+      }
+
+      function currentText() {
+        return current.template(valuesFor(current));
+      }
+
+      function makeField(field, scope) {
+        const wrap = document.createElement("div");
+        wrap.className = "rc-field";
+        const label = document.createElement("label");
+        label.htmlFor = `rc-${scope}-${field.name}`;
+        label.textContent = field.label;
+        wrap.appendChild(label);
+
+        let input;
+        if (field.type === "textarea") {
+          input = document.createElement("textarea");
+          input.placeholder = field.placeholder || "";
+        } else if (field.type === "select") {
+          input = document.createElement("select");
+          (field.options || []).forEach(option => {
+            const opt = document.createElement("option");
+            opt.value = option;
+            opt.textContent = option;
+            input.appendChild(opt);
+          });
+        } else {
+          input = document.createElement("input");
+          input.type = "text";
+          input.placeholder = field.placeholder || "";
+        }
+
+        input.id = `rc-${scope}-${field.name}`;
+        input.value = scope === "common" ? commonState[field.name] : state[current.id][field.name];
+        input.addEventListener("input", () => {
+          if (scope === "common") commonState[field.name] = input.value;
+          else state[current.id][field.name] = input.value;
+          updateGenerated(false);
+        });
+        wrap.appendChild(input);
+        return wrap;
+      }
+
+      function renderForm() {
+        form.innerHTML = "";
+        commonFields.forEach(field => form.appendChild(makeField(field, "common")));
+        current.fields.forEach(field => form.appendChild(makeField(field, current.id)));
+      }
+
+      function updateGenerated(resetScroll) {
+        text.textContent = currentText();
+        const count = filledCount(current);
+        fillCount.textContent = `${count.filled} / ${count.total}`;
+        status.textContent = "";
+        if (resetScroll) requestAnimationFrame(() => { text.scrollTop = 0; });
+      }
+
+      function render(id) {
+        current = pactes.find(p => p.id === id) || pactes[0];
+        tabs.forEach(tab => tab.setAttribute("aria-selected", String(tab.dataset.id === current.id)));
+        title.textContent = current.title;
+        subtitle.textContent = current.subtitle;
+        pill.textContent = current.pill;
+        step.textContent = current.step;
+        guard.textContent = current.guard;
+        signature.textContent = current.signature;
+        readerTitle.textContent = current.title;
+        progress.textContent = `${pactes.indexOf(current) + 1} / ${pactes.length}`;
+        renderForm();
+        updateGenerated(true);
+      }
+
+      function packText() {
+        return `LES CONTRATS DU RESPECT - L'UN-PACT
+
+Pour que l'Amour soit Inconditionnel,
+Il Faut La Base du Contractuel
+Pour un Engagement Relationnel.
+
+Relation = Engagement
+de base normalement.
+
+${pactes.map((p, index) => `==============================
+${index + 1}. ${p.title}
+${p.subtitle}
+==============================
+
+${p.template(valuesFor(p))}`).join("\n\n")}`;
+      }
+
+      function downloadText(filename, content) {
+        const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      async function copyCurrent() {
+        try {
+          await navigator.clipboard.writeText(currentText());
+          status.textContent = "Pacte rempli copié.";
+        } catch (error) {
+          status.textContent = "Copie impossible ici : sélectionne le texte dans la zone de lecture.";
+        }
+      }
+
+      function clearCurrent() {
+        current.fields.forEach(field => {
+          state[current.id][field.name] = field.type === "select" ? (field.options[0] || "") : "";
+        });
+        render(current.id);
+        status.textContent = "Champs de cet onglet effacés.";
+      }
+
+      tabs.forEach(tab => tab.addEventListener("click", () => render(tab.dataset.id)));
+      copyBtn.addEventListener("click", copyCurrent);
+      downloadBtn.addEventListener("click", () => {
+        downloadText(current.filename, currentText());
+        status.textContent = "Pacte rempli préparé.";
+      });
+      packBtn.addEventListener("click", () => {
+        downloadText("UN-PACT_Les_Contrats_du_Respect_aMi_rempli.txt", packText());
+        status.textContent = "L'UN-PACT rempli est prêt.";
+      });
+      topBtn.addEventListener("click", () => {
+        text.scrollTo({ top: 0, behavior: "smooth" });
+        status.textContent = "Retour au début du texte.";
+      });
+      clearBtn.addEventListener("click", clearCurrent);
+
+      render("ami");
+    })();
+  </script>
+</main>
+
+

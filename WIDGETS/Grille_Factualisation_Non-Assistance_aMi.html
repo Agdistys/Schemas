@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grille de Factualisation — Non-Assistance à Personne en Danger</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--or:#c8a84a;--or-pale:#e6d090;--vert:#3a7a52;--vert-pale:#a8d4b8;--rubis:#8a3030;--rubis-pale:#d4a0a0;--bleu-pale:#8ab0d8;--nacre:#f2ede2;--bg:#0d0d18;--text:#e8e4d8;--text-dim:#9a9080;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:radial-gradient(ellipse at 50% 0%,#14142a 0%,#0d0d18 60%,#07070f 100%);color:var(--text);line-height:1.6;padding:2rem 1rem;min-height:100vh;}
+.wrap{max-width:760px;margin:0 auto;}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--nacre);font-size:2rem;text-align:center;letter-spacing:.02em;}
+.sub{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--or-pale);margin:.3rem 0 .2rem;}
+.axiom{text-align:center;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:1.2rem;}
+.intro{border:1px solid rgba(200,168,74,.2);border-radius:8px;padding:1rem 1.3rem;background:rgba(255,255,255,.02);font-size:.84rem;color:var(--text-dim);margin-bottom:1.4rem;font-style:italic;}
+.intro strong{color:var(--or);font-style:normal;}
+.legal{border:1px solid rgba(42,72,112,.4);background:rgba(42,72,112,.1);border-radius:8px;padding:.9rem 1.2rem;margin-bottom:1.4rem;font-size:.8rem;}
+.legal b{color:var(--bleu-pale);}
+.q{border-radius:8px;padding:1rem 1.1rem;margin:.7rem 0;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);}
+.q-num{font-family:'Cormorant Garamond',serif;color:var(--or);font-size:1.1rem;margin-right:.4rem;}
+.q-txt{font-size:.92rem;margin-bottom:.3rem;font-weight:500;color:var(--nacre);}
+.q-help{font-size:.76rem;color:var(--text-dim);margin-bottom:.6rem;font-style:italic;}
+.opts{display:flex;gap:.5rem;flex-wrap:wrap;}
+.opt{flex:1;min-width:90px;border:1px solid rgba(255,255,255,.15);background:none;color:var(--text-dim);border-radius:6px;padding:.5rem;cursor:pointer;font-family:'Jost',sans-serif;font-size:.76rem;font-weight:600;transition:.15s;}
+.opt.sel.oui{border-color:var(--rubis-pale);color:var(--rubis-pale);background:rgba(138,48,48,.14);}
+.opt.sel.non{border-color:var(--vert-pale);color:var(--vert-pale);background:rgba(58,122,82,.14);}
+.opt.sel.ns{border-color:var(--or-pale);color:var(--or-pale);background:rgba(200,168,74,.12);}
+.note{width:100%;margin-top:.6rem;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.1);border-radius:5px;color:var(--text);padding:.5rem;font-family:'Jost',sans-serif;font-size:.8rem;resize:vertical;}
+.btn{display:block;width:100%;padding:.7rem;margin-top:1.2rem;background:rgba(200,168,74,.14);border:1px solid var(--or);border-radius:6px;color:var(--or);font-family:'Jost',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.2s;}
+.btn:hover{background:rgba(200,168,74,.28);}
+.result{display:none;margin-top:1.3rem;border-radius:10px;padding:1.4rem 1.6rem;border:1px solid;animation:fade .4s ease;}
+.result.show{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.result h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:.5rem;}
+.r-oui{background:rgba(138,48,48,.1);border-color:var(--rubis-pale);} .r-oui h2{color:var(--rubis-pale);}
+.r-partiel{background:rgba(200,168,74,.08);border-color:var(--or-pale);} .r-partiel h2{color:var(--or-pale);}
+.r-non{background:rgba(58,122,82,.08);border-color:var(--vert-pale);} .r-non h2{color:var(--vert-pale);}
+.recours{margin-top:1rem;border-top:1px dashed rgba(200,168,74,.3);padding-top:.9rem;font-size:.84rem;}
+.recours b{color:var(--or-pale);}
+.foot{text-align:center;font-size:.66rem;color:#555570;letter-spacing:.08em;text-transform:uppercase;margin-top:1.6rem;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>⚖️ Grille de Factualisation</h1>
+  <p class="sub">Était-ce une Non-Assistance à Personne en Danger ?</p>
+  <div class="axiom">Voir clair, c'est déjà protéger le vivant</div>
+
+  <div class="intro">
+    <strong>Ce que fait cet outil :</strong> il t'aide à <strong>poser les faits</strong> et à les confronter aux critères de la loi — pour reconnaître, documenter, et décider s'il faut agir. <strong>Ce qu'il ne fait pas :</strong> il ne rend aucun verdict et ne déclare personne coupable — ça, c'est le rôle de la justice. Ce n'est pas un conseil juridique : pour ton cas, un·e avocat·e ou une association d'aide aux victimes reste indispensable.
+  </div>
+
+  <div class="legal">
+    <b>⚖️ Le texte (Code pénal français, art. 223-6 al. 2) :</b> est punissable « quiconque s'abstient <em>volontairement</em> de porter à une personne en péril l'assistance que, sans risque pour lui ou pour les tiers, il pouvait lui prêter soit par son action personnelle, soit en provoquant un secours. » <span style="color:var(--text-dim)">(Voisins : non-dénonciation de mauvais traitements sur mineur ou personne vulnérable, art. 434-3 ; non-dénonciation de crime, art. 434-1.)</span>
+  </div>
+
+  <div id="quiz"></div>
+
+  <button class="btn" onclick="voir()">◈ Poser le constat factuel</button>
+  <button class="btn" style="border-color:rgba(255,255,255,.2);color:var(--text-dim);margin-top:.5rem" onclick="reset()">↺ Recommencer</button>
+  <div class="result" id="result"></div>
+
+  <div class="foot">
+    Protocole de Conscience · aMi — Outil de factualisation, pas de jugement<br>
+    © Agdistys · Diane Serant — Charte des registres : Fait · Critère légal · À établir
+  </div>
+</div>
+
+<script>
+var Q = [
+  {t:"Y avait-il un péril ?", h:"Un danger réel pour une personne : santé, intégrité, vie, sécurité.", crit:"péril"},
+  {t:"Ce péril était-il grave et imminent ?", h:"Menace sérieuse, actuelle ou sur le point de survenir — pas un risque vague ou lointain.", crit:"gravité"},
+  {t:"La personne (le témoin) avait-elle connaissance du danger ?", h:"Elle savait, ou ne pouvait raisonnablement l'ignorer.", crit:"connaissance"},
+  {t:"Pouvait-elle agir ou alerter sans risque pour elle ou pour autrui ?", h:"Par son action directe OU simplement en appelant les secours (15, 17, 18, 112).", crit:"capacité"},
+  {t:"S'est-elle abstenue volontairement d'agir ou d'alerter ?", h:"Elle a choisi de ne rien faire, alors qu'elle le pouvait.", crit:"abstention"}
+];
+var ans={}, notes={};
+function build(){
+  var html='';
+  Q.forEach(function(q,i){
+    html+='<div class="q"><div class="q-txt"><span class="q-num">'+(i+1)+'.</span>'+q.t+'</div>'+
+      '<div class="q-help">'+q.h+'</div><div class="opts">'+
+      '<button class="opt oui" onclick="pick('+i+',\'oui\',this)">Oui</button>'+
+      '<button class="opt non" onclick="pick('+i+',\'non\',this)">Non</button>'+
+      '<button class="opt ns" onclick="pick('+i+',\'ns\',this)">Je ne sais pas</button>'+
+      '</div><textarea class="note" placeholder="Note libre : ce que tu as constaté, date, lieu, témoins…" oninput="notes['+i+']=this.value"></textarea></div>';
+  });
+  document.getElementById('quiz').innerHTML=html;
+}
+function pick(i,v,btn){
+  ans[i]=v;
+  btn.parentNode.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel');});
+  btn.classList.add('sel');
+}
+function voir(){
+  var r=document.getElementById('result');
+  if(Object.keys(ans).length < 5){ r.className='result show r-partiel'; r.innerHTML='<h2>Il manque des réponses</h2><p>Réponds aux 5 critères (même « je ne sais pas ») pour poser le constat.</p>'; r.scrollIntoView({behavior:"smooth"}); return; }
+  var oui=0,non=0,ns=0;
+  for(var i=0;i<Q.length;i++){ var a=ans[i]; if(a==='oui')oui++; else if(a==='non')non++; else if(a==='ns')ns++; }
+  var cls,titre,txt;
+  if(oui===5){ cls='r-oui'; titre='⚖️ Les 5 critères sont réunis';
+    txt='D\'après ce que tu as posé, <strong>les faits correspondent à la définition de la non-assistance à personne en danger</strong> (art. 223-6). Ce n\'est pas un verdict — c\'est un constat factuel qui mérite d\'être <strong>documenté et porté aux autorités compétentes</strong>.'; }
+  else if(non>0 && ns===0){ cls='r-non'; titre='◈ Un critère au moins manque';
+    txt='Sur ce que tu as posé, au moins un critère de l\'infraction n\'est pas rempli. Cela ne minimise ni la souffrance ni la gravité de ce qui s\'est passé — cela veut dire que <em>cette qualification précise</em> ne colle pas entièrement. D\'autres qualifications peuvent exister (maltraitance, mise en danger, etc.).'; }
+  else { cls='r-partiel'; titre='◈ Des zones à établir';
+    txt='Certains éléments restent « à établir » (les « je ne sais pas »). C\'est précieux à noter : ce sont exactement les points sur lesquels rassembler des preuves, des témoignages, des dates. La factualisation, c\'est aussi savoir ce qu\'on ne sait pas encore.'; }
+  var recap='<div style="font-size:.82rem;margin:.6rem 0 0">🔴 Réunis : <b>'+oui+'</b> · 🟢 Non remplis : <b>'+non+'</b> · 🟡 À établir : <b>'+ns+'</b></div>';
+  var recours='<div class="recours"><b>🛟 Les recours réels :</b><br>'+
+    '• <b>Urgence en cours</b> : 15 (SAMU) · 17 (police) · 18 (pompiers) · 112 (Europe).<br>'+
+    '• <b>Aide aux victimes</b> : <b>France Victimes — 116 006</b> (gratuit, anonyme), écoute et orientation.<br>'+
+    '• <b>Faire valoir ses droits</b> : dépôt de plainte (commissariat/gendarmerie), avocat·e, ou courrier au procureur de la République.<br>'+
+    '• <b>Enfance en danger</b> : <b>119</b>.<br>'+
+    '<span style="color:var(--text-dim);font-size:.78rem">Garde une trace écrite et datée de ce que tu as constaté — c\'est ce qui transforme un ressenti en fait opposable.</span></div>';
+  r.className='result show '+cls;
+  r.innerHTML='<h2>'+titre+'</h2><p>'+txt+'</p>'+recap+recours+
+    '<p style="font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:.9rem">Rappel : cet outil pose des <em>faits</em> au regard d\'un <em>critère légal</em>. La culpabilité relève du juge — jamais de nous. C\'est ça, la Loi du Vrai sans la Violence du raccourci.</p>';
+  r.scrollIntoView({behavior:"smooth"});
+}
+function reset(){ ans={}; notes={}; build();
+  var r=document.getElementById('result'); r.className='result'; r.innerHTML='';
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+build();
+</script>
+</body>
+</html>

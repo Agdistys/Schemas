@@ -1,0 +1,382 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Widget · Consentement Réel · aMi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:transparent;font-family:'Jost',sans-serif;font-weight:300;font-size:15px;line-height:1.7;}
+
+:root{
+  --noir:#07070d;--encre:#0d0d18;--voile:#131324;
+  --or:#c8a84a;--or-pale:#e6d090;--or-somb:#6a5418;
+  --nacre:#f0ebe0;--gris:#7a7a98;--gris-cl:#a8a8c0;
+  --vert-cl:#6ab87a;--rubis-cl:#e08080;--bleu-cl:#8ab0d8;--r:8px;
+}
+
+/* ── PANEL inline ── */
+.cw-panel{
+  background:var(--encre);
+  border:1px solid rgba(200,168,74,.25);
+  border-radius:var(--r);
+  width:100%;max-width:560px;
+  display:flex;flex-direction:column;
+  box-shadow:0 12px 40px rgba(0,0,0,.5);
+  overflow:hidden;
+  margin:0 auto;
+}
+
+.cw-head{
+  background:var(--voile);border-bottom:1px solid var(--or-somb);
+  padding:.7rem 1.2rem;display:flex;align-items:center;gap:.8rem;flex-shrink:0;
+}
+.cw-title{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--or-pale);flex:1;}
+
+.cw-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;}
+.cw-tab{flex:1;background:none;border:none;padding:.55rem .3rem;font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;}
+.cw-tab.active{color:var(--or-pale);border-bottom-color:var(--or);}
+.cw-tab:hover{color:var(--nacre);}
+
+.cw-body{overflow-y:auto;flex:1;padding:1.2rem;}
+.cw-section{display:none;}
+.cw-section.active{display:block;}
+
+.cw-axiome{background:rgba(200,168,74,.07);border:1px solid rgba(200,168,74,.2);border-radius:var(--r);padding:.7rem 1rem;text-align:center;font-family:'Jost',sans-serif;font-size:.75rem;font-weight:500;color:var(--or-pale);letter-spacing:.06em;margin-bottom:1.2rem;}
+.cw-h3{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin:.8rem 0 .5rem;}
+
+/* Tables */
+table.cw-table{width:100%;border-collapse:collapse;font-size:.78rem;}
+table.cw-table th{text-align:left;color:var(--gris);font-weight:400;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.35rem .5rem;border-bottom:1px solid rgba(255,255,255,.08);}
+table.cw-table td{padding:.4rem .5rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--gris-cl);vertical-align:top;}
+table.cw-table td.num{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--gris);}
+
+/* Niveaux */
+.niveau-row td{font-weight:400;}
+.niveau-row .niv-name{font-weight:500;}
+.niveau-0{border-left:3px solid #e6d090;} .niveau-0 .niv-name,.niveau-0 .num{color:#e6d090;}
+.niveau-1{border-left:3px solid #6ab87a;} .niveau-1 .niv-name,.niveau-1 .num{color:#6ab87a;}
+.niveau-2{border-left:3px solid #e8941a;} .niveau-2 .niv-name,.niveau-2 .num{color:#e8941a;}
+.niveau-3{border-left:3px solid #d84040;} .niveau-3 .niv-name,.niveau-3 .num{color:#d84040;}
+.niveau-4{border-left:3px solid #7a1a1a;} .niveau-4 .niv-name,.niveau-4 .num{color:#9a3030;}
+.niveau-5{border-left:3px solid #333;background:rgba(0,0,0,.15);} .niveau-5 .niv-name,.niveau-5 .num{color:#777;}
+
+.cw-note{font-size:.72rem;color:var(--gris);font-style:italic;margin-top:.8rem;padding:.5rem .8rem;border-left:2px solid var(--or-somb);}
+.cw-cta{display:block;width:100%;margin-top:1.2rem;padding:.75rem 1rem;background:rgba(200,168,74,.1);border:1px solid rgba(200,168,74,.35);border-radius:var(--r);text-align:center;font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.12em;color:var(--or-pale);cursor:pointer;transition:background .15s,border-color .15s;text-transform:uppercase;}
+.cw-cta:hover{background:rgba(200,168,74,.18);border-color:var(--or);}
+
+/* ── TEST ── */
+.cq-q{font-size:.88rem;color:#fff;margin-bottom:.8rem;line-height:1.55;}
+.cq-num{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--or);display:block;margin-bottom:.4rem;font-style:normal;}
+.cq-opts{display:flex;flex-direction:column;gap:.35rem;}
+.cq-btn{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:.55rem .9rem;text-align:left;font-family:'Jost',sans-serif;font-size:.78rem;color:#d8d8e8;cursor:pointer;transition:opacity .15s;}
+.cq-btn:hover{opacity:.85;}
+
+/* Alertes */
+.alerte{background:rgba(138,48,48,.12);border-left:3px solid #8a3030;border-radius:0 var(--r) var(--r) 0;padding:.7rem 1rem;margin-bottom:.6rem;font-size:.8rem;color:var(--gris-cl);}
+.alerte strong{color:#f0a0a0;}
+
+/* Question hidden */
+.cq-question{display:none;}
+.cq-question.active{display:block;}
+
+/* Résultat */
+.cq-result-box{border-radius:0 var(--r) var(--r) 0;padding:1rem 1.1rem;margin-bottom:1rem;}
+.cq-niveau{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin-bottom:.5rem;}
+.cq-res-bar{height:4px;border-radius:2px;margin-bottom:1rem;overflow:hidden;}
+.cq-res-bar-inner{height:100%;border-radius:2px;transition:width .6s;}
+
+/* Reset btn */
+.btn-reset{margin-top:1rem;background:rgba(200,168,74,.08);border:1px solid var(--or-somb);color:var(--or-pale);padding:.5rem 1.4rem;border-radius:3px;cursor:pointer;font-size:.78rem;font-family:'Jost',sans-serif;letter-spacing:.12em;}
+.btn-reset:hover{background:rgba(200,168,74,.15);}
+
+/* Scrollbar */
+.cw-body::-webkit-scrollbar{width:4px;}
+.cw-body::-webkit-scrollbar-track{background:transparent;}
+.cw-body::-webkit-scrollbar-thumb{background:var(--or-somb);border-radius:2px;}
+
+/* Standalone */
+body.standalone{display:flex;min-height:100vh;align-items:center;justify-content:center;padding:1rem;}
+</style>
+
+
+
+<div class="cw-panel" id="cw-panel">
+
+  <div class="cw-head">
+    <span class="cw-title">◈ Consentement Réel · aMi</span>
+  </div>
+
+  <div style="padding:.7rem 1.2rem .3rem;flex-shrink:0;">
+    <div class="cw-axiome">JE SUIS RESPONSABLE DE LA QUALITÉ DU CONSENTEMENT QUE JE REÇOIS D'AUTRUI</div>
+  </div>
+
+  <div class="cw-tabs">
+    <button class="cw-tab active" onclick="cwTab('def',this)">📐 Définitions</button>
+    <button class="cw-tab" onclick="cwTab('niv',this)">◎ Niveaux</button>
+    <button class="cw-tab" onclick="cwTab('test',this)">✦ Test</button>
+  </div>
+
+  <div class="cw-body">
+
+    <!-- ══ DÉFINITIONS ══ -->
+    <div class="cw-section active" id="cw-def">
+      <p class="cw-h3">Consentement Structurel — Ce que c'est vraiment</p>
+      <p style="font-size:.8rem;color:var(--gris-cl);margin-bottom:.8rem;">Un consentement n'est pas binaire. Il se lit à travers <strong style="color:var(--or-pale);">5 conditions simultanées.</strong></p>
+      <table class="cw-table">
+        <thead><tr><th>#</th><th>Condition</th><th>Définition</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td style="color:var(--or-pale);">Sécurité</td><td>L'environnement permet de dire non sans risque immédiat.</td></tr>
+          <tr><td class="num">2</td><td style="color:var(--or-pale);">Information</td><td>La personne dispose de toutes les informations nécessaires.</td></tr>
+          <tr><td class="num">3</td><td style="color:var(--or-pale);">Temporalité</td><td>Elle a disposé d'assez de temps, sans pression d'urgence.</td></tr>
+          <tr><td class="num">4</td><td style="color:var(--or-pale);">Réversibilité</td><td>Elle peut changer d'avis sans subir de conséquence disproportionnée.</td></tr>
+          <tr><td class="num">5</td><td style="color:var(--or-pale);">Intégrité du Non</td><td>Le refus est réellement possible — son coût n'est pas disproportionné.</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.76rem;color:var(--gris-cl);margin:.8rem 0 0;font-style:italic;">Toute entrée, toute transformation, toute transmission nécessite un consentement. Corps, émotions, idées, relations, croyances, organisations, cultures, technologies.</p>
+      <button class="cw-cta" onclick="cwTab('niv',document.querySelectorAll('.cw-tab')[1])">◎ Voir les 6 niveaux →</button>
+    </div>
+
+    <!-- ══ NIVEAUX ══ -->
+    <div class="cw-section" id="cw-niv">
+      <p class="cw-h3">Les 6 Niveaux de Consentement</p>
+      <p style="font-size:.78rem;color:var(--gris-cl);margin-bottom:.8rem;">Du souverain au structurellement impossible.</p>
+      <table class="cw-table">
+        <thead><tr><th>N°</th><th>Nom</th><th>Lecture</th></tr></thead>
+        <tbody>
+          <tr class="niveau-row niveau-0"><td class="num">0</td><td><span class="niv-name">Consentement souverain</span></td><td>Libre, éclairé, réversible, sans pression</td></tr>
+          <tr class="niveau-row niveau-1"><td class="num">1</td><td><span class="niv-name">Compromis conscient</span></td><td>Choix assumé avec concessions explicites</td></tr>
+          <tr class="niveau-row niveau-2"><td class="num">2</td><td><span class="niv-name">Consentement adaptatif</span></td><td>Oui par contexte, non par désir pur</td></tr>
+          <tr class="niveau-row niveau-3"><td class="num">3</td><td><span class="niv-name">Consentement érodé</span></td><td>Pression diffuse, coût du non croissant</td></tr>
+          <tr class="niveau-row niveau-4"><td class="num">4</td><td><span class="niv-name">Consentement contraint</span></td><td>Oui sous menace implicite ou explicite</td></tr>
+          <tr class="niveau-row niveau-5"><td class="num">5</td><td><span class="niv-name">Non-consentement structurel</span></td><td>Le refus est impossible sans destruction</td></tr>
+        </tbody>
+      </table>
+      <p class="cw-note">Outil de réflexion — non un diagnostic clinique. Les réponses restent entièrement privées.</p>
+      <button class="cw-cta" onclick="cwTab('test',document.querySelectorAll('.cw-tab')[2])">✦ Faire le test interactif →</button>
+    </div>
+
+    <!-- ══ TEST ══ -->
+    <div class="cw-section" id="cw-test">
+
+      <p class="cw-h3">✦ Test du Consentement Réel</p>
+      <p style="font-size:.78rem;color:var(--gris-cl);margin-bottom:1rem;">2 questions contexte · 6 questions évaluées · Résultat parmi 6 niveaux · <em style="color:var(--or-somb);">Outil de réflexion — non un diagnostic clinique.</em></p>
+
+      <div id="cq-step">
+
+        <!-- Q1 : ÉTAT -->
+        <div class="cq-question active" id="cqPre1">
+          <p class="cq-q"><span class="cq-num">1 / 8 · Contexte A — Ton état</span>Au moment des faits, tu étais…</p>
+          <div class="cq-opts">
+            <button class="cq-btn" onclick="cqPreAnswer('etat','altere')" style="border-color:rgba(138,48,48,.5);background:rgba(138,48,48,.12);">En état altéré — épuisé·e, intoxiqué·e, sous l'effet de substances, en sidération, sous emprise</button>
+            <button class="cq-btn" onclick="cqPreAnswer('etat','vulnerable')" style="border-color:rgba(180,100,20,.45);background:rgba(180,100,20,.1);">En situation de vulnérabilité — mineur·e, malade, handicap, grossesse, personne âgée</button>
+            <button class="cq-btn" onclick="cqPreAnswer('etat','forme')" style="border-color:rgba(58,122,82,.45);background:rgba(58,122,82,.1);">Adulte en pleine capacité physique et psychique</button>
+          </div>
+        </div>
+
+        <!-- Q2 : POUVOIR -->
+        <div class="cq-question" id="cqPre2">
+          <p class="cq-q"><span class="cq-num">2 / 8 · Contexte B — Relation de pouvoir</span>Dans cette situation, la relation était…</p>
+          <div class="cq-opts">
+            <button class="cq-btn" onclick="cqPreAnswer('pouvoir','ascendant')" style="border-color:rgba(138,48,48,.5);background:rgba(138,48,48,.12);">L'autre avait l'ascendant sur moi — médecin, coach, supérieur, professeur, tuteur, partenaire dominant, personne plus âgée</button>
+            <button class="cq-btn" onclick="cqPreAnswer('pouvoir','jadominais')" style="border-color:rgba(180,100,20,.45);background:rgba(180,100,20,.1);">J'avais l'ascendant sur l'autre</button>
+            <button class="cq-btn" onclick="cqPreAnswer('pouvoir','egal')" style="border-color:rgba(58,122,82,.45);background:rgba(58,122,82,.1);">Entre pairs — pas de rapport d'ascendance notable</button>
+          </div>
+        </div>
+
+        <!-- ALERTES CONTEXTE -->
+        <div id="cq-context-flag" style="display:none;"></div>
+
+        <!-- Q3 : VÉRITÉ -->
+        <div class="cq-question" id="cq1">
+          <p class="cq-q"><span class="cq-num">3 / 8 · Vérité de l'information</span>L'information sur laquelle tu t'es basé·e pour dire oui était…</p>
+          <div class="cq-opts">
+            <button class="cq-btn" onclick="cqAnswer(1,0)" style="border-color:rgba(58,122,82,.4);background:rgba(58,122,82,.08);">Vraie, à ta connaissance et à celle de l'autre</button>
+            <button class="cq-btn" onclick="cqAnswer(1,1)" style="border-color:rgba(200,168,74,.35);background:rgba(200,168,74,.07);">Incomplète — certaines choses ont été omises sans intention claire</button>
+            <button class="cq-btn" onclick="cqAnswer(1,2)" style="border-color:rgba(180,100,20,.4);background:rgba(180,100,20,.09);">Fausse — tu as été induit·e en erreur, peut-être sans que l'autre le sache</button>
+            <button class="cq-btn" onclick="cqAnswer(1,3)" style="border-color:rgba(138,48,48,.45);background:rgba(138,48,48,.1);">Délibérément fausse — on t'a menti pour obtenir ton accord</button>
+          </div>
+        </div>
+
+        <!-- Q4 : LIBERTÉ -->
+        <div class="cq-question" id="cq2">
+          <p class="cq-q"><span class="cq-num">4 / 8 · Liberté de refus</span>Au moment de consentir, tu avais la possibilité de…</p>
+          <div class="cq-opts">
+            <button class="cq-btn" onclick="cqAnswer(2,0)" style="border-color:rgba(58,122,82,.4);background:rgba(58,122,82,.08);">Dire non librement, sans aucune conséquence</button>
+            <button class="cq-btn" onclick="cqAnswer(2,1)" style="border-color:rgba(200,168,74,.35);background:rgba(200,168,74,.07);">Dire non, mais avec des conséquences sociales ou relationnelles</button>
+            <button class="cq-btn" onclick="cqAnswer(2,2)" style="border-color:rgba(180,100,20,.4);background:rgba(180,100,20,.09);">Dire non au risque d'une réaction violente, d'un rejet ou d'une perte</button>
+            <button class="cq-btn" onclick="cqAnswer(2,3)" style="border-color:rgba(138,48,48,.45);background:rgba(138,48,48,.1);">Pas vraiment dire non — le contexte l'excluait</button>
+          </div>
+        </div>
+
+        <!-- Q5 : INFO & CLARTÉ -->
+        <div class="cq-question" id="cq3">
+          <p class="cq-q"><span class="cq-num">5 / 8 · Information &amp; clarté</span>Tu connaissais les enjeux réels de ce à quoi tu consentais…</p>
+          <div class="cq-opts">
+            <button class="cq-btn" onclick="cqAnswer(3,0)" style="border-color:rgba(58,122,82,.4);background:rgba(58,122,82,.08);">Pleinement, avec le temps de réfléchir</button>
+            <button class="cq-btn" onclick="cqAnswer(3,1)" style="border-color:rgba(200,168,74,.35);background:rgba(200,168,74,.07);">Partiellement — il y avait des zones floues</button>
+            <button class="cq-btn" onclick="cqAnswer(3,2)" style="border-color:rgba(180,100,20,.4);background:rgba(180,100,20,.09);">Peu — tu t'es fié·e à ce qu'on t'a dit sans tout vérifier</button>
+            <button class="cq-btn" onclick="cqAnswer(3,3)" style="border-color:rgba(138,48,48,.45);background:rgba(138,48,48,.1);">Pas du tout — tu n'avais pas les éléments pour comprendre</button>
+          </div>
+        </div>
+
+        <!-- Q6 : CORPS & CONSCIENCE -->
+        <div class="cq-question" id="cq4">
+          <p class="cq-q"><span class="cq-num">6 / 8 · Accord corps &amp; conscience</span>Ton corps et ta conscience étaient…</p>
+          <div class="cq-opts">
+            <button class="cq-btn" onclick="cqAnswer(4,0)" style="border-color:rgba(58,122,82,.4);background:rgba(58,122,82,.08);">En plein accord, avec enthousiasme sincère</button>
+            <button class="cq-btn" onclick="cqAnswer(4,1)" style="border-color:rgba(200,168,74,.35);background:rgba(200,168,74,.07);">En accord général, sans enthousiasme particulier</button>
+            <button class="cq-btn" onclick="cqAnswer(4,2)" style="border-color:rgba(180,100,20,.4);background:rgba(180,100,20,.09);">En désaccord partiel — quelque chose te faisait hésiter</button>
+            <button class="cq-btn" onclick="cqAnswer(4,3)" style="border-color:rgba(138,48,48,.45);background:rgba(138,48,48,.1);">En désaccord — un oui de la bouche, un non du corps</button>
+          </div>
+          <div style="margin-top:.7rem;padding:.6rem 1rem;background:rgba(42,72,112,.1);border-left:2px solid rgba(42,72,112,.4);border-radius:0 var(--r) var(--r) 0;font-size:.77rem;color:var(--gris-cl);">
+            <strong style="color:var(--bleu-cl);">Note —</strong> Sidération, peur, honte, craving de lien, épuisement émotionnel altèrent directement la capacité d'agir librement. Un « oui » sous emprise émotionnelle n'est pas un consentement souverain.
+          </div>
+        </div>
+
+        <!-- Q7 : CONTEXTE & POUVOIR -->
+        <div class="cq-question" id="cq5">
+          <p class="cq-q"><span class="cq-num">7 / 8 · Contexte &amp; pouvoir</span>La relation impliquait…</p>
+          <div class="cq-opts">
+            <button class="cq-btn" onclick="cqAnswer(5,0)" style="border-color:rgba(58,122,82,.4);background:rgba(58,122,82,.08);">Une égalité de pouvoir, d'âge et de statut</button>
+            <button class="cq-btn" onclick="cqAnswer(5,1)" style="border-color:rgba(200,168,74,.35);background:rgba(200,168,74,.07);">Une légère différence, sans pression notable</button>
+            <button class="cq-btn" onclick="cqAnswer(5,2)" style="border-color:rgba(180,100,20,.4);background:rgba(180,100,20,.09);">Une différence significative — hiérarchie, âge, dépendance affective ou économique</button>
+            <button class="cq-btn" onclick="cqAnswer(5,3)" style="border-color:rgba(138,48,48,.45);background:rgba(138,48,48,.1);">Une relation d'emprise, de tutelle ou de vulnérabilité reconnue</button>
+          </div>
+        </div>
+
+        <!-- Q8 : RÉVERSIBILITÉ -->
+        <div class="cq-question" id="cq6">
+          <p class="cq-q"><span class="cq-num">8 / 8 · Réversibilité</span>Tu aurais pu changer d'avis et retirer ton accord…</p>
+          <div class="cq-opts">
+            <button class="cq-btn" onclick="cqAnswer(6,0)" style="border-color:rgba(58,122,82,.4);background:rgba(58,122,82,.08);">Oui, à tout moment, sans aucune pression</button>
+            <button class="cq-btn" onclick="cqAnswer(6,1)" style="border-color:rgba(200,168,74,.35);background:rgba(200,168,74,.07);">Oui, mais avec gêne ou maladresse ressentie</button>
+            <button class="cq-btn" onclick="cqAnswer(6,2)" style="border-color:rgba(180,100,20,.4);background:rgba(180,100,20,.09);">Difficilement — tu sentais que ça ne se faisait pas</button>
+            <button class="cq-btn" onclick="cqAnswer(6,3)" style="border-color:rgba(138,48,48,.45);background:rgba(138,48,48,.1);">Non — le retrait aurait eu des conséquences réelles</button>
+          </div>
+        </div>
+
+      </div><!-- /#cq-step -->
+
+      <div id="cq-result"></div>
+      <button class="btn-reset" id="cq-reset" onclick="cqReset()" style="display:none;">↺ Recommencer le test</button>
+
+    </div><!-- /.cw-section test -->
+  </div><!-- /.cw-body -->
+
+  <div style="border-top:1px solid rgba(255,255,255,.06);padding:.5rem 1.2rem;flex-shrink:0;">
+    <span style="font-size:.58rem;color:var(--gris);letter-spacing:.1em;">Protocole aMi · Art. 20 bis</span>
+  </div>
+
+</div><!-- /.cw-panel -->
+
+<script>
+// ── TABS ──
+function cwTab(id, btn) {
+  document.querySelectorAll('.cw-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.cw-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('cw-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ── TEST ──
+var cqScore = 0;
+var cqCurrent = 1;
+var CQ_TOTAL = 6;
+var cqContext = { etat: null, pouvoir: null };
+
+function show(id) { var el = document.getElementById(id); if (el) el.classList.add('active'); }
+function hide(id) { var el = document.getElementById(id); if (el) el.classList.remove('active'); }
+
+function cqPreAnswer(type, value) {
+  cqContext[type] = value;
+  if (type === 'etat') {
+    hide('cqPre1');
+    show('cqPre2');
+  } else {
+    hide('cqPre2');
+    var flags = '';
+    if (cqContext.etat === 'altere') {
+      flags += '<div class="alerte"><strong>⚠ État altéré identifié</strong> — Sidération, épuisement ou substances compromettent automatiquement la qualité du consentement, indépendamment des réponses suivantes. (Art. 20 ter CP)</div>';
+    } else if (cqContext.etat === 'vulnerable') {
+      flags += '<div class="alerte"><strong>⚠ Situation de vulnérabilité identifiée</strong> — Minorité, maladie, handicap ou grossesse sont des facteurs légaux d\'incapacité partielle à consentir. La responsabilité de l\'autre partie est accrue. (Art. 20, 31-32 CP)</div>';
+    }
+    if (cqContext.pouvoir === 'ascendant') {
+      flags += '<div style="background:rgba(180,120,30,.12);border-left:3px solid #c8882a;border-radius:0 var(--r) var(--r) 0;padding:.7rem 1rem;margin-bottom:.6rem;font-size:.8rem;color:#e8b870;">⚖ <strong>Rapport d\'ascendance identifié</strong> — Médecin, coach, supérieur, professeur ou tuteur : le lien d\'autorité place le consentement dans un contexte structurellement inégal. Facteur aggravant reconnu (Art. 4, 21 al.4 CP).</div>';
+    } else if (cqContext.pouvoir === 'jadominais') {
+      flags += '<div style="background:rgba(42,72,112,.1);border-left:3px solid #3a5a9a;border-radius:0 var(--r) var(--r) 0;padding:.7rem 1rem;margin-bottom:.6rem;font-size:.8rem;color:#a0b8d8;">ℹ <strong>Tu avais l\'ascendant</strong> — En position de pouvoir, tu es tenu·e à une vigilance accrue sur la qualité du consentement de l\'autre.</div>';
+    }
+    var flagEl = document.getElementById('cq-context-flag');
+    if (flags) { flagEl.innerHTML = flags; flagEl.style.display = 'block'; }
+    show('cq1');
+  }
+}
+
+function cqAnswer(q, pts) {
+  cqScore += pts;
+  cqCurrent++;
+  hide('cq' + q);
+  if (cqCurrent <= CQ_TOTAL) {
+    show('cq' + cqCurrent);
+  } else {
+    showCqResult();
+  }
+}
+
+function showCqResult() {
+  document.getElementById('cq-step').style.display = 'none';
+  var niveaux = [
+    { min:0,  max:3,  num:'Niveau 1', nom:'Consentement Souverain',
+      bg:'rgba(58,122,82,.18)', border:'#3a7a52', tc:'#90d8a8', dot:'🟢',
+      desc:'Corps, conscience, contexte et désir sont alignés. L\'accord est donné librement, en pleine information, avec la possibilité réelle de dire non à tout moment.',
+      legal:'Consentement pleinement valide selon le Code Peinal. Aucune qualification de brèche ne peut s\'y appliquer.', note:'' },
+    { min:4,  max:6,  num:'Niveau 2', nom:'Consentement Éclairé',
+      bg:'rgba(58,122,82,.10)', border:'#5a9a72', tc:'#a0d8b0', dot:'🟡',
+      desc:'Le consentement est fondamentalement libre, mais une ou plusieurs conditions de plénitude étaient imparfaites — information partielle, enthousiasme mitigé, zone floue.',
+      legal:'Valide, mais fragile. Vérifier que les lacunes d\'information ne constituent pas une Brèche par dissimulation (Art. 21).', note:'' },
+    { min:7,  max:9,  num:'Niveau 3', nom:'Consentement Conditionné',
+      bg:'rgba(200,168,74,.10)', border:'#c8a84a', tc:'#e6d090', dot:'🟡',
+      desc:'Des pressions sociales, des habitudes ou des rôles assignés ont influencé le choix sans le forcer directement. Le consentement est donné mais sa liberté est partielle.',
+      legal:'Zone de vigilance. La pression contextuelle peut constituer une Brèche du Consentement par milieu contraint (Art. 21, al. 3).',
+      note:'Si un mensonge sincère (erreur de bonne foi) était présent, le consentement peut être annulé pour vice du consentement.' },
+    { min:10, max:12, num:'Niveau 4', nom:'Consentement Ambivalent',
+      bg:'rgba(180,120,30,.12)', border:'#c8882a', tc:'#e8b870', dot:'🟠',
+      desc:'Signaux contradictoires entre corps et conscience. Le "oui" exprimé ne reflète pas un accord intérieur stable. Ce consentement mérite d\'être revisité.',
+      legal:'Le Code Peinal reconnaît l\'Acrasie comme mécanisme d\'ambivalence : vouloir dire oui en ressentant un non. Ce niveau justifie une évaluation approfondie du contexte.',
+      note:'Si un mensonge (sincère ou délibéré) a participé à l\'ambivalence, il constitue un vice du consentement supplémentaire (Art. 14).' },
+    { min:13, max:15, num:'Niveau 5', nom:'Consentement Contraint',
+      bg:'rgba(138,48,48,.14)', border:'#8a3030', tc:'#f0a0a0', dot:'🔴',
+      desc:'La liberté de refus était illusoire — peur, dépendance, rapport de pouvoir ou mensonge délibéré ont rendu le refus réellement impossible ou trop coûteux.',
+      legal:'Brèche de premier rang selon le Code Peinal (Art. 19 + Art. 21). Équivaut à un défaut de consentement. La responsabilité de la partie en position de pouvoir est pleinement engagée.', note:'' },
+    { min:16, max:18, num:'Niveau 6', nom:'Absence de Consentement Structurel',
+      bg:'rgba(138,48,48,.22)', border:'#a03030', tc:'#f8a0a0', dot:'🔴',
+      desc:'L\'architecture même de la situation rendait le consentement impossible : âge, vulnérabilité, emprise, dépendance totale, ou tromperie délibérée comme condition d\'accès.',
+      legal:'Impossibilité de consentir au sens du Code Peinal (Art. 19, al. 2). Aucun accord verbal ou comportemental ne vaut consentement. Responsabilité pleine et entière de la partie en position de pouvoir.', note:'' }
+  ];
+  var n = niveaux[niveaux.length - 1];
+  for (var i = 0; i < niveaux.length; i++) {
+    if (cqScore >= niveaux[i].min && cqScore <= niveaux[i].max) { n = niveaux[i]; break; }
+  }
+  var pct = Math.round((cqScore / 18) * 100);
+  var noteHtml = n.note ? '<p style="font-size:.77rem;color:#e8b870;background:rgba(180,120,30,.08);border-left:2px solid #c8882a;padding:.5rem .8rem;border-radius:2px;margin-top:.6rem;">⚠ ' + n.note + '</p>' : '';
+  document.getElementById('cq-result').innerHTML =
+    '<div class="cq-result-box" style="background:' + n.bg + ';border-left:3px solid ' + n.border + ';">'
+    + '<div class="cq-res-bar"><div class="cq-res-bar-inner" style="width:' + pct + '%;background:' + n.tc + ';"></div></div>'
+    + '<div class="cq-niveau" style="color:' + n.tc + ';">' + n.dot + ' ' + n.num + ' — ' + n.nom + '</div>'
+    + '<p style="color:var(--gris-cl);margin-top:.5rem;font-size:.82rem;">' + n.desc + '</p>'
+    + noteHtml
+    + '<p style="font-size:.78rem;color:var(--gris);border-top:1px solid rgba(255,255,255,.06);padding-top:.8rem;margin-top:.8rem;"><strong style="color:' + n.tc + ';">Code Peinal —</strong> ' + n.legal + '</p>'
+    + '</div>';
+  document.getElementById('cq-reset').style.display = 'inline-block';
+}
+
+function cqReset() {
+  cqScore = 0; cqCurrent = 1;
+  cqContext = { etat: null, pouvoir: null };
+  document.getElementById('cq-result').innerHTML = '';
+  document.getElementById('cq-reset').style.display = 'none';
+  document.getElementById('cq-context-flag').style.display = 'none';
+  document.getElementById('cq-context-flag').innerHTML = '';
+  document.getElementById('cq-step').style.display = 'block';
+  document.querySelectorAll('.cq-question').forEach(function(q) { q.classList.remove('active'); });
+  show('cqPre1');
+}
+</script>

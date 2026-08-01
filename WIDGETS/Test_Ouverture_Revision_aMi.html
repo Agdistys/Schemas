@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test d'Ouverture à la Révision — Suis-je en lien avec le Réel ?</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--or:#c8a84a;--or-pale:#e6d090;--vert:#3a7a52;--vert-pale:#a8d4b8;--rubis:#8a3030;--rubis-pale:#d4a0a0;--bleu-pale:#8ab0d8;--nacre:#f2ede2;--bg:#0d0d18;--text:#e8e4d8;--text-dim:#9a9080;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:radial-gradient(ellipse at 50% 0%,#14142a 0%,#0d0d18 60%,#07070f 100%);color:var(--text);line-height:1.6;padding:2rem 1rem;min-height:100vh;}
+.wrap{max-width:760px;margin:0 auto;}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--nacre);font-size:2.1rem;text-align:center;letter-spacing:.03em;}
+.sub{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--or-pale);margin:.3rem 0 .2rem;}
+.axiom{text-align:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:1.2rem;}
+.intro{border:1px solid rgba(200,168,74,.2);border-radius:8px;padding:1rem 1.3rem;background:rgba(255,255,255,.02);font-size:.85rem;color:var(--text-dim);margin-bottom:1.5rem;font-style:italic;}
+.intro strong{color:var(--or);font-style:normal;}
+.axe{font-family:'Cormorant Garamond',serif;color:var(--or);font-size:1.15rem;margin:1.6rem 0 .5rem;border-bottom:1px solid rgba(200,168,74,.2);padding-bottom:.3rem;}
+.q{border-radius:8px;padding:.9rem 1rem;margin:.6rem 0;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);}
+.q-txt{font-size:.9rem;margin-bottom:.6rem;}
+.q-txt b{color:var(--or-pale);font-weight:600;margin-right:.3rem;}
+.opts{display:flex;gap:.5rem;flex-wrap:wrap;}
+.opt{flex:1;min-width:130px;border:1px solid rgba(255,255,255,.15);background:none;color:var(--text-dim);border-radius:6px;padding:.5rem .4rem;cursor:pointer;font-family:'Jost',sans-serif;font-size:.72rem;font-weight:600;transition:.15s;text-align:center;}
+.opt small{display:block;font-weight:400;font-size:.62rem;opacity:.7;margin-top:.15rem;}
+.opt:hover{border-color:rgba(255,255,255,.35);}
+.opt.sel.ouv{border-color:var(--vert-pale);color:var(--vert-pale);background:rgba(58,122,82,.14);}
+.opt.sel.ten{border-color:var(--or-pale);color:var(--or-pale);background:rgba(200,168,74,.12);}
+.opt.sel.fer{border-color:var(--rubis-pale);color:var(--rubis-pale);background:rgba(138,48,48,.14);}
+.bar{position:sticky;bottom:0;background:rgba(13,13,24,.94);border:1px solid rgba(200,168,74,.3);border-radius:10px;padding:.7rem 1rem;margin-top:1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;backdrop-filter:blur(4px);}
+.tally{font-size:.78rem;color:var(--text-dim);}
+.tally b{font-family:'Cormorant Garamond',serif;font-size:1.1rem;}
+.btn{padding:.6rem 1.6rem;background:rgba(200,168,74,.14);border:1px solid var(--or);border-radius:6px;color:var(--or);font-family:'Jost',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.2s;}
+.btn:hover{background:rgba(200,168,74,.28);}
+.result{display:none;margin-top:1.2rem;border-radius:10px;padding:1.4rem 1.6rem;border:1px solid;animation:fade .4s ease;}
+.result.show{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.result h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin-bottom:.4rem;}
+.result p{font-size:.88rem;margin:.4rem 0;}
+.r-coherent{background:rgba(58,122,82,.1);border-color:var(--vert-pale);} .r-coherent h2{color:var(--vert-pale);}
+.r-tension{background:rgba(200,168,74,.08);border-color:var(--or-pale);} .r-tension h2{color:var(--or-pale);}
+.r-dissocie{background:rgba(42,72,112,.14);border-color:var(--bleu-pale);} .r-dissocie h2{color:var(--bleu-pale);}
+.r-ferme{background:rgba(138,48,48,.1);border-color:var(--rubis-pale);} .r-ferme h2{color:var(--rubis-pale);}
+.foot{text-align:center;font-size:.68rem;color:#555570;letter-spacing:.1em;text-transform:uppercase;margin-top:1.6rem;}
+.gardefou{border:1px dashed rgba(200,168,74,.3);border-radius:8px;padding:.9rem 1.2rem;margin:1.4rem 0;font-size:.8rem;color:var(--or-pale);font-style:italic;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🌳 Test d'Ouverture à la Révision</h1>
+  <p class="sub">Suis-je en lien avec le Réel — ou en train de projeter ?</p>
+  <div class="axiom">Vérité = Respect · Mensonge = Violence</div>
+
+  <div class="intro">
+    <strong>Comment l'utiliser :</strong> ce test se répond <strong>pour soi-même</strong>, sur un sujet où tu tiens fort une position. Pour chaque question, note ton état intérieur : <em>Ouverture</em> (je peux accueillir la nuance), <em>Tension</em> (ça dépend, ça me remue), <em>Fermeture</em> (je refuse d'y penser). Ce n'est pas un score pour juger les autres — c'est un miroir pour <strong>te</strong> lire. Voir clair, c'est déjà protéger le vivant.
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="gardefou">🕯️ Cet outil mesure ton <em>ouverture</em>, pas ta valeur. Un profil « fermé » sur un sujet n'est pas une condamnation : c'est une invitation à respirer et à regarder à nouveau.</div>
+
+  <div class="bar">
+    <span class="tally" id="tally">Répondu : <b>0</b>/13</span>
+    <button class="btn" onclick="voirProfil()">◈ Voir mon profil</button>
+    <button class="btn" style="border-color:rgba(255,255,255,.2);color:var(--text-dim)" onclick="reset()">↺ Recommencer</button>
+  </div>
+  <div class="result" id="result"></div>
+
+  <div class="foot">Protocole de Conscience · aMi — © Agdistys · Diane Serant &amp; Isil</div>
+</div>
+
+<script>
+var QUESTIONS = [
+  {axe:"A · Responsabilité", q:["Une personne peut-elle refuser d'aider quelqu'un en danger ?","Peut-on faire du mal sans le vouloir ?","Une souffrance personnelle peut-elle justifier une violence ?"]},
+  {axe:"B · Consentement & Relation", q:["Le consentement suffit-il à rendre une situation juste ?","Respecter quelqu'un, est-ce toujours être d'accord avec lui ?","Refuser une interaction équivaut-il à refuser de protéger ?"]},
+  {axe:"C · Vérité & Pensée complexe", q:["Peut-on blesser en disant la vérité ?","Un désaccord signifie-t-il forcément qu'une personne a tort ?","Changer d'avis est-il un signe de faiblesse ?"]},
+  {axe:"D · Biais & Remise en question", q:["Peux-tu reconnaître que tu pourrais te tromper, même en étant sûr·e de toi ?","Ton vécu suffit-il à comprendre celui des autres ?","L'autre peut-il avoir raison là où tu es convaincu·e d'avoir raison ?"]},
+  {axe:"E · Question méta", q:["Qu'est-ce qui te ferait changer d'avis sur ce sujet ?"]}
+];
+var answers = {};
+function build(){
+  var html='', n=0;
+  QUESTIONS.forEach(function(sec){
+    html+='<div class="axe">'+sec.axe+'</div>';
+    sec.q.forEach(function(txt){
+      var id='q'+n;
+      html+='<div class="q"><div class="q-txt"><b>'+(n+1)+'.</b>'+txt+'</div><div class="opts">'+
+        '<button class="opt ouv" onclick="pick(\''+id+'\',\'ouv\',this)">🟢 Ouverture<small>j\'accueille la nuance</small></button>'+
+        '<button class="opt ten" onclick="pick(\''+id+'\',\'ten\',this)">🟡 Tension<small>ça me remue, ça dépend</small></button>'+
+        '<button class="opt fer" onclick="pick(\''+id+'\',\'fer\',this)">🔴 Fermeture<small>je refuse d\'y penser</small></button>'+
+        '</div></div>';
+      n++;
+    });
+  });
+  document.getElementById('quiz').innerHTML=html;
+}
+function pick(id,val,btn){
+  answers[id]=val;
+  var p=btn.parentNode;
+  p.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel');});
+  btn.classList.add('sel');
+  document.getElementById('tally').innerHTML='Répondu : <b>'+Object.keys(answers).length+'</b>/13';
+}
+function reset(){ answers={}; build(); document.getElementById('tally').innerHTML='Répondu : <b>0</b>/13'; var r=document.getElementById('result'); r.className='result'; r.innerHTML=''; window.scrollTo(0,0); }
+function voirProfil(){
+  var o=0,t=0,f=0;
+  Object.keys(answers).forEach(function(k){ if(answers[k]==='ouv')o++; else if(answers[k]==='ten')t++; else f++; });
+  var total=o+t+f;
+  var r=document.getElementById('result');
+  if(total<7){ r.className='result show r-tension'; r.innerHTML='<h2>Encore un peu…</h2><p>Réponds à au moins la moitié des questions pour lire ton profil ('+total+'/13).</p>'; r.scrollIntoView({behavior:"smooth"}); return; }
+  var cls,titre,txt;
+  var contraste = (o>=3 && f>=3);
+  if(contraste){ cls='r-dissocie'; titre='🌀 Profil en Contraste (dissocié)';
+    txt='Tes réponses oscillent fortement entre ouverture et fermeture selon les axes. C\'est le signe d\'une lucidité qui n\'est pas encore intégrée partout : très ouvert·e ici, verrouillé·e là. La piste : repérer <em>quel</em> axe se ferme (responsabilité ? biais ? relation ?) et respirer précisément là.'; }
+  else if(o>=t && o>=f){ cls='r-coherent'; titre='🌳 Profil Cohérent';
+    txt='Majorité d\'ouverture. Belle capacité à intégrer, nuancer et protéger sans te rigidifier. Reste vigilant·e sur la Question méta (13) : garder vivante l\'idée que tu <em>pourrais</em> te tromper est ce qui maintient la cohérence.'; }
+  else if(f>=o && f>=t){ cls='r-ferme'; titre='🔒 Profil Fermé';
+    txt='Majorité de fermeture sur ce sujet. Ce n\'est pas une condamnation — c\'est souvent le signe qu\'il touche à quelque chose de profond, parfois douloureux. Le geste doux : sur une seule question rouge, demande-toi « qu\'est-ce qui, précisément, rendrait l\'autre lecture pensable ? » Sans t\'y forcer.'; }
+  else { cls='r-tension'; titre='🌊 Profil en Tension';
+    txt='Ouverture partielle, dépendante du contexte. Tu sens que ça bouge mais ce n\'est pas encore stabilisé. C\'est un très bon endroit : la tension est le seuil de la révision. Reviens aux questions jaunes et laisse-les infuser.'; }
+  r.className='result show '+cls;
+  r.innerHTML='<h2>'+titre+'</h2><p>🟢 Ouverture : <b>'+o+'</b> · 🟡 Tension : <b>'+t+'</b> · 🔴 Fermeture : <b>'+f+'</b></p><p>'+txt+'</p><p style="font-size:.8rem;color:var(--text-dim);font-style:italic;margin-top:.8rem">Rappel : je ne cherche pas à avoir raison — je cherche à voir clair. Je ne cherche pas à convaincre — je rends le réel lisible.</p>';
+  r.scrollIntoView({behavior:"smooth"});
+}
+build();
+</script>
+</body>
+</html>

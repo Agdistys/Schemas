@@ -1,0 +1,723 @@
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galerie des Schémas — Agdistys</title>
+
+<main class="schema-gallery" id="schemaGallery">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      background: #05050a;
+    }
+
+    .schema-gallery {
+      --night: #08070d;
+      --gold: #f4df91;
+      --green: #90f0aa;
+      --rose: #ff729b;
+      --text: #fff7df;
+      --muted: #c9c0d7;
+      --line: rgba(244, 223, 145, .28);
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(244, 223, 145, .06), transparent 40%),
+        radial-gradient(circle at 92% 14%, rgba(255, 114, 155, .04), transparent 34%),
+        #000;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 26px 80px rgba(0, 0, 0, .48);
+      overflow: hidden;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .schema-gallery * { box-sizing: border-box; }
+
+    .sg-hero {
+      padding: 28px clamp(18px, 4vw, 42px) 20px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), transparent);
+      text-align: center;
+    }
+
+    .sg-kicker {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .schema-gallery h1, .schema-gallery h2 {
+      margin: 0;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+    }
+
+    .schema-gallery h1 {
+      font-size: clamp(1.7rem, 4.5vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .sg-sub {
+      margin: 12px auto 0;
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .sg-sub a { color: var(--gold); }
+
+    .sg-count {
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 9px 14px;
+      color: var(--gold);
+      background: rgba(244, 223, 145, .08);
+      border: 1px solid rgba(244, 223, 145, .26);
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* ===== Derniers ajoutés ===== */
+    .sg-latest {
+      padding: 20px clamp(12px, 3vw, 28px) 6px;
+    }
+
+    .sg-latest h2 {
+      text-align: center;
+      font-size: clamp(1.25rem, 3vw, 1.8rem);
+    }
+
+    .sg-latest-note {
+      margin: 6px 0 14px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .sg-latest-row {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 4px 4px 14px;
+      scrollbar-color: rgba(244, 223, 145, .45) rgba(255,255,255,.04);
+    }
+
+    .sg-latest-card {
+      flex: 0 0 240px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px;
+      color: var(--text);
+      background: rgba(0, 0, 0, .55);
+      border: 1px solid rgba(244, 223, 145, .3);
+      border-radius: 14px;
+      font: inherit;
+      text-align: left;
+      cursor: zoom-in;
+      appearance: none;
+    }
+
+    .sg-latest-card:hover {
+      border-color: rgba(144, 240, 170, .72);
+      box-shadow: 0 0 0 3px rgba(144, 240, 170, .12);
+    }
+
+    .sg-badge {
+      position: absolute;
+      top: -9px;
+      left: 12px;
+      padding: 4px 10px;
+      color: #0c0a10;
+      background: linear-gradient(135deg, var(--gold), #f8c870);
+      border-radius: 999px;
+      font-size: .68rem;
+      font-weight: 850;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .sg-skeleton {
+      flex: 0 0 240px;
+      height: 210px;
+      border-radius: 14px;
+      border: 1px solid rgba(244, 223, 145, .14);
+      background: linear-gradient(100deg, rgba(255,255,255,.03) 40%, rgba(255,255,255,.09) 50%, rgba(255,255,255,.03) 60%);
+      background-size: 200% 100%;
+      animation: sgShimmer 1.4s infinite;
+    }
+
+    @keyframes sgShimmer {
+      0% { background-position: 120% 0; }
+      100% { background-position: -80% 0; }
+    }
+
+    /* ===== Filtres ===== */
+    .sg-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 14px clamp(12px, 3vw, 28px);
+      border-top: 1px solid rgba(244, 223, 145, .16);
+      border-bottom: 1px solid rgba(244, 223, 145, .16);
+      background: rgba(0, 0, 0, .24);
+    }
+
+    .sg-pill {
+      appearance: none;
+      border: 1px solid rgba(244, 223, 145, .26);
+      color: var(--muted);
+      background: rgba(255, 255, 255, .035);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font: inherit;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .sg-pill[aria-selected="true"] {
+      color: #0c0a10;
+      background: linear-gradient(135deg, var(--gold), #f8c870);
+      border-color: rgba(244, 223, 145, .9);
+      box-shadow: 0 0 0 3px rgba(244, 223, 145, .12);
+    }
+
+    .sg-search {
+      width: min(320px, 100%);
+      padding: 10px 15px;
+      color: var(--text);
+      background: rgba(5, 5, 10, .82);
+      border: 1px solid rgba(244, 223, 145, .32);
+      border-radius: 999px;
+      font: inherit;
+      font-size: .88rem;
+      outline: none;
+    }
+
+    .sg-search:focus {
+      border-color: rgba(144, 240, 170, .72);
+      box-shadow: 0 0 0 3px rgba(144, 240, 170, .12);
+    }
+
+    /* ===== Grille ===== */
+    .sg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px;
+      padding: 18px clamp(12px, 3vw, 28px);
+    }
+
+    .sg-card {
+      appearance: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px;
+      color: var(--text);
+      background: rgba(0, 0, 0, .55);
+      border: 1px solid rgba(244, 223, 145, .2);
+      border-radius: 14px;
+      font: inherit;
+      text-align: left;
+      cursor: zoom-in;
+    }
+
+    .sg-card:hover {
+      border-color: rgba(144, 240, 170, .72);
+      box-shadow: 0 0 0 3px rgba(144, 240, 170, .12);
+    }
+
+    .sg-thumb {
+      display: block;
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 9px;
+      background: #000;
+    }
+
+    .sg-name {
+      color: var(--text);
+      font-size: .88rem;
+      line-height: 1.35;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .sg-folder {
+      color: var(--gold);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .sg-empty, .sg-error {
+      padding: 30px 20px 36px;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .sg-error strong { color: var(--rose); }
+
+    .sg-btn {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      border: 1px solid rgba(244, 223, 145, .46);
+      color: var(--gold);
+      background: linear-gradient(135deg, rgba(244, 223, 145, .16), rgba(144, 240, 170, .08));
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      font-size: .86rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .sg-status {
+      min-height: 20px;
+      padding: 0 clamp(12px, 3vw, 28px) 10px;
+      text-align: center;
+      color: var(--green);
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    .sg-footer {
+      padding: 14px clamp(12px, 3vw, 28px) 20px;
+      border-top: 1px solid var(--line);
+      background: rgba(0, 0, 0, .22);
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.7;
+    }
+
+    .sg-footer a { color: var(--gold); }
+
+    /* ===== Lightbox ===== */
+    .sg-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: rgba(5, 5, 10, .95);
+      padding: 58px 64px 20px;
+    }
+
+    .sg-lightbox[hidden] { display: none; }
+
+    .sg-lightbox img {
+      max-width: 92vw;
+      max-height: 74vh;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, .6);
+      background: #000;
+    }
+
+    .sg-lb-caption {
+      max-width: 90vw;
+      text-align: center;
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.02rem;
+    }
+
+    .sg-lb-caption .sg-folder { display: block; margin-top: 2px; }
+
+    .sg-lb-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+
+    .sg-lb-links .sg-btn { margin-top: 0; padding: 8px 12px; font-size: .8rem; }
+
+    .sg-lb-top {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .sg-lb-count { color: var(--gold); font-family: Georgia, serif; font-size: 1rem; }
+
+    .sg-lb-btn {
+      appearance: none;
+      border: 1px solid rgba(244, 223, 145, .46);
+      color: var(--gold);
+      background: rgba(8, 7, 13, .8);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font: inherit;
+      font-size: .9rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .sg-lb-prev, .sg-lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      line-height: 1;
+      padding: 10px 16px;
+    }
+
+    .sg-lb-prev { left: 14px; }
+    .sg-lb-next { right: 14px; }
+
+    @media (max-width: 700px) {
+      body { padding: 12px; }
+      .sg-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+      .sg-thumb { height: 120px; }
+      .sg-latest-card, .sg-skeleton { flex-basis: 200px; }
+      .sg-lightbox { padding: 54px 8px 14px; }
+      .sg-lb-prev { left: 4px; }
+      .sg-lb-next { right: 4px; }
+      .sg-lightbox img { max-height: 64vh; }
+    }
+  </style>
+
+  <section class="sg-hero">
+    <p class="sg-kicker">Galerie · Schémas · ConScience aMi</p>
+    <h1>🗺️ Galerie des Schémas</h1>
+    <p class="sg-sub">Tous mes schémas, lus en direct depuis le dépôt GitHub — mis à jour en permanence.
+      <a href="https://agdistys.github.io/Schemas/" target="_blank" rel="noopener">Galerie en ligne ↗</a></p>
+    <span class="sg-count" id="sgCount">Chargement…</span>
+  </section>
+
+  <section class="sg-latest" id="sgLatest">
+    <h2>🆕 Les Derniers Ajoutés</h2>
+    <p class="sg-latest-note">Fraîchement sortis de l'atelier — clique pour agrandir.</p>
+    <div class="sg-latest-row" id="sgLatestRow">
+      <span class="sg-skeleton"></span><span class="sg-skeleton"></span><span class="sg-skeleton"></span><span class="sg-skeleton"></span>
+    </div>
+  </section>
+
+  <nav class="sg-filters" id="sgFilters" aria-label="Filtrer les schémas">
+    <input type="search" class="sg-search" id="sgSearch" placeholder="🔎 Chercher un schéma…" aria-label="Chercher un schéma">
+  </nav>
+
+  <div class="sg-grid" id="sgGrid"></div>
+  <div class="sg-status" id="sgStatus"></div>
+
+  <footer class="sg-footer">
+    © Diane Serant (Agdistys) — ConScience aMi : Vérité = Respect, Mensonge = Violence<br>
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Licence CC BY-SA 4.0</a> ·
+    <a href="https://github.com/Agdistys/Schemas" target="_blank" rel="noopener">Dépôt GitHub</a> ·
+    <a href="https://agdistys.github.io/Schemas/" target="_blank" rel="noopener">Ouvrir la galerie en plein écran ↗</a> ·
+    <button type="button" class="sg-btn" id="sgRefresh" style="margin-top:0;padding:6px 11px;font-size:.76rem;">↻ Actualiser</button>
+  </footer>
+
+  <div class="sg-lightbox" id="sgLightbox" hidden>
+    <div class="sg-lb-top">
+      <span class="sg-lb-count" id="sgLbCount"></span>
+      <button type="button" class="sg-lb-btn" id="sgLbClose">✕ Fermer</button>
+    </div>
+    <button type="button" class="sg-lb-btn sg-lb-prev" id="sgLbPrev" aria-label="Schéma précédent">‹</button>
+    <img id="sgLbImg" alt="">
+    <div class="sg-lb-caption" id="sgLbCaption"></div>
+    <div class="sg-lb-links">
+      <a class="sg-btn" id="sgLbOpen" target="_blank" rel="noopener">🔗 Ouvrir l'original</a>
+      <a class="sg-btn" id="sgLbDownload" download="">⬇️ Télécharger</a>
+    </div>
+    <button type="button" class="sg-lb-btn sg-lb-next" id="sgLbNext" aria-label="Schéma suivant">›</button>
+  </div>
+</main>
+
+<script>
+(function(){
+  const OWNER = 'Agdistys', REPO = 'Schemas', BRANCH = 'main';
+  const API = 'https://api.github.com/repos/' + OWNER + '/' + REPO;
+  const PAGES = 'https://agdistys.github.io/Schemas/';
+  const RAW = 'https://raw.githubusercontent.com/' + OWNER + '/' + REPO + '/' + BRANCH + '/';
+  const IMG_EXT = /\.(svg|png|jpe?g|webp|gif)$/i;
+  const EXCLUDE = /^(lite|scripts|viewer|\.github)\//;
+  const TTL = 45 * 60 * 1000; // cache 45 min
+  const KEY_TREE = 'sgTreeV1', KEY_LATEST = 'sgLatestV1';
+
+  const $ = (s)=>document.querySelector(s);
+  const grid = $('#sgGrid'), statusEl = $('#sgStatus'), filters = $('#sgFilters');
+  const latestRow = $('#sgLatestRow'), latestSection = $('#sgLatest');
+  const search = $('#sgSearch'), countEl = $('#sgCount');
+
+  let files = [];        // {path, folder, name}
+  let visible = [];      // liste affichée (pour la navigation lightbox)
+  let currentFolder = '*';
+  let lbIndex = 0;
+
+  const enc = (p)=>p.split('/').map(encodeURIComponent).join('/');
+  const pageURL = (p)=>PAGES + enc(p);
+  const rawURL = (p)=>RAW + enc(p);
+  const nameOf = (p)=>{ const seg = p.split('/').pop(); return seg.replace(/\.[a-z0-9]+$/i, '').replace(/[_]+/g, ' '); };
+  const folderOf = (p)=>p.includes('/') ? p.split('/')[0] : 'Racine';
+  const norm = (s)=>s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+  function setStatus(m){ statusEl.textContent = m || ''; }
+
+  function readCache(key){
+    try {
+      const c = JSON.parse(localStorage.getItem(key));
+      if (c && c.data) return c;
+    } catch (e) {}
+    return null;
+  }
+  function writeCache(key, data){
+    try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), data: data })); } catch (e) {}
+  }
+
+  async function fetchJSON(url){
+    const ctrl = new AbortController();
+    const timer = setTimeout(()=>ctrl.abort(), 20000);
+    try {
+      const r = await fetch(url, { signal: ctrl.signal, headers: { 'Accept': 'application/vnd.github+json' } });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return await r.json();
+    } finally { clearTimeout(timer); }
+  }
+
+  // ===== Arbre du dépôt =====
+  async function loadTree(force){
+    const cache = readCache(KEY_TREE);
+    if (cache && !force && (Date.now() - cache.t) < TTL){
+      applyTree(cache.data);
+      return;
+    }
+    try {
+      setStatus('Lecture du dépôt GitHub…');
+      const data = await fetchJSON(API + '/git/trees/' + BRANCH + '?recursive=1');
+      const list = (data.tree || [])
+        .filter(x => x.type === 'blob' && IMG_EXT.test(x.path) && !EXCLUDE.test(x.path))
+        .map(x => x.path)
+        .sort((a, b) => a.localeCompare(b, 'fr'));
+      writeCache(KEY_TREE, list);
+      applyTree(list);
+      setStatus('');
+    } catch (e) {
+      if (cache){
+        applyTree(cache.data);
+        setStatus('⚠️ GitHub inaccessible — affichage de la dernière version en mémoire.');
+      } else {
+        countEl.textContent = 'Hors ligne';
+        grid.innerHTML = '<div class="sg-error"><strong>Impossible de charger la galerie.</strong><br>Vérifie ta connexion, ou GitHub limite temporairement les requêtes.<br><button type="button" class="sg-btn" id="sgRetry">↻ Réessayer</button> <a class="sg-btn" href="' + PAGES + '" target="_blank" rel="noopener">Ouvrir la galerie en ligne ↗</a></div>';
+        const retry = $('#sgRetry');
+        if (retry) retry.addEventListener('click', ()=>{ grid.innerHTML = ''; loadTree(true); });
+      }
+    }
+  }
+
+  function applyTree(list){
+    files = list.map(p => ({ path: p, folder: folderOf(p), name: nameOf(p) }));
+    const folders = [...new Set(files.map(f => f.folder))].sort((a, b)=>a.localeCompare(b, 'fr'));
+    countEl.textContent = files.length + ' schémas · ' + folders.length + ' dossiers';
+    renderPills(folders);
+    renderGrid();
+  }
+
+  function renderPills(folders){
+    filters.querySelectorAll('.sg-pill').forEach(p => p.remove());
+    const all = document.createElement('button');
+    all.type = 'button'; all.className = 'sg-pill'; all.dataset.folder = '*';
+    all.textContent = '🌟 Tout';
+    filters.insertBefore(all, search);
+    folders.forEach(f => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'sg-pill'; b.dataset.folder = f;
+      b.textContent = f;
+      filters.insertBefore(b, search);
+    });
+    syncPills();
+    filters.querySelectorAll('.sg-pill').forEach(p => {
+      p.addEventListener('click', ()=>{ currentFolder = p.dataset.folder; syncPills(); renderGrid(); });
+    });
+  }
+
+  function syncPills(){
+    filters.querySelectorAll('.sg-pill').forEach(p => p.setAttribute('aria-selected', String(p.dataset.folder === currentFolder)));
+  }
+
+  function renderGrid(){
+    const q = norm(search.value.trim());
+    visible = files.filter(f =>
+      (currentFolder === '*' || f.folder === currentFolder) &&
+      (!q || norm(f.name).includes(q) || norm(f.folder).includes(q))
+    );
+    grid.innerHTML = '';
+    if (!visible.length){
+      grid.innerHTML = '<div class="sg-empty">Aucun schéma trouvé' + (q ? ' pour « ' + search.value.trim() + ' »' : '') + ' 🐾</div>';
+      return;
+    }
+    const frag = document.createDocumentFragment();
+    visible.forEach((f, i) => {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'sg-card';
+      card.innerHTML =
+        '<img class="sg-thumb" loading="lazy" alt="">' +
+        '<span class="sg-name"></span>' +
+        '<span class="sg-folder"></span>';
+      card.querySelector('img').src = pageURL(f.path);
+      card.querySelector('img').alt = f.name;
+      card.querySelector('.sg-name').textContent = f.name;
+      card.querySelector('.sg-folder').textContent = f.folder;
+      card.addEventListener('click', ()=>openLightbox(i));
+      frag.appendChild(card);
+    });
+    grid.appendChild(frag);
+  }
+
+  // ===== Derniers ajoutés =====
+  async function loadLatest(force){
+    const cache = readCache(KEY_LATEST);
+    if (cache && !force && (Date.now() - cache.t) < TTL){
+      renderLatest(cache.data);
+      return;
+    }
+    try {
+      const commits = await fetchJSON(API + '/commits?per_page=12');
+      const seen = new Set();
+      const items = [];
+      for (const c of commits.slice(0, 6)){
+        if (items.length >= 10) break;
+        const detail = await fetchJSON(API + '/commits/' + c.sha);
+        for (const f of (detail.files || [])){
+          if (items.length >= 10) break;
+          if (!f.filename || seen.has(f.filename)) continue;
+          if (!IMG_EXT.test(f.filename) || EXCLUDE.test(f.filename)) continue;
+          if (f.status === 'removed') continue;
+          seen.add(f.filename);
+          items.push({ path: f.filename, date: (detail.commit && detail.commit.author && detail.commit.author.date) || null });
+        }
+      }
+      writeCache(KEY_LATEST, items);
+      renderLatest(items);
+    } catch (e) {
+      if (cache){ renderLatest(cache.data); }
+      else {
+        latestRow.innerHTML = '<div class="sg-empty" style="padding:10px;">Derniers ajouts indisponibles pour le moment (limite GitHub) — la galerie complète reste dispo en dessous 🐾</div>';
+      }
+    }
+  }
+
+  function renderLatest(items){
+    latestRow.innerHTML = '';
+    if (!items || !items.length){ latestSection.hidden = true; return; }
+    latestSection.hidden = false;
+    items.forEach(it => {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'sg-latest-card';
+      let dateTxt = 'Nouveau';
+      if (it.date){
+        try { dateTxt = new Date(it.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' }); } catch (e) {}
+      }
+      card.innerHTML =
+        '<span class="sg-badge"></span>' +
+        '<img class="sg-thumb" loading="lazy" alt="">' +
+        '<span class="sg-name"></span>' +
+        '<span class="sg-folder"></span>';
+      card.querySelector('.sg-badge').textContent = '✨ ' + dateTxt;
+      card.querySelector('img').src = pageURL(it.path);
+      card.querySelector('img').alt = nameOf(it.path);
+      card.querySelector('.sg-name').textContent = nameOf(it.path);
+      card.querySelector('.sg-folder').textContent = folderOf(it.path);
+      card.addEventListener('click', ()=>{
+        const idx = visible.findIndex(f => f.path === it.path);
+        if (idx >= 0){ openLightbox(idx); }
+        else { openSingle(it.path); }
+      });
+      latestRow.appendChild(card);
+    });
+  }
+
+  // ===== Lightbox =====
+  const lb = $('#sgLightbox'), lbImg = $('#sgLbImg'), lbCaption = $('#sgLbCaption'), lbCount = $('#sgLbCount');
+  let singleMode = false, singlePath = '';
+
+  function fillLightbox(path, name, folder, pos){
+    lbImg.src = pageURL(path);
+    lbImg.alt = name;
+    lbCaption.innerHTML = '<span></span><span class="sg-folder"></span>';
+    lbCaption.querySelector('span').textContent = name;
+    lbCaption.querySelector('.sg-folder').textContent = folder;
+    lbCount.textContent = pos || '';
+    $('#sgLbOpen').href = pageURL(path);
+    $('#sgLbDownload').href = rawURL(path);
+    $('#sgLbDownload').setAttribute('download', path.split('/').pop());
+  }
+
+  function openLightbox(i){
+    singleMode = false;
+    lbIndex = i;
+    showLb();
+    renderLb();
+  }
+
+  function openSingle(path){
+    singleMode = true;
+    singlePath = path;
+    showLb();
+    fillLightbox(path, nameOf(path), folderOf(path), '');
+  }
+
+  function showLb(){ lb.hidden = false; document.body.style.overflow = 'hidden'; }
+  function closeLb(){ lb.hidden = true; document.body.style.overflow = ''; }
+
+  function renderLb(){
+    if (singleMode || !visible.length) return;
+    lbIndex = (lbIndex + visible.length) % visible.length;
+    const f = visible[lbIndex];
+    fillLightbox(f.path, f.name, f.folder, (lbIndex + 1) + ' / ' + visible.length);
+  }
+
+  $('#sgLbClose').addEventListener('click', closeLb);
+  $('#sgLbPrev').addEventListener('click', ()=>{ if (!singleMode){ lbIndex--; renderLb(); } });
+  $('#sgLbNext').addEventListener('click', ()=>{ if (!singleMode){ lbIndex++; renderLb(); } });
+  lb.addEventListener('click', (e)=>{ if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e)=>{
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb();
+    if (!singleMode && e.key === 'ArrowLeft'){ lbIndex--; renderLb(); }
+    if (!singleMode && e.key === 'ArrowRight'){ lbIndex++; renderLb(); }
+  });
+
+  // ===== Événements =====
+  search.addEventListener('input', renderGrid);
+  $('#sgRefresh').addEventListener('click', ()=>{
+    localStorage.removeItem(KEY_TREE);
+    localStorage.removeItem(KEY_LATEST);
+    latestRow.innerHTML = '<span class="sg-skeleton"></span><span class="sg-skeleton"></span><span class="sg-skeleton"></span><span class="sg-skeleton"></span>';
+    setStatus('Actualisation…');
+    Promise.all([loadTree(true), loadLatest(true)]).then(()=>setStatus(''));
+  });
+
+  // ===== Init =====
+  loadTree(false).then(()=>loadLatest(false));
+})();
+</script>

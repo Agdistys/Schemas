@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🕯️ Le Livre d'Or Civilisationnel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ⚠️ Style de démo — ne pas copier cette balise lors de l'intégration. */
+body{margin:0;padding:22px;background:#07070c;min-height:100vh}
+</style>
+</head>
+<body>
+
+<!-- ════════ DÉBUT DU BLOC À COPIER ════════ -->
+<div class="lo-shell" id="loShell">
+<style>
+.lo-shell{
+  --or:#c8a84a;--or-pale:#e6d090;--or-somb:#7a611a;
+  --nacre:#f2ede2;--gris:#a0a0b8;--gris-cl:#c8c8dc;
+  --vert:#3a7a52;--vert-cl:#90d8a8;--rubis-cl:#f0a0a0;
+  --bleu-cl:#80a8d8;--violet:#9b65d5;--turq:#4ec8b8;--rose:#ff93b5;
+  width:min(920px,100%);margin:0 auto;
+  padding:clamp(.9rem,2.2vw,1.6rem);
+  color:var(--gris-cl);
+  background:
+    radial-gradient(circle at 12% 0%,rgba(200,168,74,.10),transparent 42%),
+    radial-gradient(circle at 88% 12%,rgba(155,101,213,.07),transparent 36%),
+    linear-gradient(165deg,rgba(16,16,26,.98),rgba(9,9,16,.99));
+  border:1px solid rgba(200,168,74,.32);border-top:3px solid var(--or);
+  border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.42);
+  font:300 15px/1.68 'Jost',system-ui,sans-serif;
+}
+.lo-shell,.lo-shell *{box-sizing:border-box}
+.lo-shell h1,.lo-shell h2,.lo-shell h3{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;color:var(--or-pale)}
+.lo-hero{text-align:center;padding:1.3rem .8rem 1.4rem;border-bottom:1px solid rgba(200,168,74,.16)}
+.lo-hero h1{font-size:clamp(1.7rem,4.4vw,2.8rem);line-height:1.04}
+.lo-kicker{color:var(--or);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;margin-bottom:.5rem}
+.lo-sub{max-width:640px;margin:.8rem auto 0;color:var(--gris);font-size:.88rem}
+.lo-devise{margin:.9rem auto 0;max-width:560px;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:var(--or-pale)}
+
+.lo-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;padding:1rem 0 .2rem}
+.lo-tab{appearance:none;border:1px solid rgba(200,168,74,.26);border-radius:999px;padding:.55rem .95rem;
+  background:rgba(255,255,255,.02);color:var(--gris-cl);font:600 .72rem 'Jost',sans-serif;
+  letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.lo-tab:hover{background:rgba(200,168,74,.1)}
+.lo-tab.lo-on{color:#0c0a10;background:linear-gradient(135deg,var(--or-pale),#f8c870);border-color:var(--or)}
+.lo-panel{display:none;padding:1rem .1rem 0}
+.lo-panel.lo-on{display:block}
+
+.lo-filtres{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-bottom:.9rem}
+.lo-pill{appearance:none;border:1px solid rgba(200,168,74,.24);border-radius:999px;padding:.4rem .75rem;
+  background:rgba(255,255,255,.025);color:var(--gris-cl);font:600 .7rem 'Jost',sans-serif;cursor:pointer}
+.lo-pill.lo-on{color:#0c0a10;background:linear-gradient(135deg,var(--or-pale),#f8c870);border-color:var(--or)}
+
+.lo-mur{display:grid;gap:.75rem}
+.lo-carte{position:relative;padding:1rem 1.1rem;border:1px solid rgba(255,255,255,.08);
+  border-left:4px solid var(--c,var(--or));border-radius:12px;background:rgba(0,0,0,.26)}
+.lo-carte .lo-geste{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.12rem;line-height:1.55;color:var(--nacre)}
+.lo-carte .lo-effet{margin-top:.6rem;padding-top:.6rem;border-top:1px dashed rgba(200,168,74,.22);
+  font-size:.85rem;color:var(--gris-cl)}
+.lo-carte .lo-effet b{color:var(--vert-cl);font-weight:600}
+.lo-meta{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.7rem}
+.lo-meta span{border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:.22rem .55rem;
+  background:rgba(255,255,255,.03);font-size:.68rem;color:var(--gris)}
+.lo-meta span.lo-champ{border-color:var(--c);color:var(--c)}
+
+.lo-card{padding:1rem 1.1rem;border:1px solid rgba(255,255,255,.075);border-radius:12px;
+  background:rgba(255,255,255,.022);margin-bottom:.8rem}
+.lo-card h3{font-size:1.28rem;margin-bottom:.3rem}
+.lo-card p{margin:.4rem 0;font-size:.85rem;color:var(--gris)}
+
+.lo-field{display:grid;gap:.3rem;margin-bottom:.8rem}
+.lo-field label{color:var(--or-pale);font-size:.68rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase}
+.lo-field small{color:var(--gris);font-size:.74rem;margin-top:-.15rem}
+.lo-field input,.lo-field select,.lo-field textarea{
+  width:100%;background:rgba(6,6,12,.85);border:1px solid rgba(200,168,74,.24);border-radius:9px;
+  padding:.6rem .75rem;color:var(--nacre);font:300 .88rem 'Jost',sans-serif;outline:none}
+.lo-field input:focus,.lo-field select:focus,.lo-field textarea:focus{border-color:var(--vert-cl)}
+.lo-field textarea{min-height:92px;resize:vertical;line-height:1.6}
+.lo-row2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+
+.lo-check{display:flex;align-items:flex-start;gap:.55rem;padding:.65rem .8rem;margin-bottom:.6rem;
+  border:1px solid rgba(200,168,74,.22);border-radius:10px;background:rgba(200,168,74,.045);
+  font-size:.82rem;color:var(--gris-cl);cursor:pointer}
+.lo-check input{margin-top:.25rem;accent-color:var(--or);width:15px;height:15px;flex-shrink:0}
+
+.lo-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+.lo-btn{appearance:none;border:1px solid rgba(200,168,74,.42);border-radius:999px;padding:.6rem 1rem;
+  background:linear-gradient(135deg,rgba(200,168,74,.16),rgba(155,101,213,.08));color:var(--or-pale);
+  font:600 .8rem 'Jost',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;cursor:pointer}
+.lo-btn:hover{background:rgba(200,168,74,.24)}
+.lo-btn.lo-soft{color:var(--gris-cl);border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.03)}
+
+.lo-out{margin-top:.9rem;padding:1rem;border:1px solid var(--or-somb);border-radius:10px;
+  background:rgba(6,6,12,.85);white-space:pre-wrap;font:300 .85rem/1.75 'Jost',sans-serif;
+  color:var(--nacre);max-height:420px;overflow:auto;display:none}
+.lo-out.lo-on{display:block}
+
+.lo-note{margin:.8rem 0;padding:.75rem .9rem;border-left:4px solid var(--bleu-cl);border-radius:9px;
+  background:rgba(42,72,112,.13);color:var(--bleu-cl);font-size:.83rem}
+.lo-good{border-left-color:var(--vert-cl);background:rgba(58,122,82,.11);color:#bfe6cf}
+.lo-warn{border-left-color:var(--rubis-cl);background:rgba(138,48,48,.11);color:#e8c4cc}
+.lo-gold{border-left-color:var(--or);background:rgba(200,168,74,.07);color:var(--gris-cl)}
+
+.lo-regles{counter-reset:lor;display:grid;gap:.45rem;margin:.8rem 0}
+.lo-regle{position:relative;padding:.65rem .8rem .65rem 2.5rem;border:1px solid rgba(255,255,255,.07);
+  border-radius:9px;background:rgba(255,255,255,.022);font-size:.83rem}
+.lo-regle::before{counter-increment:lor;content:counter(lor);position:absolute;left:.7rem;top:.6rem;
+  display:grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;
+  background:linear-gradient(135deg,var(--or),var(--or-somb));color:#0b0a10;font-weight:700;font-size:.7rem}
+.lo-regle b{color:var(--or-pale)}
+
+.lo-status{min-height:1.2rem;margin-top:.6rem;text-align:center;color:var(--vert-cl);font-size:.82rem;font-weight:600}
+.lo-count{display:inline-flex;margin-top:.9rem;padding:.4rem .9rem;color:var(--or);
+  background:rgba(200,168,74,.08);border:1px solid rgba(200,168,74,.26);border-radius:999px;
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.lo-foot{margin-top:1.4rem;padding-top:.9rem;border-top:1px solid rgba(200,168,74,.14);
+  text-align:center;color:var(--gris);font-size:.68rem;line-height:1.7}
+@media(max-width:600px){
+  .lo-row2{grid-template-columns:1fr}
+  .lo-tab{flex:1 1 100%;text-align:center}
+}
+</style>
+
+<header class="lo-hero">
+  <p class="lo-kicker">Protocole de ConScience · Mémoire du Bien</p>
+  <h1>🕯️ Le Livre d'Or Civilisationnel</h1>
+  <p class="lo-sub">Une trace de ce qui répare. Pas de ce qui abîme.
+  Ici, personne ne s'inscrit soi-même : <b>seul celui qui a reçu peut témoigner</b>.</p>
+  <p class="lo-devise">« Ce que j'ai semé, ce n'est pas à moi de le compter —<br>
+  c'est à ceux chez qui ça a poussé. »</p>
+  <span class="lo-count" id="loCount">Chargement…</span>
+</header>
+
+<nav class="lo-tabs">
+  <button type="button" class="lo-tab lo-on" data-p="regles">1 · ◈ Les Règles</button>
+  <button type="button" class="lo-tab" data-p="deposer">2 · 🕯️ Déposer une Trace</button>
+  <button type="button" class="lo-tab" data-p="mur">3 · 📖 Lire le Livre</button>
+</nav>
+
+<!-- ════ LE MUR ════ -->
+<section class="lo-panel" id="lo-mur">
+  <div class="lo-filtres" id="loFiltres"></div>
+  <div class="lo-mur" id="loMur"></div>
+  <div class="lo-status" id="loStatus1"></div>
+</section>
+
+<!-- ════ RÈGLES ════ -->
+<section class="lo-panel lo-on" id="lo-regles">
+  <div class="lo-card">
+    <h3>◈ Les cinq règles du Livre</h3>
+    <div class="lo-regles">
+      <div class="lo-regle"><b>Personne ne s'inscrit soi-même.</b> Seul celui qui a <em>reçu</em>
+      peut témoigner. Un geste ne se déclare pas — il s'atteste.</div>
+      <div class="lo-regle"><b>On décrit le geste, on ne loue pas la personne.</b>
+      « Elle est restée » se vérifie et se transmet. « C'est quelqu'un de bien » ne dit rien
+      à qui ne la connaît pas.</div>
+      <div class="lo-regle"><b>L'anonymat est possible des deux côtés.</b> Un geste vaut par
+      ce qu'il a produit, jamais par la notoriété de qui l'a fait.</div>
+      <div class="lo-regle"><b>Aucun élément ré-identifiant.</b> Pas de nom de famille,
+      pas d'adresse, rien qui expose un tiers. Y compris en bien : on ne publie pas la vie
+      de quelqu'un sans son accord.</div>
+      <div class="lo-regle"><b>Toute trace est relue avant publication.</b> Sans modération,
+      un livre d'or devient une vitrine — ou un champ de bataille.</div>
+    </div>
+  </div>
+
+  <div class="lo-card">
+    <h3>🪞 Le miroir de l'autre côté</h3>
+    <p>Ce Livre est le pendant exact des outils de documentation des violences —
+    même exigence, direction inverse :</p>
+    <p>📋 <b>Là-bas :</b> faits datés, sources vérifiables, statuts distingués, anonymat
+    pour <em>protéger</em>.<br>
+    🕯️ <b>Ici :</b> gestes datés, témoins réels, effets décrits, anonymat pour
+    <em>honorer</em>.</p>
+    <p><b>Là-bas on documente ce qui abîme, pour que ça cesse.<br>
+    Ici on documente ce qui répare, pour que ça se transmette.</b></p>
+  </div>
+
+  <div class="lo-btns" style="justify-content:center">
+    <button type="button" class="lo-btn" id="loGoDepot">🕯️ J'ai compris — déposer ma trace →</button>
+  </div>
+
+  <div class="lo-note lo-good">
+    <b>Et pourquoi ça compte au-delà de l'émotion :</b> une bonne action ne laisse aucune trace
+    chez celui qui la fait — elle en laisse une chez celui qui la reçoit. Ce Livre rend donc
+    <b>observable de l'extérieur</b> ce qui, autrement, resterait invérifiable. C'est ce qui
+    permet de mesurer ce qu'une vie a semé sans avoir à croire celui qui le raconte.
+  </div>
+</section>
+
+<!-- ════ DÉPOSER ════ -->
+<section class="lo-panel" id="lo-deposer">
+  <div class="lo-card">
+    <h3>🕯️ Raconter ce qui vous a été donné</h3>
+    <p>Décrivez <b>le geste</b>, pas la personne. « Elle est restée quand tout le monde partait »
+    dit plus que « c'est quelqu'un de bien » — et cela reste vrai même pour qui ne la connaît pas.</p>
+
+    <div class="lo-field">
+      <label>Le geste reçu</label>
+      <small>Ce qui a été fait, dit ou tenu. Le plus concret possible.</small>
+      <textarea id="loGeste" placeholder="Ex. : Elle est restée assise à côté de moi pendant deux heures sans rien dire, le soir où je n'arrivais plus à parler."></textarea>
+    </div>
+
+    <div class="lo-field">
+      <label>Ce que ça a produit</label>
+      <small>Ce qui a changé, ou ce que vous en avez fait depuis. C'est cela qui transforme un souvenir en graine.</small>
+      <textarea id="loEffet" placeholder="Ex. : J'ai compris qu'on pouvait être accompagnée sans avoir à expliquer. Je le refais pour d'autres maintenant."></textarea>
+    </div>
+
+    <div class="lo-row2">
+      <div class="lo-field">
+        <label>Reçu de</label>
+        <small>Un rôle suffit — pas de nom de famille.</small>
+        <input type="text" id="loDe" placeholder="Ex. : une amie · un inconnu · un enseignant">
+      </div>
+      <div class="lo-field">
+        <label>Signé</label>
+        <small>Initiales, prénom, ou « Anonyme ».</small>
+        <input type="text" id="loSigne" placeholder="Ex. : M. ou Anonyme">
+      </div>
+    </div>
+
+    <div class="lo-row2">
+      <div class="lo-field">
+        <label>Lieu (facultatif)</label>
+        <input type="text" id="loLieu" placeholder="Ex. : Lyon · ou laisser vide">
+      </div>
+      <div class="lo-field">
+        <label>Quand (facultatif)</label>
+        <input type="text" id="loQuand" placeholder="Ex. : hiver 2023 · il y a longtemps">
+      </div>
+    </div>
+
+    <div class="lo-field">
+      <label>Nature du geste</label>
+      <select id="loChamp">
+        <option value="presence">🫂 Présence — être là sans rien exiger</option>
+        <option value="protection">🛡️ Protection — s'interposer, sécuriser</option>
+        <option value="parole">💬 Parole juste — nommer ce qui aidait à voir</option>
+        <option value="transmission">📖 Transmission — apprendre, montrer, corriger</option>
+        <option value="soin">⚕️ Soin — prendre soin du corps ou du cœur</option>
+        <option value="materiel">🎁 Matériel — donner ce qui manquait vraiment</option>
+        <option value="reparation">🌱 Réparation — reconnaître un tort et le réparer</option>
+        <option value="confiance">💛 Confiance — croire quand personne ne croyait</option>
+      </select>
+    </div>
+
+    <label class="lo-check">
+      <input type="checkbox" id="loAccord">
+      <span><b>Je confirme</b> que ce témoignage ne contient <b>aucun nom de famille</b>,
+      aucune adresse, ni aucun élément permettant d'identifier un tiers sans son accord —
+      et que la personne citée est soit d'accord, soit décrite de façon anonyme.</span>
+    </label>
+
+    <div class="lo-btns">
+      <button type="button" class="lo-btn" id="loGen">🕯️ Préparer ma trace</button>
+      <button type="button" class="lo-btn lo-soft" id="loReset">↺ Effacer</button>
+    </div>
+    <div class="lo-status" id="loStatus2"></div>
+
+    <div class="lo-out" id="loOut"></div>
+    <div class="lo-btns" id="loEnvoi" style="display:none">
+      <button type="button" class="lo-btn" id="loCopy">📋 Copier</button>
+      <a class="lo-btn" id="loMail" href="#">✉️ Envoyer par mail</a>
+      <button type="button" class="lo-btn lo-soft" id="loDl">⬇️ Télécharger</button>
+    </div>
+  </div>
+
+  <div class="lo-note lo-gold">
+    <b>Pourquoi ce détour par la copie ?</b> Parce qu'aucun témoignage n'est publié
+    automatiquement. Chaque trace est <b>relue par une personne</b> avant d'entrer dans le
+    Livre — c'est ce qui le protège des règlements de compte, des faux et de la publicité déguisée.
+    La lenteur est ici une garantie, pas une limite.
+  </div>
+</section>
+
+
+<div class="lo-foot">
+  🕯️ Le Livre d'Or Civilisationnel · Protocole de ConScience aMi<br>
+  Agdistys · Diane Serant — CC BY-SA 4.0
+</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var ROOT=document.getElementById('loShell'); if(!ROOT) return;
+
+/* ═══════════════════════════════════════════════════════════
+   ⚙️ RÉGLAGES — les deux seules lignes à personnaliser
+   ═══════════════════════════════════════════════════════════ */
+var SOURCE_JSON = 'https://agdistys.github.io/Schemas/temoignages-livre-or.json';
+var EMAIL_RECEPTION = 'agdistys@hotmail.fr';
+/* ═══════════════════════════════════════════════════════════ */
+
+var CHAMPS={
+ presence:{n:'🫂 Présence',c:'#4ec8b8'},
+ protection:{n:'🛡️ Protection',c:'#80a8d8'},
+ parole:{n:'💬 Parole juste',c:'#c8a84a'},
+ transmission:{n:'📖 Transmission',c:'#9b65d5'},
+ soin:{n:'⚕️ Soin',c:'#90d8a8'},
+ materiel:{n:'🎁 Matériel',c:'#ff93b5'},
+ reparation:{n:'🌱 Réparation',c:'#79cf91'},
+ confiance:{n:'💛 Confiance',c:'#e6d090'}
+};
+
+var el=function(i){return document.getElementById(i);};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(m){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});};
+var DATA=[], filtre='*';
+
+/* ── Onglets ── */
+function ouvrir(nom){
+  ROOT.querySelectorAll('.lo-tab').forEach(function(x){x.classList.toggle('lo-on',x.dataset.p===nom);});
+  ROOT.querySelectorAll('.lo-panel').forEach(function(x){x.classList.remove('lo-on');});
+  var p=el('lo-'+nom); if(p)p.classList.add('lo-on');
+  sendH();
+}
+ROOT.querySelectorAll('.lo-tab').forEach(function(t){
+  t.addEventListener('click',function(){ ouvrir(t.dataset.p); });
+});
+var go=el('loGoDepot');
+if(go) go.addEventListener('click',function(){
+  ouvrir('deposer');
+  var d=el('lo-deposer'); if(d) d.scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+/* ── Chargement du mur ── */
+function charger(){
+  fetch(SOURCE_JSON,{cache:'no-cache'})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(d){ DATA=(d && d.temoignages)||[]; rendre(); })
+    .catch(function(){
+      el('loCount').textContent='hors ligne';
+      el('loMur').innerHTML='<div class="lo-note lo-warn"><b>Le Livre n\'a pas pu être chargé.</b><br>'+
+        'Vérifie ta connexion, ou le fichier <code>temoignages-livre-or.json</code> n\'est pas encore en ligne. '+
+        'L\'onglet « Déposer une Trace » fonctionne quand même.</div>';
+      sendH();
+    });
+}
+
+function rendre(){
+  var F=el('loFiltres'); F.innerHTML='';
+  var presents={};
+  DATA.forEach(function(t){ presents[t.champ]=(presents[t.champ]||0)+1; });
+
+  function pill(k,lab,n){
+    var b=document.createElement('button');
+    b.type='button'; b.className='lo-pill'+(filtre===k?' lo-on':'');
+    b.textContent=lab+(n?' · '+n:'');
+    b.addEventListener('click',function(){ filtre=k; rendre(); });
+    F.appendChild(b);
+  }
+  pill('*','🌟 Tout',DATA.length);
+  Object.keys(CHAMPS).forEach(function(k){ if(presents[k]) pill(k,CHAMPS[k].n,presents[k]); });
+
+  var liste=DATA.filter(function(t){ return filtre==='*'||t.champ===filtre; });
+  el('loCount').textContent=DATA.length+' trace'+(DATA.length>1?'s':'')+' déposée'+(DATA.length>1?'s':'');
+
+  var M=el('loMur'); M.innerHTML='';
+  if(!liste.length){
+    M.innerHTML='<div class="lo-note">Aucune trace dans cette catégorie pour l\'instant. '+
+      'Le Livre commence toujours par une page blanche 🕯️</div>';
+    sendH(); return;
+  }
+  liste.slice().reverse().forEach(function(t){
+    var ch=CHAMPS[t.champ]||{n:'✨',c:'#c8a84a'};
+    var d=document.createElement('article');
+    d.className='lo-carte'; d.style.setProperty('--c',ch.c);
+    var meta='<span class="lo-champ">'+esc(ch.n)+'</span>';
+    if(t.recu_de) meta+='<span>reçu de : '+esc(t.recu_de)+'</span>';
+    if(t.lieu) meta+='<span>'+esc(t.lieu)+'</span>';
+    if(t.quand) meta+='<span>'+esc(t.quand)+'</span>';
+    if(t.temoin) meta+='<span>— '+esc(t.temoin)+'</span>';
+    d.innerHTML='<div class="lo-geste">« '+esc(t.geste)+' »</div>'+
+      (t.effet?'<div class="lo-effet"><b>Ce que ça a produit :</b> '+esc(t.effet)+'</div>':'')+
+      '<div class="lo-meta">'+meta+'</div>';
+    M.appendChild(d);
+  });
+  sendH();
+}
+
+/* ── Génération de la trace ── */
+function texteTrace(){
+  var ch=el('loChamp'), chLab=ch.options[ch.selectedIndex].text;
+  var L=[];
+  L.push('═══════════════════════════════════════');
+  L.push('   🕯️  LIVRE D\'OR CIVILISATIONNEL');
+  L.push('       Trace proposée');
+  L.push('═══════════════════════════════════════');
+  L.push('');
+  L.push('LE GESTE REÇU :');
+  L.push((el('loGeste').value||'').trim());
+  L.push('');
+  L.push('CE QUE ÇA A PRODUIT :');
+  L.push((el('loEffet').value||'').trim());
+  L.push('');
+  L.push('Nature      : '+chLab);
+  L.push('Reçu de     : '+((el('loDe').value||'').trim()||'non précisé'));
+  L.push('Lieu        : '+((el('loLieu').value||'').trim()||'non précisé'));
+  L.push('Quand       : '+((el('loQuand').value||'').trim()||'non précisé'));
+  L.push('Signé       : '+((el('loSigne').value||'').trim()||'Anonyme'));
+  L.push('Déposé le   : '+new Date().toLocaleDateString('fr-FR'));
+  L.push('');
+  L.push('☑ Confirmé sans nom de famille, sans adresse,');
+  L.push('  sans élément ré-identifiant un tiers.');
+  L.push('');
+  L.push('───── format JSON pour publication ─────');
+  L.push(JSON.stringify({
+    id:'LO-XXXX',
+    date:new Date().toISOString().slice(0,10),
+    geste:(el('loGeste').value||'').trim(),
+    effet:(el('loEffet').value||'').trim(),
+    recu_de:(el('loDe').value||'').trim()||'non précisé',
+    temoin:(el('loSigne').value||'').trim()||'Anonyme',
+    lieu:(el('loLieu').value||'').trim()||'',
+    quand:(el('loQuand').value||'').trim()||'',
+    champ:ch.value,
+    accord:true
+  },null,2));
+  return L.join('\n');
+}
+
+el('loGen').addEventListener('click',function(){
+  var g=(el('loGeste').value||'').trim(), e=(el('loEffet').value||'').trim();
+  var S=el('loStatus2');
+  if(g.length<20){ S.textContent='⚠️ Décris le geste un peu plus précisément (20 caractères minimum).'; return; }
+  if(e.length<10){ S.textContent='⚠️ Dis ce que ça a produit — c\'est le cœur du témoignage.'; return; }
+  if(!el('loAccord').checked){ S.textContent='⚠️ Coche la confirmation avant de préparer ta trace.'; return; }
+  var txt=texteTrace();
+  var O=el('loOut'); O.textContent=txt; O.classList.add('lo-on');
+  el('loEnvoi').style.display='flex';
+  el('loMail').href='mailto:'+EMAIL_RECEPTION+
+    '?subject='+encodeURIComponent('🕯️ Livre d\'Or — une trace à déposer')+
+    '&body='+encodeURIComponent(txt);
+  S.textContent='✅ Ta trace est prête. Copie-la, envoie-la, ou télécharge-la.';
+  O.scrollIntoView({behavior:'smooth',block:'nearest'});
+  sendH();
+});
+
+el('loReset').addEventListener('click',function(){
+  ['loGeste','loEffet','loDe','loSigne','loLieu','loQuand'].forEach(function(i){ el(i).value=''; });
+  el('loChamp').selectedIndex=0; el('loAccord').checked=false;
+  el('loOut').classList.remove('lo-on'); el('loEnvoi').style.display='none';
+  el('loStatus2').textContent=''; sendH();
+});
+
+el('loCopy').addEventListener('click',function(){
+  var t=el('loOut').textContent;
+  function ok(){ el('loStatus2').textContent='📋 Copié. Merci pour cette trace 🕯️';
+    setTimeout(function(){el('loStatus2').textContent='';},3000); }
+  if(navigator.clipboard){ navigator.clipboard.writeText(t).then(ok).catch(fallback); }
+  else fallback();
+  function fallback(){
+    var a=document.createElement('textarea'); a.value=t; document.body.appendChild(a);
+    a.select(); try{document.execCommand('copy');}catch(e){} a.remove(); ok();
+  }
+});
+
+el('loDl').addEventListener('click',function(){
+  var blob=new Blob(['﻿'+el('loOut').textContent],{type:'text/plain;charset=utf-8'});
+  var url=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=url; a.download='Livre_d_Or_trace_'+new Date().toISOString().slice(0,10)+'.txt';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){URL.revokeObjectURL(url);},1200);
+});
+
+/* ── Hauteur iframe ── */
+function sendH(){
+  setTimeout(function(){
+    try{ var h=document.documentElement.scrollHeight;
+      parent.postMessage({type:'astroHeight',height:h},'*');
+      parent.postMessage({type:'ami-widget-resize',height:h},'*'); }catch(e){}
+  },80);
+}
+if(window.ResizeObserver){ try{ new ResizeObserver(sendH).observe(document.body); }catch(e){} }
+
+charger(); sendH();
+})();
+</script>
+<!-- ════════ FIN DU BLOC À COPIER ════════ -->
+
+</body>
+</html>

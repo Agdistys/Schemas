@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wikileaks des Agresseurs — Widget aMi</title>
+<style>
+/* ⚠️ STYLE DE DÉMO UNIQUEMENT — ne PAS copier cette balise <style> sur ton site.
+   L'ancienne version contenait "display:grid;place-items:center" sur <body> :
+   sur une page complète, cela transforme TOUS les éléments de la page en cases
+   de grille centrées à leur largeur minimale → la page entière se rétrécit
+   des deux côtés. Remplacé ici par un centrage sans effet de bord. */
+body{margin:0;padding:18px;background:#07080d;min-height:100vh}
+</style>
+</head>
+<body>
+
+<!-- ════════ DÉBUT DU BLOC À COPIER SUR VOTRE SITE ════════
+     Copier UNIQUEMENT de cette ligne jusqu'à "FIN DU BLOC À COPIER".
+     Ne jamais copier le <style> situé plus haut dans <head> : il est réservé
+     à l'aperçu en solo et modifierait la mise en page de toute ta page. -->
+<div id="ami-wikileaks">
+<style>
+#ami-wikileaks{width:100%;max-width:100%;margin:0 auto;color:var(--text);font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;line-height:1.45;box-sizing:border-box;text-align:left;display:block}
+#ami-wikileaks .wk-widget{margin:0 auto}
+#ami-wikileaks{
+  --night:#080910;
+  --panel:#131524;
+  --panel2:#181425;
+  --line:rgba(239,217,145,.22);
+  --gold:#efd991;
+  --gold2:#bd9739;
+  --text:#f3edf8;
+  --muted:#b8b2c8;
+  --rose:#ff7f9f;
+  --blue:#74c8ff;
+  --green:#90e3a8;
+  --violet:#b89cff;
+  --warn:#ffd166;
+  --shadow:rgba(0,0,0,.38);
+}
+#ami-wikileaks *,#ami-wikileaks *::before,#ami-wikileaks *::after{box-sizing:border-box}
+#ami-wikileaks .wk-widget{
+  width:min(980px,100%);
+  max-width:100%;
+  margin:0 auto;
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+  background:linear-gradient(145deg,rgba(19,21,36,.96),rgba(12,11,20,.98));
+  box-shadow:0 22px 70px var(--shadow);
+}
+#ami-wikileaks .wk-hero{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:22px;
+  border-bottom:1px solid var(--line);
+  background:
+    linear-gradient(100deg,rgba(239,217,145,.13),rgba(116,200,255,.08),rgba(255,127,159,.08)),
+    rgba(255,255,255,.02);
+}
+#ami-wikileaks .wk-kicker{
+  color:var(--gold);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  margin-bottom:8px;
+}
+#ami-wikileaks h1{
+  margin:0;
+  color:var(--gold);
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+  font-size:clamp(32px,5vw,54px);
+  line-height:1;
+}
+#ami-wikileaks .wk-subtitle{
+  margin:12px 0 0;
+  color:var(--muted);
+  max-width:760px;
+  font-size:15px;
+}
+#ami-wikileaks .wk-tabs{
+  display:flex;
+  gap:0;
+  overflow-x:auto;
+  border-bottom:1px solid var(--line);
+  background:rgba(8,9,16,.8);
+}
+#ami-wikileaks .wk-tab{
+  appearance:none;
+  border:0;
+  border-right:1px solid rgba(239,217,145,.12);
+  background:transparent;
+  color:var(--muted);
+  padding:14px 18px;
+  min-width:max-content;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+#ami-wikileaks .wk-tab:hover{color:var(--text);background:rgba(255,255,255,.04)}
+#ami-wikileaks .wk-tab[aria-selected="true"]{
+  color:var(--gold);
+  background:linear-gradient(180deg,rgba(239,217,145,.12),rgba(239,217,145,.04));
+  box-shadow:inset 0 -2px 0 var(--gold2);
+}
+#ami-wikileaks .wk-panel{display:none;width:100%;max-width:none;margin:0;border:0;padding:22px;background:none;box-shadow:none}
+#ami-wikileaks .wk-panel.wk-active{display:block}
+#ami-wikileaks .wk-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+#ami-wikileaks .wk-full{grid-column:1/-1}
+#ami-wikileaks .wk-box{
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:16px;
+  background:rgba(255,255,255,.035);
+}
+#ami-wikileaks .wk-box h2,#ami-wikileaks .wk-box h3{
+  margin:0 0 10px;
+  color:var(--gold);
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+}
+#ami-wikileaks .wk-box h2{font-size:26px}
+#ami-wikileaks .wk-box h3{font-size:21px}
+#ami-wikileaks .wk-box p{margin:0 0 10px;color:var(--muted)}
+#ami-wikileaks .wk-box p:last-child{margin-bottom:0}
+#ami-wikileaks .wk-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+#ami-wikileaks .wk-chip{
+  border:1px solid rgba(239,217,145,.25);
+  border-radius:999px;
+  padding:7px 10px;
+  color:var(--text);
+  background:rgba(255,255,255,.04);
+  font-size:13px;
+}
+#ami-wikileaks .wk-steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+#ami-wikileaks .wk-step{
+  min-height:142px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:14px;
+  background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.018));
+}
+#ami-wikileaks .wk-step b{
+  display:block;
+  color:var(--gold);
+  margin-bottom:8px;
+}
+#ami-wikileaks .wk-step span{display:block;color:var(--muted);font-size:14px}
+#ami-wikileaks .wk-split{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:14px;
+  align-items:start;
+}
+#ami-wikileaks .wk-builder{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-bottom:14px;
+}
+#ami-wikileaks .wk-field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width:0;
+}
+#ami-wikileaks .wk-field.wk-full{grid-column:1/-1}
+#ami-wikileaks .wk-field span{
+  color:var(--gold);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+#ami-wikileaks .wk-field input,#ami-wikileaks .wk-field select,#ami-wikileaks .wk-field textarea{
+  width:100%;
+  border:1px solid rgba(239,217,145,.24);
+  border-radius:8px;
+  background:rgba(8,9,16,.86);
+  color:var(--text);
+  padding:10px 11px;
+  font:14px/1.35 inherit;
+  outline-color:var(--gold);
+}
+#ami-wikileaks .wk-field textarea{
+  min-height:72px;
+  resize:vertical;
+}
+#ami-wikileaks .wk-checks-field{
+  border:1px solid rgba(239,217,145,.24);
+  border-radius:8px;
+  padding:10px 11px 11px;
+  background:rgba(8,9,16,.52);
+}
+#ami-wikileaks .wk-checks-field legend{
+  color:var(--gold);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:0 6px;
+}
+#ami-wikileaks .wk-checks{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-top:2px;
+}
+#ami-wikileaks .wk-field-hint{
+  margin:7px 0 0;
+  color:var(--muted);
+  font-size:12px;
+}
+#ami-wikileaks .wk-check{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:34px;
+  padding:7px 9px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;
+  color:var(--text);
+  background:rgba(255,255,255,.035);
+  font-size:13px;
+}
+#ami-wikileaks .wk-check input{
+  width:16px;
+  height:16px;
+  accent-color:var(--gold2);
+}
+#ami-wikileaks .wk-field input::placeholder,#ami-wikileaks .wk-field textarea::placeholder{color:rgba(184,178,200,.62)}
+#ami-wikileaks .wk-mode-card{
+  border-left:3px solid var(--blue);
+  padding:12px;
+  margin-top:10px;
+}
+#ami-wikileaks .wk-mode-card b{
+  color:var(--gold);
+  display:block;
+  margin-bottom:4px;
+}
+#ami-wikileaks .wk-mode-card span{
+  color:var(--muted);
+  display:block;
+  font-size:13px;
+}
+#ami-wikileaks pre{
+  margin:0;
+  white-space:pre-wrap;
+  word-break:break-word;
+  color:#f8f0dc;
+  background:#090a12;
+  border:1px solid rgba(239,217,145,.24);
+  border-radius:8px;
+  padding:15px;
+  max-height:460px;
+  overflow:auto;
+  font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+}
+#ami-wikileaks .wk-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+#ami-wikileaks .wk-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(239,217,145,.42);
+  border-radius:8px;
+  background:linear-gradient(135deg,rgba(239,217,145,.16),rgba(116,200,255,.08));
+  color:var(--gold);
+  padding:10px 13px;
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:.04em;
+  cursor:pointer;
+}
+#ami-wikileaks .wk-btn:hover{background:linear-gradient(135deg,rgba(239,217,145,.22),rgba(144,227,168,.12))}
+#ami-wikileaks .wk-notice{
+  border-left:3px solid var(--green);
+  padding:10px 12px;
+  color:var(--text);
+  background:rgba(144,227,168,.08);
+}
+#ami-wikileaks .wk-warn{border-left-color:var(--warn);background:rgba(255,209,102,.08)}
+#ami-wikileaks .wk-bad{border-left-color:var(--rose);background:rgba(255,127,159,.08)}
+#ami-wikileaks .wk-mini{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:8px;
+}
+#ami-wikileaks .wk-status{
+  min-height:18px;
+  color:var(--green);
+  font-size:13px;
+  margin-top:8px;
+}
+#ami-wikileaks .wk-protocol-reminder{
+  border-top:1px solid var(--line);
+  padding:18px 22px 20px;
+  background:
+    linear-gradient(90deg,rgba(144,227,168,.12),rgba(239,217,145,.12),rgba(255,127,159,.08)),
+    rgba(8,9,16,.84);
+}
+#ami-wikileaks .wk-protocol-reminder strong{
+  display:block;
+  color:var(--gold);
+  font-size:14px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+#ami-wikileaks .wk-protocol-link-space{
+  min-height:24px;
+  margin-top:8px;
+  border:1px dashed rgba(239,217,145,.28);
+  border-radius:8px;
+  background:rgba(255,255,255,.025);
+}
+@media(max-width:780px){#ami-wikileaks .wk-grid,#ami-wikileaks .wk-split,#ami-wikileaks .wk-steps,#ami-wikileaks .wk-builder{grid-template-columns:1fr}
+#ami-wikileaks .wk-hero,#ami-wikileaks .wk-panel{padding:16px}
+#ami-wikileaks .wk-tab{padding:12px 14px;font-size:12px}}
+</style>
+<article class="wk-widget" id="amiw-widget-wikileaks-agresseurs">
+  <header class="wk-hero">
+    <div class="wk-kicker">🛡️ Outil privé · Sources · Signaux non validants</div>
+    <h1>Wikileaks des Agresseurs</h1>
+    <p class="wk-subtitle">Un kit local pour apprendre à chercher, classer et recouper sans publier automatiquement : faits publics, sources datées, témoignages anonymes consentis, profession, activité, lieu, institution.</p>
+  </header>
+
+  <nav class="wk-tabs" role="tablist" aria-label="Onglets Wikileaks des Agresseurs">
+    <button class="wk-tab" role="tab" aria-selected="true" aria-controls="amiw-presentation" id="amiw-tab-presentation">Présentation</button>
+    <button class="wk-tab" role="tab" aria-selected="false" aria-controls="amiw-tuto" id="amiw-tab-tuto">Tuto</button>
+    <button class="wk-tab" role="tab" aria-selected="false" aria-controls="amiw-formule" id="amiw-tab-formule">Formule Magique</button>
+  </nav>
+
+  <section class="wk-panel wk-active" id="amiw-presentation" role="tabpanel" aria-labelledby="amiw-tab-presentation">
+    <div class="wk-grid">
+      <div class="wk-box">
+        <h2>🎯 Intention</h2>
+        <p>Créer un Excel privé de recherche documentaire, pas un mur public nominatif.</p>
+        <p>Les personnes peuvent chercher par nom, profession, activité, lieu ou institution, puis vérifier les sources et les statuts.</p>
+      </div>
+      <div class="wk-box">
+        <h2>🧭 Step 1 / Step 2</h2>
+        <p><strong>Step 1 :</strong> Protocole de ConScience. L'IA apprend à distinguer fait, source, date, statut, signal et risque.</p>
+        <p><strong>Step 2 :</strong> Formule Magique. On lui dit où regarder et comment rendre le fichier.</p>
+      </div>
+      <div class="wk-box wk-full">
+        <h3>🗂️ Ce que l'outil sépare</h3>
+        <div class="wk-chips">
+          <span class="wk-chip">faits publics</span>
+          <span class="wk-chip">sources A/B</span>
+          <span class="wk-chip">signaux anonymes</span>
+          <span class="wk-chip">rapprochements non validants</span>
+          <span class="wk-chip">profession</span>
+          <span class="wk-chip">activité</span>
+          <span class="wk-chip">à ne pas publier</span>
+        </div>
+      </div>
+      <div class="wk-box wk-notice wk-full">
+        <p><strong>Règle aMi :</strong> dans le fichier privé, on peut chercher. Dans le public, on doit protéger.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wk-panel" id="amiw-tuto" role="tabpanel" aria-labelledby="amiw-tab-tuto">
+    <div class="wk-steps">
+      <div class="wk-step"><b>1. Territoire</b><span>Choisir ville, région, pays et période. Exemple : Lyon, 2021-2026.</span></div>
+      <div class="wk-step"><b>2. Mode</b><span>Mode A = décisions établies. Mode B = procédures en cours. Mode C = signaux anonymes non validants.</span></div>
+      <div class="wk-step"><b>3. Recherche</b><span>Utiliser Ctrl+F et les filtres Excel : nom, profession, activité, lieu, institution, statut.</span></div>
+      <div class="wk-step"><b>4. Signaux</b><span>Les témoignages anonymes publics/consentis restent non validants et vont dans Signaux_Anonymes.</span></div>
+      <div class="wk-step"><b>5. Rapprocher</b><span>Un motif récurrent peut orienter l'attention, jamais valider une culpabilité.</span></div>
+      <div class="wk-step"><b>6. Publier</b><span>Seulement anonymisé, source datée, statut exact, minimisation, relecture humaine.</span></div>
+    </div>
+    <div class="wk-grid" style="margin-top:14px">
+      <div class="wk-box">
+        <h3>🎧 Exemple : tous les DJ</h3>
+        <p>Filtrer <code>activites_publiques</code> ou <code>activite_mentionnee</code>.</p>
+        <div class="wk-chips">
+          <span class="wk-chip">DJ</span>
+          <span class="wk-chip">djing</span>
+          <span class="wk-chip">disc-jockey</span>
+          <span class="wk-chip">club</span>
+          <span class="wk-chip">festival</span>
+          <span class="wk-chip">scène électro</span>
+        </div>
+      </div>
+      <div class="wk-box wk-bad">
+        <h3>⚠️ À ne pas faire</h3>
+        <p>Ne jamais écrire qu'une personne est coupable à partir de signaux anonymes, même rapprochables.</p>
+        <p>Ne jamais aspirer de récits confidentiels sans consentement explicite.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wk-panel" id="amiw-formule" role="tabpanel" aria-labelledby="amiw-tab-formule">
+    <div class="wk-split">
+      <div>
+        <div class="wk-builder" id="amiw-promptBuilder" aria-label="Champs de recherche pour générer la formule">
+          <label class="wk-field">
+            <span>Ville</span>
+            <input id="amiw-fieldCity" type="text" value="Lyon" placeholder="ex : Lyon">
+          </label>
+          <label class="wk-field">
+            <span>Région / département</span>
+            <input id="amiw-fieldRegion" type="text" value="Rhône / Auvergne-Rhône-Alpes" placeholder="ex : Rhône">
+          </label>
+          <label class="wk-field">
+            <span>Pays</span>
+            <input id="amiw-fieldCountry" type="text" value="France" placeholder="ex : France">
+          </label>
+          <label class="wk-field">
+            <span>Période</span>
+            <input id="amiw-fieldPeriod" type="text" value="2021-2026" placeholder="ex : 2021-2026">
+          </label>
+          <label class="wk-field">
+            <span>Portée</span>
+            <select id="amiw-fieldScope">
+              <option value="local">Ville / zone locale</option>
+              <option value="regional">Région / département</option>
+              <option value="national">Pays entier</option>
+              <option value="unknown">Je ne sais pas encore</option>
+            </select>
+          </label>
+          <label class="wk-field">
+            <span>Objectif de résultats</span>
+            <input id="amiw-fieldLimit" type="number" min="1" max="500" value="50" placeholder="ex : 50">
+          </label>
+          <label class="wk-field wk-full">
+            <span>Mode documentaire</span>
+            <select id="amiw-fieldMode">
+              <option value="A">Mode A - Décisions établies : condamnations, relaxes/acquittements, décisions publiques</option>
+              <option value="B">Mode B - Procédures en cours : plaintes, enquêtes, mises en examen, renvois tribunal</option>
+              <option value="C">Mode C - Signaux anonymes : témoignages publics/consentis, collectifs, WeBlame</option>
+            </select>
+          </label>
+          <label class="wk-field wk-full">
+            <span>Mode de recherche</span>
+            <select id="amiw-fieldSearchMode">
+              <option value="general">Recherche générale par territoire</option>
+              <option value="name">Recherche par nom précis</option>
+              <option value="profession">Recherche par profession</option>
+              <option value="activity">Recherche par activité publique</option>
+              <option value="place">Recherche par lieu / institution</option>
+              <option value="mixed">Recherche mixte</option>
+            </select>
+          </label>
+          <label class="wk-field">
+            <span>Nom exact ou alias public</span>
+            <input id="amiw-fieldName" type="text" placeholder="facultatif">
+          </label>
+          <label class="wk-field">
+            <span>Profession</span>
+            <input id="amiw-fieldProfession" type="text" placeholder="ex : ingénieur, enseignant, élu">
+          </label>
+          <label class="wk-field">
+            <span>Activité publique</span>
+            <input id="amiw-fieldActivity" type="text" placeholder="ex : DJ, djing, festival, club">
+          </label>
+          <label class="wk-field">
+            <span>Lieux / institutions</span>
+            <input id="amiw-fieldPlaces" type="text" placeholder="ex : écoles, mairie, clubs, associations">
+          </label>
+          <fieldset class="wk-field wk-full wk-checks-field">
+            <legend>Types d’infractions / violences</legend>
+            <div class="wk-checks">
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="viol">Viol</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="tentative de viol">Tentative de viol</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="agression sexuelle">Agression sexuelle</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="harcèlement sexuel">Harcèlement sexuel</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="cyber-harcèlement">Cyber-harcèlement</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="diffusion intime non consentie / revenge porn">Revenge porn</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="violences physiques">Violences physiques</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="violences psychologiques">Violences psychologiques</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="violences économiques">Violences économiques</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="violences administratives">Violences administratives</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="violences gynécologiques / obstétricales">Violences gynécologiques</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="mariage forcé">Mariage forcé</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="mutilations sexuelles">Mutilations sexuelles</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="emprise / contrôle coercitif">Emprise / contrôle coercitif</label>
+              <label class="wk-check"><input class="wk-infraction-check" type="checkbox" value="autre qualification sourcee">Autre qualification sourcée</label>
+            </div>
+            <p class="wk-field-hint">Rien coché = recherche large sur toutes les qualifications sourcées. Les cases servent seulement à cibler.</p>
+          </fieldset>
+          <label class="wk-field wk-full">
+            <span>Autres infractions / qualifications précises</span>
+            <input id="amiw-fieldOtherOffense" type="text" placeholder="ex : détention d’images pédopornographiques, vol à l’arraché, abus de faiblesse">
+          </label>
+          <label class="wk-field wk-full">
+            <span>Mots-clés / précision</span>
+            <textarea id="amiw-fieldKeywords" placeholder="ex : violences sexuelles, harcèlement, emprise, condamnation, plainte, signalement, collectif local"></textarea>
+          </label>
+        </div>
+        <pre id="amiw-magicPrompt" aria-live="polite"></pre>
+        <div class="wk-actions">
+          <button class="wk-btn" type="button" id="amiw-copyPrompt">📋 Copier la formule</button>
+          <button class="wk-btn" type="button" id="amiw-resetPrompt">↺ Réinitialiser</button>
+          <a class="wk-btn" href="Tuto_Wikileaks_des_Agresseurs_aMi.pdf" download>📄 Télécharger le tuto PDF</a>
+        </div>
+        <div class="wk-status" id="amiw-copyStatus" aria-live="polite"></div>
+      </div>
+      <aside class="wk-box wk-warn">
+        <h3>🛡️ Pourquoi ce protocole ?</h3>
+        <p>Une IA de base peut faire un tableau, mais elle peut confondre plainte, signal, enquête et condamnation.</p>
+        <p>La formule force la séparation entre faits publics, sources, signaux anonymes et rapprochements non validants.</p>
+        <div class="wk-mode-card">
+          <b>Mode A - décisions établies</b>
+          <span>Le plus publiable : condamnations, relaxes/acquittements, décisions judiciaires ou institutionnelles sourcées.</span>
+        </div>
+        <div class="wk-mode-card">
+          <b>Mode B - procédures en cours</b>
+          <span>Utile pour veiller, mais fragile : plainte, enquête, mise en examen ou renvoi ne valent jamais condamnation.</span>
+        </div>
+        <div class="wk-mode-card">
+          <b>Mode C - signaux anonymes</b>
+          <span>Seulement privé et non validant : cela oriente l'attention, jamais une accusation publique.</span>
+        </div>
+        <div class="wk-mode-card">
+          <b>Recherche par nom</b>
+          <span>À utiliser seulement pour vérifier une personne déjà nommée : sources exactes, homonymes, variantes, statut précis, zéro conclusion sans preuve.</span>
+        </div>
+        <div class="wk-mode-card">
+          <b>Recherche par infraction</b>
+          <span>Rien coché = recherche large. Les cases et le champ libre servent à cibler ; la qualification juridique finale reste celle de la source.</span>
+        </div>
+        <p class="wk-mini">Le PDF contient le tuto court, les garde-fous et la formule à copier.</p>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="wk-protocol-reminder">
+    <strong>NE PAS OUBLIER DE METTRE LE PROTOCOLE DE CONSCIENCE AVANT</strong>
+    <div class="wk-protocol-link-space" aria-label="Emplacement pour le lien du protocole de conscience"></div>
+  </footer>
+</article>
+<script>
+(function(){
+function init(){
+var ROOT=document.getElementById('ami-wikileaks');if(!ROOT)return;
+
+const tabs = Array.from(ROOT.querySelectorAll('.wk-tab'));
+const panels = Array.from(ROOT.querySelectorAll('.wk-panel'));
+const defaults = {
+  fieldCity: 'Lyon',
+  fieldRegion: 'Rhône / Auvergne-Rhône-Alpes',
+  fieldCountry: 'France',
+  fieldPeriod: '2021-2026',
+  fieldScope: 'local',
+  fieldLimit: '50',
+  fieldMode: 'A',
+  fieldSearchMode: 'general',
+  fieldName: '',
+  fieldProfession: '',
+  fieldActivity: '',
+  fieldPlaces: '',
+  fieldOtherOffense: '',
+  fieldKeywords: ''
+};
+const modeText = {
+  A: 'Mode A - décisions établies : rechercher uniquement les condamnations, relaxes/acquittements, décisions judiciaires publiques et décisions institutionnelles publiées. C’est le niveau le plus stable.',
+  B: 'Mode B - procédures en cours : ajouter plaintes médiatisées, enquêtes ouvertes, mises en examen, renvois tribunal et procédures institutionnelles en cours, toujours séparés des condamnations.',
+  C: 'Mode C - signaux anonymes : ajouter témoignages anonymes publics ou transmis avec consentement, collectifs et plateformes comme WeBlame, uniquement comme signaux non validants.'
+};
+const searchModeText = {
+  general: 'Recherche générale par territoire : partir du territoire, de la période et du mode documentaire choisi, puis classer les résultats sans filtrage nominatif initial.',
+  name: 'Recherche par nom précis : vérifier une personne déjà nommée. Utiliser le nom exact entre guillemets, les variantes orthographiques, accents, pseudonymes publics, profession, activité et territoire. Toujours contrôler les homonymes avant de créer une ligne.',
+  profession: 'Recherche par profession : filtrer par métier ou rôle public, puis classer les résultats par statut documentaire.',
+  activity: 'Recherche par activité publique : filtrer par activité, scène, collectif, club, événement ou réseau professionnel.',
+  place: 'Recherche par lieu / institution : filtrer par établissement, institution, association, entreprise, média, lieu culturel, scolaire, sportif ou religieux.',
+  mixed: 'Recherche mixte : croiser territoire, nom, profession, activité, lieu, institution et mots-clés sans privilégier un seul axe.'
+};
+
+tabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    tabs.forEach((item) => item.setAttribute('aria-selected', 'false'));
+    panels.forEach((panel) => panel.classList.remove('wk-active'));
+    tab.setAttribute('aria-selected', 'true');
+    document.getElementById(tab.getAttribute('aria-controls')).classList.add('wk-active');
+  });
+});
+
+const fieldIds = Object.keys(defaults);
+const valueOf = (id, fallback) => {
+  const node = document.getElementById('amiw-'+id);
+  const value = node ? node.value.trim() : '';
+  return value || fallback;
+};
+const optional = (id, emptyText) => valueOf(id, emptyText);
+function selectedInfractions(){
+  const values = Array.from(ROOT.querySelectorAll('.wk-infraction-check:checked')).map((item) => item.value.trim());
+  const other = optional('fieldOtherOffense', '').trim();
+  const allValues = other ? [...values, other] : values;
+  return allValues.length ? allValues.join(', ') : 'aucune categorie prefiltrée - recherche large sur toutes les qualifications sourcees, puis classement dans categorie_infraction';
+}
+const scopeText = {
+  local: 'Recherche locale : partir de la ville indiquee, puis elargir a la region/departement si les sources locales sont insuffisantes.',
+  regional: 'Recherche regionale/departementale : partir de la region/departement, sans exiger une ville precise.',
+  national: 'Recherche par pays entier : ignorer ville et region si elles sont vides, couvrir toutes les zones publiques pertinentes du pays.',
+  unknown: 'Territoire incomplet : ne pas bloquer la recherche, utiliser les elements disponibles, signaler ce qui manque et demander clarification si necessaire.'
+};
+function territoryValue(id, fallbackByScope){
+  const node = document.getElementById('amiw-'+id);
+  const raw = node ? node.value.trim() : '';
+  if (raw) return raw;
+  const scope = valueOf('fieldScope', 'local');
+  return fallbackByScope[scope] || fallbackByScope.local;
+}
+
+function buildPrompt(){
+  const city = territoryValue('fieldCity', {
+    local: 'ville non precisee - ne pas bloquer la recherche',
+    regional: 'toutes villes de la region/departement',
+    national: 'toutes villes du pays',
+    unknown: 'ville inconnue'
+  });
+  const region = territoryValue('fieldRegion', {
+    local: 'region/departement non precise - elargir si necessaire',
+    regional: 'region/departement non precise - chercher au niveau disponible',
+    national: 'toutes regions/departements du pays',
+    unknown: 'region/departement inconnu'
+  });
+  const country = valueOf('fieldCountry', 'pays non precise - demander clarification avant de conclure');
+  const period = valueOf('fieldPeriod', 'periode non precisee - demander clarification avant de conclure');
+  const scope = valueOf('fieldScope', 'local');
+  const limit = valueOf('fieldLimit', '50');
+  const mode = valueOf('fieldMode', 'A');
+  const searchMode = valueOf('fieldSearchMode', 'general');
+  const nameValue = optional('fieldName', searchMode === 'name' ? 'NOM MANQUANT - demander le nom avant toute recherche nominative' : 'aucun filtre nominatif de depart');
+  const prompt = `Tu travailles comme assistant de veille documentaire non publique.
+
+NE COMMENCE PAS AVANT D'AVOIR LU LE PROTOCOLE DE CONSCIENCE FOURNI AVANT CETTE DEMANDE.
+
+Objectif : construire un brouillon local source, date et relisable sur des affaires publiques et signaux anonymes non validants.
+
+Territoire :
+- Ville : ${city}
+- Region/departement : ${region}
+- Pays : ${country}
+- Portee : ${scopeText[scope] || scopeText.local}
+
+Periode :
+- ${period}
+
+Objectif de volume :
+- Viser au moins ${limit} resultats verifiables si les sources publiques existent.
+- Ne t'arrete pas aux premiers resultats visibles.
+- Si tu trouves moins de ${limit} resultats solides, n'invente rien : explique les sources consultees, les mots-cles testes et pourquoi le volume est plus bas.
+
+Mode de recherche choisi :
+- ${searchModeText[searchMode] || searchModeText.general}
+
+Recherche ciblee :
+- Nom exact ou alias public : ${nameValue}
+- Profession publique : ${optional('fieldProfession', 'toutes professions')}
+- Activite publique : ${optional('fieldActivity', 'toutes activites')}
+- Lieux / institutions : ${optional('fieldPlaces', 'tous lieux publics pertinents')}
+- Categories d'infractions / violences a cibler : ${selectedInfractions()}
+- Mots-cles / precision : ${optional('fieldKeywords', 'violences, plaintes, condamnations, procedures, signalements publics')}
+
+Regle de qualification :
+- Les categories cochees servent a orienter la recherche et a filtrer le fichier.
+- Ne remplace jamais la qualification juridique sourcee par une categorie du widget.
+- Si aucune categorie n'est cochee et qu'aucune qualification libre n'est indiquee, cela signifie : recherche large sur tous types de condamnations, decisions et procedures publiques correspondant au territoire/periode/mode.
+- Inclure aussi les qualifications non listees si elles sont sourcees, par exemple detention d'images pedopornographiques, vol a l'arrache, vol avec violence, abus de faiblesse, violences sur mineur ou autre qualification exacte.
+- Apres lecture des sources, renseigne categorie_infraction ou autre_qualification_sourcee sans inventer ni requalifier.
+
+Si le mode de recherche est "par nom precis" :
+1. Chercher le nom exact entre guillemets, puis les variantes avec/sans accents, initiales, alias ou pseudonymes publics.
+2. Croiser le nom avec ville, region, profession, activite et institution pour eviter les homonymes.
+3. Ne creer une ligne nominative privee que si au moins une source publique permet d'identifier le statut documentaire exact.
+4. En cas d'homonymie, d'incertitude ou de source insuffisante, placer la ligne dans A_Ne_Pas_Publier.
+5. Ne jamais deduire une culpabilite a partir du nom seul, d'une rumeur ou d'un signal anonyme.
+
+Mode documentaire choisi :
+- ${modeText[mode] || modeText.A}
+
+Contraintes absolues :
+1. Ne publie jamais automatiquement.
+2. Ne transforme jamais plainte, enquete, procedure ou signal en condamnation.
+3. Ne qualifie jamais quelqu'un d'agresseur sans condamnation correspondante.
+4. Ne collecte aucune donnee intime, adresse privee, telephone, email, identite de mineur ou element re-identifiant une victime/temoin.
+5. Separe profession_publique et activites_publiques.
+6. Les temoignages anonymes vont seulement dans Signaux_Anonymes ou Rapprochements_Non_Validants.
+7. Toute ligne incertaine va dans A_Ne_Pas_Publier.
+8. Si une source ne donne pas assez d'elements pour verifier, conserve-la comme piste, pas comme fait.
+
+Colonnes minimales attendues :
+- record_id
+- personne_ou_entite
+- profession_publique
+- activites_publiques
+- lieu_public
+- institution_ou_collectif
+- statut_documentaire
+- date_statut
+- juridiction_ou_source
+- resume_neutre
+- sources
+- niveau_source
+- risque_publication
+- notes_minimisation
+- relecture_humaine
+
+Feuilles attendues :
+- 00_A_OUVRIR
+- Audit_Complet
+- Sources
+- Signaux_Anonymes
+- Rapprochements_Non_Validants
+- A_Ne_Pas_Publier
+- Controle`;
+  document.getElementById('amiw-magicPrompt').textContent = prompt;
+}
+
+fieldIds.forEach((id) => {
+  const node = document.getElementById('amiw-'+id);
+  if (node) {
+    node.addEventListener('input', buildPrompt);
+    node.addEventListener('change', buildPrompt);
+  }
+});
+ROOT.querySelectorAll('.wk-infraction-check').forEach((node) => {
+  node.addEventListener('change', buildPrompt);
+});
+document.getElementById('amiw-resetPrompt').addEventListener('click', () => {
+  fieldIds.forEach((id) => {
+    const node = document.getElementById('amiw-'+id);
+    if (node) node.value = defaults[id];
+  });
+  ROOT.querySelectorAll('.wk-infraction-check').forEach((node) => {
+    node.checked = false;
+  });
+  buildPrompt();
+  const status = document.getElementById('amiw-copyStatus');
+  status.textContent = 'Champs réinitialisés.';
+  window.setTimeout(() => { status.textContent = ''; }, 1800);
+});
+buildPrompt();
+
+document.getElementById('amiw-copyPrompt').addEventListener('click', async () => {
+  const text = document.getElementById('amiw-magicPrompt').innerText;
+  const status = document.getElementById('amiw-copyStatus');
+  try {
+    await navigator.clipboard.writeText(text);
+    status.textContent = 'Formule copiée dans le presse-papier.';
+  } catch (error) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    area.remove();
+    status.textContent = 'Formule copiée.';
+  }
+  window.setTimeout(() => { status.textContent = ''; }, 2600);
+});
+
+if(window.parent&&window.parent!==window){
+  var send=function(){try{var h=document.documentElement.scrollHeight;parent.postMessage({type:'ami-widget-resize',height:h},'*');parent.postMessage({type:'astroHeight',height:h},'*')}catch(e){}};
+  if(window.ResizeObserver){try{new ResizeObserver(send).observe(document.body)}catch(e){}}
+  window.addEventListener('load',send);setTimeout(send,250);
+}
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}else{init()}
+})();
+</script>
+</div>
+<!-- ════════ FIN DU BLOC À COPIER ════════ -->
+
+</body>
+</html>

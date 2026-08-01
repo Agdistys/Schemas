@@ -1,0 +1,321 @@
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Widget aMi - Exemples de Democratie Vivante</title>
+<style>
+:root{
+  --night:#090912;
+  --ink:#111122;
+  --panel:#17172a;
+  --line:rgba(245,222,154,.18);
+  --gold:#e7cf82;
+  --gold2:#b88d28;
+  --text:#f4eedf;
+  --muted:#b9b6ca;
+  --blue:#7cc9ff;
+  --green:#8de6a7;
+  --pink:#ff93b5;
+  --violet:#c2a5ff;
+  --orange:#ffb36c;
+  --red:#ff7b8f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;
+  background:
+    linear-gradient(135deg,rgba(124,201,255,.09),transparent 32%),
+    linear-gradient(225deg,rgba(255,147,181,.08),transparent 34%),
+    var(--night);
+  color:var(--text);
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height:1.55;
+}
+.wrap{max-width:1220px;margin:0 auto;padding:24px}
+.hero{
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+  background:linear-gradient(135deg,rgba(231,207,130,.12),rgba(124,201,255,.08),rgba(141,230,167,.08));
+  box-shadow:0 22px 70px rgba(0,0,0,.35);
+}
+.hero-top{
+  padding:24px;
+  background:linear-gradient(90deg,rgba(124,201,255,.16),rgba(255,147,181,.14),rgba(141,230,167,.14),rgba(231,207,130,.16));
+  border-bottom:1px solid var(--line);
+}
+.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:8px}
+h1{font-family:Georgia, "Times New Roman", serif;font-size:clamp(30px,5vw,56px);font-weight:400;line-height:1.02;color:var(--gold);margin-bottom:10px}
+.lead{max-width:850px;color:var(--muted);font-size:17px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;padding:20px}
+.formula,.verdict{
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:rgba(9,9,18,.58);
+  padding:18px;
+}
+.formula h2,.verdict h2,.section-title{font-family:Georgia, "Times New Roman", serif;color:var(--gold);font-weight:400}
+.formula h2,.verdict h2{font-size:24px;margin-bottom:10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{border:1px solid rgba(231,207,130,.24);border-radius:999px;padding:6px 10px;background:rgba(255,255,255,.04);font-size:13px;color:var(--text)}
+.verdict strong{color:var(--green)}
+.legend{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:22px 0}
+.legend span{border:1px solid var(--line);border-radius:8px;padding:9px 10px;background:rgba(255,255,255,.035);font-size:13px;color:var(--muted)}
+.legend b{display:block;color:var(--text);font-size:18px}
+.section-title{font-size:30px;margin:30px 0 14px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.case{
+  position:relative;
+  min-height:315px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:linear-gradient(145deg,rgba(23,23,42,.96),rgba(12,12,24,.97));
+  overflow:hidden;
+  box-shadow:0 14px 40px rgba(0,0,0,.3);
+}
+.case::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--grad)}
+.case-body{padding:18px;position:relative}
+.case-head{display:grid;grid-template-columns:1fr 66px;gap:12px;align-items:start;margin-bottom:12px}
+.case h3{font-family:Georgia, "Times New Roman", serif;color:var(--gold);font-size:25px;font-weight:400;line-height:1.05}
+.tag{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:5px}
+.score{
+  width:60px;height:60px;border-radius:50%;
+  display:grid;place-items:center;
+  background:conic-gradient(var(--accent) calc(var(--score)*1%),rgba(255,255,255,.09) 0);
+}
+.score span{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#101021;color:var(--text);font-weight:700;font-size:14px}
+.case p{color:var(--muted);font-size:14px;margin-bottom:12px}
+.case ul{display:grid;gap:6px;list-style:none;margin:12px 0}
+.case li{font-size:13px;color:var(--text);padding-left:20px;position:relative}
+.case li::before{content:"✦";position:absolute;left:0;color:var(--accent)}
+.warning{border-top:1px solid rgba(255,255,255,.08);padding-top:10px;color:#ffd2d9;font-size:13px}
+.source{display:inline-flex;margin-top:12px;font-size:12px;color:var(--gold);text-decoration:none}
+.source:hover{text-decoration:underline}
+.mosaic{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+.tile{
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+  padding:14px;
+  min-height:125px;
+}
+.tile b{display:block;font-family:Georgia, "Times New Roman", serif;color:var(--gold);font-size:20px;margin-bottom:5px}
+.tile span{display:block;color:var(--muted);font-size:13px}
+.recipe{
+  margin-top:24px;
+  border:1px solid rgba(141,230,167,.28);
+  border-radius:8px;
+  overflow:hidden;
+  background:linear-gradient(135deg,rgba(141,230,167,.13),rgba(124,201,255,.1),rgba(231,207,130,.12));
+}
+.recipe h2{font-family:Georgia, "Times New Roman", serif;color:var(--gold);font-weight:400;font-size:30px;padding:18px 20px 0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:18px 20px 20px}
+.step{border:1px solid var(--line);border-radius:8px;padding:14px;background:rgba(9,9,18,.58)}
+.step b{display:block;color:var(--text);font-size:15px;margin-bottom:6px}
+.step span{display:block;color:var(--muted);font-size:13px}
+.france-path{
+  margin-top:24px;
+  border:1px solid rgba(124,201,255,.28);
+  border-radius:8px;
+  overflow:hidden;
+  background:linear-gradient(135deg,rgba(124,201,255,.13),rgba(255,147,181,.1),rgba(231,207,130,.12));
+}
+.france-path h2{font-family:Georgia, "Times New Roman", serif;color:var(--gold);font-weight:400;font-size:30px;padding:18px 20px 0}
+.path-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:18px 20px 10px}
+.path-step{
+  min-height:178px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:14px;
+  background:rgba(9,9,18,.6);
+  position:relative;
+}
+.path-step::before{
+  content:attr(data-step);
+  display:inline-grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  margin-bottom:10px;
+  background:linear-gradient(135deg,var(--blue),var(--gold));
+  color:#101021;
+  font-weight:800;
+}
+.path-step b{display:block;color:var(--text);font-size:15px;margin-bottom:6px}
+.path-step span{display:block;color:var(--muted);font-size:13px}
+.france-formula{
+  margin:0 20px 20px;
+  border-top:1px solid rgba(255,255,255,.09);
+  padding-top:14px;
+  color:var(--text);
+  font-size:15px;
+}
+.france-formula strong{color:var(--green)}
+.sources{margin:22px 0 0;color:var(--muted);font-size:12px}
+.sources a{color:var(--gold)}
+@media(max-width:980px){
+  .hero-grid,.cards{grid-template-columns:1fr}
+  .legend{grid-template-columns:repeat(2,1fr)}
+  .mosaic,.steps,.path-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .wrap{padding:12px}
+  .hero-top,.hero-grid{padding:16px}
+  .legend,.mosaic,.steps,.path-grid{grid-template-columns:1fr}
+}
+</style>
+
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-top">
+      <div class="kicker">🐾 Gouvernance · Representation · Pouvoir local</div>
+      <h1>Où la Democratie Vivante existe deja ?</h1>
+      <p class="lead">Aucun endroit ne porte toute la formule. Les meilleurs exemples sont des morceaux du futur : Suisse pour la subsidiarite et le referendum, Ostbelgien et Irlande pour le tirage au sort, Taiwan pour l'intelligence collective numerique, Kerala pour le pouvoir local, Rojava pour les communes.</p>
+    </div>
+    <div class="hero-grid">
+      <article class="formula">
+        <h2>🧬 La formule combinee</h2>
+        <p>Le meilleur systeme national ressemblerait a une federation de pratiques plutot qu'a un modele unique.</p>
+        <div class="chips">
+          <span class="chip">🏘️ local fort</span>
+          <span class="chip">🗳️ proportionnelle</span>
+          <span class="chip">🎲 tirage au sort</span>
+          <span class="chip">📚 deliberation</span>
+          <span class="chip">🧾 transparence</span>
+          <span class="chip">🌱 droits du Vivant</span>
+        </div>
+      </article>
+      <article class="verdict">
+        <h2>👑 Verdict aMi</h2>
+        <p><strong>Democratie Vivante Polycentrique</strong> : Suisse + Ostbelgien + Irlande + Taiwan + Kerala + Rojava, avec garde-fous anti-capture et droits fondamentaux intouchables.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="legend" aria-label="Legende des scores">
+    <span><b>🏘️</b>Local</span>
+    <span><b>🗳️</b>Vote direct</span>
+    <span><b>🎲</b>Sortition</span>
+    <span><b>📚</b>Deliberation</span>
+    <span><b>🧾</b>Controle</span>
+    <span><b>🌱</b>Vivant</span>
+  </div>
+
+  <h2 class="section-title">🌍 Les endroits les plus proches</h2>
+  <section class="cards">
+    <article class="case" style="--grad:linear-gradient(90deg,#ff6b95,#ffd166,#8de6a7);--accent:var(--green);--score:88">
+      <div class="case-body">
+        <div class="case-head"><div><h3>🇨🇭 Suisse</h3><div class="tag">federalisme + democratie directe</div></div><div class="score"><span>8.8</span></div></div>
+        <p>Le meilleur exemple national stable : communes, cantons, referendum, initiative populaire, subsidiarite.</p>
+        <ul><li>Peuple consultable a tous les niveaux.</li><li>Communes et cantons ont de vrais pouvoirs.</li><li>Referendums et initiatives sont institutionnalises.</li></ul>
+        <div class="warning">Manque : tirage au sort permanent, deliberation citoyenne systematique, garde-fous forts contre campagnes d'argent.</div>
+        <a class="source" href="https://www.aboutswitzerland.eda.admin.ch/en/direct-democracy">Source officielle Suisse</a>
+      </div>
+    </article>
+
+    <article class="case" style="--grad:linear-gradient(90deg,#7cc9ff,#c2a5ff,#ff93b5);--accent:var(--violet);--score:86">
+      <div class="case-body">
+        <div class="case-head"><div><h3>🇧🇪 Ostbelgien</h3><div class="tag">conseil citoyen permanent</div></div><div class="score"><span>8.6</span></div></div>
+        <p>Petit territoire, grande idee : un Conseil citoyen tire au sort programme et suit des assemblees citoyennes.</p>
+        <ul><li>Institution permanente, pas simple consultation.</li><li>Tirage au sort stratifie.</li><li>Lien formel avec le parlement regional.</li></ul>
+        <div class="warning">Manque : echelle nationale et pouvoir decisionnel direct plus fort.</div>
+        <a class="source" href="https://www.oecd.org/en/publications/innovative-citizen-participation-and-new-democratic-institutions_339306da-en/full-report/component-10.html">Source OECD</a>
+      </div>
+    </article>
+
+    <article class="case" style="--grad:linear-gradient(90deg,#58d68d,#7cc9ff,#ffd166);--accent:var(--blue);--score:84">
+      <div class="case-body">
+        <div class="case-head"><div><h3>🇮🇪 Irlande</h3><div class="tag">assemblees citoyennes nationales</div></div><div class="score"><span>8.4</span></div></div>
+        <p>Exemple majeur de deliberation nationale : citoyens tires au sort, experts, auditions, recommandations.</p>
+        <ul><li>Mini-publics representatifs.</li><li>Questions constitutionnelles et sociales lourdes.</li><li>Impact reel, notamment sur l'avortement.</li></ul>
+        <div class="warning">Manque : les recommandations ne sont pas automatiquement obligatoires.</div>
+        <a class="source" href="https://citizensassembly.ie/about/faq/">Source Citizens' Assembly</a>
+      </div>
+    </article>
+
+    <article class="case" style="--grad:linear-gradient(90deg,#7cc9ff,#8de6a7,#ffb36c);--accent:var(--blue);--score:82">
+      <div class="case-body">
+        <div class="case-head"><div><h3>🇹🇼 Taiwan</h3><div class="tag">participation numerique + consensus</div></div><div class="score"><span>8.2</span></div></div>
+        <p>vTaiwan et JOIN montrent comment ecouter a grande echelle, faire emerger des consensus, et obliger l'Etat a repondre.</p>
+        <ul><li>Consultations ouvertes.</li><li>Plateformes publiques de proposition/suivi.</li><li>Usage de Pol.is et culture open gov.</li></ul>
+        <div class="warning">Manque : ce n'est pas une constitution complete du pouvoir local.</div>
+        <a class="source" href="https://info.vtaiwan.tw/">Source vTaiwan</a>
+      </div>
+    </article>
+
+    <article class="case" style="--grad:linear-gradient(90deg,#8de6a7,#ffd166,#ffb36c);--accent:var(--green);--score:81">
+      <div class="case-body">
+        <div class="case-head"><div><h3>🇮🇳 Kerala</h3><div class="tag">planification populaire locale</div></div><div class="score"><span>8.1</span></div></div>
+        <p>Un des meilleurs exemples de decentralisation participative : gram sabhas, plans locaux, budgets et projets au terrain.</p>
+        <ul><li>Planification par assemblees locales.</li><li>Transfert important de moyens.</li><li>Developpement suivi et territorialise.</li></ul>
+        <div class="warning">Manque : reste dans un cadre d'Etat plus large, avec qualite variable selon lieux.</div>
+        <a class="source" href="https://lsgd.kerala.gov.in/en/the-big-bang/decentralized-planning/">Source Kerala LSGD</a>
+      </div>
+    </article>
+
+    <article class="case" style="--grad:linear-gradient(90deg,#ff93b5,#c2a5ff,#7cc9ff);--accent:var(--pink);--score:78">
+      <div class="case-body">
+        <div class="case-head"><div><h3>🌾 Rojava / AANES</h3><div class="tag">communes + confederalisme democratique</div></div><div class="score"><span>7.8</span></div></div>
+        <p>C'est probablement l'exemple que tu avais en tete : pas Irak/Iran exactement, mais Nord-Est syrien kurde et multiethnique.</p>
+        <ul><li>Communes comme unite de base.</li><li>Conseils, cooperatives, co-presidences, place des femmes.</li><li>Vision decentralisee et pluraliste.</li></ul>
+        <div class="warning">Prudence : zone de guerre, statut politique conteste, evaluation difficile et fragile.</div>
+        <a class="source" href="https://rojavainformationcenter.org/2023/12/aanes-social-contract-2023-edition/">Source RIC / Contrat social</a>
+      </div>
+    </article>
+
+    <article class="case" style="--grad:linear-gradient(90deg,#ffb36c,#ffd166,#8de6a7);--accent:var(--orange);--score:72">
+      <div class="case-body">
+        <div class="case-head"><div><h3>🇧🇷 Porto Alegre</h3><div class="tag">budget participatif pionnier</div></div><div class="score"><span>7.2</span></div></div>
+        <p>Ville fondatrice du budget participatif moderne : habitants, priorites locales, argent public discute.</p>
+        <ul><li>Decision sur investissements locaux.</li><li>Priorite aux besoins de quartier.</li><li>Modele exporte dans le monde.</li></ul>
+        <div class="warning">Manque : depend fortement du contexte politique et peut s'affaiblir avec le temps.</div>
+        <a class="source" href="https://openknowledge.worldbank.org/entities/publication/7dab37bf-0f1d-5e2f-9175-63fb1fb3216a/full">Source Banque mondiale</a>
+      </div>
+    </article>
+
+    <article class="case" style="--grad:linear-gradient(90deg,#7cc9ff,#ffd166,#ff93b5);--accent:var(--gold);--score:68">
+      <div class="case-body">
+        <div class="case-head"><div><h3>🇫🇷 Paris</h3><div class="tag">budget participatif urbain</div></div><div class="score"><span>6.8</span></div></div>
+        <p>Exemple proche et visible : les habitant·es proposent et votent des projets d'investissement.</p>
+        <ul><li>Projets locaux concrets.</li><li>Vote citoyen sur des realisations.</li><li>Culture participative installee depuis 2014.</li></ul>
+        <div class="warning">Manque : pouvoir limite a une portion du budget, pas une refonte de gouvernance nationale.</div>
+        <a class="source" href="https://www.paris.fr/dossiers/budget-participatif-10-ans-de-realisations-214">Source Ville de Paris</a>
+      </div>
+    </article>
+  </section>
+
+  <h2 class="section-title">🧩 La recette nationale ideale</h2>
+  <section class="mosaic">
+    <div class="tile"><b>🇨🇭 Suisse</b><span>Prendre le federalisme, les communes fortes, le referendum et l'initiative.</span></div>
+    <div class="tile"><b>🇧🇪 Ostbelgien</b><span>Ajouter une chambre citoyenne permanente tiree au sort.</span></div>
+    <div class="tile"><b>🇮🇪 Irlande</b><span>Former les citoyen·nes par deliberation longue et contradictoire.</span></div>
+    <div class="tile"><b>🇹🇼 Taiwan</b><span>Ouvrir une plateforme transparente de propositions, suivi et consensus.</span></div>
+    <div class="tile"><b>🇮🇳 Kerala</b><span>Donner des moyens reels aux assemblees locales et plans territoriaux.</span></div>
+  </section>
+
+  <section class="recipe">
+    <h2>🌱 Systeme recommande</h2>
+    <div class="steps">
+      <div class="step"><b>1. Local d'abord</b><span>Commune, quartier, territoire : tout ce qui peut se decider proche du sol reste proche du sol.</span></div>
+      <div class="step"><b>2. Proportionnelle nationale</b><span>L'assemblee elue represente vraiment le pays : MMP ou STV, parite, seuil modere.</span></div>
+      <div class="step"><b>3. Chambre citoyenne</b><span>Tirage au sort stratifie, mandat court, formation, audition, droit de renvoi.</span></div>
+      <div class="step"><b>4. RIC delibere</b><span>Le peuple peut trancher, mais apres dossier contradictoire et assemblee citoyenne.</span></div>
+    </div>
+  </section>
+
+  <section class="france-path">
+    <h2>🇫🇷 Transition France : 4 paliers</h2>
+    <div class="path-grid">
+      <div class="path-step" data-step="1"><b>Sans revision</b><span>Communes, quartiers et regions : assemblees locales, budgets participatifs, consultations tracees, conventions citoyennes territoriales.</span></div>
+      <div class="path-step" data-step="2"><b>Lois ordinaires</b><span>Proportionnelle, statut des assemblees citoyennes, RIP simplifie, financement politique anti-capture, lobbying transparent.</span></div>
+      <div class="path-step" data-step="3"><b>Article 89</b><span>Revision constitutionnelle : subsidiarite opposable, chambre citoyenne tiree au sort, RIC delibere, droits du Vivant.</span></div>
+      <div class="path-step" data-step="4"><b>Culture durable</b><span>Ecole du debat, medias publics longs, archives des decisions, indicateurs annuels du Vivant et de la confiance.</span></div>
+    </div>
+    <p class="france-formula"><strong>Formule :</strong> commune souveraine sur le terrain + Assemblee nationale proportionnelle + chambre citoyenne tiree au sort + RIC delibere + droits du Vivant = VIe Republique polycentrique.</p>
+  </section>
+
+  <p class="sources">Sources principales : <a href="https://www.aboutswitzerland.eda.admin.ch/en/direct-democracy">Suisse - democratie directe</a> · <a href="https://www.aboutswitzerland.eda.admin.ch/en/federalism">Suisse - federalisme</a> · <a href="https://www.oecd.org/en/publications/innovative-citizen-participation-and-new-democratic-institutions_339306da-en/full-report/component-10.html">OECD / Ostbelgien</a> · <a href="https://citizensassembly.ie/about/faq/">Irlande Citizens' Assembly</a> · <a href="https://info.vtaiwan.tw/">vTaiwan</a> · <a href="https://lsgd.kerala.gov.in/en/the-big-bang/decentralized-planning/">Kerala</a> · <a href="https://rojavainformationcenter.org/2023/12/aanes-social-contract-2023-edition/">AANES / Rojava</a> · <a href="https://www.paris.fr/dossiers/budget-participatif-10-ans-de-realisations-214">Paris budget participatif</a> · <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000019240655/">Constitution art. 89</a> · <a href="https://www.lecese.fr/participation-citoyenne">CESE</a> · <a href="https://www.debatpublic.fr/cndp-une-entite-independante-671">CNDP</a>.</p>
+</main>
+
+

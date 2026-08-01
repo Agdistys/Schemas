@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conflit ou Violence — Relation Saine aMi</title>
+
+</head>
+<body>
+
+<!-- ════════ DÉBUT DU BLOC À COPIER SUR VOTRE SITE ════════ -->
+<div id="ami-violentometre">
+<style>
+#ami-violentometre{container-type:inline-size;width:100%;margin:0 auto;color:var(--text);font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;line-height:1.45;box-sizing:border-box;text-align:left}
+#ami-violentometre .widget{margin:0 auto}
+#ami-violentometre{
+  --night:#07080d;
+  --panel:#121420;
+  --panel2:#171524;
+  --line:rgba(239,217,145,.22);
+  --gold:#efd991;
+  --gold2:#c6a347;
+  --text:#f2edf7;
+  --muted:#b8b3c7;
+  --green:#8ff0b0;
+  --blue:#78c8ff;
+  --amber:#ffd166;
+  --rose:#ff7c9b;
+  --red:#ff4f6c;
+  --shadow:rgba(0,0,0,.4);
+}
+#ami-violentometre *,#ami-violentometre *::before,#ami-violentometre *::after{box-sizing:border-box}
+#ami-violentometre .widget{
+  width:min(1040px,100%);
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+  background:linear-gradient(145deg,rgba(18,20,32,.97),rgba(10,10,18,.98));
+  box-shadow:0 24px 72px var(--shadow);
+}
+#ami-violentometre .hero{
+  padding:22px;
+  border-bottom:1px solid var(--line);
+  background:
+    linear-gradient(105deg,rgba(143,240,176,.12),rgba(239,217,145,.10),rgba(255,124,155,.10)),
+    rgba(255,255,255,.02);
+}
+#ami-violentometre .kicker{
+  color:var(--gold);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+#ami-violentometre h1{
+  margin:0;
+  color:var(--gold);
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+  font-size:clamp(31px,4.8vw,52px);
+  line-height:1;
+}
+#ami-violentometre .subtitle{
+  max-width:760px;
+  margin:12px 0 0;
+  color:var(--muted);
+  font-size:15px;
+}
+#ami-violentometre .body{
+  display:block;
+  padding:18px;
+}
+#ami-violentometre .result{
+  margin-top:14px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:18px;
+  background:rgba(255,255,255,.035);
+}
+#ami-violentometre .meter{
+  height:14px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#252431;
+  border:1px solid rgba(255,255,255,.08);
+  margin:14px 0 8px;
+}
+#ami-violentometre .meter-fill{
+  width:0%;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--green),var(--amber),var(--rose),var(--red));
+  transition:width .25s ease;
+}
+#ami-violentometre .scoreline{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:baseline;
+  margin-top:8px;
+}
+#ami-violentometre .scoreline strong{
+  color:var(--gold);
+  font-size:34px;
+  line-height:1;
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+}
+#ami-violentometre .score-total{
+  color:var(--muted);
+  font-size:18px;
+  margin-left:4px;
+}
+#ami-violentometre .badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:34px;
+  border:1px solid rgba(143,240,176,.35);
+  border-radius:999px;
+  padding:7px 11px;
+  color:var(--green);
+  background:rgba(143,240,176,.08);
+  font-size:13px;
+  font-weight:800;
+}
+#ami-violentometre .badge.warn{border-color:rgba(255,209,102,.42);color:var(--amber);background:rgba(255,209,102,.08)}
+#ami-violentometre .badge.danger{border-color:rgba(255,124,155,.46);color:var(--rose);background:rgba(255,124,155,.08)}
+#ami-violentometre .badge.alert{border-color:rgba(255,79,108,.55);color:#ffd7df;background:rgba(255,79,108,.12)}
+#ami-violentometre .result p{margin:10px 0 0;color:var(--muted)}
+#ami-violentometre .mini{
+  color:#9f9ab0;
+  font-size:12px;
+}
+#ami-violentometre .actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:14px;
+}
+#ami-violentometre button{
+  font:inherit;
+}
+#ami-violentometre .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:38px;
+  border:1px solid rgba(239,217,145,.38);
+  border-radius:8px;
+  background:linear-gradient(135deg,rgba(239,217,145,.15),rgba(120,200,255,.08));
+  color:var(--gold);
+  padding:8px 11px;
+  font-weight:800;
+  cursor:pointer;
+}
+#ami-violentometre .btn:hover{background:linear-gradient(135deg,rgba(239,217,145,.22),rgba(143,240,176,.11))}
+#ami-violentometre .btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  background:rgba(255,255,255,.04);
+}
+#ami-violentometre .survey-toolbar{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:12px;
+  margin-bottom:12px;
+  background:rgba(255,255,255,.035);
+}
+#ami-violentometre .survey-meta{
+  display:grid;
+  gap:3px;
+  min-width:0;
+}
+#ami-violentometre .survey-meta strong{
+  color:var(--gold);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:20px;
+  font-weight:400;
+}
+#ami-violentometre .survey-actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:8px;
+}
+#ami-violentometre .section-nav{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:2px 2px 10px;
+  margin-bottom:10px;
+  scrollbar-color:rgba(239,217,145,.5) transparent;
+}
+#ami-violentometre .section-tab{
+  min-height:42px;
+  min-width:max-content;
+  border:1px solid rgba(239,217,145,.24);
+  border-radius:999px;
+  padding:8px 11px;
+  color:var(--muted);
+  background:rgba(255,255,255,.03);
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+#ami-violentometre .section-tab.active{
+  color:var(--gold);
+  border-color:rgba(239,217,145,.64);
+  background:rgba(239,217,145,.12);
+}
+#ami-violentometre .section-tab.done{
+  color:var(--green);
+  border-color:rgba(143,240,176,.42);
+}
+#ami-violentometre .categories{
+  display:grid;
+  gap:12px;
+}
+#ami-violentometre .categories.step-mode .section:not(.active){display:none}
+#ami-violentometre .categories.all-mode .section{display:block}
+#ami-violentometre .section{
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+  background:rgba(255,255,255,.025);
+}
+#ami-violentometre .section-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  padding:13px 14px;
+  background:rgba(255,255,255,.035);
+  border-bottom:1px solid rgba(239,217,145,.14);
+}
+#ami-violentometre .section h2{
+  margin:0;
+  color:var(--gold);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:22px;
+  font-weight:400;
+}
+#ami-violentometre .section-count{
+  min-width:54px;
+  color:var(--muted);
+  font-size:12px;
+  text-align:right;
+}
+#ami-violentometre .question{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 230px;
+  gap:12px;
+  align-items:center;
+  min-height:64px;
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+#ami-violentometre .question:last-child{border-bottom:0}
+#ami-violentometre .question span{
+  color:var(--text);
+  font-size:14px;
+}
+#ami-violentometre .question.critical span::after{
+  content:"  · alerte";
+  color:var(--rose);
+  font-size:12px;
+  font-weight:800;
+}
+#ami-violentometre .choice{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:8px;
+  overflow:hidden;
+  background:#0c0d15;
+}
+#ami-violentometre .choice label{
+  min-height:36px;
+  display:grid;
+  place-items:center;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+#ami-violentometre .choice label:last-child{border-right:0}
+#ami-violentometre .choice input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+#ami-violentometre .choice label:has(input:checked){
+  color:#07080d;
+  background:var(--gold);
+}
+#ami-violentometre .choice label:nth-child(2):has(input:checked){background:var(--amber)}
+#ami-violentometre .choice label:nth-child(3):has(input:checked){background:var(--rose);color:white}
+#ami-violentometre .healthy{
+  border:1px solid rgba(143,240,176,.28);
+  border-radius:8px;
+  padding:14px;
+  margin-bottom:12px;
+  background:rgba(143,240,176,.07);
+}
+#ami-violentometre .healthy h2{
+  margin:0 0 8px;
+  color:var(--green);
+  font-size:18px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+}
+#ami-violentometre .healthy-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+#ami-violentometre .healthy-pill{
+  min-height:38px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#dffde8;
+  border:1px solid rgba(143,240,176,.18);
+  border-radius:8px;
+  padding:8px 9px;
+  background:rgba(0,0,0,.18);
+  font-size:13px;
+}
+#ami-violentometre .safe-note{
+  border-top:1px solid var(--line);
+  padding:16px 18px;
+  color:var(--muted);
+  background:rgba(8,9,16,.76);
+  font-size:13px;
+}
+#ami-violentometre .safe-note strong{color:var(--gold)}
+#ami-violentometre .status{
+  min-height:18px;
+  color:var(--green);
+  font-size:12px;
+  margin-top:8px;
+}
+@media(max-width:860px){#ami-violentometre .body{padding:12px}
+#ami-violentometre .survey-toolbar{display:grid}
+#ami-violentometre .survey-actions{justify-content:flex-start}
+#ami-violentometre .question{grid-template-columns:1fr}
+#ami-violentometre .healthy-grid{grid-template-columns:1fr}}
+@media(max-width:480px){#ami-violentometre .hero{padding:17px}
+#ami-violentometre h1{font-size:34px}
+#ami-violentometre .section-head{align-items:flex-start;flex-direction:column}
+#ami-violentometre .section-count{text-align:left}
+#ami-violentometre .choice{grid-template-columns:1fr}
+#ami-violentometre .choice label{border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+#ami-violentometre .choice label:last-child{border-bottom:0}}
+@media print{#ami-violentometre .widget{
+    width:100%;
+    border:0;
+    box-shadow:none;
+    background:#fff;
+  }
+#ami-violentometre .hero,#ami-violentometre .body,#ami-violentometre .safe-note,#ami-violentometre .healthy,#ami-violentometre .section,#ami-violentometre .result{
+    color:#111;
+    background:#fff;
+  }
+#ami-violentometre h1,#ami-violentometre .section h2,#ami-violentometre .healthy h2,#ami-violentometre .survey-meta strong,#ami-violentometre .scoreline strong{
+    color:#111;
+  }
+#ami-violentometre .section-nav,#ami-violentometre .survey-actions,#ami-violentometre .actions{
+    display:none;
+  }
+#ami-violentometre .categories .section{
+    display:block!important;
+    break-inside:avoid;
+    margin-bottom:10px;
+  }
+#ami-violentometre .question{
+    break-inside:avoid;
+  }
+#ami-violentometre .badge,#ami-violentometre .healthy-pill,#ami-violentometre .choice{
+    border-color:#777;
+  }}
+@container (max-width:860px){#ami-violentometre .body{padding:12px}
+#ami-violentometre .survey-toolbar{display:grid}
+#ami-violentometre .survey-actions{justify-content:flex-start}
+#ami-violentometre .question{grid-template-columns:1fr}
+#ami-violentometre .healthy-grid{grid-template-columns:1fr}}
+@container (max-width:480px){#ami-violentometre .hero{padding:17px}
+#ami-violentometre h1{font-size:34px}
+#ami-violentometre .section-head{align-items:flex-start;flex-direction:column}
+#ami-violentometre .section-count{text-align:left}
+#ami-violentometre .choice{grid-template-columns:1fr}
+#ami-violentometre .choice label{border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+#ami-violentometre .choice label:last-child{border-bottom:0}}
+</style>
+<main class="widget" id="amivm-violentometre">
+  <header class="hero">
+    <div class="kicker">🛡️ Auto-repérage · Relation · Respect</div>
+    <h1>Conflit ou Violence ?</h1>
+    <p class="subtitle">Ta relation est-elle saine ? Réponds à chaque ligne par non, parfois ou oui. Un conflit cherche une solution ; la violence installe un pouvoir, une peur ou une contrainte.</p>
+  </header>
+
+  <div class="body">
+    <section>
+      <div class="healthy">
+        <h2>🌱 Repères d’une relation saine</h2>
+        <div class="healthy-grid">
+          <div class="healthy-pill">Le non est respecté.</div>
+          <div class="healthy-pill">Les désaccords peuvent être nommés.</div>
+          <div class="healthy-pill">Personne ne confisque papiers, argent, sommeil ou liens.</div>
+          <div class="healthy-pill">Après un tort, il y a reconnaissance, protection et réparation.</div>
+          <div class="healthy-pill">Tu peux rester présente dans tes projets, tes amitiés et ton corps.</div>
+          <div class="healthy-pill">Tes réactions sont replacées dans le contexte, pas utilisées contre toi.</div>
+        </div>
+      </div>
+      <div class="survey-toolbar">
+        <div class="survey-meta">
+          <span class="mini" id="amivm-stepStatus">Section 1 / 9</span>
+          <strong id="amivm-sectionName">Questions</strong>
+          <span class="mini" id="amivm-questionProgress">0 / 0 réponses</span>
+        </div>
+        <div class="survey-actions">
+          <button class="btn" type="button" id="amivm-prevSection">← Précédent</button>
+          <button class="btn" type="button" id="amivm-nextSection">Suivant →</button>
+          <button class="btn" type="button" id="amivm-toggleAll">☰ Voir toutes les questions</button>
+          <button class="btn" type="button" id="amivm-printView">🖨️ Imprimer / PDF</button>
+        </div>
+      </div>
+      <nav class="section-nav" id="amivm-sectionNav" aria-label="Sections du violentomètre"></nav>
+      <div class="categories" id="amivm-questionRoot"></div>
+    </section>
+
+    <aside class="result" aria-live="polite">
+      <span class="badge" id="amivm-levelBadge">🌱 Relation plutôt saine</span>
+      <div class="meter" aria-hidden="true"><div class="meter-fill" id="amivm-meterFill"></div></div>
+      <div class="scoreline">
+        <span class="mini">Score de signaux</span>
+        <strong><span id="amivm-scoreValue">0</span><span class="score-total" id="amivm-scoreTotal"> / 0</span></strong>
+      </div>
+      <p id="amivm-resultText">Aucun signal de violence n’est coché pour l’instant. Regarde surtout si le respect, le consentement et la réparation existent vraiment dans les faits.</p>
+      <p class="mini" id="amivm-categorySummary">Catégories activées : aucune.</p>
+      <div class="actions">
+        <button class="btn" type="button" id="amivm-copySummary">📋 Copier le résumé</button>
+        <button class="btn" type="button" id="amivm-resetAll">↺ Réinitialiser</button>
+      </div>
+      <div class="status" id="amivm-copyStatus"></div>
+    </aside>
+  </div>
+
+  <footer class="safe-note">
+    <strong>Important :</strong> ce test n’est pas un verdict juridique. C’est un repère de sécurité. Si tu te sens en danger, ne reste pas seul·e : contacte une personne de confiance, une association spécialisée ou les services d’urgence locaux. Si tu as des pensées suicidaires ou d’auto-agression, le <a href="tel:3114?oai_link_source=model_response_hotline" style="color:var(--gold)">3114</a> est joignable en France : <a href="https://3114.fr/?oai_link_source=model_response_hotline" style="color:var(--gold)">3114.fr</a>.
+  </footer>
+</main>
+<script>
+(function(){
+function init(){
+var ROOT=document.getElementById('ami-violentometre');if(!ROOT)return;
+
+const categories = [
+  {
+    id: 'administratives',
+    title: '🗂️ Administratives',
+    items: [
+      ['Rétention de passeport, carte d’identité, titre de séjour ou documents importants.', true],
+      ['Confiscation ou contrôle des papiers, mots de passe, courriers ou démarches.', true],
+      ['Refus de titre de séjour, de régularisation ou de démarches nécessaires pour te maintenir dépendant·e.', true],
+      ['Menace de signalement administratif, expulsion, perte de droits ou blocage de dossier.', true]
+    ]
+  },
+  {
+    id: 'economiques',
+    title: '💸 Économiques',
+    items: [
+      ['Argent donné au compte-gouttes ou accès empêché aux ressources communes.', false],
+      ['Surveillance du compte bancaire, des achats, du salaire ou des aides.', false],
+      ['Salaire, allocations ou revenus pris à ta place.', true],
+      ['Refus de payer une pension, dettes imposées ou dépendance financière organisée.', false],
+      ['Inégalités salariales ou exploitation économique maintenues malgré l’alerte.', false]
+    ]
+  },
+  {
+    id: 'psychologiques',
+    title: '🧠 Psychologiques',
+    items: [
+      ['Humiliations, dévalorisations, injures ou moqueries répétées.', false],
+      ['Objets abîmés, vêtements cassés, photos détruites ou souvenirs attaqués.', false],
+      ['Silence punitif, retrait d’affection, intimidation ou menace voilée.', false],
+      ['Sommeil empêché, fatigue provoquée ou épuisement utilisé pour te faire céder.', true],
+      ['Isolement, rumeurs, interdiction de parler à certaines personnes ou contrôle des liens.', true],
+      ['Gaslighting : on te fait douter de ta mémoire, de ta perception ou de ta santé mentale.', false],
+      ['Discussions circulaires : le problème devient ta réaction au lieu du comportement initial.', false],
+      ['Excuses et promesses répétées, puis les mêmes comportements reviennent.', false]
+    ]
+  },
+  {
+    id: 'depossession',
+    title: '🫥 Dépossession par épuisement',
+    items: [
+      ['Après des conflits longs, tu n’as plus l’énergie de sortir, créer, travailler ou voir tes proches.', true],
+      ['Avant un événement important, une tension ou une crise te met en sidération, alitement ou absence forcée.', true],
+      ['Tu dois consacrer ton énergie à revenir dans ton corps au lieu de vivre ta vie.', true],
+      ['Tu utilises des stratégies d’ancrage extrêmes ou douloureuses pour ne pas dissocier.', true],
+      ['Quand tu retrouves ton autonomie, l’autre devient froid, boude, reproche ou relance une tension.', false],
+      ['Il n’a pas besoin de t’interdire directement : les conséquences de la relation produisent ton absence.', true]
+    ]
+  },
+  {
+    id: 'physiques',
+    title: '🩹 Physiques',
+    items: [
+      ['Coups, gifles, poussées, morsures, brûlures, piqûres ou blessures.', true],
+      ['Empêchement de sortir, blocage du passage, enfermement ou retenue physique.', true],
+      ['Étranglement, suffocation ou pression sur le cou.', true],
+      ['Menace de violence contre toi, tes proches, tes animaux ou tes affaires.', true]
+    ]
+  },
+  {
+    id: 'gynecologiques',
+    title: '⚕️ Gynécologiques / obstétricales',
+    items: [
+      ['Frottis, examen, geste médical ou toucher sans consentement libre et informé.', true],
+      ['Stérilisation forcée ou contraception imposée.', true],
+      ['Refus de contraception, sabotage contraceptif ou pression reproductive.', true],
+      ['IVG forcée, refus d’IVG ou pression pour une grossesse.', true],
+      ['Propos humiliants, douleur ignorée ou menace médicale pendant un soin intime.', false]
+    ]
+  },
+  {
+    id: 'sexuelles',
+    title: '❤️‍🔥 Sexuelles',
+    items: [
+      ['Harcèlement sexuel, remarques sexuelles imposées ou pression insistante.', false],
+      ['Cyber-harcèlement, diffusion intime non consentie ou menace de revenge porn.', true],
+      ['Agression sexuelle ou contact sexuel imposé.', true],
+      ['Tentative de viol ou viol.', true],
+      ['Mutilations sexuelles, mariage forcé ou contrainte sexuelle ritualisée.', true],
+      ['Acte accepté sous peur, dette, pression, dépendance ou impossibilité de dire non.', true],
+      ['Sexualité de réconciliation après gaslighting, crise ou épuisement, pour que la tension s’arrête.', true],
+      ['Tu acceptes surtout pour retrouver du lien, de la sécurité ou un apaisement nerveux.', true],
+      ['Tu n’es pas dans un état libre, serein et éclairé au moment de consentir.', true]
+    ]
+  },
+  {
+    id: 'narratives',
+    title: '🎭 Retournement / récit',
+    items: [
+      ['Tes réactions d’épuisement sont isolées du contexte pour te faire passer pour dangereuse, folle ou instable.', true],
+      ['L’autre enregistre, coupe ou met en scène seulement ce qui l’arrange.', true],
+      ['Il menace d’appeler police, secours ou psychiatrie pour te faire taire ou te décrédibiliser.', true],
+      ['Il utilise ton isolement pour “prouver” que tu mens, alors que cet isolement vient de la violence.', true],
+      ['Des phrases humiliantes ou punitives sont ensuite minimisées comme des lapsus, blagues ou maladresses.', false]
+    ]
+  },
+  {
+    id: 'sociales',
+    title: '🕸️ Sociales / collectives',
+    items: [
+      ['Tu crées les liens, projets ou espaces, puis la relation te rend absente de ce que tu as construit.', false],
+      ['L’autre occupe ta place sociale pendant que tu es effondré·e ou absent·e.', false],
+      ['Tes alertes sont déplacées vers “trop intense”, “diffamation”, “harcèlement” ou “conflit personnel”.', true],
+      ['Des espaces dits safe, féministes ou bienveillants maintiennent une personne signalée sans protocole protecteur.', true],
+      ['Le groupe protège son image, son événement ou son confort avant la sécurité des personnes.', true]
+    ]
+  }
+];
+
+const root = document.getElementById('amivm-questionRoot');
+const sectionNav = document.getElementById('amivm-sectionNav');
+const stepStatus = document.getElementById('amivm-stepStatus');
+const sectionName = document.getElementById('amivm-sectionName');
+const questionProgress = document.getElementById('amivm-questionProgress');
+const scoreValue = document.getElementById('amivm-scoreValue');
+const scoreTotal = document.getElementById('amivm-scoreTotal');
+const meterFill = document.getElementById('amivm-meterFill');
+const levelBadge = document.getElementById('amivm-levelBadge');
+const resultText = document.getElementById('amivm-resultText');
+const categorySummary = document.getElementById('amivm-categorySummary');
+const copyStatus = document.getElementById('amivm-copyStatus');
+const totalQuestions = categories.reduce((sum, category) => sum + category.items.length, 0);
+let currentIndex = 0;
+let showAll = false;
+let autoAdvanceTimer = null;
+
+function makeName(categoryId, itemIndex){
+  return `${categoryId}-${itemIndex}`;
+}
+
+function shortTitle(title){
+  return title.replace(/^[^ ]+ /, '');
+}
+
+function getAnswer(categoryId, itemIndex){
+  return ROOT.querySelector(`input[name="${makeName(categoryId, itemIndex)}"]:checked`);
+}
+
+function sectionStats(category){
+  let answered = 0;
+  let score = 0;
+  category.items.forEach((item, index) => {
+    const checked = getAnswer(category.id, index);
+    if (checked) answered += 1;
+    score += Number(checked?.value || 0);
+  });
+  return { answered, total: category.items.length, score };
+}
+
+function isSectionComplete(category){
+  const stats = sectionStats(category);
+  return stats.answered === stats.total;
+}
+
+function render(){
+  sectionNav.innerHTML = categories.map((category, index) => `
+    <button class="section-tab" type="button" data-index="${index}" aria-label="${shortTitle(category.title)}">
+      ${shortTitle(category.title)}
+      <span class="mini"> · ${category.items.length}</span>
+    </button>
+  `).join('');
+  root.innerHTML = categories.map((category) => `
+    <article class="section" data-category="${category.id}">
+      <header class="section-head">
+        <h2>${category.title}</h2>
+        <div class="section-count" id="amivm-count-${category.id}">0 signal</div>
+      </header>
+      ${category.items.map(([text, critical], index) => {
+        const name = makeName(category.id, index);
+        return `
+          <div class="question ${critical ? 'critical' : ''}">
+            <span>${text}</span>
+            <div class="choice" role="radiogroup" aria-label="${text.replace(/"/g, '&quot;')}">
+              <label><input type="radio" name="${name}" value="0">Non</label>
+              <label><input type="radio" name="${name}" value="0.5">Parfois</label>
+              <label><input type="radio" name="${name}" value="1" data-critical="${critical ? '1' : '0'}">Oui</label>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </article>
+  `).join('');
+  sectionNav.querySelectorAll('.section-tab').forEach((button) => {
+    button.addEventListener('click', () => {
+      currentIndex = Number(button.dataset.index);
+      showAll = false;
+      update();
+    });
+  });
+  root.querySelectorAll('input').forEach((input) => {
+    input.addEventListener('change', () => {
+      update();
+      maybeAutoAdvance(input);
+    });
+  });
+}
+
+function updateSectionView(){
+  root.classList.toggle('all-mode', showAll);
+  root.classList.toggle('step-mode', !showAll);
+  ROOT.querySelectorAll('.section').forEach((section, index) => {
+    section.classList.toggle('active', showAll || index === currentIndex);
+  });
+  sectionNav.querySelectorAll('.section-tab').forEach((button, index) => {
+    const done = isSectionComplete(categories[index]);
+    button.classList.toggle('active', !showAll && index === currentIndex);
+    button.classList.toggle('done', done);
+    button.setAttribute('aria-current', !showAll && index === currentIndex ? 'step' : 'false');
+  });
+  const category = categories[currentIndex];
+  const stats = sectionStats(category);
+  stepStatus.textContent = showAll ? `Vue complète · ${totalQuestions} questions` : `Section ${currentIndex + 1} / ${categories.length}`;
+  sectionName.textContent = showAll ? 'Toutes les questions' : category.title;
+  questionProgress.textContent = showAll
+    ? `${answeredTotal()} / ${totalQuestions} réponses au total`
+    : `${stats.answered} / ${stats.total} réponses dans cette section`;
+  document.getElementById('amivm-prevSection').disabled = !showAll && currentIndex === 0;
+  document.getElementById('amivm-nextSection').disabled = !showAll && currentIndex === categories.length - 1;
+  document.getElementById('amivm-toggleAll').textContent = showAll ? '↩ Vue par section' : '☰ Voir toutes les questions';
+}
+
+function answeredTotal(){
+  return categories.reduce((sum, category) => sum + sectionStats(category).answered, 0);
+}
+
+function maybeAutoAdvance(input){
+  if (showAll) return;
+  const categoryId = input.name.split('-').slice(0, -1).join('-');
+  const index = categories.findIndex((category) => category.id === categoryId);
+  if (index !== currentIndex || !isSectionComplete(categories[index])) return;
+  window.clearTimeout(autoAdvanceTimer);
+  autoAdvanceTimer = window.setTimeout(() => {
+    if (currentIndex < categories.length - 1) {
+      currentIndex += 1;
+      update();
+      ROOT.querySelector('.section.active')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      ROOT.querySelector('.result')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 420);
+}
+
+function update(){
+  let score = 0;
+  let criticalYes = 0;
+  let answered = 0;
+  const activeCategories = [];
+  categories.forEach((category) => {
+    let categoryScore = 0;
+    let categoryAnswered = 0;
+    category.items.forEach((item, index) => {
+      const checked = getAnswer(category.id, index);
+      const value = Number(checked?.value || 0);
+      if (checked) {
+        answered += 1;
+        categoryAnswered += 1;
+      }
+      categoryScore += value;
+      score += value;
+      if (checked?.dataset.critical === '1' && value === 1) criticalYes += 1;
+    });
+    const count = document.getElementById(`amivm-count-${category.id}`);
+    const rounded = Number.isInteger(categoryScore) ? categoryScore : categoryScore.toFixed(1);
+    count.textContent = `${categoryAnswered}/${category.items.length} · ${rounded} signal${categoryScore > 1 ? 's' : ''}`;
+    if (categoryScore > 0) activeCategories.push(category.title.replace(/^[^ ]+ /, ''));
+  });
+
+  const maxScore = totalQuestions;
+  const roundedScore = Number.isInteger(score) ? score : score.toFixed(1);
+  scoreValue.textContent = roundedScore;
+  scoreTotal.textContent = ` / ${maxScore}`;
+  meterFill.style.width = `${Math.min(100, (score / maxScore) * 100)}%`;
+  categorySummary.textContent = activeCategories.length
+    ? `Catégories activées : ${activeCategories.join(', ')}. Réponses : ${answered}/${totalQuestions}.`
+    : `Catégories activées : aucune. Réponses : ${answered}/${totalQuestions}.`;
+
+  levelBadge.className = 'badge';
+  if (answered === 0) {
+    levelBadge.textContent = '🧭 À remplir';
+    resultText.textContent = 'Réponds section par section. Le score restera indicatif : ce qui compte surtout, ce sont les signaux graves, leur répétition et le contexte.';
+  } else if (criticalYes > 0 || score >= 10) {
+    levelBadge.classList.add('alert');
+    levelBadge.textContent = '🚨 Alerte : violence présente';
+    resultText.textContent = 'Un ou plusieurs signaux graves sont cochés. La priorité devient la sécurité, le soutien extérieur et la documentation des faits, sans rester seul·e avec la situation.';
+  } else if (score >= 5) {
+    levelBadge.classList.add('danger');
+    levelBadge.textContent = '⚠️ Violence probable';
+    resultText.textContent = 'Plusieurs catégories sont touchées. Ce n’est plus un simple désaccord : il faut nommer les faits, chercher du soutien et éviter de négocier seul·e sous contrainte.';
+  } else if (score > 0) {
+    levelBadge.classList.add('warn');
+    levelBadge.textContent = '🟡 Vigilance';
+    resultText.textContent = 'Il existe des signaux à prendre au sérieux. Observe la répétition, l’isolement, la peur, la contrainte et la capacité réelle de l’autre à réparer.';
+  } else if (answered < totalQuestions) {
+    levelBadge.textContent = '🧭 En cours';
+    resultText.textContent = 'Aucun signal coché dans les réponses déjà données. Continue le parcours : certaines violences apparaissent seulement dans les sections suivantes.';
+  } else {
+    levelBadge.textContent = '🌱 Relation plutôt saine';
+    resultText.textContent = 'Aucun signal de violence n’est coché pour l’instant. Regarde surtout si le respect, le consentement et la réparation existent vraiment dans les faits.';
+  }
+  updateSectionView();
+}
+
+document.getElementById('amivm-resetAll').addEventListener('click', () => {
+  ROOT.querySelectorAll('.choice input').forEach((input) => {
+    input.checked = false;
+  });
+  currentIndex = 0;
+  showAll = false;
+  update();
+  copyStatus.textContent = 'Réinitialisé.';
+  window.setTimeout(() => { copyStatus.textContent = ''; }, 1600);
+});
+
+document.getElementById('amivm-prevSection').addEventListener('click', () => {
+  showAll = false;
+  currentIndex = Math.max(0, currentIndex - 1);
+  update();
+});
+
+document.getElementById('amivm-nextSection').addEventListener('click', () => {
+  showAll = false;
+  currentIndex = Math.min(categories.length - 1, currentIndex + 1);
+  update();
+});
+
+document.getElementById('amivm-toggleAll').addEventListener('click', () => {
+  showAll = !showAll;
+  update();
+});
+
+document.getElementById('amivm-printView').addEventListener('click', () => {
+  showAll = true;
+  update();
+  window.setTimeout(() => window.print(), 120);
+});
+
+document.getElementById('amivm-copySummary').addEventListener('click', async () => {
+  const summary = [
+    'Conflit ou Violence - Relation saine ?',
+    `Score de signaux : ${scoreValue.textContent} ${scoreTotal.textContent}`,
+    levelBadge.textContent,
+    resultText.textContent,
+    categorySummary.textContent
+  ].join('\n');
+  try {
+    await navigator.clipboard.writeText(summary);
+    copyStatus.textContent = 'Résumé copié.';
+  } catch (error) {
+    const area = document.createElement('textarea');
+    area.value = summary;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    area.remove();
+    copyStatus.textContent = 'Résumé copié.';
+  }
+  window.setTimeout(() => { copyStatus.textContent = ''; }, 1800);
+});
+
+render();
+update();
+
+if(window.parent&&window.parent!==window){
+  var send=function(){try{var h=document.documentElement.scrollHeight;parent.postMessage({type:'ami-widget-resize',height:h},'*');parent.postMessage({type:'astroHeight',height:h},'*')}catch(e){}};
+  if(window.ResizeObserver){try{new ResizeObserver(send).observe(document.body)}catch(e){}}
+  window.addEventListener('load',send);setTimeout(send,250);
+}
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}else{init()}
+})();
+</script>
+</div>
+<!-- ════════ FIN DU BLOC À COPIER ════════ -->
+
+</body>
+</html>

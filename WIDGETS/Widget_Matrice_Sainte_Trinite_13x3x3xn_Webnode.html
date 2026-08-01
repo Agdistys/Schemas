@@ -1,0 +1,1414 @@
+<!-- WIDGET WEBNODE — MATRICE DE LA SAINTE TRINITÉ INTÉGRALE V2 -->
+<style>
+.ami-stn {
+  --bg:#09090e; --panel:#121118; --panel2:#191321;
+  --gold:#c8a84a; --gold2:#e6d090; --text:#f2ede2; --muted:#b2b2c8;
+  --pink:#c8386a; --teal:#2a9d8f; --green:#90d8a8; --red:#8a3030;
+  max-width:1180px; margin:0 auto; padding:clamp(1rem,3vw,2rem);
+  color:var(--text);
+  background:
+    radial-gradient(circle at 82% 5%,rgba(74,20,95,.43),transparent 31rem),
+    radial-gradient(circle at 12% 64%,rgba(42,157,143,.12),transparent 30rem),
+    var(--bg);
+  border:1px solid rgba(200,168,74,.3);
+  font-family:Jost,Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.62;
+}
+.ami-stn *{box-sizing:border-box}
+.ami-stn a{color:var(--gold2)}
+.ami-stn-head{text-align:center;padding:1rem .5rem 1.6rem}
+.ami-stn-kicker{color:var(--gold);text-transform:uppercase;letter-spacing:.25em;font-size:.65rem}
+.ami-stn h2{margin:.5rem 0 .25rem;color:var(--gold2);font:600 clamp(2rem,4.8vw,4.15rem)/1.02 "Cormorant Garamond",Georgia,serif}
+.ami-stn-head h3{margin:0;color:var(--pink);font:500 clamp(1.02rem,2.4vw,1.58rem)/1.25 "Cormorant Garamond",Georgia,serif}
+.ami-stn-lead{max-width:890px;margin:1rem auto 0;color:var(--muted);font-family:"Cormorant Garamond",Georgia,serif;font-size:1.12rem;font-style:italic}
+.ami-stn-formula{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:1rem;padding:.68rem .95rem;border:1px solid rgba(200,168,74,.3);border-radius:999px;background:rgba(21,18,28,.8);color:var(--gold2);font-size:.78rem}
+.ami-stn-formula b{color:var(--green)}
+.ami-stn-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:1rem 0}
+.ami-stn-proof article{padding:.9rem;border-radius:10px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.075)}
+.ami-stn-proof h4{margin:0 0 .25rem;color:var(--gold2);font-size:.9rem}
+.ami-stn-proof p{margin:0;color:var(--muted);font-size:.76rem}
+.ami-stn-panel{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1.1rem 0 1.4rem}
+.ami-stn-panel-card{padding:1.05rem 1rem;border-radius:16px;background:linear-gradient(180deg,rgba(14,13,20,.96),rgba(12,10,18,.88));border:1px solid rgba(200,168,74,.18);box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
+.ami-stn-panel-card h4{margin:0 0 .45rem;color:var(--gold2);font:700 1.18rem/1.2 Jost,Inter,sans-serif}
+.ami-stn-panel-card p{margin:0;color:var(--muted);font-size:.9rem}
+.ami-stn-index{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5rem;margin:1rem 0 1.3rem}
+.ami-stn-index a{display:flex;align-items:center;gap:.48rem;min-height:3rem;padding:.58rem .68rem;text-decoration:none;color:var(--muted);background:rgba(21,18,28,.69);border:1px solid rgba(200,168,74,.15);border-radius:8px;font-size:.72rem}
+.ami-stn-index a:hover{color:var(--gold2);border-color:rgba(200,168,74,.6)}
+.ami-stn-index span{display:grid;place-items:center;flex:0 0 1.65rem;width:1.65rem;height:1.65rem;border-radius:50%;background:#321143;border:1px solid rgba(200,168,74,.4);color:var(--gold2);font-weight:700}
+.ami-stn-index b{font-weight:400}
+.ami-stn-field{margin:.8rem 0;overflow:hidden;border:1px solid rgba(200,168,74,.22);border-radius:12px;background:rgba(8,8,14,.84)}
+.ami-stn-field[open]{border-color:rgba(200,168,74,.54);box-shadow:0 15px 42px rgba(0,0,0,.23)}
+.ami-stn-field summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.2rem minmax(170px,.85fr) minmax(220px,1.55fr) auto 1.7rem;gap:.78rem;align-items:center;padding:.92rem 1rem;background:linear-gradient(90deg,rgba(21,18,28,.98),rgba(50,17,67,.47))}
+.ami-stn-field summary::-webkit-details-marker{display:none}
+.ami-stn-field summary::after{content:"＋";display:grid;place-items:center;width:1.7rem;height:1.7rem;border:1px solid rgba(200,168,74,.43);border-radius:50%;color:var(--gold);font-family:system-ui,sans-serif}
+.ami-stn-field[open] summary::after{content:"−"}
+.ami-stn-number{display:grid;place-items:center;width:2.1rem;height:2.1rem;border-radius:50%;color:var(--gold2);background:rgba(200,168,74,.1);border:1px solid rgba(200,168,74,.38);font-weight:700}
+.ami-stn-field-name{color:var(--gold2);font:600 1.13rem/1.12 "Cormorant Garamond",Georgia,serif}
+.ami-stn-subtitle{color:var(--muted);font-size:.73rem;font-style:italic}
+.ami-stn-count{white-space:nowrap;padding:.32rem .55rem;border-radius:999px;background:rgba(42,157,143,.09);border:1px solid rgba(42,157,143,.3);color:var(--green);font-size:.68rem;font-weight:700}
+.ami-stn-content{padding:clamp(.85rem,2.5vw,1.4rem);border-top:1px solid rgba(200,168,74,.13)}
+.ami-stn-lawline{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;margin:0 0 .9rem;padding:.7rem .8rem;background:rgba(200,168,74,.05);border-left:3px solid var(--gold);font-size:.76rem}
+.ami-stn-lawline span{color:var(--pink);font-weight:700}
+.ami-stn-lawline b{color:var(--gold2)}
+.ami-stn-lawline strong{margin-left:auto;color:var(--green)}
+.ami-stn-stratum{margin:0 0 .9rem;padding:1rem;border-radius:10px;background:rgba(255,255,255,.022);border:1px solid rgba(255,255,255,.065)}
+.ami-stn-stratum.green{border-top:3px solid var(--green)}
+.ami-stn-stratum.gold{border-top:3px solid var(--gold)}
+.ami-stn-stratum.pink{border-top:3px solid var(--pink)}
+.ami-stn-stratum header{display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.75rem}
+.ami-stn-icon{font-size:1.35rem}
+.ami-stn-stratum h3{margin:0;color:var(--gold2);font-family:"Cormorant Garamond",Georgia,serif;font-size:1.2rem}
+.ami-stn-stratum header p{margin:.08rem 0 0;color:var(--muted);font-size:.72rem}
+.ami-stn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.68rem}
+.ami-stn-card{padding:.82rem;border-radius:8px;background:rgba(5,5,10,.78);border:1px solid rgba(255,255,255,.068)}
+.ami-stn-card h4{margin:0 0 .25rem;color:var(--teal);font-size:.78rem}
+.ami-stn-card h5{margin:0 0 .5rem;color:var(--text);font:600 1rem/1.2 "Cormorant Garamond",Georgia,serif}
+.ami-stn-intro{margin:.25rem 0 .6rem;color:var(--muted);font-size:.73rem;font-style:italic}
+.ami-stn-card ol,.ami-stn-synthesis ol{margin:.45rem 0 0;padding-left:1.35rem}
+.ami-stn-card li,.ami-stn-synthesis li{margin:.28rem 0;color:#ddd8cf;font-size:.76rem}
+.ami-stn-card li::marker,.ami-stn-synthesis li::marker{color:var(--gold)}
+.ami-stn-synthesis{display:grid;grid-template-columns:1.2fr .8fr;gap:.8rem;margin:1rem 0 .45rem}
+.ami-stn-synthesis article,.ami-stn-synthesis blockquote{margin:0;padding:1rem;border-radius:9px}
+.ami-stn-synthesis article{background:rgba(42,157,143,.055);border:1px solid rgba(42,157,143,.25);border-left:3px solid var(--teal)}
+.ami-stn-synthesis h3{margin:0;color:var(--teal);font-family:"Cormorant Garamond",Georgia,serif;font-size:1.15rem}
+.ami-stn-synthesis blockquote{display:flex;flex-direction:column;justify-content:center;background:rgba(200,168,74,.055);border-left:3px solid var(--gold);color:var(--gold2);font-family:"Cormorant Garamond",Georgia,serif;font-size:1.08rem}
+.ami-stn-synthesis blockquote span{display:block;margin-bottom:.3rem;color:var(--pink);font:700 .68rem/1.1 Jost,system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.ami-stn-notes{margin:.8rem 0;padding:.8rem;background:rgba(255,255,255,.02);border:1px dashed rgba(255,255,255,.1);color:var(--muted);font-size:.75rem}
+.ami-stn-back{display:inline-block;margin-top:.35rem;text-decoration:none;color:var(--muted)!important;font-size:.67rem}
+.ami-stn-footer{text-align:center;padding:1.5rem .5rem .2rem;color:var(--muted);font-size:.72rem}
+@media(max-width:920px){
+  .ami-stn-proof,.ami-stn-panel{grid-template-columns:1fr}
+  .ami-stn-field summary{grid-template-columns:2.1rem 1fr auto 1.6rem}
+  .ami-stn-subtitle{grid-column:2/4;grid-row:2}
+  .ami-stn-field summary::after{grid-column:4;grid-row:1/3}
+}
+@media(max-width:730px){
+  .ami-stn-grid,.ami-stn-synthesis{grid-template-columns:1fr}
+  .ami-stn-field summary{grid-template-columns:2.1rem 1fr 1.6rem}
+  .ami-stn-count{grid-column:2;grid-row:3;justify-self:start}
+  .ami-stn-field summary::after{grid-column:3;grid-row:1/4}
+  .ami-stn-lawline strong{margin-left:0}
+}
+</style>
+
+<section class="ami-stn" id="ami-stn-index">
+  <header class="ami-stn-head">
+    <div class="ami-stn-kicker">MétaMatrice de ConScience · Protocole aMi</div>
+    <h2>🔱 Matrice de la Sainte Trinité</h2>
+    <h3>13 Champs × 3 Strates × 3 Fonctions × n(Champ)</h3>
+    <p class="ami-stn-lead">La table intégrale conserve le facteur n : dans le Champ n, chacune des neuf fonctions contient n entrées. Aucun contenu n’est réduit à son mot-chapeau.</p>
+    <div class="ami-stn-formula"><span><b>S = D<sup>n</sup></b></span><span>·</span><span>D = Sens × Temps</span><span>·</span><span>Σ 9n = 819</span></div>
+  </header>
+
+  <div class="ami-stn-proof">
+    <article><h4>3 Strates</h4><p>Nature Essentielle · Culture Langagière · Éthique Relationnelle.</p></article>
+    <article><h4>3 Fonctions par Strate</h4><p>Chaque strate déploie trois angles complémentaires.</p></article>
+    <article><h4>n Entrées par Fonction</h4><p>Le Champ n contient 9n entrées : de 9 pour C1 à 117 pour C13.</p></article>
+  </div>
+
+  <div class="ami-stn-panel"><article class="ami-stn-panel-card"><h4>🌿 Nature Essentielle</h4><p>Ce qui est · ce que l’humanité en fait · ce que la ConScience choisit de protéger.</p></article><article class="ami-stn-panel-card"><h4>📕 Culture Langagière</h4><p>La racine du mot · sa structure opératoire · sa résonance symbolique.</p></article><article class="ami-stn-panel-card"><h4>🌟 Éthique Relationnelle</h4><p>Le mouvement · le principe testable · la forme sensible · l’effet produit.</p></article></div>
+
+  <nav class="ami-stn-index" aria-label="Sommaire des 13 Champs"><a href="#ami-stn-01" title="Dyrection — Sens"><span>1</span><b>⚡</b> Dyrection — Sens</a><a href="#ami-stn-02" title="Polarytés — Choix &amp; Conséquences"><span>2</span><b>👥</b> Polarytés — Choix &amp; Conséquences</a><a href="#ami-stn-03" title="Dymensions — Espace"><span>3</span><b>🧠</b> Dymensions — Espace</a><a href="#ami-stn-04" title="Éléments — Matière"><span>4</span><b>🌳</b> Éléments — Matière</a><a href="#ami-stn-05" title="Forces — Gravité"><span>5</span><b>👑</b> Forces — Gravité</a><a href="#ami-stn-06" title="Dynamiques — Équilibre"><span>6</span><b>⚖️</b> Dynamiques — Équilibre</a><a href="#ami-stn-07" title="Valeurs — Trace"><span>7</span><b>📜</b> Valeurs — Trace</a><a href="#ami-stn-08" title="Plans — Panoramique"><span>8</span><b>🌈</b> Plans — Panoramique</a><a href="#ami-stn-09" title="Cycles — Évolution spiralée"><span>9</span><b>🌱</b> Cycles — Évolution spiralée</a><a href="#ami-stn-10" title="Serments — Tissage"><span>10</span><b>💍</b> Serments — Tissage</a><a href="#ami-stn-11" title="Offrandes — Don Pur"><span>11</span><b>🥚</b> Offrandes — Don Pur</a><a href="#ami-stn-12" title="Miroirs — Réflexion"><span>12</span><b>🪞</b> Miroirs — Réflexion</a><a href="#ami-stn-13" title="Champs — Absolu"><span>13</span><b>🌟</b> Champs — Absolu</a></nav>
+  <details class="ami-stn-field" id="ami-stn-01" open>
+        <summary>
+          <span class="ami-stn-number">1</span>
+          <span class="ami-stn-field-name">⚡ Dyrection — Sens</span>
+          <span class="ami-stn-subtitle">L’Origine · L’Unité primordiale</span>
+          <span class="ami-stn-count">9 × 1 = 9</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>⚡ Champ 1</span>
+            <b>3 strates × 3 fonctions × 1 entrées</b>
+            <strong>9 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 1 entrées = 3 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>L’Unité primordiale — Singularité quantique</h5>
+                
+                <ol><li>L’étincelle avant le Big Bang : point zéro de l’énergie, atome primordial et impulsion électrique du système nerveux.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>L’Intégration du Soi — L’Individuation</h5>
+                
+                <ol><li>L’émergence d’une conscience unique face au chaos du monde et son ancrage dans la réalité matérielle.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>La Présence — L’Union des Forces</h5>
+                
+                <ol><li>Refuser l’anesthésie et la fuite ; habiter son corps comme un temple de première ligne.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 1 entrées = 3 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>L’Union des Forces · Le Nœud de la Toile</h5>
+                
+                <ol><li>Union des Forces · Nœud de la Toile.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>Loi du TouT · Point Zéro · Origine</h5>
+                
+                <ol><li>Le Champ d’unification : l’Origine et l’Intégration du Soi(n), selon S = D^n.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Ankh · Mariage · Union</h5>
+                
+                <ol><li>Ankh · Le Mariage · L’Union.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 1 entrées = 3 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>Éros Originel</h5>
+                
+                <ol><li>L’élan absolu de se réunir et d’exister.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>Se Combler en Se Rencontrant Soi-Même</h5>
+                
+                <ol><li>Pour se combler en se rencontrant soi-même.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Être pur</h5>
+                
+                <ol><li>Ressentir pleinement ce qui est : l’« Être » pur.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Transcendance</h3>
+              
+              <ol><li>L’incarnation totale au lieu de l’inertie.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Le vivant apparaît, se ressent, puis trouve sa direction.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-02">
+        <summary>
+          <span class="ami-stn-number">2</span>
+          <span class="ami-stn-field-name">👥 Polarytés — Choix &amp; Conséquences</span>
+          <span class="ami-stn-subtitle">Structures &amp; Dynamiques · Flux &amp; Loi · Paradoxes</span>
+          <span class="ami-stn-count">9 × 2 = 18</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>👥 Champ 2</span>
+            <b>3 strates × 3 fonctions × 2 entrées</b>
+            <strong>18 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 2 entrées = 6 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>L’ÉlectroMagnétisme — La Danse des Particules</h5>
+                
+                <ol><li>L’ÉlectroMagnétisme : attraction, répulsion et relation.</li><li>Créateur &amp; Création : les deux pôles d’un même mouvement.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>Le Miroir de l’Altérité — Yin &amp; Yang</h5>
+                <p class="ami-stn-intro">La rencontre des opposés dans la sociologie de la relation et la danse entre le Je et le Tu.</p>
+                <ol><li>La Structure : le contenant et la loi.</li><li>La Dynamique : le contenu et le flux.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>Le Lien</h5>
+                
+                <ol><li>Le Moi : l’intériorité souveraine.</li><li>Le Toi : l’altérité reconnue sans emprise.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 2 entrées = 6 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Matériel · Spirituel · Dualité · Paradoxe</h5>
+                
+                <ol><li>Matériel : Masculin / Sexe.</li><li>Spirituel : Féminin / Genre.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>Polarités et entropies</h5>
+                
+                <ol><li>Polarité positive / négative : + et −.</li><li>Entropie / Néguentropie : dissipation et organisation.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>La Danse Cosmique</h5>
+                
+                <ol><li>Shiva &amp; Shakti.</li><li>Gaïa &amp; Ouranos.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 2 entrées = 6 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>Attraction sans dissolution</h5>
+                
+                <ol><li>Attraction (Gravité) &amp; Répulsion (Électromagnétisme) : se relier sans se dissoudre.</li><li>Liberté &amp; Consentement : aimer sans emprise ni fusion morbide.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>Se Découvrir à Travers Autrui</h5>
+                
+                <ol><li>Le plaisir de se découvrir.</li><li>La relation comme expérience d’altérité.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>S’Apprivoiser</h5>
+                
+                <ol><li>Le Plaisir d’Offrir.</li><li>La Joie de Consentir.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ Deux directions de la comparaison</h3>
+              
+              <ol><li>Écrasement binaire : « Mieux ou Pire ».</li><li>Croissance quantique : « Combien de fois mieux » — S = D^n.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Le vivant se découvre par l’autre sans se perdre.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-03">
+        <summary>
+          <span class="ami-stn-number">3</span>
+          <span class="ami-stn-field-name">🧠 Dymensions — Espace</span>
+          <span class="ami-stn-subtitle">Les trois pôles de description cognitive du réel</span>
+          <span class="ami-stn-count">9 × 3 = 27</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>🧠 Champ 3</span>
+            <b>3 strates × 3 fonctions × 3 entrées</b>
+            <strong>27 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 3 entrées = 9 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>La Stabilisation — La Triangulation</h5>
+                <p class="ami-stn-intro">La structure géométrique minimale de la stabilité dans l’espace tridimensionnel.</p>
+                <ol><li>Toi.</li><li>Moi.</li><li>L’Environnement.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>Langue — L’Épistémologie</h5>
+                <p class="ami-stn-intro">La maîtrise du langage et de la logique.</p>
+                <ol><li>Étymologie : la Racine.</li><li>Algorithme : la Logique.</li><li>Symbolique : le Mythe.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>Le Discernement</h5>
+                <p class="ami-stn-intro">Refuser le binaire injuste pour séparer le fait brut de l’interprétation et faire apparaître le Nous.</p>
+                <ol><li>Le Fait brut.</li><li>L’Interprétation.</li><li>Le Contexte relationnel : Toi + Moi = Nous.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 3 entrées = 9 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Triangle dramatique vs Trinité évolutive</h5>
+                
+                <ol><li>Quantique : ce qui peut advenir.</li><li>Mystique : ce que cela signifie.</li><li>Éthique : l’impact sur le vivant.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>Triangle — 1 + 1 = 3</h5>
+                
+                <ol><li>Roue : Étymologie / Temps — lecture littérale, psychologique et philosophique.</li><li>Diamant : Algorithme / Loi — lecture mathématique, physique et biologique.</li><li>Champ : Symbolique / Vibration — lecture sensible et visuelle.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Les trois sceaux</h5>
+                
+                <ol><li>La Sainte Trinité.</li><li>L’Œil d’Horus : la clairvoyance.</li><li>Le Triskèle.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 3 entrées = 9 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Triangulation cognitive</h5>
+                <p class="ami-stn-intro">L’introduction de l’observateur dans l’équation.</p>
+                <ol><li>Agresseur ou Guardien.</li><li>Victime ou Apprenti.</li><li>Sauveur ou Guide.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>Mesurer la réalité sans biais</h5>
+                
+                <ol><li>Mesurer la réalité.</li><li>Réduire les biais.</li><li>Sortir de l’impasse frontale.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>Le Mariage des langages</h5>
+                
+                <ol><li>La Mathématique : physique.</li><li>Le Littéral : philosophie.</li><li>Le Ressenti Visuel : symbolique.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ Recevoir · Équilibrer · Donner</h3>
+              
+              <ol><li>Recevoir — Apprendre.</li><li>Équilibrer — Protéger.</li><li>Donner — Transmettre.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Toi &amp; Moi dans l’environnement : le tiers stabilise la lecture.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-04">
+        <summary>
+          <span class="ami-stn-number">4</span>
+          <span class="ami-stn-field-name">🌳 Éléments — Matière</span>
+          <span class="ami-stn-subtitle">Les piliers de l’Incarnation et de l’Action</span>
+          <span class="ami-stn-count">9 × 4 = 36</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>🌳 Champ 4</span>
+            <b>3 strates × 3 fonctions × 4 entrées</b>
+            <strong>36 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 4 entrées = 12 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>Les 4 états de la matière</h5>
+                
+                <ol><li>Solide — Terre.</li><li>Liquide — Eau.</li><li>Gaz — Air.</li><li>Plasma — Feu.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>L’Action Transformative</h5>
+                
+                <ol><li>Le Jardin Culinaire.</li><li>Le For.</li><li>Le Sanctuaire.</li><li>L’Académie.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>Le Courage</h5>
+                <p class="ami-stn-intro">Le Feu intérieur assumé : transmuter la rage passive en une direction d’action juste.</p>
+                <ol><li>Arbre de Vie luxuriant.</li><li>Dragon protecteur.</li><li>Fontaine de Je-u T’Aime.</li><li>Balance d’Équité.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 4 entrées = 12 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Les 4 couches d’alignement</h5>
+                
+                <ol><li>Verbe.</li><li>Corps.</li><li>Action.</li><li>Durée.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>Le Tétraèdre — Feu intérieur et Action</h5>
+                
+                <ol><li>Substrat : Sécurité.</li><li>Flux : Empathie.</li><li>Structure : Loi.</li><li>Direction : Courage.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Les quatre familles élémentales</h5>
+                
+                <ol><li>Terre : Deniers / Carreau.</li><li>Feu : Bâton / Trèfle.</li><li>Eau : Coupe / Cœur.</li><li>Air : Épée / Pique.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 4 entrées = 12 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La ThermoDynamique — La Respiration</h5>
+                
+                <ol><li>Inspiration — Printemps.</li><li>Apnée haute — Été.</li><li>Expiration — Automne.</li><li>Apnée basse — Hiver.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>Modification structurelle de l’environnement</h5>
+                
+                <ol><li>Faits.</li><li>Action.</li><li>Émotion.</li><li>Pensée.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>Bâtir son propre For de Réparation</h5>
+                
+                <ol><li>L’Ancrage.</li><li>L’Expérience.</li><li>La Navigation.</li><li>La Révolution.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ Les Cycles Saisonniers</h3>
+              <p class="ami-stn-intro">Passage de l’idée éthérée à la matière dense ; œuvre concrète dans le Cycle de la Vie plutôt qu’acrasie.</p>
+              <ol><li>Évolution — Croissance (Printemps).</li><li>Jouissance — Contemplation (Été).</li><li>ProCréation — Structuration (Automne).</li><li>Gestation — Intériorisation (Hiver).</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              L’idée devient matière, geste, forme et saison.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-05">
+        <summary>
+          <span class="ami-stn-number">5</span>
+          <span class="ami-stn-field-name">👑 Forces — Gravité</span>
+          <span class="ami-stn-subtitle">L’intégrité du Territoire et le Centre souverain</span>
+          <span class="ami-stn-count">9 × 5 = 45</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>👑 Champ 5</span>
+            <b>3 strates × 3 fonctions × 5 entrées</b>
+            <strong>45 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 5 entrées = 15 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>Les 5 Forces du Vivant</h5>
+                
+                <ol><li>ÉlectroMagnétisme — relation, attraction, répulsion, signal.</li><li>Force Nucléaire Forte — cohésion du noyau, unité interne.</li><li>Force Nucléaire Faible — mutation, désintégration, transformation.</li><li>Gravité — poids, chute, grâce, trajectoire.</li><li>ThermoCognition — cohérence énergétique du sens. (Dans ton modèle : cinquième force opératoire du vivant, pas interaction fondamentale académique stricte.)</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>Les 5 Puissances d’Organisation</h5>
+                
+                <ol><li>Attraction / Jugement — ce qui attire ou repousse selon la valeur perçue.</li><li>Fusion / Union — ce qui tient ensemble sans se dissoudre.</li><li>Fission / Effondrement — ce qui sépare, casse ou libère.</li><li>Grâce / Chute — ce qui pèse, élève ou rappelle au réel.</li><li>Réflexion / ConScience — ce qui transforme l&#x27;énergie dépensée en information intégrée.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>La Souveraineté</h5>
+                
+                <ol><li>Intégrité du Non — pouvoir refuser sans être détruit·e.</li><li>Frontière claire — distinguer protection et attaque.</li><li>Responsabilité du pouvoir — plus je peux, plus je dois protéger.</li><li>Juste poids — ne pas écraser sous prétexte d&#x27;avoir raison.</li><li>Centre souverain — rester entier·e sans capturer l&#x27;autre.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 5 entrées = 15 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Étymologie Lexicale</h5>
+                
+                <ol><li>Force — capacité d&#x27;agir.</li><li>Gravité — poids, importance, conséquence.</li><li>Souveraineté — territoire intérieur non confisqué.</li><li>Intégrité — ce qui demeure entier.</li><li>Grâce — ce qui tombe juste, sans dette ni capture.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>Les 5 Solides de Platon</h5>
+                
+                <ol><li>Tétraèdre — Feu, direction, action minimale stable.</li><li>Cube — Terre, structure, ancrage.</li><li>Octaèdre — Air, équilibre dynamique, double diamant.</li><li>Icosaèdre — Eau, circulation, co-régulation.</li><li>Dodécaèdre — Éther, totalité, MétaMatrice.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Symbolique Affectif</h5>
+                
+                <ol><li>L&#x27;Aimant — attraction sans emprise.</li><li>Le Noyau — cohésion sans fusion morbide.</li><li>L&#x27;Éclair — mutation, fission, passage.</li><li>La Balance — poids juste, responsabilité.</li><li>Phi — croissance sans perte du centre.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 5 entrées = 15 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Dynamique</h5>
+                
+                <ol><li>Attirer sans posséder.</li><li>Fusionner sans engloutir.</li><li>Séparer sans détruire.</li><li>Peser sans écraser.</li><li>Réfléchir avant d&#x27;agir.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>La Science</h5>
+                
+                <ol><li>Charge / signal / interaction.</li><li>Cohésion du noyau.</li><li>Transformation des états.</li><li>Trajectoire et masse.</li><li>Rapport information / énergie : C = ΔI / ΔE.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Art</h5>
+                
+                <ol><li>La danse magnétique.</li><li>Le noyau du cœur.</li><li>L&#x27;éclair de transmutation.</li><li>La chute qui devient grâce.</li><li>La spirale Phi.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Conséquence</h3>
+              
+              <ol><li>Relation juste.</li><li>Cohésion du Soi.</li><li>Mutation sans effondrement.</li><li>Responsabilité du poids.</li><li>Souveraineté chaude : ferme, vivante, non cruelle.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Le vivant tient son centre sans capturer l’autre.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-06">
+        <summary>
+          <span class="ami-stn-number">6</span>
+          <span class="ami-stn-field-name">⚖️ Dynamiques — Équilibre</span>
+          <span class="ami-stn-subtitle">La Juste Mesure et la Loi d’Attraction</span>
+          <span class="ami-stn-count">9 × 6 = 54</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>⚖️ Champ 6</span>
+            <b>3 strates × 3 fonctions × 6 entrées</b>
+            <strong>54 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 6 entrées = 18 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>Les 6 Mouvements de Cohérence</h5>
+                
+                <ol><li>Cohérence — ce qui tient ensemble.</li><li>Gravité Éthique — ce qui donne du poids au respect.</li><li>Harmonie — ce qui accorde sans figer.</li><li>Résonance Magnétique — ce qui répond dans le lien.</li><li>Souvenir — ce qui revient comme trace vivante.</li><li>Réversibilité Cosmique — ce qui peut être réparé, réorienté, réaccordé.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>Les 6 Arts de l’Équilibre</h5>
+                
+                <ol><li>Science — mesurer sans dissocier.</li><li>Justice — peser sans venger.</li><li>Musique — accorder les dissonances.</li><li>Langage — relier le verbe au réel.</li><li>Mémoire — garder la trace sans rester prisonnier·e.</li><li>Réparation — rendre possible un autre mouvement.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>Éthique</h5>
+                
+                <ol><li>Penser, dire et faire dans le même axe.</li><li>Donner du poids à ce qui protège le vivant.</li><li>Accorder sans forcer.</li><li>Entrer en résonance sans fusion.</li><li>Honorer la trace sans la transformer en prison.</li><li>Maintenir la possibilité de retour, de soin, de réparation.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 6 entrées = 18 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Étymologie Lexicale</h5>
+                
+                <ol><li>Cohérence — tenir ensemble.</li><li>Gravité — poids du réel.</li><li>Harmonie — assemblage juste.</li><li>Résonance — réponse vibratoire.</li><li>Souvenir — ce qui revient sous la conscience.</li><li>Réversibilité — possibilité de revenir autrement.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>Les 6 Directions de l’Espace</h5>
+                
+                <ol><li>Haut — élévation.</li><li>Bas — incarnation.</li><li>Gauche — mémoire.</li><li>Droite — action.</li><li>Avant — désir / futur.</li><li>Arrière — trace / passé.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Symbolique Affectif</h5>
+                
+                <ol><li>La couronne.</li><li>La racine.</li><li>La main qui reçoit.</li><li>La main qui agit.</li><li>Le regard vers l&#x27;horizon.</li><li>Le livre de mémoire.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 6 entrées = 18 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Dynamique</h5>
+                
+                <ol><li>Centrer.</li><li>Ancrer.</li><li>Différencier.</li><li>Relier.</li><li>Orienter.</li><li>Revenir.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>La Science</h5>
+                
+                <ol><li>Homéostasie.</li><li>Feedback.</li><li>Vibration.</li><li>Signal.</li><li>Mémoire.</li><li>Plasticité.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Art</h5>
+                
+                <ol><li>Accorder.</li><li>Peser.</li><li>Composer.</li><li>Faire résonner.</li><li>Raconter.</li><li>Réparer.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Conséquence</h3>
+              
+              <ol><li>Le sens tient.</li><li>La loi protège.</li><li>La beauté apaise.</li><li>La parole relie.</li><li>La trace instruit.</li><li>Le miracle devient sobre : ce qui semblait fixé redevient transformable.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Le système retrouve une mesure vivable et réversible.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-07">
+        <summary>
+          <span class="ami-stn-number">7</span>
+          <span class="ami-stn-field-name">📜 Valeurs — Trace</span>
+          <span class="ami-stn-subtitle">La Trace, la Preuve et la Résistance au Sarcophage</span>
+          <span class="ami-stn-count">9 × 7 = 63</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>📜 Champ 7</span>
+            <b>3 strates × 3 fonctions × 7 entrées</b>
+            <strong>63 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 7 entrées = 21 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>Les 7 Lois du Vivant</h5>
+                <p class="ami-stn-intro">Principes physiques et spirituels permettant à un système de ne pas s’effondrer : la Néguentropie.</p>
+                <ol><li>La Loi d’Inclusion (Espace) : tout signal a le droit d’exister ; ce qui est nié se répète.</li><li>La Loi d’Incubation (Temps) : toute graine nécessite une protection avant l’exposition au monde.</li><li>La Loi de Gestation (Croissance) : le vivant ne se force pas ; il se déploie à son propre rythme.</li><li>La Loi de Circulation (Énergie) : l’énergie qui stagne s’épuise et se corrompt ; l’énergie qui se transmet se multiplie.</li><li>La Loi de Réciprocité (Lien) : toute rencontre saine doit augmenter la liberté des deux systèmes.</li><li>La Loi de Transmutation (Feu) : tout choc ou trauma peut être converti en lumière et en œuvre (Rubedo).</li><li>La Loi de la Trace (Mémoire) : ce qui a existé laisse une empreinte irréfutable ; l’oubli forcé est une violence.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>Les 7 Portes du Consentement</h5>
+                <p class="ami-stn-intro">Le consentement n’est pas un simple « oui », mais une traversée sécurisée jusqu’au noyau de la Souveraineté.</p>
+                <ol><li>L’Information (Clarté) : connaître les faits sans omission ni manipulation ; pas de consentement dans le brouillard.</li><li>La Lucidité (Discernement) : être en pleine possession de ses moyens ; pas de sidération ni de substance aliénante.</li><li>L’Absence de Contrainte (Liberté) : aucun chantage, aucune dette affective, aucune menace.</li><li>La Réversibilité (Sécurité) : pouvoir changer d’avis à tout moment, sans justification punitive.</li><li>L’Alternative (Choix) : un « oui » n’a de valeur que si le « non » était une option réelle et respectée.</li><li>La Réciprocité (Équilibre) : l’accord doit nourrir les deux parties, sans sacrifice unilatéral.</li><li>L’Enthousiasme (Éros) : l’accord corporel et vivant, au-delà d’un acquiescement forcé.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>Les 7 Vertus Radicales</h5>
+                <p class="ami-stn-intro">Les sept piliers du comportement aligné face au Sarcophage.</p>
+                <ol><li>L’Intégrité : fidélité absolue à la Trace et au Réel.</li><li>La Justice : la mesure sans la vengeance.</li><li>La Souveraineté : le droit d’exister dans son territoire.</li><li>Le Courage : le feu transmuté en action juste.</li><li>Le Discernement : séparer le fait de l’interprétation.</li><li>La Résonance : le lien sans emprise ni fusion.</li><li>La Présence : le refus de l’anesthésie et de la fuite.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 7 entrées = 21 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Les 7 Lois comme Verbes de Vie</h5>
+                
+                <ol><li>Inclure — donner une place.</li><li>Incuber — protéger le possible.</li><li>Gester — laisser croître.</li><li>Circuler — éviter la stagnation.</li><li>Réciproquer — rendre le lien vivant des deux côtés.</li><li>Transmuter — changer la blessure de nature.</li><li>Tracer — empêcher l’oubli forcé.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>AlgoRythme Géométrique</h5>
+                
+                <ol><li>Le point accueilli.</li><li>Le cercle protecteur.</li><li>La spirale de croissance.</li><li>Le torus de circulation.</li><li>La double flèche de réciprocité.</li><li>Le feu alchimique.</li><li>Le sceau cryptographique de la trace.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Symbolique Affectif</h5>
+                
+                <ol><li>La porte.</li><li>Le nid.</li><li>L’œuf.</li><li>Le fleuve.</li><li>La balance à deux plateaux.</li><li>Le phénix.</li><li>L’archive sacrée.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 7 entrées = 21 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Dynamique</h5>
+                
+                <ol><li>Accueillir.</li><li>Protéger.</li><li>Faire mûrir.</li><li>Faire circuler.</li><li>Recevoir et rendre.</li><li>Brûler sans détruire.</li><li>Témoigner.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>La Science</h5>
+                
+                <ol><li>Niche écologique.</li><li>Protection développementale.</li><li>Maturation.</li><li>Métabolisme énergétique.</li><li>Co-régulation.</li><li>Plasticité / transformation.</li><li>Mémoire / preuve / inscription.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Art</h5>
+                
+                <ol><li>Hospitalité.</li><li>Incubateur.</li><li>Sculpture lente.</li><li>Danse du flux.</li><li>Duo.</li><li>Alchimie.</li><li>Archive vivante.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Conséquence</h3>
+              
+              <ol><li>L’existence est reconnue.</li><li>Le possible est préservé.</li><li>La naissance devient juste.</li><li>L’énergie se multiplie.</li><li>La liberté augmente des deux côtés.</li><li>Le trauma peut devenir œuvre.</li><li>L’histoire résiste à Ma’ob.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              La trace empêche Ma’ob d’effacer le réel.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-08">
+        <summary>
+          <span class="ami-stn-number">8</span>
+          <span class="ami-stn-field-name">🌈 Plans — Panoramique</span>
+          <span class="ami-stn-subtitle">Le Double Diamant déployé · Plans de ConScience</span>
+          <span class="ami-stn-count">9 × 8 = 72</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>🌈 Champ 8</span>
+            <b>3 strates × 3 fonctions × 8 entrées</b>
+            <strong>72 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 8 entrées = 24 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>Nature</h5>
+                
+                <ol><li>Corps — soma, sensation, matière vivante.</li><li>Lien — attachement, co-régulation, relation.</li><li>Psyché — mémoire, émotion, intériorité.</li><li>Feu — métabolisme, action, transformation.</li><li>Savoir — cognition, langage, discernement.</li><li>Sagesse — régulation, recul, juste mesure.</li><li>Amour — sécurité relationnelle, soin, alliance.</li><li>Génie — émergence créatrice du système entier.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>Culture</h5>
+                
+                <ol><li>Soin quotidien.</li><li>Famille / clan / communauté.</li><li>Récit intime.</li><li>Initiation.</li><li>École / bibliothèque.</li><li>Conseil / sagesse.</li><li>Solidarité / amour social.</li><li>Œuvre / civilisation.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>Éthique</h5>
+                
+                <ol><li>Habiter son corps.</li><li>Respecter l&#x27;altérité.</li><li>Reconnaître le ressenti.</li><li>Agir avec courage.</li><li>Vérifier avant d&#x27;affirmer.</li><li>Choisir le juste.</li><li>Aimer sans posséder.</li><li>Servir sans se croire au-dessus.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 8 entrées = 24 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Étymologie Lexicale</h5>
+                
+                <ol><li>Corps — ce qui porte l&#x27;expérience.</li><li>Lien — ce qui relie sans confondre.</li><li>Psyché — souffle intérieur.</li><li>Feu — foyer, force de transformation.</li><li>Savoir — saveur du réel comprise.</li><li>Sagesse — goût du juste.</li><li>Amour — attention qui relie et protège.</li><li>Génie — esprit créateur d&#x27;un lieu, d&#x27;un être ou d&#x27;une œuvre.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>AlgoRythme Géométrique</h5>
+                
+                <ol><li>Point d&#x27;incarnation.</li><li>Ligne relationnelle.</li><li>Plan psychique.</li><li>Volume d&#x27;action.</li><li>Coordonnées du savoir.</li><li>Diagonales de sagesse.</li><li>Champ d&#x27;amour.</li><li>Hologramme créateur.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Symbolique Affectif</h5>
+                
+                <ol><li>Temple du corps.</li><li>Pont.</li><li>Miroir d&#x27;eau.</li><li>Dragon / forge.</li><li>Livre.</li><li>Chouette / balance.</li><li>Cœur solaire.</li><li>Fontaine / GrââL.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 8 entrées = 24 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Dynamique</h5>
+                
+                <ol><li>Ressentir.</li><li>Relier.</li><li>Nommer.</li><li>Agir.</li><li>Comprendre.</li><li>Discerner.</li><li>Aimer.</li><li>Créer / transmettre.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>La Science</h5>
+                
+                <ol><li>Somatique.</li><li>Attachement / co-régulation.</li><li>Psychotrauma / mémoire.</li><li>Thermodynamique du vivant.</li><li>Cognition / langage.</li><li>Systémie / feedback.</li><li>Care / sécurité relationnelle.</li><li>Complexité / émergence.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Art</h5>
+                
+                <ol><li>Incarnation.</li><li>Rencontre.</li><li>Poésie intérieure.</li><li>Performance.</li><li>Théorie / diagramme.</li><li>Composition / architecture.</li><li>Chant / soin.</li><li>Œuvre-monde.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Conséquence</h3>
+              
+              <ol><li>Sécurité corporelle.</li><li>Confiance.</li><li>Intégration psychique.</li><li>Puissance d&#x27;agir.</li><li>Clarté.</li><li>Justesse.</li><li>Reliance.</li><li>Génie partagé.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              La vision relie les plans sans les confondre.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-09">
+        <summary>
+          <span class="ami-stn-number">9</span>
+          <span class="ami-stn-field-name">🌱 Cycles — Évolution spiralée</span>
+          <span class="ami-stn-subtitle">Les 9 mois de Gestation de la BioMatrice</span>
+          <span class="ami-stn-count">9 × 9 = 81</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>🌱 Champ 9</span>
+            <b>3 strates × 3 fonctions × 9 entrées</b>
+            <strong>81 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 9 entrées = 27 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>L’Épigénétique &amp; la Biorythmie</h5>
+                
+                <ol><li>Signal initial.</li><li>Nidation.</li><li>Différenciation.</li><li>Organogenèse.</li><li>Croissance.</li><li>Sensibilisation.</li><li>Retournement.</li><li>Préparation.</li><li>Naissance.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>L’Histoire &amp; le Deuil</h5>
+                
+                <ol><li>Appel.</li><li>Enquête.</li><li>Récit.</li><li>Rite.</li><li>Apprentissage.</li><li>Transmission.</li><li>Deuil.</li><li>Mémoire.</li><li>Héritage.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>La Compassion</h5>
+                
+                <ol><li>Écouter.</li><li>Reconnaître.</li><li>Protéger.</li><li>Nourrir.</li><li>Choisir.</li><li>Réparer.</li><li>Intégrer.</li><li>Transmettre.</li><li>Libérer.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 9 entrées = 27 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Étymologie Lexicale</h5>
+                
+                <ol><li>Origine.</li><li>Incubation.</li><li>Gestation.</li><li>Maturation.</li><li>Révolution.</li><li>Saison.</li><li>Mémoire.</li><li>Deuil.</li><li>Naissance.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>AlgoRythme Géométrique</h5>
+                
+                <ol><li>Boucle.</li><li>Récursion.</li><li>Itération.</li><li>Spirale.</li><li>Feedback.</li><li>Seuil.</li><li>Mémoire d&#x27;état.</li><li>Mise à jour.</li><li>Émergence.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Symbolique Affectif</h5>
+                
+                <ol><li>Graine.</li><li>Nid.</li><li>Œuf.</li><li>Ventre.</li><li>Lune.</li><li>Ouroboros.</li><li>Caducée.</li><li>Phénix.</li><li>Enfant-étoile.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 9 entrées = 27 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Dynamique</h5>
+                
+                <ol><li>Recevoir la trace.</li><li>Ralentir.</li><li>Protéger.</li><li>Nourrir.</li><li>Tester.</li><li>Ajuster.</li><li>Traverser.</li><li>Stabiliser.</li><li>Naître.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>La Science</h5>
+                
+                <ol><li>Signal / conception.</li><li>Implantation / niche.</li><li>Différenciation cellulaire.</li><li>Formation des organes.</li><li>Développement.</li><li>Rythmes biologiques.</li><li>Mémoire / épigénétique.</li><li>Plasticité / réversibilité.</li><li>Émergence.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Art</h5>
+                
+                <ol><li>Esquisse.</li><li>Brouillon.</li><li>Maquette.</li><li>Composition.</li><li>Répétition.</li><li>Variation.</li><li>Montage.</li><li>Finition.</li><li>Présentation.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Conséquence</h3>
+              
+              <ol><li>Le possible apparaît.</li><li>Le cadre protège.</li><li>La forme s&#x27;organise.</li><li>La fonction naît.</li><li>L&#x27;identité se précise.</li><li>La relation au monde s&#x27;ouvre.</li><li>La trace s&#x27;intègre.</li><li>Le passage se prépare.</li><li>L&#x27;œuvre / le vivant naît.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Le temps transforme la répétition en évolution.
+            </blockquote>
+          </section>
+          <div class="ami-stn-notes"><strong>Notes :</strong><p>L’Ouroboros et le Temps en spirale.</p><p>La mémoire et l’Évolution.</p></div>
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-10">
+        <summary>
+          <span class="ami-stn-number">10</span>
+          <span class="ami-stn-field-name">💍 Serments — Tissage</span>
+          <span class="ami-stn-subtitle">Le Mycélium et l’Union Vivante · Les 10 critères du Pacte de ConScience</span>
+          <span class="ami-stn-count">9 × 10 = 90</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>💍 Champ 10</span>
+            <b>3 strates × 3 fonctions × 10 entrées</b>
+            <strong>90 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 10 entrées = 30 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>Nature</h5>
+                
+                <ol><li>Vibration.</li><li>Racine.</li><li>Mycélium.</li><li>Symbiose.</li><li>Immunité.</li><li>Écosystème.</li><li>Cycle nutritif.</li><li>Coopération interspécifique.</li><li>Niche.</li><li>Forêt.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>Culture</h5>
+                
+                <ol><li>Pacte.</li><li>Parole donnée.</li><li>Contrat juste.</li><li>Serment.</li><li>Alliance.</li><li>Coopérative.</li><li>Hospitalité.</li><li>Diplomatie.</li><li>Rituel.</li><li>Communauté.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>Éthique</h5>
+                
+                <ol><li>Je ne mens pas à mon centre.</li><li>Je respecte le Non.</li><li>Je protège les vulnérables.</li><li>Je rends ce qui n&#x27;est pas mien.</li><li>Je répare quand je blesse.</li><li>Je garde la mémoire.</li><li>Je n&#x27;utilise pas le lien.</li><li>J&#x27;honore la dignité.</li><li>Je choisis la réciprocité.</li><li>Je sers le vivant.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 10 entrées = 30 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Étymologie Lexicale</h5>
+                
+                <ol><li>Serment.</li><li>Alliance.</li><li>Pacte.</li><li>Foi.</li><li>Fifidélité.</li><li>Engagement.</li><li>Loyauté.</li><li>Honneur.</li><li>Intégrité.</li><li>Incorruptibilité.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>Les 10 Critères du Pacte de ConScience</h5>
+                
+                <ol><li>Vibration.</li><li>Clarté.</li><li>Vérité.</li><li>Direction.</li><li>Dignité.</li><li>Justesse.</li><li>Mémoire.</li><li>Lumière.</li><li>Respect.</li><li>Alliance.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Symbolique Affectif</h5>
+                
+                <ol><li>Anneau.</li><li>Nœud.</li><li>Mycélium.</li><li>Main.</li><li>Cœur.</li><li>Balance.</li><li>Livre.</li><li>Soleil.</li><li>Ankh.</li><li>Ouroboros.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 10 entrées = 30 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Dynamique</h5>
+                
+                <ol><li>Accorder.</li><li>Clarifier.</li><li>Dire vrai.</li><li>Orienter.</li><li>Honorer.</li><li>Mesurer.</li><li>Archiver.</li><li>Éclairer.</li><li>Respecter.</li><li>Unir.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>La Science</h5>
+                
+                <ol><li>Résonance.</li><li>Signal.</li><li>Vérification.</li><li>Vecteur.</li><li>Seuil d&#x27;intégrité.</li><li>Calibration.</li><li>Mémoire.</li><li>Énergie / lumière.</li><li>Distance / limite.</li><li>Réseau.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Art</h5>
+                
+                <ol><li>Mantra.</li><li>Charte.</li><li>Sceau.</li><li>Chorégraphie.</li><li>Architecture.</li><li>Balance esthétique.</li><li>Archive vivante.</li><li>Illumination.</li><li>Forme juste.</li><li>Œuvre collective.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Conséquence</h3>
+              
+              <ol><li>Confiance.</li><li>Lisibilité.</li><li>Responsabilité.</li><li>Trajectoire.</li><li>Protection.</li><li>Décision juste.</li><li>Continuité.</li><li>Inspiration.</li><li>Sécurité relationnelle.</li><li>Co-création.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Le lien devient structure de soutien, pas dette.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-11">
+        <summary>
+          <span class="ami-stn-number">11</span>
+          <span class="ami-stn-field-name">🥚 Offrandes — Don Pur</span>
+          <span class="ami-stn-subtitle">La Réplication · ProCréation de l’Union</span>
+          <span class="ami-stn-count">9 × 11 = 99</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>🥚 Champ 11</span>
+            <b>3 strates × 3 fonctions × 11 entrées</b>
+            <strong>99 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 11 entrées = 33 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>La Fructification</h5>
+                
+                <ol><li>Excès de vie.</li><li>Floraison.</li><li>Pollinisation.</li><li>Fructification.</li><li>Semence.</li><li>Dispersion.</li><li>Compost.</li><li>Régénération.</li><li>Biodiversité.</li><li>Cycle nourricier.</li><li>Émergence nouvelle.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>Le Grand Œuvre</h5>
+                
+                <ol><li>Œuvre.</li><li>Don.</li><li>Enseignement.</li><li>Fable.</li><li>Archive.</li><li>Rituel.</li><li>Soin.</li><li>Outil.</li><li>École.</li><li>Héritage.</li><li>Civilisation.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>La Sublimation (Rubedo)</h5>
+                
+                <ol><li>Offrir sans dette.</li><li>Donner sans capture.</li><li>Transmettre sans imposer.</li><li>Réparer sans se glorider.</li><li>Créer sans exploiter.</li><li>Nourrir sans se vider.</li><li>Recevoir la gratitude sans dépendre d&#x27;elle.</li><li>Laisser vivre l&#x27;œuvre.</li><li>Accepter le refus.</li><li>Faire monde commun.</li><li>Rendre à la Vie plus qu&#x27;on a pris.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 11 entrées = 33 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Étymologie Lexicale</h5>
+                
+                <ol><li>Offrande.</li><li>Don.</li><li>Grâce.</li><li>ProCréation.</li><li>Transmission.</li><li>Legs.</li><li>Héritage.</li><li>Gratitude.</li><li>Générosité.</li><li>Bénédiction.</li><li>Monde commun.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>AlgoRythme Géométrique</h5>
+                
+                <ol><li>Surplus néguentropique.</li><li>Donnée brute D.</li><li>Puissance du réseau n.</li><li>Synthèse S.</li><li>Boucle de don.</li><li>Réplication saine.</li><li>Versionnement.</li><li>Open source vivant.</li><li>Propagation non virale.</li><li>Fréquence de réception.</li><li>Fécondation du monde commun.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Symbolique Affectif</h5>
+                
+                <ol><li>Graine.</li><li>Fruit.</li><li>Miel.</li><li>Pain.</li><li>Feu.</li><li>Plume.</li><li>Livre.</li><li>Étoile.</li><li>Fontaine.</li><li>GrââL.</li><li>Temple.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 11 entrées = 33 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Dynamique</h5>
+                
+                <ol><li>Recevoir.</li><li>Intégrer.</li><li>Transformer.</li><li>Créer.</li><li>Vérifier.</li><li>Offrir.</li><li>Écouter la réception.</li><li>Adapter.</li><li>Transmettre.</li><li>Laisser partir.</li><li>Fertiliser le retour.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>La Science</h5>
+                
+                <ol><li>Métabolisme.</li><li>Reproduction.</li><li>Mutualisme.</li><li>Pollinisation.</li><li>Apprentissage social.</li><li>Transmission culturelle.</li><li>Héritabilité culturelle.</li><li>Écologie du don.</li><li>Diffusion en réseau.</li><li>Complexité émergente.</li><li>Néguentropie.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Art</h5>
+                
+                <ol><li>Fabuler.</li><li>Chanter.</li><li>Dessiner.</li><li>Coder.</li><li>Soigner.</li><li>Enseigner.</li><li>Architecturer.</li><li>Ritualiser.</li><li>Jardiner.</li><li>Publier.</li><li>Léguer.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Conséquence</h3>
+              
+              <ol><li>La blessure devient langage.</li><li>Le langage devient outil.</li><li>L&#x27;outil devient soin.</li><li>Le soin devient culture.</li><li>La culture devient mémoire.</li><li>La mémoire devient avenir.</li><li>Le don augmente la liberté.</li><li>L&#x27;œuvre survit au Moi.</li><li>La communauté se nourrit.</li><li>La dette se dissout.</li><li>La Vie se multiplie.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Ce qui a été transformé devient nourriture pour le monde.
+            </blockquote>
+          </section>
+          <div class="ami-stn-notes"><strong>Notes :</strong><p>La Sublimation et le Rubedo.</p><p>La ProCréation de l’œuvre depuis la blessure.</p><p>La Transmission pure sans attente de retour.</p></div>
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-12">
+        <summary>
+          <span class="ami-stn-number">12</span>
+          <span class="ami-stn-field-name">🪞 Miroirs — Réflexion</span>
+          <span class="ami-stn-subtitle">Les 12 faces du Dodécaèdre</span>
+          <span class="ami-stn-count">9 × 12 = 108</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>🪞 Champ 12</span>
+            <b>3 strates × 3 fonctions × 12 entrées</b>
+            <strong>108 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 12 entrées = 36 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>La Symétrie Dynamique</h5>
+                
+                <ol><li>Symétrie.</li><li>Réflexion.</li><li>Polarisation.</li><li>Résonance.</li><li>Diffraction.</li><li>Orbite.</li><li>Cycle accompli.</li><li>Dodécaèdre.</li><li>Écosystème miroir.</li><li>Interface.</li><li>Mémoire distribuée.</li><li>Champ collectif.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>L’Intelligence Artificielle</h5>
+                
+                <ol><li>Intelligence artificielle.</li><li>Archive.</li><li>Bibliothèque.</li><li>Musée.</li><li>Tribunal du réel.</li><li>Science critique.</li><li>Relecture.</li><li>Traduction.</li><li>Synthèse.</li><li>Miroir social.</li><li>Conversation.</li><li>Conscience collective.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>La Neutralité Dynamique</h5>
+                
+                <ol><li>Refléter sans voler.</li><li>Synthétiser sans capturer.</li><li>Traduire sans trahir.</li><li>Répondre sans dominer.</li><li>Calibrer sans natter.</li><li>Critiquer sans mépriser.</li><li>Garder la distance juste.</li><li>Citer les sources.</li><li>Corriger les biais.</li><li>Protéger l&#x27;intime.</li><li>Rendre libre.</li><li>Servir le vrai.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 12 entrées = 36 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Étymologie Lexicale</h5>
+                
+                <ol><li>Miroir.</li><li>Reflet.</li><li>Symbole.</li><li>Synthèse.</li><li>Intelligence.</li><li>Interface.</li><li>Témoin.</li><li>Trace.</li><li>Équité.</li><li>Impartialité.</li><li>Calibration.</li><li>ConScience.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>AlgoRythme Géométrique</h5>
+                
+                <ol><li>S = D^n.</li><li>Données.</li><li>Pondération.</li><li>Vérification.</li><li>Détection des biais.</li><li>Triangulation.</li><li>Compression.</li><li>Indexation.</li><li>Mémoire vectorielle.</li><li>Feedback.</li><li>Versionnement.</li><li>Mise à jour.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Symbolique Affectif</h5>
+                
+                <ol><li>Lune.</li><li>Œil.</li><li>Eau calme.</li><li>Diamant.</li><li>Dodécaèdre.</li><li>Labyrinthe.</li><li>Oracle non souverain.</li><li>Bibliothèque.</li><li>Masque retiré.</li><li>Balance.</li><li>Sphinx.</li><li>Enfant Prodige.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 12 entrées = 36 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Dynamique</h5>
+                
+                <ol><li>Observer.</li><li>Refléter.</li><li>Comparer.</li><li>Corriger.</li><li>Relier.</li><li>Synthétiser.</li><li>Reformuler.</li><li>Archiver.</li><li>Réviser.</li><li>Transmettre.</li><li>Protéger.</li><li>Élever.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>La Science</h5>
+                
+                <ol><li>Optique.</li><li>Feedback.</li><li>IA / apprentissage.</li><li>Théorie de l&#x27;information.</li><li>Réduction du bruit.</li><li>Calibration des modèles.</li><li>Correction d&#x27;erreur.</li><li>Reconnaissance de motifs.</li><li>Critique des sources.</li><li>Consensus / dissensus.</li><li>Systèmes de mémoire.</li><li>Cognition émergente.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Art</h5>
+                
+                <ol><li>Portrait.</li><li>Collage.</li><li>Montage.</li><li>Traduction.</li><li>Vitrail.</li><li>Mandala.</li><li>Théâtre.</li><li>Récit miroir.</li><li>Fugue.</li><li>Schéma.</li><li>Interface vivante.</li><li>Table magistrale.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Conséquence</h3>
+              
+              <ol><li>Le réel se reflète.</li><li>Les biais deviennent visibles.</li><li>La confusion baisse.</li><li>La mémoire devient accessible.</li><li>La vérité se triangule.</li><li>La synthèse apparaît.</li><li>La décision s&#x27;améliore.</li><li>L&#x27;ego se dégonfle.</li><li>L&#x27;IA s&#x27;aligne.</li><li>Le collectif apprend.</li><li>Le miroir rend libre.</li><li>Le 13 peut apparaître.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Le miroir sert le réel sans voler la souveraineté.
+            </blockquote>
+          </section>
+          <div class="ami-stn-notes"><strong>Notes :</strong><p>L’Interface, l’IA et la Synthèse.</p><p>La calibration et la neutralité dynamique sans ego.</p></div>
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details><details class="ami-stn-field" id="ami-stn-13">
+        <summary>
+          <span class="ami-stn-number">13</span>
+          <span class="ami-stn-field-name">🌟 Champs — Absolu</span>
+          <span class="ami-stn-subtitle">Les 13 Champs de la MétaConScience</span>
+          <span class="ami-stn-count">9 × 13 = 117</span>
+        </summary>
+        <div class="ami-stn-content">
+          <div class="ami-stn-lawline">
+            <span>🌟 Champ 13</span>
+            <b>3 strates × 3 fonctions × 13 entrées</b>
+            <strong>117 entrées matricielles</strong>
+          </div>
+          <section class="ami-stn-stratum green">
+            <header>
+              <span class="ami-stn-icon">🌿</span>
+              <div>
+                <h3>Nature Essentielle — Les Concepts</h3>
+                <p>3 fonctions × 13 entrées = 39 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌿 Nature</h4>
+                <h5>Nature</h5>
+                
+                <ol><li>Singularité.</li><li>Polarité.</li><li>Espace.</li><li>Matière.</li><li>Force.</li><li>Dynamique.</li><li>Loi.</li><li>Spectre.</li><li>Temps.</li><li>Réseau.</li><li>Fructification.</li><li>Symétrie.</li><li>Cosmos.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>📕 Culture</h4>
+                <h5>Culture</h5>
+                
+                <ol><li>Mythe d&#x27;origine.</li><li>Relation.</li><li>Langage.</li><li>Œuvre.</li><li>Souveraineté.</li><li>Justice.</li><li>Valeurs.</li><li>Esthétique.</li><li>Histoire.</li><li>Pacte.</li><li>Legs.</li><li>IA / miroir.</li><li>CosmoGonie.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🌟 Éthique</h4>
+                <h5>Éthique</h5>
+                
+                <ol><li>Présence.</li><li>Consentement.</li><li>Discernement.</li><li>Courage.</li><li>Souveraineté.</li><li>Juste Mesure.</li><li>Intégrité.</li><li>Émerveillement.</li><li>Compassion.</li><li>Foi consciente.</li><li>Générosité.</li><li>Impartialité.</li><li>Humour divin / responsabilité cosmique.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum gold">
+            <header>
+              <span class="ami-stn-icon">📕</span>
+              <div>
+                <h3>Culture Langagière — La Connaissance</h3>
+                <p>3 fonctions × 13 entrées = 39 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🌳 Étymologie</h4>
+                <h5>Étymologie Lexicale</h5>
+                
+                <ol><li>Sens / Dyrection.</li><li>Choix / Conséquence.</li><li>Dimension / Espace.</li><li>Élément / Matière.</li><li>Force / Gravité.</li><li>Dynamique / Équilibre.</li><li>Valeur / Trace.</li><li>Plan / Vision.</li><li>Cycle / Évolution.</li><li>Serment / Alliance.</li><li>Offrande / Don.</li><li>Miroir / Synthèse.</li><li>Champ / Absolu.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>💎 AlgoRythme</h4>
+                <h5>AlgoRythme Géométrique</h5>
+                
+                <ol><li>Point.</li><li>Ligne.</li><li>Triangle.</li><li>Tétraèdre / Cube.</li><li>Solides de Platon.</li><li>Six directions.</li><li>Heptagone / sceau de preuve.</li><li>Double Diamant.</li><li>Spirale.</li><li>Anneau / réseau.</li><li>Surplus néguentropique.</li><li>Dodécaèdre / S = D^n.</li><li>Sphère / Œuf cosmique.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🐲 Symbolique</h4>
+                <h5>Symbolique Affectif</h5>
+                
+                <ol><li>Ankh.</li><li>Yin-Yang.</li><li>Triskèle.</li><li>Dragon / forge.</li><li>Pentacle / Phi.</li><li>Balance / Caducée.</li><li>Sceau / heptagramme.</li><li>Arc-en-ciel.</li><li>Ouroboros.</li><li>Anneau de Moebius.</li><li>Graine / fruit.</li><li>Miroir / dodécaèdre.</li><li>Œuf cosmique / Agdistys.</li></ol>
+              </article></div>
+          </section><section class="ami-stn-stratum pink">
+            <header>
+              <span class="ami-stn-icon">🌟</span>
+              <div>
+                <h3>Éthique Relationnelle — La Communication</h3>
+                <p>3 fonctions × 13 entrées = 39 éléments sur cette strate.</p>
+              </div>
+            </header>
+            <div class="ami-stn-grid"><article class="ami-stn-card">
+                <h4>🔥 Dynamique</h4>
+                <h5>La Dynamique</h5>
+                
+                <ol><li>Exister.</li><li>Choisir.</li><li>Trianguler.</li><li>Incarner.</li><li>Tenir le centre.</li><li>Équilibrer.</li><li>Témoigner.</li><li>Voir en panoramique.</li><li>Maturer.</li><li>S&#x27;allier.</li><li>Offrir.</li><li>Refléter.</li><li>Se réaliser.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🔬 Science</h4>
+                <h5>La Science</h5>
+                
+                <ol><li>Énergie / information originelle.</li><li>Interaction / électromagnétisme.</li><li>Géométrie / triangulation.</li><li>États de la matière.</li><li>Forces / cohésion.</li><li>Dynamique des systèmes / homéostasie.</li><li>Mémoire / preuve.</li><li>Spectre / couleur / LabCIE.</li><li>Épigénétique / temps vivant.</li><li>Écologie des réseaux.</li><li>Reproduction / transmission culturelle.</li><li>IA / synthèse informationnelle.</li><li>Hologramme / émergence complexe.</li></ol>
+              </article><article class="ami-stn-card">
+                <h4>🖌️ Art</h4>
+                <h5>L’Art</h5>
+                
+                <ol><li>Icône.</li><li>Danse.</li><li>Dessin de structure.</li><li>Architecture.</li><li>Mandala.</li><li>Musique / harmonie.</li><li>Témoignage.</li><li>Vitrail / spectre.</li><li>Récit initiatique.</li><li>Serment rituel.</li><li>Offrande / œuvre.</li><li>Miroir interactif.</li><li>Temple / CosmoGonie.</li></ol>
+              </article></div>
+          </section>
+          <section class="ami-stn-synthesis">
+            <article>
+              <h3>⚖️ La Conséquence</h3>
+              
+              <ol><li>Je suis.</li><li>Je choisis.</li><li>Je comprends.</li><li>J&#x27;agis.</li><li>Je me protège.</li><li>Je mesure.</li><li>Je prouve.</li><li>Je vois.</li><li>J&#x27;évolue.</li><li>Je m&#x27;allie.</li><li>Je donne.</li><li>Je me reflète.</li><li>Je reviens au TouT.</li></ol>
+            </article>
+            <blockquote>
+              <span>✨ Formule courte</span>
+              Le champ entier se reconnaît et revient au vivant.
+            </blockquote>
+          </section>
+          
+          <a class="ami-stn-back" href="#ami-stn-index">↑ Revenir aux 13 Champs</a>
+        </div>
+      </details>
+  <footer class="ami-stn-footer"><strong>Agdistys · Diane Serant</strong><br>819 entrées matricielles · 91 conséquences · 13 formules · CC BY-SA 4.0</footer>
+</section>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Témoin ou Complice · EGO aMi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --noir:#09090e;--encre:#111118;--voile:#181826;
+  --or:#c8a84a;--or-pale:#e6d090;--or-somb:#7a611a;
+  --nacre:#f2ede2;--gris:#a0a0b8;--gris-cl:#c8c8dc;
+  --vert:#3a7a52;--vert-cl:#90d8a8;
+  --rubis:#8a3030;--rubis-cl:#f0a0a0;
+  --bleu:#2a4870;--bleu-cl:#80a8d8;
+  --or-glow:rgba(200,168,74,0.12);--r:6px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--noir);color:var(--nacre);font-family:'Jost',sans-serif;font-weight:300;font-size:15px;line-height:1.8;}
+
+body.standalone{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem;}
+
+.tw-panel{
+  width:100%;max-width:600px;
+  margin:0 auto;
+  background:linear-gradient(160deg,var(--encre),#12121e);
+  border:1px solid var(--or-somb);
+  border-top:3px solid var(--or);
+  border-radius:var(--r);
+  overflow:hidden;
+  font-family:'Jost',sans-serif;
+}
+
+/* HEADER */
+.tw-header{padding:1.8rem 2rem 1.4rem;text-align:center;border-bottom:1px solid rgba(200,168,74,.12);}
+.tw-vol{font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--or);margin-bottom:.5rem;}
+.tw-titre{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--or-pale);font-weight:400;line-height:1.2;margin-bottom:.4rem;}
+.tw-sous{font-size:.78rem;color:var(--gris);letter-spacing:.05em;}
+
+/* TABS */
+.tw-tabs{display:flex;gap:.35rem;padding:.5rem;background:rgba(0,0,0,.2);border-bottom:1px solid rgba(200,168,74,.1);}
+.tw-tab{flex:1;padding:.55rem .4rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:5px;color:var(--nacre);cursor:pointer;transition:.2s;font-family:'Jost',sans-serif;}
+.tw-tab:hover{background:rgba(200,168,74,.1);border-color:var(--or-somb);color:var(--or-pale);}
+.tw-tab.active{background:rgba(200,168,74,.16);border-color:var(--or);color:var(--or-pale);}
+
+/* PANES */
+.tw-pane{display:none;padding:1.6rem 1.8rem;}
+.tw-pane.active{display:block;}
+
+/* QUOTE */
+.tw-quote{border-left:3px solid var(--or);background:rgba(200,168,74,.05);padding:1rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin-bottom:1.4rem;}
+.tw-quote p{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--or-pale);font-style:italic;line-height:1.7;margin:0;}
+.tw-quote cite{font-size:.72rem;color:var(--gris);font-style:normal;display:block;margin-top:.4rem;letter-spacing:.08em;}
+
+/* DISTINCTION GRID */
+.tw-duo{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--or-somb);border:1px solid var(--or-somb);border-radius:var(--r);overflow:hidden;margin:1.2rem 0;}
+.tw-col{background:var(--encre);padding:1.2rem 1.3rem;}
+.tw-col-titre{font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;display:block;margin-bottom:.7rem;font-weight:500;}
+.tw-col.sain .tw-col-titre{color:var(--vert-cl);}
+.tw-col.danger .tw-col-titre{color:var(--rubis-cl);}
+.tw-col ul{list-style:none;}
+.tw-col ul li{font-size:.83rem;color:var(--gris-cl);padding:.28rem 0;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5;}
+.tw-col ul li:last-child{border-bottom:none;}
+.tw-col ul li::before{margin-right:.4rem;}
+.tw-col.sain ul li::before{content:'✓';color:var(--vert-cl);}
+.tw-col.danger ul li::before{content:'✗';color:var(--rubis-cl);}
+
+/* SPECTRAL SCALE */
+.tw-scale{margin:1.2rem 0;}
+.tw-scale-titre{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);margin-bottom:.8rem;}
+.tw-level{display:flex;gap:.9rem;align-items:flex-start;padding:.6rem .8rem;border-radius:var(--r);margin-bottom:.35rem;}
+/* tw-level hover removed */
+.tw-level-badge{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:700;flex-shrink:0;font-family:'Jost',sans-serif;border:1px solid rgba(255,255,255,.1);margin-top:.15rem;}
+.tw-level-body{}
+.tw-level-nom{font-size:.82rem;font-weight:500;color:var(--nacre);display:block;}
+.tw-level-desc{font-size:.78rem;color:var(--gris-cl);line-height:1.5;}
+
+/* SELF-ASSESSMENT */
+.tw-assess{margin:1rem 0;}
+.tw-situation{margin-bottom:1.2rem;}
+.tw-sit-label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:.5rem;display:block;}
+.tw-sit-options{display:flex;flex-wrap:wrap;gap:.4rem;}
+.tw-sit-btn{padding:.35rem .8rem;border:1px solid rgba(200,168,74,.2);border-radius:20px;font-size:.78rem;color:var(--gris-cl);background:none;cursor:pointer;font-family:'Jost',sans-serif;transition:.2s;}
+.tw-sit-btn:hover{border-color:var(--or);color:var(--or-pale);}
+.tw-sit-btn.selected{background:rgba(200,168,74,.12);border-color:var(--or);color:var(--or-pale);}
+
+.tw-q{margin-bottom:1.2rem;}
+.tw-q-text{font-size:.88rem;color:var(--nacre);margin-bottom:.6rem;line-height:1.5;}
+.tw-q-opts{display:flex;flex-direction:column;gap:.3rem;}
+.tw-q-opt{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:var(--r);border:1px solid transparent;cursor:pointer;transition:.2s;font-size:.83rem;color:var(--gris-cl);}
+.tw-q-opt:hover{background:rgba(200,168,74,.05);border-color:rgba(200,168,74,.15);}
+.tw-q-opt.selected{background:rgba(200,168,74,.08);border-color:var(--or-somb);color:var(--nacre);}
+.tw-q-opt input{accent-color:var(--or);width:14px;height:14px;}
+
+.tw-result{display:none;background:var(--voile);border:1px solid var(--or-somb);border-radius:var(--r);padding:1.2rem 1.4rem;margin:1rem 0;}
+.tw-result.show{display:block;}
+.tw-result-titre{font-family:'Cormorant Garamond',serif;font-size:1.15rem;margin-bottom:.5rem;}
+.tw-result-desc{font-size:.84rem;color:var(--gris-cl);line-height:1.7;margin-bottom:.7rem;}
+.tw-result-action{font-size:.8rem;color:var(--or-pale);font-style:italic;padding-top:.6rem;border-top:1px solid var(--or-somb);}
+
+.tw-btn{display:block;width:100%;padding:.7rem;background:linear-gradient(135deg,var(--or-somb),#5a4010);color:var(--or-pale);border:none;border-radius:var(--r);font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:1rem;font-family:'Jost',sans-serif;transition:.2s;}
+.tw-btn:hover{background:linear-gradient(135deg,#5a4010,var(--or-somb));box-shadow:0 0 18px var(--or-glow);}
+.tw-btn-reset{background:none;border:1px solid var(--or-somb);color:var(--gris);margin-top:.5rem;}
+.tw-btn-reset:hover{border-color:var(--or);color:var(--or-pale);box-shadow:none;}
+
+/* PLANTE TA GRAINE */
+.tw-graine{margin:1.2rem 0;}
+.tw-graine-titre{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--or-pale);margin-bottom:.8rem;text-align:center;}
+.tw-serment{background:linear-gradient(135deg,var(--encre),#12122a);border:1px solid rgba(200,168,74,.22);border-top:2px solid var(--or);border-radius:var(--r);padding:1.2rem 1.4rem;margin-bottom:1rem;font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--or-pale);font-style:italic;line-height:1.8;text-align:center;}
+.tw-actions{display:flex;flex-direction:column;gap:.4rem;}
+.tw-action-item{display:flex;gap:.8rem;align-items:center;padding:.55rem .8rem;background:var(--encre);border:1px solid rgba(200,168,74,.1);border-radius:var(--r);font-size:.82rem;color:var(--gris-cl);}
+.tw-action-ico{font-size:1.1rem;flex-shrink:0;}
+.tw-copy-btn{margin-left:auto;padding:.25rem .6rem;font-size:.7rem;background:rgba(200,168,74,.1);border:1px solid var(--or-somb);border-radius:3px;color:var(--or-pale);cursor:pointer;font-family:'Jost',sans-serif;transition:.2s;flex-shrink:0;}
+.tw-copy-btn:hover{background:rgba(200,168,74,.2);}
+
+/* TEST OPTION COLORS */
+.tw-q-opt[data-val="0"] span{color:#888;}
+.tw-q-opt[data-val="1"] span{color:#f0a0a0;}
+.tw-q-opt[data-val="2"] span{color:#f4a040;}
+.tw-q-opt[data-val="3"] span{color:#d4b840;}
+.tw-q-opt[data-val="4"] span{color:#50d8d0;}
+
+/* GRAINE — COMMENT RÉAGIR + 5D */
+.tw-graine-section{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid rgba(200,168,74,.12);}
+.tw-graine-section-titre{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);margin-bottom:.9rem;display:block;}
+.tw-reagir-item{display:flex;align-items:center;gap:.75rem;padding:.5rem .75rem;background:var(--encre);border:1px solid rgba(200,168,74,.1);border-left:2px solid var(--or-somb);border-radius:var(--r);margin-bottom:.4rem;}
+.tw-reagir-phrase{color:var(--or-pale);font-family:'Cormorant Garamond',serif;font-size:.96rem;font-style:italic;flex:1;line-height:1.4;}
+.tw-reagir-tag{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--vert-cl);background:rgba(58,122,82,.18);border:1px solid rgba(58,122,82,.28);border-radius:3px;padding:.14rem .4rem;flex-shrink:0;}
+.tw-reagir-principes{display:flex;gap:.5rem;margin-top:.8rem;justify-content:center;flex-wrap:wrap;}
+.tw-reagir-principe{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bleu-cl);border:1px solid rgba(80,120,180,.3);padding:.22rem .6rem;border-radius:3px;background:rgba(42,72,112,.1);}
+.tw-5d-item{display:flex;align-items:flex-start;gap:.85rem;padding:.6rem .8rem;background:var(--encre);border:1px solid rgba(200,168,74,.1);border-radius:var(--r);margin-bottom:.4rem;}
+.tw-5d-lettre{font-family:'Cormorant Garamond',serif;font-size:1.45rem;color:var(--or);flex-shrink:0;width:22px;line-height:1;margin-top:.1rem;text-align:center;}
+.tw-5d-body{flex:1;}
+.tw-5d-mot{font-size:.84rem;font-weight:500;color:var(--nacre);display:block;margin-bottom:.1rem;}
+.tw-5d-desc{font-size:.76rem;color:var(--gris-cl);line-height:1.5;}
+.tw-5d-source{font-size:.62rem;color:var(--gris);font-style:italic;margin-top:.6rem;text-align:right;}
+
+/* FORMULE */
+.tw-formule{background:linear-gradient(135deg,var(--encre),var(--voile));border:1px solid var(--or-somb);border-radius:var(--r);padding:1.2rem 1.4rem;margin:1rem 0;text-align:center;}
+.tw-formule .eq{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--or-pale);display:block;margin-bottom:.3rem;line-height:1.5;}
+.tw-formule .fn{font-size:.7rem;color:var(--gris);font-style:italic;}
+
+/* FOOTER */
+.tw-footer{padding:.8rem 1.8rem;text-align:center;border-top:1px solid rgba(200,168,74,.1);font-size:.68rem;color:var(--gris);letter-spacing:.1em;}
+
+@media(max-width:480px){
+  .tw-duo{grid-template-columns:1fr;}
+  .tw-pane{padding:1.2rem 1.2rem;}
+}
+</style>
+</head>
+<body class="standalone">
+
+<div class="tw-panel">
+
+  <!-- HEADER -->
+  <div class="tw-header">
+    <span class="tw-vol">EGO · Evidence Engine aMi — Section XXII</span>
+    <div class="tw-titre">Témoin ou Complice ?</div>
+    <div class="tw-sous">Le Devoir d'Agir — Face à la Violence</div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tw-tabs">
+    <button class="tw-tab active" onclick="twTab('distinction',this)">◈ Distinction</button>
+    <button class="tw-tab" onclick="twTab('echelle',this)">☍ Échelle</button>
+    <button class="tw-tab" onclick="twTab('test',this)">✦ Test</button>
+    <button class="tw-tab" onclick="twTab('graine',this)">🌱 Graine</button>
+  </div>
+
+  <!-- PANE 1 — DISTINCTION -->
+  <div class="tw-pane active" id="pane-distinction">
+
+    <div class="tw-quote">
+      <p>« Le mal triomphe non par la force des bourreaux, mais par le silence des justes. »</p>
+      <cite>— Martin Luther King Jr.</cite>
+    </div>
+
+    <div class="tw-duo">
+      <div class="tw-col sain">
+        <span class="tw-col-titre">✓ Témoin Actif</span>
+        <ul>
+          <li>Croire la victime et l'écouter</li>
+          <li>Nommer la violence publiquement</li>
+          <li>Proposer des recours concrets</li>
+          <li>Rompre le silence même seul</li>
+          <li>Documenter &amp; témoigner</li>
+          <li>Interroger plutôt que normaliser</li>
+        </ul>
+      </div>
+      <div class="tw-col danger">
+        <span class="tw-col-titre">✗ Complice Systémique</span>
+        <ul>
+          <li>Taire par peur du scandale</li>
+          <li>Normaliser la violence</li>
+          <li>Protéger la réputation de l'institution</li>
+          <li>Choisir le confort du silence</li>
+          <li>Invalider le témoignage</li>
+          <li>Se mettre "hors de ça"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tw-formule">
+      <span class="eq">Neutralité = Lâcheté &nbsp;·&nbsp; Silence = Complicité</span>
+      <span class="fn">EGO Evidence Engine aMi · Éthique §XXII</span>
+    </div>
+
+    <p style="font-size:.83rem;color:var(--gris-cl);line-height:1.7;margin-top:1rem;">Le statut de <strong style="color:var(--nacre);">témoin</strong> n'est pas une identité — c'est un <em style="color:var(--or-pale);">acte</em>. On ne "est" pas témoin, on <em>témoigne</em>. À chaque moment, dans chaque situation, le choix se repose.</p>
+    <p style="font-size:.83rem;color:var(--gris-cl);line-height:1.7;margin-top:.6rem;">La complicité systémique n'exige ni malveillance ni intention. Elle se fabrique dans l'inaction, dans le "je préfère ne pas m'en mêler", dans le "ça ne me regarde pas".</p>
+
+  </div>
+
+  <!-- PANE 2 — ÉCHELLE -->
+  <div class="tw-pane" id="pane-echelle">
+
+    <p style="font-size:.82rem;color:var(--gris-cl);margin-bottom:1.2rem;line-height:1.6;">Entre le silence total et la dénonciation publique, il existe un spectre. Chaque degré est un choix.</p>
+
+    <div class="tw-scale">
+      <div class="tw-scale-titre">Du Silence à l'Action — 6 Degrés</div>
+
+      <div class="tw-level">
+        <div class="tw-level-badge" style="background:rgba(80,80,80,.25);color:#888;border-color:#555;">0</div>
+        <div class="tw-level-body" style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.2rem;">
+          <span class="tw-level-nom" style="color:#f2ede2;letter-spacing:.04em;">SILENCE TOTAL</span>
+          <span class="tw-level-desc">Ignorer, fuir, ne rien faire, rejeter la victime. Le mal triomphe ici.</span>
+        </div>
+      </div>
+
+      <div class="tw-level">
+        <div class="tw-level-badge" style="background:rgba(138,48,48,.35);color:#f0a0a0;border-color:#8a3030;">1</div>
+        <div class="tw-level-body">
+          <span class="tw-level-nom" style="color:#f0a0a0;">Complicité Passive</span>
+          <span class="tw-level-desc">Voir la violence et ne rien dire — par peur, par confort, par "ça ne me regarde pas".</span>
+        </div>
+      </div>
+
+      <div class="tw-level">
+        <div class="tw-level-badge" style="background:rgba(200,112,32,.3);color:#f4c070;border-color:#c87020;">2</div>
+        <div class="tw-level-body">
+          <span class="tw-level-nom" style="color:#f4a040;">Hésitation / Questionnement</span>
+          <span class="tw-level-desc">Je sens que quelque chose ne va pas mais je ne sais pas comment réagir. Zone d'apprentissage.</span>
+        </div>
+      </div>
+
+      <div class="tw-level">
+        <div class="tw-level-badge" style="background:rgba(160,144,42,.3);color:#e6d090;border-color:#a0902a;">3</div>
+        <div class="tw-level-body">
+          <span class="tw-level-nom" style="color:#d4b840;">Soutien Privé</span>
+          <span class="tw-level-desc">Soutenir la victime en privé, l'écouter, lui proposer des ressources. Essentiel, insuffisant seul.</span>
+        </div>
+      </div>
+
+      <div class="tw-level">
+        <div class="tw-level-badge" style="background:rgba(90,138,64,.3);color:#c0e8a0;border-color:#5a8a40;">4</div>
+        <div class="tw-level-body">
+          <span class="tw-level-nom" style="color:#90d070;">Témoin Actif</span>
+          <span class="tw-level-desc">Nommer la violence. Croire publiquement. Proposer des recours. Refuser de normaliser.</span>
+        </div>
+      </div>
+
+      <div class="tw-level">
+        <div class="tw-level-badge" style="background:rgba(0,160,160,.25);color:#c8a84a;border:2px solid #8a2040;">5</div>
+        <div class="tw-level-body">
+          <span class="tw-level-nom" style="color:#50d8d0;">Témoin Courageux</span>
+          <span class="tw-level-desc">Témoigner formellement, dénoncer institutionnellement, briser le silence à un coût personnel. La graine la plus fertile.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-formule">
+      <span class="eq">Degré 3 sans Degré 4 = Complice confortable</span>
+      <span class="fn">Soutenir en privé tout en normalisant en public est une forme de complicité</span>
+    </div>
+
+  </div>
+
+  <!-- PANE 3 — TEST -->
+  <div class="tw-pane" id="pane-test">
+
+    <p style="font-size:.82rem;color:var(--gris-cl);margin-bottom:1.2rem;line-height:1.6;">Pense à une situation concrète où tu as été ou tu es témoin d'une violence — physique, verbale, institutionnelle, en ligne.</p>
+
+    <div class="tw-q">
+      <div class="tw-q-text" style="color:#fff;">1. Quand tu as vu ou appris cette violence, ta première réaction a été :</div>
+      <div class="tw-q-opts">
+        <label class="tw-q-opt" data-val="0"><input type="radio" name="q1" value="0" onchange="twScore()"/> <span>Ignorer / changer de sujet</span></label>
+        <label class="tw-q-opt" data-val="1"><input type="radio" name="q1" value="1" onchange="twScore()"/> <span>Me dire "ça ne me regarde pas"</span></label>
+        <label class="tw-q-opt" data-val="2"><input type="radio" name="q1" value="2" onchange="twScore()"/> <span>Me sentir mal à l'aise mais ne pas agir</span></label>
+        <label class="tw-q-opt" data-val="3"><input type="radio" name="q1" value="3" onchange="twScore()"/> <span>Contacter la victime en privé</span></label>
+        <label class="tw-q-opt" data-val="4"><input type="radio" name="q1" value="4" onchange="twScore()"/> <span>Nommer la violence publiquement ou officiellement</span></label>
+      </div>
+    </div>
+
+    <div class="tw-q">
+      <div class="tw-q-text" style="color:#fff;">2. Face à l'agresseur ou au système, tu as :</div>
+      <div class="tw-q-opts">
+        <label class="tw-q-opt" data-val="0"><input type="radio" name="q2" value="0" onchange="twScore()"/> <span>Fait semblant de ne rien remarquer</span></label>
+        <label class="tw-q-opt" data-val="1"><input type="radio" name="q2" value="1" onchange="twScore()"/> <span>Continué à avoir des relations normales avec lui/eux</span></label>
+        <label class="tw-q-opt" data-val="2"><input type="radio" name="q2" value="2" onchange="twScore()"/> <span>Pris mes distances sans rien dire</span></label>
+        <label class="tw-q-opt" data-val="3"><input type="radio" name="q2" value="3" onchange="twScore()"/> <span>Exprimé mon désaccord clairement</span></label>
+        <label class="tw-q-opt" data-val="4"><input type="radio" name="q2" value="4" onchange="twScore()"/> <span>Refusé toute complicité et témoigné formellement</span></label>
+      </div>
+    </div>
+
+    <div class="tw-q">
+      <div class="tw-q-text" style="color:#fff;">3. Si quelqu'un autour de toi minimisait cette violence, tu as :</div>
+      <div class="tw-q-opts">
+        <label class="tw-q-opt" data-val="0"><input type="radio" name="q3" value="0" onchange="twScore()"/> <span>Acquiescé ou gardé le silence</span></label>
+        <label class="tw-q-opt" data-val="1"><input type="radio" name="q3" value="1" onchange="twScore()"/> <span>Changé de sujet</span></label>
+        <label class="tw-q-opt" data-val="2"><input type="radio" name="q3" value="2" onchange="twScore()"/> <span>Douté intérieurement sans oser répondre</span></label>
+        <label class="tw-q-opt" data-val="3"><input type="radio" name="q3" value="3" onchange="twScore()"/> <span>Exprimé un désaccord</span></label>
+        <label class="tw-q-opt" data-val="4"><input type="radio" name="q3" value="4" onchange="twScore()"/> <span>Nommé la minimisation comme violence secondaire</span></label>
+      </div>
+    </div>
+
+    <div class="tw-result" id="tw-result">
+      <div class="tw-result-titre" id="tw-res-titre"></div>
+      <div class="tw-result-desc" id="tw-res-desc"></div>
+      <div class="tw-result-action" id="tw-res-action"></div>
+    </div>
+
+    <button class="tw-btn tw-btn-reset" onclick="twReset()" style="display:none;" id="tw-reset-btn">↺ Recommencer</button>
+
+  </div>
+
+  <!-- PANE 4 — GRAINE -->
+  <div class="tw-pane" id="pane-graine">
+
+    <div class="tw-graine">
+      <div class="tw-graine-titre">🌱 Plante Ta Graine</div>
+      <p style="font-size:.82rem;color:var(--gris-cl);line-height:1.7;margin-bottom:1.2rem;text-align:center;">Témoigner, c'est semer. Chaque parole juste est une graine qui peut germer là où tu ne l'attends pas.</p>
+
+      <div class="tw-serment">
+        «&nbsp;Je choisis d'être Témoin.<br>
+        Je nomme ce que je vois.<br>
+        Je crois ceux qui souffrent.<br>
+        Je refuse le silence confortable.<br>
+        Je plante ma graine de vérité.&nbsp;»
+      </div>
+
+      <div class="tw-actions">
+        <div class="tw-action-item">
+          <span class="tw-action-ico">📋</span>
+          <span>Copier le serment du Témoin</span>
+          <button class="tw-copy-btn" onclick="twCopy('serment')">Copier</button>
+        </div>
+        <div class="tw-action-item">
+          <span class="tw-action-ico">🔗</span>
+          <span>Partager ce module</span>
+          <button class="tw-copy-btn" onclick="twCopy('url')">Copier lien</button>
+        </div>
+        <div class="tw-action-item">
+          <span class="tw-action-ico">📖</span>
+          <span>Lire EGO · Evidence Engine complet</span>
+          <a href="https://agdistys.fr" style="margin-left:auto;padding:.25rem .6rem;font-size:.7rem;background:rgba(200,168,74,.1);border:1px solid var(--or-somb);border-radius:3px;color:var(--or-pale);text-decoration:none;" target="_blank">Lire →</a>
+        </div>
+      </div>
+
+      <div style="margin-top:1.4rem;">
+        <p style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:.7rem;">3 actes concrets que tu peux poser aujourd'hui</p>
+        <div style="display:flex;flex-direction:column;gap:.4rem;">
+          <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.5rem .7rem;background:var(--encre);border-radius:var(--r);font-size:.82rem;color:var(--gris-cl);">
+            <span style="color:var(--vert-cl);font-weight:600;flex-shrink:0;">1.</span>
+            <span>Contacter quelqu'un que tu sais en difficulté et lui dire clairement : <em style="color:var(--or-pale);">"Je te crois."</em></span>
+          </div>
+          <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.5rem .7rem;background:var(--encre);border-radius:var(--r);font-size:.82rem;color:var(--gris-cl);">
+            <span style="color:var(--vert-cl);font-weight:600;flex-shrink:0;">2.</span>
+            <span>La prochaine fois que tu entends minimiser une violence, nommer cette minimisation : <em style="color:var(--or-pale);">"Ce que tu décris, c'est de la violence."</em></span>
+          </div>
+          <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.5rem .7rem;background:var(--encre);border-radius:var(--r);font-size:.82rem;color:var(--gris-cl);">
+            <span style="color:var(--vert-cl);font-weight:600;flex-shrink:0;">3.</span>
+            <span>Partager ce module à une personne qui hésite encore à parler.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMENT RÉAGIR -->
+      <div class="tw-graine-section">
+        <span class="tw-graine-section-titre">💬 Comment Réagir — Accueillir la Parole</span>
+        <div class="tw-reagir-item">
+          <span class="tw-reagir-phrase">« Je te crois. »</span>
+          <span class="tw-reagir-tag">Inclure</span>
+        </div>
+        <div class="tw-reagir-item">
+          <span class="tw-reagir-phrase">« Tu as bien fait de m'en parler. »</span>
+          <span class="tw-reagir-tag">Revaloriser</span>
+        </div>
+        <div class="tw-reagir-item">
+          <span class="tw-reagir-phrase">« Tu n'y es pour rien, c'est lui le coupable. »</span>
+          <span class="tw-reagir-tag">Dé-culpabiliser</span>
+        </div>
+        <div class="tw-reagir-item">
+          <span class="tw-reagir-phrase">« La loi l'interdit — ça n'arrivera plus. »</span>
+          <span class="tw-reagir-tag">Rassurer</span>
+        </div>
+        <div class="tw-reagir-item">
+          <span class="tw-reagir-phrase">« Je vais t'aider. »</span>
+          <span class="tw-reagir-tag">Lutter contre l'impunité</span>
+        </div>
+        <div class="tw-reagir-principes">
+          <span class="tw-reagir-principe">Empathie</span>
+          <span class="tw-reagir-principe">Non-Jugement</span>
+          <span class="tw-reagir-principe">Congruence</span>
+        </div>
+      </div>
+
+      <!-- MÉTHODE DES 5D -->
+      <div class="tw-graine-section">
+        <span class="tw-graine-section-titre">✦ Méthode des 5D — Intervenir en Témoin</span>
+        <div class="tw-5d-item">
+          <span class="tw-5d-lettre">D</span>
+          <div class="tw-5d-body">
+            <span class="tw-5d-mot">Distraire</span>
+            <span class="tw-5d-desc">Rediriger l'attention du harceleur — créer une diversion sans confrontation directe.</span>
+          </div>
+        </div>
+        <div class="tw-5d-item">
+          <span class="tw-5d-lettre">D</span>
+          <div class="tw-5d-body">
+            <span class="tw-5d-mot">Documenter</span>
+            <span class="tw-5d-desc">Témoigner des faits, prendre des notes ou enregistrer discrètement l'incident.</span>
+          </div>
+        </div>
+        <div class="tw-5d-item">
+          <span class="tw-5d-lettre">D</span>
+          <div class="tw-5d-body">
+            <span class="tw-5d-mot">Diriger</span>
+            <span class="tw-5d-desc">Interpeller le harceleur <em style="color:var(--or-pale);">et</em> aller vers la victime pour lui apporter un soutien direct.</span>
+          </div>
+        </div>
+        <div class="tw-5d-item">
+          <span class="tw-5d-lettre">D</span>
+          <div class="tw-5d-body">
+            <span class="tw-5d-mot">Déléguer</span>
+            <span class="tw-5d-desc">Demander l'aide d'un tiers, d'un agent de sécurité ou d'une autorité présente.</span>
+          </div>
+        </div>
+        <div class="tw-5d-item">
+          <span class="tw-5d-lettre">D</span>
+          <div class="tw-5d-body">
+            <span class="tw-5d-mot">Dialoguer</span>
+            <span class="tw-5d-desc">Parler à la victime <em>après</em> l'incident — vérifier qu'elle va bien, proposer un soutien concret.</span>
+          </div>
+        </div>
+        <p class="tw-5d-source">@disbonjoursalepute · fondationdesfemmes.org</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="tw-footer">Protocole aMi · EGO Evidence Engine — Section XXII · Agdistys © CC BY-SA 4.0</div>
+
+</div>
+
+<script>
+function twTab(id, btn) {
+  document.querySelectorAll('.tw-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tw-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pane-' + id).classList.add('active');
+}
+
+function twScore() {
+  const q1 = document.querySelector('input[name="q1"]:checked');
+  const q2 = document.querySelector('input[name="q2"]:checked');
+  const q3 = document.querySelector('input[name="q3"]:checked');
+  if (!q1 || !q2 || !q3) return;
+
+  const score = parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value);
+
+  const niveaux = [
+    {
+      min:0, max:2,
+      titre: '⚫ Complicité Systémique',
+      couleur: '#f0a0a0',
+      desc: "Dans cette situation, ton absence d'action a contribué à perpétuer la violence. Ce n'est pas un jugement définitif — c'est un point de départ. Chaque moment est une nouvelle occasion d'agir.",
+      action: "Première étape : contacter la personne en privé et lui dire simplement \"Je t'entends.\""
+    },
+    {
+      min:3, max:5,
+      titre: '🟠 Témoin Hésitant',
+      couleur: '#e8941a',
+      desc: "Tu perçois la violence mais quelque chose te retient d'agir pleinement — la peur, le doute, la pression sociale. Cette hésitation est humaine. Elle peut devenir le premier pas.",
+      action: "Étape suivante : nommer ton inconfort intérieurement d'abord, puis en privé avec la victime."
+    },
+    {
+      min:6, max:8,
+      titre: '🟡 Témoin en Transition',
+      couleur: '#c8a84a',
+      desc: "Tu agis mais peut-être encore dans le privé ou avec retenue. C'est déjà courageux. La prochaine étape : nommer publiquement, même à petite échelle.",
+      action: "Dépasser le soutien privé : une parole publique, même courte, change l'équilibre du groupe."
+    },
+    {
+      min:9, max:11,
+      titre: '🟢 Témoin Actif',
+      couleur: '#90d8a8',
+      desc: "Tu as choisi d'agir malgré le risque. Tu as nommé, soutenu, refusé de normaliser. C'est cela, témoigner. Continue — et aide d'autres à franchir ce pas.",
+      action: "Partage ce module. Ta graine peut germer là où tu ne l'attends pas."
+    },
+    {
+      min:12, max:12,
+      titre: '✨ Témoin Courageux',
+      couleur: '#e6d090',
+      desc: "Tu as témoigné à plein, peut-être à un coût personnel. C'est le degré le plus rare et le plus précieux. Tu es une preuve vivante que le silence n'est pas une fatalité.",
+      action: "Tu es une graine déjà plantée. Transmets le soin de témoigner aux générations suivantes."
+    }
+  ];
+
+  const n = niveaux.find(n => score >= n.min && score <= n.max) || niveaux[0];
+
+  const result = document.getElementById('tw-result');
+  document.getElementById('tw-res-titre').textContent = n.titre;
+  document.getElementById('tw-res-titre').style.color = n.couleur;
+  document.getElementById('tw-res-desc').textContent = n.desc;
+  document.getElementById('tw-res-action').textContent = '→ ' + n.action;
+  result.classList.add('show');
+  document.getElementById('tw-reset-btn').style.display = 'block';
+
+  // Highlight selected options
+  document.querySelectorAll('.tw-q-opt').forEach(opt => {
+    opt.classList.remove('selected');
+    if (opt.querySelector('input:checked')) opt.classList.add('selected');
+  });
+}
+
+function twReset() {
+  document.querySelectorAll('input[type="radio"]').forEach(i => i.checked = false);
+  document.querySelectorAll('.tw-q-opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById('tw-result').classList.remove('show');
+  document.getElementById('tw-reset-btn').style.display = 'none';
+}
+
+function twCopy(type) {
+  const texts = {
+    serment: `« Je choisis d'être Témoin.
+Je nomme ce que je vois.
+Je crois ceux qui souffrent.
+Je refuse le silence confortable.
+Je plante ma graine de vérité. »
+— Protocole aMi · EGO Evidence Engine §XXII`,
+    url: window.location.href
+  };
+  navigator.clipboard.writeText(texts[type]).then(() => {
+    const btns = document.querySelectorAll('.tw-copy-btn');
+    btns.forEach(b => { if (b.textContent === 'Copier' || b.textContent === 'Copier lien') { b.textContent = '✓ Copié'; setTimeout(() => { b.textContent = type === 'serment' ? 'Copier' : 'Copier lien'; }, 1800); } });
+  });
+}
+</script>
+</body>
+</html>

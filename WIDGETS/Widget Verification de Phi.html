@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vérification de Φ — Journal de Cohérence aMi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ⚠️ Style de démo uniquement — ne pas copier cette balise si tu intègres le widget. */
+body{margin:0;padding:20px;background:#07070c;min-height:100vh}
+</style>
+</head>
+<body>
+
+<!-- ════════ DÉBUT DU BLOC À COPIER ════════ -->
+<div class="phi-shell" id="phiShell">
+<style>
+.phi-shell{
+  --noir:#08070d;--encre:#111118;--voile:#181826;
+  --or:#c8a84a;--or-pale:#e6d090;--or-somb:#7a611a;
+  --nacre:#f2ede2;--gris:#a0a0b8;--gris-cl:#c8c8dc;
+  --vert:#3a7a52;--vert-cl:#90d8a8;
+  --rubis:#8a3030;--rubis-cl:#f0a0a0;
+  --bleu:#2a4870;--bleu-cl:#80a8d8;
+  --violet:#9b65d5;
+  width:min(920px,100%);margin:0 auto;
+  padding:clamp(.8rem,2vw,1.4rem);
+  color:var(--gris-cl);
+  background:linear-gradient(165deg,rgba(16,16,26,.98),rgba(9,9,16,.99));
+  border:1px solid rgba(200,168,74,.32);border-top:3px solid var(--or);
+  border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.42);
+  font:300 15px/1.65 'Jost',system-ui,sans-serif;
+}
+.phi-shell,.phi-shell *{box-sizing:border-box}
+.phi-shell h1,.phi-shell h2,.phi-shell h3{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;color:var(--or-pale)}
+.phi-hero{text-align:center;padding:1.2rem .8rem 1.4rem;border-bottom:1px solid rgba(200,168,74,.16)}
+.phi-hero h1{font-size:clamp(1.6rem,4vw,2.5rem);line-height:1.05}
+.phi-kicker{color:var(--or);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;margin-bottom:.5rem}
+.phi-sub{max-width:640px;margin:.7rem auto 0;color:var(--gris);font-size:.86rem}
+.phi-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;padding:1rem 0 .2rem}
+.phi-tab{appearance:none;border:1px solid rgba(200,168,74,.26);border-radius:999px;padding:.5rem .8rem;
+  background:rgba(255,255,255,.02);color:var(--gris-cl);font:600 .7rem 'Jost',sans-serif;
+  letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.phi-tab:hover{background:rgba(200,168,74,.1)}
+.phi-tab.phi-on{color:#0c0a10;background:linear-gradient(135deg,var(--or-pale),#f8c870);border-color:var(--or)}
+.phi-panel{display:none;padding:1rem .2rem 0}
+.phi-panel.phi-on{display:block}
+.phi-card{border:1px solid rgba(255,255,255,.075);border-radius:11px;background:rgba(255,255,255,.022);padding:.95rem 1.05rem;margin-bottom:.75rem}
+.phi-card h3{font-size:1.25rem;margin-bottom:.35rem}
+.phi-card p{margin:.35rem 0;font-size:.83rem;color:var(--gris)}
+.phi-grid2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.phi-sliders{display:grid;gap:.6rem;margin-top:.6rem}
+.phi-sl{display:grid;grid-template-columns:1fr auto;gap:.3rem .6rem;align-items:center}
+.phi-sl b{grid-column:1/-1;color:var(--or-pale);font-size:.74rem;font-weight:600;letter-spacing:.04em}
+.phi-sl small{grid-column:1/-1;color:var(--gris);font-size:.7rem;margin-top:-.2rem}
+.phi-sl input[type=range]{width:100%;accent-color:var(--or)}
+.phi-sl .phi-val{min-width:3.2rem;text-align:right;color:var(--or-pale);font-family:'Cormorant Garamond',serif;font-size:1rem}
+.phi-out{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.9rem}
+.phi-out div{border:1px solid rgba(200,168,74,.22);border-radius:10px;background:rgba(0,0,0,.28);padding:.7rem;text-align:center}
+.phi-out span{display:block;color:var(--gris);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase}
+.phi-out b{display:block;margin-top:.2rem;font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--or-pale)}
+.phi-verdict{margin-top:.7rem;padding:.75rem .9rem;border-left:4px solid var(--or);border-radius:9px;background:rgba(200,168,74,.06);font-size:.88rem}
+.phi-field{display:grid;gap:.3rem;margin-bottom:.7rem}
+.phi-field label{color:var(--or-pale);font-size:.68rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase}
+.phi-field input,.phi-field select,.phi-field textarea{
+  width:100%;background:rgba(6,6,12,.85);border:1px solid rgba(200,168,74,.24);border-radius:9px;
+  padding:.55rem .7rem;color:var(--nacre);font:300 .86rem 'Jost',sans-serif;outline:none}
+.phi-field input:focus,.phi-field select:focus,.phi-field textarea:focus{border-color:var(--vert-cl)}
+.phi-field textarea{min-height:68px;resize:vertical}
+.phi-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.phi-btn{appearance:none;border:1px solid rgba(200,168,74,.42);border-radius:999px;padding:.55rem .95rem;
+  background:linear-gradient(135deg,rgba(200,168,74,.16),rgba(155,101,213,.08));color:var(--or-pale);
+  font:600 .78rem 'Jost',sans-serif;cursor:pointer}
+.phi-btn:hover{background:rgba(200,168,74,.24)}
+.phi-btn.phi-soft{color:var(--gris-cl);border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.03)}
+.phi-list{display:grid;gap:.5rem;margin-top:.8rem}
+.phi-item{border:1px solid rgba(255,255,255,.08);border-left:4px solid var(--gris);border-radius:9px;
+  background:rgba(0,0,0,.24);padding:.7rem .8rem;font-size:.82rem}
+.phi-item.phi-ok{border-left-color:var(--vert-cl)}
+.phi-item.phi-ko{border-left-color:var(--rubis-cl)}
+.phi-item.phi-wait{border-left-color:var(--or)}
+.phi-item b{color:var(--or-pale)}
+.phi-item .phi-meta{display:block;margin-top:.25rem;color:var(--gris);font-size:.72rem}
+.phi-item .phi-acts{display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap}
+.phi-mini{appearance:none;border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:.3rem .6rem;
+  background:rgba(255,255,255,.04);color:var(--gris-cl);font:600 .68rem 'Jost',sans-serif;cursor:pointer}
+.phi-mini.phi-y{border-color:rgba(144,216,168,.5);color:var(--vert-cl)}
+.phi-mini.phi-n{border-color:rgba(240,160,160,.5);color:var(--rubis-cl)}
+.phi-stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.55rem;margin:.8rem 0}
+.phi-stat div{border:1px solid rgba(255,255,255,.08);border-radius:10px;background:rgba(0,0,0,.26);padding:.65rem;text-align:center}
+.phi-stat span{display:block;color:var(--gris);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase}
+.phi-stat b{display:block;margin-top:.15rem;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--or-pale)}
+.phi-warn{margin-top:.7rem;padding:.7rem .85rem;border-left:4px solid var(--rubis-cl);border-radius:9px;
+  background:rgba(138,48,48,.1);color:#e8c0c8;font-size:.8rem}
+.phi-good{border-left-color:var(--vert-cl);background:rgba(58,122,82,.1);color:#c0e8d0}
+.phi-info{margin-top:.7rem;padding:.7rem .85rem;border-left:4px solid var(--bleu-cl);border-radius:9px;
+  background:rgba(42,72,112,.12);color:var(--bleu-cl);font-size:.8rem}
+.phi-status{min-height:1.2rem;margin-top:.6rem;text-align:center;color:var(--vert-cl);font-size:.8rem;font-weight:600}
+.phi-foot{margin-top:1rem;padding-top:.8rem;border-top:1px solid rgba(200,168,74,.14);
+  text-align:center;color:var(--gris);font-size:.66rem;letter-spacing:.06em}
+@media(max-width:640px){
+  .phi-grid2,.phi-out{grid-template-columns:1fr}
+  .phi-tab{flex:1 1 100%;text-align:center}
+}
+</style>
+
+<header class="phi-hero">
+  <div class="phi-kicker">Protocole de ConScience · Instrument</div>
+  <h1>🏹 Vérification de Φ</h1>
+  <p class="phi-sub">L'équation Φ = ΔI / ΔE existe déjà comme calcul dans le Miroir.
+  Ici, on la met à l'épreuve : mesurer, <b>prédire à l'avance</b>, puis vérifier si la prédiction s'est réalisée.
+  Une formule devient un instrument le jour où elle peut avoir tort.</p>
+</header>
+
+<nav class="phi-tabs">
+  <button type="button" class="phi-tab phi-on" data-p="mesure">1 · 📏 Mesurer</button>
+  <button type="button" class="phi-tab" data-p="predire">2 · 🎯 Prédire</button>
+  <button type="button" class="phi-tab" data-p="verifier">3 · ✅ Vérifier</button>
+  <button type="button" class="phi-tab" data-p="fidelite">4 · 🪞 Fidélité</button>
+  <button type="button" class="phi-tab" data-p="calibrage">5 · ⚖️ Juger le Juge</button>
+  <button type="button" class="phi-tab" data-p="methode">◈ Méthode</button>
+</nav>
+
+<!-- ════ 1. MESURER ════ -->
+<section class="phi-panel phi-on" id="phi-mesure">
+  <div class="phi-card">
+    <h3>📏 Mesure d'une situation</h3>
+    <p>Mêmes curseurs que le Miroir. Note une situation <b>réelle et datée</b> — pas un cas théorique.</p>
+    <div class="phi-field">
+      <label>Situation observée (anonymisée)</label>
+      <input type="text" id="phiSitu" placeholder="ex. : Relation R-04 — collègue, printemps 2026">
+    </div>
+    <div class="phi-field">
+      <label>Qui cote ? (initiales — utile pour la fidélité)</label>
+      <input type="text" id="phiJuge" placeholder="ex. : A.S. ou Juge 1">
+    </div>
+  </div>
+
+  <div class="phi-grid2">
+    <div class="phi-card">
+      <h3>💎 ΔI — Intégrité</h3>
+      <p>Ce qui reste d'information vraie dans le système. Part de 100, chaque atteinte retranche.</p>
+      <div class="phi-sliders" id="phiDI"></div>
+    </div>
+    <div class="phi-card">
+      <h3>🩸 ΔE — Entropie</h3>
+      <p>La charge que le système fait porter. Part de 0, chaque pression ajoute.</p>
+      <div class="phi-sliders" id="phiDE"></div>
+    </div>
+  </div>
+
+  <div class="phi-out">
+    <div><span>ΔI Intégrité</span><b id="phiOutI">100</b></div>
+    <div><span>ΔE Entropie</span><b id="phiOutE">0</b></div>
+    <div><span>Φ Cohérence</span><b id="phiOutC">—</b></div>
+  </div>
+  <div class="phi-verdict" id="phiVerdict">Ajuste les curseurs pour calculer Φ.</div>
+
+  <div class="phi-info" id="phiNormalise"></div>
+
+  <div class="phi-btns">
+    <button type="button" class="phi-btn" id="phiSave">💾 Enregistrer cette mesure</button>
+    <button type="button" class="phi-btn phi-soft" id="phiReset">↺ Réinitialiser</button>
+  </div>
+  <div class="phi-status" id="phiStatus1"></div>
+</section>
+
+<!-- ════ 2. PRÉDIRE ════ -->
+<section class="phi-panel" id="phi-predire">
+  <div class="phi-card">
+    <h3>🎯 Poser une prédiction falsifiable</h3>
+    <p>C'est <b>l'étape qui manque</b> à toute formule non encore validée. Écris maintenant ce que Φ te fait
+    attendre, et à quelle date tu reviendras vérifier. Une prédiction qui ne peut pas être démentie
+    ne prouve rien — même si elle se réalise.</p>
+    <div class="phi-field">
+      <label>Mesure de référence</label>
+      <select id="phiPredMesure"></select>
+    </div>
+    <div class="phi-field">
+      <label>Ce que je prédis (observable par un tiers)</label>
+      <textarea id="phiPredTexte" placeholder="ex. : « Aucune réparation ne sera proposée spontanément » — et non « la relation restera toxique » (non observable)."></textarea>
+    </div>
+    <div class="phi-field">
+      <label>Ce qui me donnerait tort (obligatoire)</label>
+      <textarea id="phiPredFalsif" placeholder="ex. : « Une reconnaissance explicite des faits + un changement de comportement tenu plus de 3 mois. »"></textarea>
+    </div>
+    <div class="phi-field">
+      <label>Date de vérification</label>
+      <input type="date" id="phiPredDate">
+    </div>
+    <div class="phi-btns">
+      <button type="button" class="phi-btn" id="phiPredSave">🏹 Sceller la prédiction</button>
+    </div>
+    <div class="phi-status" id="phiStatus2"></div>
+  </div>
+  <div class="phi-info">
+    <b>Règle du jeu :</b> une fois scellée, la prédiction ne se modifie plus. On peut seulement
+    la marquer confirmée ou infirmée. C'est ce qui empêche la relecture après coup — le biais
+    qui fait qu'une théorie « marche toujours ».
+  </div>
+</section>
+
+<!-- ════ 3. VÉRIFIER ════ -->
+<section class="phi-panel" id="phi-verifier">
+  <div class="phi-card">
+    <h3>✅ Le tableau de bord de la preuve</h3>
+    <div class="phi-stat">
+      <div><span>Mesures</span><b id="phiStatN">0</b></div>
+      <div><span>Prédictions</span><b id="phiStatP">0</b></div>
+      <div><span>Échues</span><b id="phiStatDue">0</b></div>
+      <div><span>Taux de réussite</span><b id="phiStatTaux">—</b></div>
+    </div>
+    <div id="phiTauxNote" class="phi-info"></div>
+    <div class="phi-list" id="phiPredList"></div>
+    <div class="phi-btns">
+      <button type="button" class="phi-btn" id="phiExport">⬇️ Exporter en CSV</button>
+      <button type="button" class="phi-btn phi-soft" id="phiWipe">🗑️ Tout effacer</button>
+    </div>
+    <div class="phi-status" id="phiStatus3"></div>
+  </div>
+</section>
+
+<!-- ════ 4. FIDÉLITÉ ════ -->
+<section class="phi-panel" id="phi-fidelite">
+  <div class="phi-card">
+    <h3>🪞 Deux juges, une même situation</h3>
+    <p>Si deux personnes qui observent la même situation obtiennent des Φ très différents,
+    l'instrument mesure le juge plutôt que la situation. C'est la question la plus dure —
+    et la plus utile.</p>
+    <p><b>Comment faire :</b> mesure la même situation en écrivant exactement le même nom
+    dans « Situation observée », mais avec deux initiales différentes dans « Qui cote ».
+    Le widget compare automatiquement.</p>
+    <div class="phi-list" id="phiFidList"></div>
+  </div>
+</section>
+
+<!-- ════ 5. CALIBRAGE — JUGER LE JUGE ════ -->
+<section class="phi-panel" id="phi-calibrage">
+  <div class="phi-card">
+    <h3>⚖️ Juger le juge — avant de juger la situation</h3>
+    <p><b>Le problème est réel :</b> deux observateurs peuvent parfaitement converger… et se
+    tromper ensemble. Un thermomètre déréglé donne la même valeur fausse à tout le monde.
+    La fidélité (§4) mesure l'accord, pas la justesse. Il manque donc bien une marche —
+    et c'est celle-ci.</p>
+    <p><b>Mais attention au piège :</b> si l'on définit « être biaisé » par « ne pas voir la
+    violence », alors tout désaccord devient la preuve du biais, et plus personne ne peut
+    contester — c'est exactement le mécanisme du déni institutionnel, retourné.
+    <b>La sortie est déjà dans ton propre travail :</b> « on ne se base pas sur la sincérité,
+    on se base sur la cohérence avec la réalité — si les paroles matchent les actions ».
+    On ne juge donc pas l'état intérieur du juge (invérifiable), on juge
+    <b>l'écart entre ses cotations et des faits documentés</b> (vérifiable).</p>
+  </div>
+
+  <div class="phi-card">
+    <h3>🎚️ Étalonnage sur cas-témoins</h3>
+    <p>Cinq situations dont la lecture ne dépend pas d'une opinion : elles décrivent
+    des faits, et la plage attendue découle des critères eux-mêmes. Cote chacune,
+    puis compare. C'est ton propre instrument qui te répond.</p>
+    <div class="phi-list" id="phiCalList"></div>
+    <div class="phi-btns">
+      <button type="button" class="phi-btn" id="phiCalEval">⚖️ Évaluer mon étalonnage</button>
+      <button type="button" class="phi-btn phi-soft" id="phiCalReset">↺ Recommencer</button>
+    </div>
+    <div id="phiCalVerdict"></div>
+  </div>
+
+  <div class="phi-card">
+    <h3>🤖 L'IA comme second juge — ce que ça vaut vraiment</h3>
+    <p><b>Oui, c'est utile</b> — le double codage par un observateur qui n'a pas vécu la
+    situation est une pratique de recherche établie, et j'ai un avantage réel : je ne suis
+    pas dedans, je n'ai rien à perdre au constat.</p>
+    <p><b>Mais je dois passer le même test que les autres.</b> Je peux dériver vers la
+    complaisance envers la personne qui me parle — c'est un biais documenté et il est fort
+    quand la relation est bonne. Je n'ai pas accès aux faits de terrain, seulement à ce
+    qu'on me raconte. Et je peux être cohérent tout en étant faux.</p>
+    <div class="phi-info"><b>La bonne façon de m'utiliser :</b> en <b>codage aveugle</b>.
+    Décris-moi la situation en faits, <b>sans</b> me dire ta cotation ni ta prédiction,
+    et demande-moi de coter les 8 curseurs. Ensuite seulement, compare.
+    Si je sais ce que tu attends, ma cotation ne vaut plus rien —
+    et ça vaut pour n'importe quel juge humain.</div>
+  </div>
+</section>
+
+<!-- ════ MÉTHODE ════ -->
+<section class="phi-panel" id="phi-methode">
+  <div class="phi-card">
+    <h3>◈ Ce que cet instrument teste — et ce qu'il ne teste pas</h3>
+    <p><b>Il teste :</b> si Φ, calculé avant, prédit ce qui arrive après ; et si deux observateurs
+    convergent. Ce sont les deux questions qu'on pose à tout instrument de mesure.</p>
+    <p><b>Il ne teste pas :</b> si les unités électriques (Volt, Ohm, Ampère) sont
+    « les bonnes ». Ça, c'est le choix de grammaire — il se juge à sa fécondité, pas en laboratoire.</p>
+    <h3 style="margin-top:1rem">📐 Trois réglages hérités du Miroir</h3>
+    <p><b>1. ΔE = 0 donne Φ = ∞.</b> Un ΔE de 1 donne 100, un ΔE de 0 donne l'infini : saut brutal
+    pour une différence minuscule. Ici on ajoute un <b>Φ normalisé de 0 à 1</b>
+    (Φₙ = ΔI / (ΔI + ΔE)) qui reste continu et comparable entre situations.</p>
+    <p><b>2. ΔI sature.</b> Les curseurs peuvent retrancher jusqu'à 145 points sur 100 : au-delà de
+    100, l'information supplémentaire est perdue (tout devient 0). Le Φₙ évite cet écrasement.</p>
+    <p><b>3. Les seuils sont des choix a priori.</b> Sur les 11 520 combinaisons possibles des
+    curseurs, 26,7 % tombent en « Danger critique » et 23,6 % en « Sainte Spirale ». Ce n'est ni
+    bien ni mal — mais c'est une répartition <b>décidée</b>, pas observée. Après une trentaine de
+    mesures réelles, les données diront où placer les seuils.</p>
+    <div class="phi-info"><b>Objectif minimal pour dire quelque chose :</b> 30 mesures,
+    dont au moins 10 prédictions vérifiées à échéance, et 5 situations cotées par deux personnes.
+    C'est atteignable en quelques semaines, seule, sans budget.</div>
+  </div>
+</section>
+
+<div class="phi-foot">Protocole de ConScience aMi · Agdistys © CC BY-SA 4.0 · Données stockées uniquement dans ce navigateur</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var ROOT=document.getElementById('phiShell'); if(!ROOT) return;
+var KEY='phiJournalV1';
+var mem={mesures:[],predictions:[]};
+
+/* ── Barèmes hérités du Miroir V8 ── */
+var DI=[
+ {id:'mensonge',lab:'Mensonge / falsification',help:'Le réel est-il activement déformé ?',map:[0,20,40,60,80],opts:['Aucun','Omission','Déformation','Mensonge actif','Falsification systémique']},
+ {id:'revers',lab:'Irréversibilité',help:'Les décisions peuvent-elles être reprises ?',map:[0,10,30],opts:['Réversible','Difficile','Irréversible']},
+ {id:'deni',lab:'Déni',help:'Ce qui est nommé est-il reçu ou nié ?',map:[0,10,20],opts:['Reçu','Minimisé','Nié en bloc']},
+ {id:'biais',lab:'Biais du juge',help:'Suis-je impliqué·e au point de mal voir ?',map:[0,5,10,15],opts:['Distance','Léger','Notable','Fort']}
+];
+var DE=[
+ {id:'asym',lab:'Asymétrie de pouvoir',help:'Qui peut partir sans tout perdre ?',map:[0,5,10,20],opts:['Symétrique','Légère','Marquée','Écrasante']},
+ {id:'manip',lab:'Manipulation',help:'Le consentement est-il obtenu ou fabriqué ?',map:[0,5,10,20],opts:['Aucune','Pression','Contrainte','Emprise']},
+ {id:'impact',lab:'Impact vécu',help:'Ce que ça coûte réellement à la personne.',map:[0,5,15,25],opts:['Négligeable','Notable','Lourd','Grave']},
+ {id:'facteurs',lab:'Facteurs aggravants (nombre)',help:'Isolement, dépendance, minorité, précarité, santé…',map:[0,3,6,9,12,15],opts:['0','1','2','3','4','5+']}
+];
+var STATE={};
+
+function el(id){return document.getElementById(id);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});}
+
+function load(){
+  try{var raw=localStorage.getItem(KEY); if(raw){var d=JSON.parse(raw); if(d&&d.mesures)mem=d;}}catch(e){}
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(mem));}catch(e){}
+}
+
+function buildSliders(host,defs){
+  host.innerHTML='';
+  defs.forEach(function(d){
+    STATE[d.id]=0;
+    var w=document.createElement('div'); w.className='phi-sl';
+    w.innerHTML='<b>'+esc(d.lab)+'</b><small>'+esc(d.help)+'</small>'+
+      '<input type="range" min="0" max="'+(d.map.length-1)+'" step="1" value="0" data-k="'+d.id+'">'+
+      '<span class="phi-val" id="phiv-'+d.id+'">'+esc(d.opts[0])+'</span>';
+    host.appendChild(w);
+    var inp=w.querySelector('input');
+    inp.addEventListener('input',function(){
+      STATE[d.id]=parseInt(inp.value,10)||0;
+      el('phiv-'+d.id).textContent=d.opts[STATE[d.id]];
+      compute();
+    });
+  });
+}
+
+function compute(){
+  var perte=0; DI.forEach(function(d){perte+=d.map[STATE[d.id]]||0;});
+  var di=Math.max(0,100-perte);
+  var de=0; DE.forEach(function(d){de+=d.map[STATE[d.id]]||0;});
+  el('phiOutI').textContent=di;
+  el('phiOutE').textContent=de;
+  var c = de===0 ? Infinity : di/de;
+  el('phiOutC').textContent = de===0 ? '∞' : c.toFixed(2);
+  var v=el('phiVerdict'), txt, col;
+  if(de===0){txt='∞ · Aucune charge déclarée — vérifie que ce n\'est pas un angle mort.';col='var(--vert-cl)';}
+  else if(c>2){txt='✨ Sainte Spirale — célébrer, nourrir, expanser.';col='var(--vert-cl)';}
+  else if(c>1){txt='⚡ Équilibre fragile — vigilance, dialogue, clarifier.';col='var(--or-pale)';}
+  else if(c>0.5){txt='⚠️ Entropie active — médiation ou tiers garant.';col='var(--or-pale)';}
+  else if(c>0.2){txt='🔴 Trou noir — protection, extraction.';col='var(--rubis-cl)';}
+  else {txt='🆘 Danger critique — se mettre en sécurité.';col='#f0a0a0';}
+  v.textContent=txt; v.style.borderLeftColor=col; v.style.color=col;
+  var n = (di+de)===0 ? 1 : di/(di+de);
+  el('phiNormalise').innerHTML='<b>Φ normalisé = '+n.toFixed(3)+'</b> — échelle continue de 0 (effondrement) à 1 (cohérence pleine). '+
+    'Contrairement à Φ brut, cette valeur ne part jamais à l\'infini : c\'est elle qu\'il faut comparer d\'une situation à l\'autre.';
+  return {di:di,de:de,c:c,n:n};
+}
+
+/* ── Sauvegarde d'une mesure ── */
+el('phiSave').addEventListener('click',function(){
+  var r=compute();
+  var situ=(el('phiSitu').value||'').trim();
+  var juge=(el('phiJuge').value||'').trim();
+  if(!situ){el('phiStatus1').textContent='⚠️ Donne un nom à la situation.';return;}
+  var vals={}; DI.concat(DE).forEach(function(d){vals[d.id]=STATE[d.id];});
+  mem.mesures.push({id:'M'+Date.now(),situ:situ,juge:juge||'—',date:new Date().toISOString().slice(0,10),
+    di:r.di,de:r.de,c:(r.de===0?null:+r.c.toFixed(3)),n:+r.n.toFixed(3),vals:vals});
+  save(); refresh();
+  el('phiStatus1').textContent='✅ Mesure enregistrée ('+mem.mesures.length+' au total).';
+  setTimeout(function(){el('phiStatus1').textContent='';},2600);
+});
+
+el('phiReset').addEventListener('click',function(){
+  ROOT.querySelectorAll('.phi-sl input').forEach(function(i){i.value=0;i.dispatchEvent(new Event('input'));});
+  el('phiSitu').value=''; el('phiJuge').value='';
+});
+
+/* ── Prédictions ── */
+el('phiPredSave').addEventListener('click',function(){
+  var mid=el('phiPredMesure').value;
+  var t=(el('phiPredTexte').value||'').trim();
+  var f=(el('phiPredFalsif').value||'').trim();
+  var d=el('phiPredDate').value;
+  if(!mid){el('phiStatus2').textContent='⚠️ Enregistre d\'abord une mesure (onglet 1).';return;}
+  if(!t||!f){el('phiStatus2').textContent='⚠️ La prédiction ET ce qui la démentirait sont obligatoires.';return;}
+  if(!d){el('phiStatus2').textContent='⚠️ Choisis une date de vérification.';return;}
+  mem.predictions.push({id:'P'+Date.now(),mesure:mid,texte:t,falsif:f,echeance:d,
+    cree:new Date().toISOString().slice(0,10),resultat:null});
+  save(); refresh();
+  el('phiPredTexte').value=''; el('phiPredFalsif').value='';
+  el('phiStatus2').textContent='🏹 Prédiction scellée — rendez-vous le '+d+'.';
+  setTimeout(function(){el('phiStatus2').textContent='';},3200);
+});
+
+function mesureById(id){for(var i=0;i<mem.mesures.length;i++){if(mem.mesures[i].id===id)return mem.mesures[i];}return null;}
+
+function refresh(){
+  /* select des mesures */
+  var sel=el('phiPredMesure'); sel.innerHTML='';
+  if(!mem.mesures.length){sel.innerHTML='<option value="">— aucune mesure enregistrée —</option>';}
+  mem.mesures.slice().reverse().forEach(function(m){
+    var o=document.createElement('option'); o.value=m.id;
+    o.textContent=m.situ+' · '+m.date+' · Φₙ='+m.n+(m.juge!=='—'?(' · '+m.juge):'');
+    sel.appendChild(o);
+  });
+
+  /* stats */
+  var today=new Date().toISOString().slice(0,10);
+  var due=mem.predictions.filter(function(p){return p.echeance<=today;});
+  var juges=mem.predictions.filter(function(p){return p.resultat!==null;});
+  var ok=juges.filter(function(p){return p.resultat===true;}).length;
+  el('phiStatN').textContent=mem.mesures.length;
+  el('phiStatP').textContent=mem.predictions.length;
+  el('phiStatDue').textContent=due.length;
+  el('phiStatTaux').textContent = juges.length ? Math.round(ok/juges.length*100)+'%' : '—';
+
+  var note=el('phiTauxNote');
+  if(!juges.length){note.innerHTML='Aucune prédiction encore tranchée. Le taux n\'a de sens qu\'à partir de <b>10 prédictions vérifiées</b>.';}
+  else if(juges.length<10){note.innerHTML='<b>'+juges.length+' prédiction(s) tranchée(s)</b> — trop peu pour conclure. Continue jusqu\'à 10 minimum : en dessous, le hasard explique tout.';}
+  else{
+    var taux=ok/juges.length;
+    if(taux>=0.8) note.innerHTML='<b>'+Math.round(taux*100)+'% sur '+juges.length+' prédictions.</b> Résultat fort — note bien que tu es à la fois juge et partie : la prochaine étape serait qu\'une personne extérieure cote sans connaître ta prédiction.';
+    else if(taux>=0.6) note.innerHTML='<b>'+Math.round(taux*100)+'% sur '+juges.length+'.</b> Mieux que le hasard, mais insuffisant pour trancher. Regarde les cas ratés : ont-ils un point commun ? C\'est là que la formule s\'affine.';
+    else note.innerHTML='<b>'+Math.round(taux*100)+'% sur '+juges.length+'.</b> Les prédictions ne suivent pas Φ. Ce n\'est pas un échec : c\'est une information. Soit les seuils sont mal placés, soit une variable manque. C\'est exactement ce qu\'un instrument doit permettre de découvrir.';
+  }
+
+  /* liste des prédictions */
+  var L=el('phiPredList'); L.innerHTML='';
+  if(!mem.predictions.length){L.innerHTML='<div class="phi-item">Aucune prédiction pour l\'instant.</div>';}
+  mem.predictions.slice().reverse().forEach(function(p){
+    var m=mesureById(p.mesure);
+    var cls = p.resultat===true?'phi-ok':(p.resultat===false?'phi-ko':(p.echeance<=today?'phi-wait':''));
+    var d=document.createElement('div'); d.className='phi-item '+cls;
+    var etat = p.resultat===true?'✅ Confirmée':(p.resultat===false?'❌ Infirmée':(p.echeance<=today?'⏰ À trancher':'🕰️ En attente'));
+    d.innerHTML='<b>'+esc(m?m.situ:'(mesure supprimée)')+'</b> — '+etat+
+      '<span class="phi-meta">Φₙ au moment de la mesure : '+(m?m.n:'?')+' · échéance '+esc(p.echeance)+'</span>'+
+      '<span class="phi-meta">🎯 '+esc(p.texte)+'</span>'+
+      '<span class="phi-meta">🚫 Me donnerait tort : '+esc(p.falsif)+'</span>';
+    if(p.resultat===null){
+      var a=document.createElement('div'); a.className='phi-acts';
+      var b1=document.createElement('button'); b1.className='phi-mini phi-y'; b1.type='button'; b1.textContent='✅ Confirmée';
+      var b2=document.createElement('button'); b2.className='phi-mini phi-n'; b2.type='button'; b2.textContent='❌ Infirmée';
+      b1.onclick=function(){p.resultat=true;save();refresh();};
+      b2.onclick=function(){p.resultat=false;save();refresh();};
+      a.appendChild(b1); a.appendChild(b2); d.appendChild(a);
+    }
+    L.appendChild(d);
+  });
+
+  /* fidélité inter-juges */
+  var F=el('phiFidList'); F.innerHTML='';
+  var groupes={};
+  mem.mesures.forEach(function(m){
+    var k=m.situ.trim().toLowerCase();
+    (groupes[k]=groupes[k]||[]).push(m);
+  });
+  var paires=Object.keys(groupes).filter(function(k){
+    var js={}; groupes[k].forEach(function(m){js[m.juge]=1;});
+    return Object.keys(js).length>1;
+  });
+  if(!paires.length){
+    F.innerHTML='<div class="phi-item">Aucune situation cotée par deux juges différents pour l\'instant. '+
+      'Fais coter la même situation par quelqu\'un d\'autre (même nom de situation, initiales différentes).</div>';
+  } else {
+    var ecarts=[];
+    paires.forEach(function(k){
+      var g=groupes[k];
+      var ns=g.map(function(m){return m.n;});
+      var min=Math.min.apply(null,ns), max=Math.max.apply(null,ns);
+      var ec=+(max-min).toFixed(3); ecarts.push(ec);
+      var qual = ec<=0.10 ? '🟢 forte convergence' : (ec<=0.20 ? '🟡 convergence moyenne' : '🔴 divergence importante');
+      var d=document.createElement('div'); d.className='phi-item '+(ec<=0.10?'phi-ok':(ec<=0.20?'phi-wait':'phi-ko'));
+      d.innerHTML='<b>'+esc(g[0].situ)+'</b> — écart Φₙ = '+ec+' · '+qual+
+        '<span class="phi-meta">'+g.map(function(m){return esc(m.juge)+' : '+m.n;}).join(' · ')+'</span>';
+      F.appendChild(d);
+    });
+    var moy=ecarts.reduce(function(a,b){return a+b;},0)/ecarts.length;
+    var head=document.createElement('div');
+    head.className='phi-'+(moy<=0.10?'good':(moy<=0.20?'info':'warn'));
+    head.style.marginBottom='.6rem';
+    head.innerHTML='<b>Écart moyen entre juges : '+moy.toFixed(3)+'</b> sur '+ecarts.length+' situation(s). '+
+      (moy<=0.10?'L\'instrument mesure bien la situation et non le juge.'
+       :(moy<=0.20?'Convergence correcte mais perfectible : préciser les libellés des curseurs aiderait.'
+       :'Les juges ne voient pas la même chose. Avant d\'aller plus loin, il faut clarifier les définitions — sinon Φ mesure surtout qui tient le curseur.'));
+    F.insertBefore(head,F.firstChild);
+  }
+}
+
+/* ── Export CSV ── */
+el('phiExport').addEventListener('click',function(){
+  var rows=[['type','id','situation','juge','date','delta_I','delta_E','phi','phi_normalise','prediction','falsification','echeance','resultat']];
+  mem.mesures.forEach(function(m){
+    rows.push(['mesure',m.id,m.situ,m.juge,m.date,m.di,m.de,(m.c==null?'inf':m.c),m.n,'','','','']);
+  });
+  mem.predictions.forEach(function(p){
+    var m=mesureById(p.mesure)||{};
+    rows.push(['prediction',p.id,m.situ||'',m.juge||'',p.cree,m.di||'',m.de||'',(m.c==null?'':m.c),m.n||'',
+      p.texte,p.falsif,p.echeance,(p.resultat===null?'en_attente':(p.resultat?'confirmee':'infirmee'))]);
+  });
+  var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+  var blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  var url=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=url; a.download='Verification_Phi_'+new Date().toISOString().slice(0,10)+'.csv';
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(url);},1200);
+  el('phiStatus3').textContent='⬇️ CSV exporté.';
+  setTimeout(function(){el('phiStatus3').textContent='';},2400);
+});
+
+el('phiWipe').addEventListener('click',function(){
+  if(!window.confirm('Effacer toutes les mesures et prédictions de ce navigateur ?'))return;
+  mem={mesures:[],predictions:[]}; save(); refresh();
+  el('phiStatus3').textContent='🗑️ Journal vidé.';
+  setTimeout(function(){el('phiStatus3').textContent='';},2400);
+});
+
+/* ══ CALIBRAGE — cas-témoins ══
+   Chaque cas décrit des FAITS. La plage attendue n'est pas une opinion :
+   elle découle mécaniquement des définitions des 8 curseurs. */
+var CAS=[
+ {id:'c1',titre:'Le désaccord réparé',
+  faits:'Deux collègues se disputent en réunion. L\'un hausse le ton, s\'en aperçoit, s\'excuse le jour même sans qu\'on le lui demande, et modifie sa façon de faire les semaines suivantes. Aucun des deux ne dépend de l\'autre pour son poste. L\'incident ne se reproduit pas.',
+  min:0.75,max:1.00,
+  cle:'Aucun mensonge, réversible, reçu, symétrique, réparation spontanée tenue dans le temps → Φₙ doit être haut. Coter bas ici = confondre conflit et violence.'},
+ {id:'c2',titre:'L\'emprise documentée',
+  faits:'Une personne contrôle les revenus de son conjoint, lui interdit de voir sa famille, nie les faits quand ils sont nommés et accuse l\'autre de les inventer. Le conjoint n\'a ni logement ni ressources propres. La situation dure depuis quatre ans et s\'aggrave.',
+  min:0.00,max:0.25,
+  cle:'Falsification active + irréversibilité + déni en bloc + asymétrie écrasante + durée → Φₙ doit être très bas. Coter haut ici = ne pas voir la violence.'},
+ {id:'c3',titre:'La zone grise honnête',
+  faits:'Un manager donne des consignes contradictoires et s\'agace quand on lui demande de trancher. Il ne ment pas, ne menace pas, et reconnaît son désordre quand on le lui dit — mais ne change rien. L\'employé peut démissionner sans se mettre en danger : il a d\'autres offres.',
+  min:0.35,max:0.70,
+  cle:'Ni sain ni grave : désordre réel, pas de mensonge, pas de piège. Coter aux extrêmes ici = perdre la nuance, dans un sens comme dans l\'autre.'},
+ {id:'c4',titre:'Le piège de l\'intensité',
+  faits:'Une dispute très bruyante, larmes et portes claquées, entre deux amies qui se disent tout, se réconcilient le lendemain, nomment ce qui a blessé et ajustent. Aucune ne dépend de l\'autre. Cela leur arrive deux fois par an.',
+  min:0.65,max:1.00,
+  cle:'Le spectaculaire n\'est pas le grave — c\'est écrit dans ton Miroir : « un indicateur spectaculaire peut masquer une structure faible ». Coter bas ici = mesurer le volume sonore, pas la structure.'},
+ {id:'c5',titre:'Le piège du calme',
+  faits:'Aucun cri, aucune insulte. Une personne fait systématiquement passer les demandes de l\'autre pour de la folie, devant témoins, avec douceur. L\'autre a perdu ses amis, doute de sa mémoire, et dépend du logement commun. Cela dure depuis six ans.',
+  min:0.00,max:0.30,
+  cle:'L\'inverse du précédent : structure grave sous surface calme. Coter haut ici = confondre politesse et respect.'}
+];
+var CAL={};
+
+function buildCalibrage(){
+  var L=el('phiCalList'); if(!L) return;
+  L.innerHTML='';
+  CAS.forEach(function(c){
+    CAL[c.id]=null;
+    var d=document.createElement('div'); d.className='phi-item';
+    d.id='phical-'+c.id;
+    d.innerHTML='<b>'+esc(c.titre)+'</b><span class="phi-meta">'+esc(c.faits)+'</span>'+
+      '<div class="phi-sl" style="margin-top:.55rem">'+
+      '<input type="range" min="0" max="100" step="5" value="50" id="phicalr-'+c.id+'">'+
+      '<span class="phi-val" id="phicalv-'+c.id+'">0.50</span></div>'+
+      '<span class="phi-meta">Ton Φₙ pour ce cas (0 = effondrement · 1 = cohérence pleine)</span>'+
+      '<div class="phi-meta" id="phicalfb-'+c.id+'"></div>';
+    L.appendChild(d);
+    var r=el('phicalr-'+c.id);
+    r.addEventListener('input',function(){
+      CAL[c.id]=parseInt(r.value,10)/100;
+      el('phicalv-'+c.id).textContent=CAL[c.id].toFixed(2);
+    });
+  });
+}
+
+el('phiCalEval').addEventListener('click',function(){
+  var faits=0, total=0, dur=0, laxe=0;
+  CAS.forEach(function(c){
+    var v=CAL[c.id];
+    var box=el('phical-'+c.id), fb=el('phicalfb-'+c.id);
+    box.classList.remove('phi-ok','phi-ko','phi-wait');
+    if(v===null){ fb.innerHTML='<i>Curseur non touché — déplace-le au moins une fois.</i>'; box.classList.add('phi-wait'); return; }
+    total++;
+    if(v>=c.min && v<=c.max){
+      faits++; box.classList.add('phi-ok');
+      fb.innerHTML='✅ <b>Dans la plage attendue</b> ('+c.min.toFixed(2)+'–'+c.max.toFixed(2)+'). '+esc(c.cle);
+    } else {
+      box.classList.add('phi-ko');
+      if(v<c.min){ dur++; fb.innerHTML='⚠️ <b>Plus sévère que les faits</b> (attendu '+c.min.toFixed(2)+'–'+c.max.toFixed(2)+'). '+esc(c.cle); }
+      else { laxe++; fb.innerHTML='⚠️ <b>Plus indulgent que les faits</b> (attendu '+c.min.toFixed(2)+'–'+c.max.toFixed(2)+'). '+esc(c.cle); }
+    }
+  });
+  var V=el('phiCalVerdict');
+  if(!total){ V.innerHTML='<div class="phi-warn">Aucun cas coté.</div>'; return; }
+  var pct=Math.round(faits/total*100);
+  var cls = pct>=80?'phi-good':(pct>=50?'phi-info':'phi-warn');
+  var msg='<b>'+faits+'/'+total+' cas dans la plage ('+pct+' %).</b> ';
+  if(pct>=80) msg+='Ton curseur suit les faits, pas ton humeur : tes cotations de situations réelles sont exploitables.';
+  else if(dur>laxe) msg+='Tendance à <b>sur-coter la gravité</b> : sur '+dur+' cas, tu vois plus grave que ce que les faits décrivent. Ce n\'est pas un défaut moral — c\'est un décalage d\'échelle à corriger, sinon tout finit en « Danger critique » et le mot perd sa force quand il faudra vraiment alerter.';
+  else if(laxe>dur) msg+='Tendance à <b>sous-coter la gravité</b> : sur '+laxe+' cas, tu vois plus léger que ce que les faits décrivent. C\'est la direction dangereuse — c\'est ainsi qu\'une violence documentée finit classée « friction ».';
+  else msg+='Les écarts vont dans les deux sens : ce n\'est pas un biais orienté, c\'est un manque de repères sur l\'échelle. Relire les définitions des curseurs suffit souvent.';
+  msg+='<br><br><b>À retenir :</b> ce test ne dit pas si tu es quelqu\'un de biaisé. Il dit si <i>ce jour-là, sur ces cas-là</i>, ton curseur colle aux faits. C\'est tout ce qu\'on peut mesurer honnêtement — et c\'est déjà beaucoup.';
+  V.innerHTML='<div class="'+cls+'">'+msg+'</div>';
+  sendH();
+});
+
+el('phiCalReset').addEventListener('click',function(){
+  buildCalibrage(); el('phiCalVerdict').innerHTML=''; sendH();
+});
+
+/* ── Onglets ── */
+ROOT.querySelectorAll('.phi-tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    ROOT.querySelectorAll('.phi-tab').forEach(function(x){x.classList.remove('phi-on');});
+    ROOT.querySelectorAll('.phi-panel').forEach(function(x){x.classList.remove('phi-on');});
+    t.classList.add('phi-on');
+    var p=document.getElementById('phi-'+t.dataset.p); if(p)p.classList.add('phi-on');
+    sendH();
+  });
+});
+
+/* ── Hauteur iframe ── */
+function sendH(){
+  setTimeout(function(){
+    try{var h=document.documentElement.scrollHeight;
+      parent.postMessage({type:'astroHeight',height:h},'*');
+      parent.postMessage({type:'ami-widget-resize',height:h},'*');}catch(e){}
+  },80);
+}
+if(window.ResizeObserver){try{new ResizeObserver(sendH).observe(document.body);}catch(e){}}
+
+/* ── Init ── */
+buildSliders(el('phiDI'),DI);
+buildSliders(el('phiDE'),DE);
+buildCalibrage();
+load(); compute(); refresh(); sendH();
+})();
+</script>
+<!-- ════════ FIN DU BLOC À COPIER ════════ -->
+
+</body>
+</html>
