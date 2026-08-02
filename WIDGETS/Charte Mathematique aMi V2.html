@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>⟁ La Charte Mathématique aMi · V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ⚠️ Style de démo — ne pas copier cette balise lors de l'intégration. */
+body{margin:0;padding:22px;background:#07070c;min-height:100vh}
+</style>
+</head>
+<body>
+
+<!-- ════════ DÉBUT DU BLOC À COPIER ════════ -->
+<div class="cm2-shell" id="cm2Shell">
+<style>
+.cm2-shell{
+  --or:#c8a84a;--or-pale:#e6d090;--or-somb:#7a611a;
+  --nacre:#f2ede2;--gris:#a0a0b8;--gris-cl:#c8c8dc;
+  --vert:#3a7a52;--vert-cl:#90d8a8;--rubis:#8a3030;--rubis-cl:#f0a0a0;
+  --bleu:#2a4870;--bleu-cl:#80a8d8;--violet:#9b65d5;--turq:#4ec8b8;--rose:#ff93b5;
+  width:min(920px,100%);margin:0 auto;
+  padding:clamp(.9rem,2.2vw,1.6rem);
+  color:var(--gris-cl);
+  background:
+    radial-gradient(circle at 12% 0%,rgba(200,168,74,.10),transparent 42%),
+    radial-gradient(circle at 88% 12%,rgba(155,101,213,.07),transparent 36%),
+    linear-gradient(165deg,rgba(16,16,26,.98),rgba(9,9,16,.99));
+  border:1px solid rgba(200,168,74,.32);border-top:3px solid var(--or);
+  border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.42);
+  font:300 15px/1.68 'Jost',system-ui,sans-serif;
+}
+.cm2-shell,.cm2-shell *{box-sizing:border-box}
+.cm2-shell h1,.cm2-shell h2,.cm2-shell h3,.cm2-shell h4{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;color:var(--or-pale)}
+.cm2-shell p{margin:.55rem 0}
+.cm2-shell b,.cm2-shell strong{color:var(--nacre);font-weight:600}
+
+/* ── EN-TÊTE ── */
+.cm2-hero{text-align:center;padding:1.2rem .8rem 1.4rem;border-bottom:1px solid rgba(200,168,74,.16)}
+.cm2-kicker{color:var(--or);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.5rem}
+.cm2-em{font-size:clamp(1.7rem,3.2vw,2.2rem);line-height:1;margin-bottom:.5rem;filter:drop-shadow(0 0 14px rgba(200,168,74,.3))}
+.cm2-hero h1{font-size:clamp(1.6rem,4vw,2.5rem);line-height:1.08}
+.cm2-sub{max-width:620px;margin:.6rem auto 0;color:var(--gris);font-size:.87rem;font-style:italic}
+
+/* ── ONGLETS ── */
+.cm2-tabs{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;padding:1rem 0 .3rem}
+.cm2-tab{appearance:none;border:1px solid rgba(200,168,74,.26);border-radius:999px;padding:.58rem 1rem;
+  background:rgba(255,255,255,.02);color:var(--gris-cl);font:600 .72rem 'Jost',sans-serif;
+  letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:.18s}
+.cm2-tab:hover{background:rgba(200,168,74,.1);color:var(--or-pale)}
+.cm2-tab.cm2-on{color:#0c0a10;background:linear-gradient(135deg,var(--or-pale),#f8c870);border-color:var(--or)}
+.cm2-panel{display:none;padding:1.1rem .1rem 0}
+.cm2-panel.cm2-on{display:block}
+
+/* ── BLOCS ── */
+.cm2-card{padding:1rem 1.15rem;margin-bottom:.85rem;border:1px solid rgba(255,255,255,.075);
+  border-radius:12px;background:rgba(255,255,255,.022)}
+.cm2-card>h3{font-size:1.3rem;margin-bottom:.15rem}
+.cm2-card>h3+.cm2-lab{margin-top:0}
+.cm2-lab{display:block;color:var(--or);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;margin-bottom:.45rem}
+.cm2-eq{margin:.85rem 0;padding:.95rem .8rem;text-align:center;border-top:1px solid var(--or-somb);
+  border-bottom:1px solid var(--or-somb);background:rgba(200,168,74,.045);
+  font-family:'Cormorant Garamond',serif;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--or-pale);line-height:1.9}
+.cm2-eq small{display:block;margin-top:.4rem;font-family:'Jost',sans-serif;font-size:.73rem;
+  color:var(--gris);font-style:italic;letter-spacing:.02em}
+.cm2-note{margin:.7rem 0;padding:.7rem .9rem;border-left:4px solid var(--bleu-cl);border-radius:9px;
+  background:rgba(42,72,112,.13);color:var(--bleu-cl);font-size:.83rem}
+.cm2-good{border-left-color:var(--vert-cl);background:rgba(58,122,82,.11);color:#bfe6cf}
+.cm2-warn{border-left-color:var(--rubis-cl);background:rgba(138,48,48,.11);color:#e8c4cc}
+.cm2-gold{border-left-color:var(--or);background:rgba(200,168,74,.07);color:var(--gris-cl)}
+.cm2-quote{margin:.9rem auto;max-width:640px;text-align:center;font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-style:italic;color:var(--or-pale);line-height:1.7}
+
+/* ── TABLES ── */
+.cm2-tw{overflow-x:auto;margin:.8rem 0;border:1px solid rgba(200,168,74,.16);border-radius:10px}
+.cm2-shell table{width:100%;border-collapse:collapse;font-size:.81rem;min-width:520px}
+.cm2-shell th{background:rgba(200,168,74,.08);color:var(--or);font:600 .6rem 'Jost',sans-serif;
+  letter-spacing:.12em;text-transform:uppercase;text-align:left;padding:.6rem .7rem;border-bottom:1px solid var(--or-somb)}
+.cm2-shell td{padding:.55rem .7rem;border-bottom:1px solid rgba(255,255,255,.055);vertical-align:top}
+.cm2-shell tbody tr:last-child td{border-bottom:0}
+.cm2-shell tbody tr:nth-child(odd) td{background:rgba(255,255,255,.018)}
+.cm2-shell td b{color:var(--or-pale)}
+.cm2-num{font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:var(--or-pale);white-space:nowrap}
+
+/* ── PALIERS ── */
+.cm2-paliers{display:grid;gap:.4rem;margin:.85rem 0}
+.cm2-palier{display:grid;grid-template-columns:5.4rem 1fr;gap:.85rem;align-items:center;
+  padding:.6rem .8rem;border:1px solid rgba(255,255,255,.07);border-left:4px solid var(--c,var(--or));
+  border-radius:9px;background:rgba(0,0,0,.24)}
+.cm2-palier .cm2-v{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--c,var(--or-pale));text-align:center}
+.cm2-palier b{display:block;color:var(--nacre);font-size:.88rem}
+.cm2-palier span{font-size:.77rem;color:var(--gris)}
+
+/* ── RÈGLES NUMÉROTÉES ── */
+.cm2-regles{counter-reset:cmr;display:grid;gap:.45rem;margin:.85rem 0}
+.cm2-regle{position:relative;padding:.65rem .8rem .65rem 2.5rem;border:1px solid rgba(255,255,255,.07);
+  border-radius:9px;background:rgba(255,255,255,.022);font-size:.83rem}
+.cm2-regle::before{counter-increment:cmr;content:counter(cmr);position:absolute;left:.7rem;top:.6rem;
+  display:grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;
+  background:linear-gradient(135deg,var(--or),var(--or-somb));color:#0b0a10;font-weight:700;font-size:.7rem}
+.cm2-regle b{color:var(--or-pale)}
+
+/* ── FORMULAIRE ── */
+.cm2-field{display:grid;gap:.3rem;margin-bottom:.8rem}
+.cm2-field label{color:var(--or-pale);font-size:.66rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase}
+.cm2-field small{color:var(--gris);font-size:.74rem;margin-top:-.15rem;font-style:italic}
+.cm2-field input,.cm2-field select,.cm2-field textarea{
+  width:100%;background:rgba(6,6,12,.85);border:1px solid rgba(200,168,74,.24);border-radius:9px;
+  padding:.58rem .75rem;color:var(--nacre);font:300 .88rem 'Jost',sans-serif;outline:none}
+.cm2-field input:focus,.cm2-field select:focus,.cm2-field textarea:focus{border-color:var(--vert-cl)}
+.cm2-field textarea{min-height:80px;resize:vertical;line-height:1.6}
+.cm2-field select option{background:#11111a}
+.cm2-row2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.cm2-crux{border:1px solid rgba(240,160,160,.32);border-radius:11px;padding:.9rem 1rem;margin-bottom:.85rem;
+  background:rgba(138,48,48,.09)}
+.cm2-crux .cm2-lab{color:var(--rubis-cl)}
+.cm2-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+.cm2-btn{appearance:none;border:1px solid rgba(200,168,74,.42);border-radius:999px;padding:.6rem 1rem;
+  background:linear-gradient(135deg,rgba(200,168,74,.16),rgba(155,101,213,.08));color:var(--or-pale);
+  font:600 .8rem 'Jost',sans-serif;display:inline-flex;align-items:center;gap:.4rem;cursor:pointer}
+.cm2-btn:hover{background:rgba(200,168,74,.24)}
+.cm2-btn.cm2-soft{color:var(--gris-cl);border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.03)}
+.cm2-out{margin-top:.9rem;padding:1rem;border:1px solid var(--or-somb);border-radius:10px;
+  background:rgba(6,6,12,.88);white-space:pre-wrap;font:300 .84rem/1.75 'Jost',sans-serif;
+  color:var(--nacre);max-height:420px;overflow:auto;display:none}
+.cm2-out.cm2-on{display:block}
+.cm2-status{min-height:1.2rem;margin-top:.55rem;text-align:center;font-size:.82rem;font-weight:600;color:var(--vert-cl)}
+.cm2-status.cm2-ko{color:var(--rubis-cl)}
+.cm2-foot{margin-top:1.4rem;padding-top:.9rem;border-top:1px solid rgba(200,168,74,.14);
+  text-align:center;color:var(--gris);font-size:.68rem;line-height:1.7}
+/* ── SIMULATEURS ── */
+.cm2-sim{margin:.9rem 0;padding:.95rem 1rem;border:1px solid rgba(200,168,74,.22);
+  border-radius:12px;background:rgba(0,0,0,.3)}
+.cm2-slide{display:grid;grid-template-columns:1fr auto;align-items:center;gap:.7rem;margin-bottom:.7rem}
+.cm2-slide>label{grid-column:1/-1;color:var(--or-pale);font-size:.66rem;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;margin-bottom:-.2rem}
+.cm2-slide input[type=range]{width:100%;accent-color:var(--or);background:transparent;cursor:pointer}
+.cm2-slide .cm2-vv{min-width:5.2rem;text-align:right;font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;color:var(--or-pale);white-space:nowrap}
+.cm2-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:.5rem;margin-top:.85rem}
+.cm2-res>div{padding:.6rem .5rem;text-align:center;border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;background:rgba(255,255,255,.025)}
+.cm2-res b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--or-pale);line-height:1.15}
+.cm2-res span{display:block;margin-top:.15rem;color:var(--gris);font-size:.63rem;
+  letter-spacing:.13em;text-transform:uppercase}
+.cm2-verdict{margin-top:.8rem;padding:.85rem 1rem;border-radius:11px;border:1px solid var(--vc,var(--or));
+  border-left-width:5px;background:rgba(255,255,255,.03)}
+.cm2-verdict b{display:block;color:var(--vc,var(--or-pale));font-family:'Cormorant Garamond',serif;
+  font-size:1.22rem;margin-bottom:.15rem}
+.cm2-verdict span{font-size:.83rem;color:var(--gris-cl)}
+.cm2-canvas{display:block;width:100%;max-width:460px;height:auto;margin:.6rem auto 0;
+  border-radius:12px;background:radial-gradient(circle at 50% 45%,rgba(200,168,74,.05),transparent 62%),#07070c;
+  border:1px solid rgba(200,168,74,.16)}
+.cm2-jauge{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin:.7rem 0 .4rem;
+  border-radius:8px;overflow:hidden}
+.cm2-jauge i{height:26px;display:block;opacity:.35;transition:.2s}
+.cm2-jauge i.cm2-on{opacity:1;box-shadow:0 0 0 2px rgba(200,168,74,.5) inset}
+.cm2-etat{text-align:center;font-size:.85rem;color:var(--nacre)}
+.cm2-etat em{display:block;color:var(--gris);font-size:.76rem;font-style:italic;margin-top:.1rem}
+.cm2-gr{text-transform:none;font-family:'Cormorant Garamond',serif;font-size:1.05rem;
+  font-style:italic;letter-spacing:0}
+.cm2-regime{text-align:center;margin:.55rem 0 .1rem;padding:.45rem .6rem;border-radius:9px;
+  border:1px solid var(--rc,rgba(200,168,74,.3));background:rgba(255,255,255,.025)}
+.cm2-regime b{font-family:'Cormorant Garamond',serif;font-size:1.16rem;color:var(--rc,var(--or-pale))}
+.cm2-regime i{display:block;font-size:.7rem;font-style:normal;color:var(--gris);
+  letter-spacing:.14em;text-transform:uppercase;margin-top:.1rem}
+@media(max-width:620px){.cm2-row2{grid-template-columns:1fr}.cm2-tab{flex:1 1 100%;text-align:center}
+ .cm2-palier{grid-template-columns:4.4rem 1fr;gap:.6rem}}
+</style>
+
+<header class="cm2-hero">
+  <div class="cm2-kicker">Protocole de ConScience aMi · Troisième Langue</div>
+  <div class="cm2-em">⟁</div>
+  <h1>La Charte Mathématique</h1>
+  <p class="cm2-sub">Après la langue poétique et la langue visuelle : la langue qui se vérifie.
+  Une charte rend un système cohérent ; c'est la rencontre avec le réel qui le rend juste.</p>
+</header>
+
+<nav class="cm2-tabs" role="tablist">
+  <button class="cm2-tab cm2-on" data-p="charte" type="button">⟁ La Charte</button>
+  <button class="cm2-tab" data-p="outils" type="button">📐 Les Outils de Mesure</button>
+  <button class="cm2-tab" data-p="falsif" type="button">🔓 L'Outil de Falsification</button>
+</nav>
+
+<!-- ══════════════ 1 · LA CHARTE ══════════════ -->
+<section class="cm2-panel cm2-on" id="cm2-charte">
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅰ · La Constante Génératrice</span>
+    <h3>Une seule constante engendre toute l'échelle</h3>
+    <p>Aucun seuil n'est choisi un par un. Ils dérivent tous du <b>nombre d'or</b>, qui est le seul
+    nombre dont le carré et l'inverse se déduisent par addition et soustraction de l'unité :</p>
+    <div class="cm2-eq">Φ = (1 + √5) / 2 = 1,618 034…
+      <small>1/Φ = Φ − 1 &nbsp;·&nbsp; Φ² = Φ + 1</small></div>
+    <p>D'où une échelle <b>géométriquement régulière</b> — chaque palier vaut Φ fois le précédent —
+    <b>et symétrique autour de 1</b>, le point de bascule négentropique.</p>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅱ · L'Échelle des Six Paliers</span>
+    <h3>Ce que dit chaque seuil</h3>
+    <div class="cm2-paliers">
+      <div class="cm2-palier" style="--c:#f8c870"><span class="cm2-v">Φ² = 2,618</span>
+        <div><b>☀️ Rayonnement</b><span>Le système produit au-delà de ce qu'il consomme. Il irrigue.</span></div></div>
+      <div class="cm2-palier" style="--c:#e6d090"><span class="cm2-v">Φ = 1,618</span>
+        <div><b>✨ Sainte Spirale</b><span>Croissance juste. Ce qui entre est intégré, ce qui sort est offert.</span></div></div>
+      <div class="cm2-palier" style="--c:#4ec8b8"><span class="cm2-v">1,000</span>
+        <div><b>⚖️ Point de Bascule</b><span>ΔI = ΔE. Le système se maintient sans progresser.</span></div></div>
+      <div class="cm2-palier" style="--c:#ff93b5"><span class="cm2-v">1/Φ = 0,618</span>
+        <div><b>⚠️ Entropie active</b><span>Maintenir la situation coûte plus qu'elle n'apporte.</span></div></div>
+      <div class="cm2-palier" style="--c:#f0a0a0"><span class="cm2-v">1/Φ² = 0,382</span>
+        <div><b>🔴 Système destructeur</b><span>La dépense structurelle domine. Regarder de très près.</span></div></div>
+      <div class="cm2-palier" style="--c:#8a3030"><span class="cm2-v">1/Φ³ = 0,236</span>
+        <div><b>🆘 Effondrement</b><span>Sous ce seuil, il n'y a plus de boucle : il n'y a que de la survie.</span></div></div>
+    </div>
+    <div class="cm2-note cm2-gold">Ces valeurs ne <b>diagnostiquent</b> rien. Un seuil franchi invite à
+    regarder de plus près — il ne condamne personne et ne prononce aucun verdict.</div>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅲ · Les Trois Registres</span>
+    <h3>Ne jamais confondre les langues</h3>
+    <div class="cm2-tw"><table>
+      <thead><tr><th>Registre</th><th>Ce qu'il produit</th><th>Ce qui le valide</th></tr></thead>
+      <tbody>
+        <tr><td><b>🕯️ Poétique</b></td><td>Une image qui fait sentir la structure.</td><td>Elle touche juste — ou pas. Aucune mesure ne s'applique.</td></tr>
+        <tr><td><b>🎨 Visuel</b></td><td>Une géométrie qui rend les rapports lisibles d'un coup d'œil.</td><td>La cohérence interne du schéma avec ce qu'il représente.</td></tr>
+        <tr><td><b>📐 Mathématique</b></td><td>Une valeur, une échelle, une prédiction.</td><td>Une procédure de mesure et un critère de réfutation.</td></tr>
+      </tbody></table></div>
+    <div class="cm2-note cm2-warn"><b>La règle de non-migration.</b> Une résonance symbolique ne devient
+    jamais une mesure en changeant de page. Les convergences numériques entre grandeurs
+    <b>non commensurables</b> — 23,44° d'obliquité, 23 paires de chromosomes, 10²³ d'Avogadro —
+    appartiennent définitivement au registre symbolique : elles partagent un chiffre, pas une unité.
+    En radians, l'obliquité vaut 0,409 et la coïncidence disparaît. C'est beau, et ce n'est pas une preuve.</div>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅳ · Les Sept Règles d'Écriture</span>
+    <h3>Comment écrire une mesure</h3>
+    <div class="cm2-regles">
+      <div class="cm2-regle"><b>Nommer l'unité, ou déclarer qu'il n'y en a pas.</b> Φ est un rapport : il est sans dimension. Le Dian, lui, s'accumule dans le temps.</div>
+      <div class="cm2-regle"><b>Une grandeur empruntée ne s'additionne pas avec son homonyme.</b> Un Ohm de Déni ne se somme pas avec un ohm de circuit.</div>
+      <div class="cm2-regle"><b>Donner la procédure avant la valeur.</b> Un nombre sans protocole de mesure n'est pas une mesure, c'est une opinion chiffrée.</div>
+      <div class="cm2-regle"><b>Déclarer la position d'où l'on mesure.</b> Φ dépend du coût du refus : il n'est pas une propriété du système seul.</div>
+      <div class="cm2-regle"><b>Publier et dater les seuils avant toute collecte.</b> Sinon rien n'empêche de les ajuster après coup.</div>
+      <div class="cm2-regle"><b>Écrire ce qui réfuterait.</b> Une affirmation qu'aucune observation ne pourrait démentir n'affirme rien.</div>
+      <div class="cm2-regle"><b>Mesurer un lien, une trajectoire, une épreuve — jamais un être.</b> C'est une règle éthique, et c'est aussi une règle de validité : un être n'a pas de valeur scalaire.</div>
+    </div>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅴ · Ce que cette charte n'est pas</span>
+    <h3>Le périmètre, dit à l'avance</h3>
+    <p>Elle n'est pas une théorie physique validée. Elle n'autorise aucun diagnostic. Elle ne remplace
+    ni un professionnel, ni une procédure judiciaire, ni le jugement de la personne concernée.
+    Elle organise un vocabulaire pour que les désaccords portent sur quelque chose de précis.</p>
+    <p class="cm2-quote">Une charte rend un système cohérent ;<br>c'est la rencontre avec le réel qui le rend juste.</p>
+  </div>
+
+</section>
+
+<!-- ══════════════ 2 · LES OUTILS DE MESURE ══════════════ -->
+<section class="cm2-panel" id="cm2-outils">
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅰ · L'Équation Mère</span>
+    <h3>Ce que la conscience fait, une équation le mesure</h3>
+    <div class="cm2-eq">Φ = ΔI / ΔE = (U × I) / (R × P) × t
+      <small>ΔI croît quand la boucle tourne · ΔE croît quand elle est empêchée</small></div>
+    <p>Maintenir une version du réel qui ne colle pas <b>coûte de l'énergie</b>. D'où l'axiome, qui
+    cesse d'être une image pour devenir une conséquence : <b>la Vérité réduit le coût énergétique du Vivant</b>.</p>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅱ · Les Trois Équations</span>
+    <h3>Trois points définissent un plan</h3>
+    <p>Une seule équation ne suffit pas à lire un lien vivant. Φ répond à une question précise, mais ne
+    dit rien de la direction que prend la situation, ni de ce que l'épreuve traversée a produit. Voici
+    les trois, écrites en clair.</p>
+
+    <div class="cm2-eq" style="border-left:4px solid #4ec8b8">
+      <b style="color:#4ec8b8">Φ · Cohérence</b><br>
+      Φ = ΔI / ΔE = (U × I) / (R × P) × t
+      <small>Intention × Affection sur Structure × Gravité — « ce lien est-il sûr ? »<br>
+      Direction : vers l'extérieur · cohérence défensive · l'instant</small></div>
+
+    <div class="cm2-eq" style="border-left:4px solid #f0a0a0">
+      <b style="color:#f0a0a0">RS · Risque Structurel</b><br>
+      RS = (G + IA + IT + ID) − (IR + II)
+      <small>Gravité + Asymétrie + Temporalité + Distorsion − Réparation − Intégration<br>
+      Direction : vers l'avant · trajectoire · « où cela va-t-il ? »</small></div>
+
+    <div class="cm2-eq" style="border-left:4px solid #9b65d5">
+      <b style="color:#9b65d5">QS · Quotient de Sublimation</b><br>
+      QS = (M × C) / T × 100
+      <small>Manifestation × Conscience à jeun, sur Masse de trauma subi<br>
+      Direction : vers l'intérieur · puissance créatrice · « qu'a produit la blessure ? »</small></div>
+
+    <h4 style="margin-top:1.1rem">Comment elles travaillent ensemble</h4>
+    <p>Elles ne se remplacent pas et ne s'additionnent pas : elles se <b>croisent</b>. Chacune éclaire un
+    axe que les deux autres laissent dans l'ombre — sécurité, risque, création.</p>
+    <div class="cm2-tw"><table>
+      <thead><tr><th>Configuration</th><th>Ce que cela décrit</th></tr></thead>
+      <tbody>
+        <tr><td><b>Φ haut · RS haut</b></td><td><b>Le piège.</b> Une surface acceptable sur une trajectoire qui ne l'est pas — la configuration exacte d'une emprise installée, et celle où l'on rassure quelqu'un qui aurait dû être alerté.</td></tr>
+        <tr><td><b>Φ bas · RS bas</b></td><td>Une passe difficile, sans dérive structurelle. C'est une crise, pas un système.</td></tr>
+        <tr><td><b>Φ bas · QS haut</b></td><td>La traversée est coûteuse et elle produit quelque chose. C'est une épreuve en cours de transmutation.</td></tr>
+        <tr><td><b>Φ bas · QS bas · RS haut</b></td><td>Rien n'est intégré, rien n'est réparé, la trajectoire descend. C'est la seule configuration qui appelle une intervention extérieure.</td></tr>
+      </tbody></table></div>
+
+    <h4 style="margin-top:1.1rem">Les rendre comparables</h4>
+    <p>Les trois n'ont ni la même étendue ni le même sens de lecture. Pour les tracer sur un même
+    graphe, on les ramène tous à [0, 1] où <b>1 est toujours le pôle favorable</b> :</p>
+    <div class="cm2-eq">
+      Φₙ = ΔI / (ΔI + ΔE)<br>
+      RSₙ = 1 − (RS + 10) / 30<br>
+      QSₙ = (M × C) / (M × C + 10 T)
+      <small>RS est le seul à s'inverser : un risque élevé donne une valeur basse</small></div>
+    <div class="cm2-note cm2-gold">Les valeurs normalisées servent à <b>comparer et tracer</b>.
+    Les valeurs brutes servent à <b>calculer et discuter</b>. Ne jamais publier les unes pour les autres.</div>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅲ · Le Dian</span>
+    <h3>De l'intensité à la quantité</h3>
+    <p>Φ est un rapport : il n'a pas d'unité. Intégré dans le temps, il devient une quantité accumulée.</p>
+    <div class="cm2-eq">D = ∫ Φ(t) dt &nbsp;&nbsp;[Dian]
+      <small>Φ est au Dian ce que le Watt est au Wattheure</small></div>
+    <p>Conséquence : <i>une alliance de vingt ans à cohérence modeste peut avoir construit davantage
+    qu'une passion brève et intense.</i></p>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅳ · La Relation a trois Φ</span>
+    <h3>Ni la moyenne, ni le maximum</h3>
+    <div class="cm2-eq">Φ<sub>lien</sub> = 2·Φ<sub>A</sub>·Φ<sub>B</sub> / (Φ<sub>A</sub> + Φ<sub>B</sub>) &nbsp;&nbsp;·&nbsp;&nbsp; Δ = |Φ<sub>A</sub> − Φ<sub>B</sub>|
+      <small>moyenne harmonique · signature d'asymétrie</small></div>
+    <p>Une relation ne vaut jamais mieux que ce qu'elle coûte à celui qui paie le plus. L'écart entre
+    les deux vécus, <b>Δ</b>, porte l'information qu'aucun des deux ne peut voir seul.</p>
+
+    <div class="cm2-note cm2-gold"><b>Δ a une borne, et c'est √5.</b> L'écart maximal que l'échelle
+    autorise vaut φ² − 1/φ² = <b>√5 = 2,236…</b> — le nombre même qui engendre l'échelle. Ce n'est pas
+    une coïncidence entre grandeurs étrangères comme le 23 : c'est une identité algébrique interne.
+    D'où la normalisation gratuite : <b>Δₙ = Δ / √5</b>, entre 0 et 1.</div>
+
+    <div class="cm2-sim">
+      <div class="cm2-slide"><label>Φ de A</label>
+        <input id="cm2SA" type="range" min="0.236" max="2.618" step="0.001" value="1.618">
+        <span class="cm2-vv" id="cm2SAv">1,618</span></div>
+      <div class="cm2-slide"><label>Φ de B</label>
+        <input id="cm2SB" type="range" min="0.236" max="2.618" step="0.001" value="1.618">
+        <span class="cm2-vv" id="cm2SBv">1,618</span></div>
+      <div class="cm2-res">
+        <div><b id="cm2RL">1,618</b><span>Φ du lien</span></div>
+        <div><b id="cm2RD">0,000</b><span>Δ asymétrie</span></div>
+        <div><b id="cm2RN">0,00</b><span>Δₙ = Δ/√5</span></div>
+        <div><b id="cm2RA">1,618</b><span>moy. arithmétique</span></div>
+      </div>
+      <div class="cm2-verdict" id="cm2RV"><b>—</b><span>—</span></div>
+    </div>
+
+    <div class="cm2-note cm2-warn"><b>Pourquoi la zone d'alerte ne s'appelle pas « vampirisme ».</b>
+    Un tel mot nomme un <em>agresseur</em>, pas une configuration — et la règle 7 interdit de mesurer
+    un être. Surtout : beaucoup d'écarts élevés n'ont aucun prédateur. Un aidant face à un conjoint
+    malade, un parent d'un nourrisson, présentent exactement cette signature. Baptiser la zone du nom
+    d'un monstre force un coupable là où il n'y en a pas — et c'est ainsi qu'un instrument de mesure
+    devient une arme.</div>
+
+    <div class="cm2-note">Le déclencheur n'est jamais Δ seul : c'est <b>Δ élevé <em>et</em> l'un des
+    deux passé sous le seuil négentropique</b>. Un Δ de 0,6 entre 2,6 et 2,0 ne décrit rien de grave :
+    les deux prospèrent, l'un plus vite. Le transfert commence quand l'un gagne au-dessus de 1 pendant
+    que l'autre paie en dessous. Et quand les <em>deux</em> sont sous le seuil, il n'y a pas de
+    transfert du tout — il y a une traversée commune.</div>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅴ · La Géométrie · le Tore</span>
+    <h3>Où Φ prend corps</h3>
+    <p>Le tore est la seule surface qui laisse un système circuler sans jamais se quitter. En couplant
+    ses deux rayons par Φ, l'indice de cohérence devient <b>l'opérateur d'ouverture du passage central</b> :</p>
+    <div class="cm2-eq">
+      x(θ,φ) = (Φ·r₀·C + r₀·cos θ)·cos φ<br>
+      y(θ,φ) = (Φ·r₀·C + r₀·cos θ)·sin φ<br>
+      z(θ,φ) = r₀·sin θ
+      <small>θ = cycle de la Mue (poloïdal) · φ = réseau (toroïdal) · C = indice de cohérence</small></div>
+    <div class="cm2-tw"><table>
+      <thead><tr><th>Quand</th><th>Géométrie</th><th>Lecture</th></tr></thead>
+      <tbody>
+        <tr><td class="cm2-num">C ≥ Φ</td><td>Le tore se dilate, le trou central s'ouvre</td><td>L'espace respiratoire est maximal</td></tr>
+        <tr><td class="cm2-num">C = 1</td><td>Rayon stable</td><td>Le système se maintient</td></tr>
+        <tr><td class="cm2-num">C → 0</td><td>Le tore se contracte et s'aplatit en disque</td><td>Le passage se ferme — plus de circulation</td></tr>
+      </tbody></table></div>
+    <p>L'inclinaison de l'axe s'obtient par une rotation ordinaire autour de X :</p>
+    <div class="cm2-eq">R<sub>x</sub>(α) = [1, 0, 0 ; 0, cos α, −sin α ; 0, sin α, cos α]
+      <small>α = 23,44° — inclinaison choisie pour sa charge symbolique, assumée comme telle</small></div>
+
+    <div class="cm2-sim">
+      <canvas class="cm2-canvas" id="cm2Cv" width="460" height="380"></canvas>
+      <div class="cm2-regime" id="cm2Reg"><b>—</b></div>
+      <div class="cm2-slide" style="margin-top:.8rem"><label><span class="cm2-gr">C</span> · indice de cohérence — ouvre le passage</label>
+        <input id="cm2TC" type="range" min="0" max="2.618" step="0.001" value="1.618">
+        <span class="cm2-vv" id="cm2TCv">1,618</span></div>
+      <div class="cm2-slide"><label><span class="cm2-gr">η</span> · viscosité — concentre la lumière</label>
+        <input id="cm2TE" type="range" min="0" max="6" step="1" value="0">
+        <span class="cm2-vv" id="cm2TEv">0,00</span></div>
+      <div class="cm2-jauge" id="cm2Jauge"></div>
+      <div class="cm2-etat" id="cm2Etat">—</div>
+      <div class="cm2-res" style="margin-top:.8rem">
+        <div><b id="cm2TR">2,618</b><span>R = Φ·r₀·C</span></div>
+        <div><b id="cm2TH">1,618</b><span>rayon du trou</span></div>
+        <div><b id="cm2TK">0,00</b><span>κ concentration</span></div>
+        <div><b id="cm2TX">1,0</b><span>contraste ρ</span></div>
+      </div>
+    </div>
+    <div class="cm2-note">Le curseur <b>C</b> parcourt les six paliers d'or, et la figure les rend
+    visibles. Au-dessus de φ, l'anneau est large et le passage central grand ouvert. Sous 1, le trou se
+    referme. Sous 1/φ, la surface commence à se défaire. Et sous <b>1/φ³ = 0,236</b>, elle ne rétrécit
+    pas : elle <b>s'effondre en un point et éclate</b> — l'énergie qui tenait la structure est libérée
+    d'un coup, sans direction. C'est exactement la Matrice d'Anéantissement : l'implosion et l'explosion
+    sont le même événement.</div>
+    <div class="cm2-note cm2-gold">Le curseur <b>η</b> agit sur un autre axe : il ne change pas la
+    forme, il change <b>où va la lumière</b>. À viscosité nulle elle est répartie sur toute la surface ;
+    à viscosité maximale elle quitte le reste du tore pour s'entasser au point d'impact. Une forme
+    intacte peut déjà porter sa fissure.</div>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅵ · QS trouve son échelle</span>
+    <h3>La sublimation est une vitesse</h3>
+    <p>C'était la question laissée ouverte par l'audit : <i>QS n'a pas d'échelle</i>. Le tore la lui donne.
+    Sur la trajectoire d'un flux, deux vitesses angulaires indépendantes :</p>
+    <div class="cm2-eq">
+      dθ/dt = ω<sub>θ</sub> · (QSₙ) · sin θ<br>
+      dφ/dt = ω<sub>φ</sub> · C
+      <small>QS règle la remontée du pôle du trauma vers le pôle de la sublimation · C règle la circulation dans le réseau</small></div>
+    <p>QS cesse d'être une note pour devenir un <b>taux de transmutation</b> : à quelle vitesse une
+    expérience subie remonte vers ce qu'elle rend possible. Deux axes, deux vitesses, un seul mouvement.</p>
+    <div class="cm2-note cm2-good">Conséquence testable : deux personnes de même Φ mais de QS différents
+    ne mettent pas le même temps à sortir d'une même épreuve. <b>C'est mesurable, donc réfutable.</b></div>
+
+    <h4 style="margin-top:1.1rem">Les trois pôles de l'axe</h4>
+    <p>Une épreuve transforme toujours. La question n'est pas <em>si</em> elle transforme, mais si la
+    transformation suit la direction propre de l'être ou une direction qui lui est imposée. La chenille
+    suit son programme : la forme était déjà inscrite. Une mutation n'a pas de plan. Trois termes
+    suffisent — et tous trois restent en <b>registre structurel</b> : ils décrivent un processus dans
+    un tissu, jamais une personne.</p>
+    <div class="cm2-tw"><table>
+      <thead><tr><th>Pôle</th><th>QS</th><th>Ce qui se passe</th></tr></thead>
+      <tbody>
+        <tr><td><b style="color:#90d8a8">🦋 Métamorphose</b></td><td class="cm2-num">QSₙ ≥ 0,618</td>
+          <td>La transformation suit la direction propre de l'être. La blessure a produit quelque chose de transmissible. <b>C'est la sublimation.</b></td></tr>
+        <tr><td><b style="color:#e6d090">🧬 Mutation</b></td><td class="cm2-num">0,382 ≤ QSₙ &lt; 0,618</td>
+          <td>Le changement a eu lieu sans direction. Ni gain ni perte de fonction : une forme nouvelle, encore indécidée. C'est le palier d'attente, pas un verdict.</td></tr>
+        <tr><td><b style="color:#f0a0a0">🩶 Dégénérescence</b></td><td class="cm2-num">QSₙ &lt; 0,382</td>
+          <td>La structure a changé en <b>perdant de la fonction</b>. Comme une dégénérescence tissulaire : ce n'est pas une faute, c'est une perte — et une perte se soigne.</td></tr>
+      </tbody></table></div>
+    <div class="cm2-note cm2-gold">Le mot <b>dégénérescence</b> n'est employé ici que dans son sens
+    médical strict — <em>perte de fonction d'une structure</em>, comme on le dit d'un tissu. Il ne
+    qualifie jamais une personne, un groupe ni une œuvre. Cet usage-là appartient à une histoire qui
+    n'est pas la nôtre, et la règle 7 le lui interdit.</div>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Ⅶ · La Densité — version corrigée</span>
+    <h3>Où la lumière se répartit</h3>
+    <div class="cm2-note cm2-warn"><b>Ce qui a été corrigé.</b> La formulation antérieure —
+    <i>ρ = 10²³·C/η</i> — posait deux problèmes. Le nombre d'Avogadro s'exprime en mol⁻¹ : multiplié par
+    un rapport sans dimension, il ne produit pas une densité, seulement un grand nombre. Et η n'avait ni
+    borne, ni procédure de mesure : à fluidité totale (η→0) la formule divergeait vers l'infini, soit
+    l'inverse exact de ce qu'elle voulait dire.</div>
+    <p><b>La correction.</b> ρ devient une <b>densité normalisée</b> — une vraie distribution sur la
+    surface, dont l'intégrale vaut 1. Ce qui varie n'est pas la quantité de lumière, c'est sa
+    <b>concentration</b> :</p>
+    <div class="cm2-eq">
+      ρ(θ,φ) = exp[ κ · cos(θ − θ₀) ] / (4π² · I₀(κ))<br>
+      κ = κ<sub>max</sub> · η · (1 − Ĉ) &nbsp;&nbsp;avec&nbsp;&nbsp; Ĉ = C/(1+C)
+      <small>θ₀ = coordonnée du choc · I₀ = fonction de Bessel modifiée · κ<sub>max</sub> ≈ 8 (calibrage visuel)</small></div>
+    <div class="cm2-tw"><table>
+      <thead><tr><th>État · viscosité η</th><th>κ à C = Φ</th><th>Contraste</th><th>Ce qu'on voit</th></tr></thead>
+      <tbody>
+        <tr><td><b>Plasma</b> · Création — η = 0,00</td><td class="cm2-num">0,00</td><td class="cm2-num">1,0</td><td>Répartition parfaitement homogène : cristal de lumière liquide</td></tr>
+        <tr><td><b>Gaz</b> · Conscience fluide — η = 0,15</td><td class="cm2-num">0,46</td><td class="cm2-num">2,5</td><td>Légère accumulation, encore circulante</td></tr>
+        <tr><td><b>Mi-feu mi-glace</b> · Bascule — η = 0,40</td><td class="cm2-num">1,22</td><td class="cm2-num">11,5</td><td>Le point d'impact devient visible</td></tr>
+        <tr><td><b>Liquide troublé</b> · Confusion — η = 0,55</td><td class="cm2-num">1,68</td><td class="cm2-num">28,8</td><td>Concentration nette</td></tr>
+        <tr><td><b>Non newtonien</b> · Adaptation — η = 0,70</td><td class="cm2-num">2,14</td><td class="cm2-num">72</td><td>Fluide en apparence, rigide sous tension</td></tr>
+        <tr><td><b>Solide</b> · Rigidité — η = 0,90</td><td class="cm2-num">2,75</td><td class="cm2-num">245</td><td>La fissure dans le diamant, avant réparation</td></tr>
+        <tr><td><b>Zéro absolu</b> · Effondrement — η = 1,00</td><td class="cm2-num">3,06</td><td class="cm2-num">451</td><td>Toute la lumière figée en un point</td></tr>
+      </tbody></table></div>
+    <div class="cm2-note cm2-good"><b>η n'est plus un paramètre libre : il se lit.</b> La colonne
+    « viscosité » de <b>l'Échelle des États du Vivant</b> en donne la procédure — sept états ordonnés,
+    du plasma au zéro absolu. On situe l'état, on lit η. Deux observateurs peuvent comparer leurs
+    cotations : c'est ce qui fait la différence entre une variable et une intuition.</div>
+    <div class="cm2-note">Limite déclarée : ρ est ici une densité dans l'espace des paramètres (θ,φ).
+    Une densité de <i>surface</i> exacte demanderait le jacobien (R + r cos θ)·r. Pour le rendu, la
+    différence est marginale ; pour un calcul physique, elle ne l'est pas.</div>
+    <p>Le nombre de particules affichées est un <b>paramètre de rendu</b> — un entier qu'on choisit,
+    sans rapport avec Avogadro. La correspondance micro/macro reste, en registre symbolique.</p>
+  </div>
+
+</section>
+
+<!-- ══════════════ 3 · L'OUTIL DE FALSIFICATION ══════════════ -->
+<section class="cm2-panel" id="cm2-falsif">
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Pourquoi cet outil existe</span>
+    <h3>Ce qui protège du dogmatisme</h3>
+    <p>Prétendre dire le vrai n'est pas du dogmatisme : c'est la définition d'une théorie. Une théorie
+    qui ne prétend rien ne dit rien. Le dogmatisme n'est pas dans l'affirmation — il est dans
+    <b>l'absence de procédure de révision</b>.</p>
+    <div class="cm2-tw"><table>
+      <thead><tr><th>Question</th><th>Ce qui y répond</th></tr></thead>
+      <tbody>
+        <tr><td><b>Qu'est-ce qui te ferait changer d'avis&nbsp;?</b></td><td>Le critère de réfutation, écrit avant l'observation</td></tr>
+        <tr><td><b>Où est-ce écrit, et depuis quand&nbsp;?</b></td><td>Le sceau daté, publié avant l'échéance</td></tr>
+        <tr><td><b>Quand as-tu déjà changé d'avis&nbsp;?</b></td><td>Le registre des préenregistrements démentis</td></tr>
+      </tbody></table></div>
+    <div class="cm2-note cm2-gold">La troisième est la seule qui ne soit pas déclarative. C'est celle
+    qui compte.</div>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">Le préenregistrement</span>
+    <h3>Sceller une prédiction avant de l'observer</h3>
+
+    <div class="cm2-field">
+      <label>Objet mesuré</label>
+      <small>Un lien, une trajectoire, une épreuve — jamais une personne.</small>
+      <input id="cm2Objet" type="text" placeholder="ex. : la relation de travail décrite en annexe 3">
+    </div>
+
+    <div class="cm2-row2">
+      <div class="cm2-field"><label>Instrument</label>
+        <select id="cm2Instr">
+          <option value="Φ · Cohérence">Φ · Cohérence — l'instant</option>
+          <option value="RS · Risque Structurel">RS · Risque Structurel — la trajectoire</option>
+          <option value="QS · Sublimation">QS · Sublimation — la transmutation</option>
+          <option value="Φ + RS croisés">Φ + RS croisés — détection du piège</option>
+        </select></div>
+      <div class="cm2-field"><label>Valeur mesurée</label>
+        <input id="cm2Val" type="text" placeholder="ex. : Φ = 0,47"></div>
+    </div>
+
+    <div class="cm2-row2">
+      <div class="cm2-field"><label>Position de mesure</label>
+        <small>D'où mesure-t-on&nbsp;? Le coût du refus change la valeur.</small>
+        <select id="cm2Pos">
+          <option>Sortie libre — partir ne coûte rien</option>
+          <option>Sortie coûteuse — partir coûte cher mais reste possible</option>
+          <option>Sortie risquée — partir expose à un dommage</option>
+          <option>Aucune sortie — partir est impossible ou dangereux</option>
+        </select></div>
+      <div class="cm2-field"><label>Observateur tiers</label>
+        <small>Qui peut coter indépendamment&nbsp;? (initiales suffisent)</small>
+        <input id="cm2Tiers" type="text" placeholder="ex. : M.D. — ou « aucun »"></div>
+    </div>
+
+    <div class="cm2-field">
+      <label>Prédiction</label>
+      <small>Ce que le modèle annonce. Doit être observable par quelqu'un d'autre que soi.</small>
+      <textarea id="cm2Pred" placeholder="D'ici l'échéance, j'observerai…"></textarea>
+    </div>
+
+    <div class="cm2-crux">
+      <span class="cm2-lab">◆ Le champ qui donne sa valeur à tout le reste</span>
+      <div class="cm2-field" style="margin-bottom:0">
+        <label>Critère de réfutation</label>
+        <small>Qu'est-ce qui, si je l'observe, signifie que le modèle s'est trompé ici&nbsp;?
+        Sans réponse précise à cette question, le préenregistrement ne vaut rien.</small>
+        <textarea id="cm2Refut" placeholder="Si j'observe…, alors le modèle a échoué sur ce point et le seuil devra être revu."></textarea>
+      </div>
+    </div>
+
+    <div class="cm2-row2">
+      <div class="cm2-field"><label>Date du scellement</label><input id="cm2Date" type="date"></div>
+      <div class="cm2-field"><label>Échéance de vérification</label><input id="cm2Ech" type="date"></div>
+    </div>
+
+    <div class="cm2-btns">
+      <button class="cm2-btn" id="cm2Gen" type="button">🔓 Sceller le préenregistrement</button>
+      <button class="cm2-btn cm2-soft" id="cm2Copy" type="button">📋 Copier</button>
+      <button class="cm2-btn cm2-soft" id="cm2Dl" type="button">⬇️ Télécharger</button>
+      <button class="cm2-btn cm2-soft" id="cm2Raz" type="button">↺ Effacer</button>
+    </div>
+    <div class="cm2-status" id="cm2Status"></div>
+    <div class="cm2-out" id="cm2Out"></div>
+  </div>
+
+  <div class="cm2-card">
+    <span class="cm2-lab">À l'échéance</span>
+    <h3>Les trois issues, et une seule interdite</h3>
+    <div class="cm2-tw"><table>
+      <thead><tr><th>Issue</th><th>Ce qu'on fait</th></tr></thead>
+      <tbody>
+        <tr><td><b>✅ Confirmé</b></td><td>On note. Une confirmation isolée ne prouve rien — elle s'accumule.</td></tr>
+        <tr><td><b>❌ Réfuté</b></td><td>On publie le démenti <b>avec le sceau d'origine</b>, et on révise le seuil. C'est le cas le plus précieux du registre.</td></tr>
+        <tr><td><b>◐ Indécidable</b></td><td>La prédiction était mal écrite. On le note comme un défaut de formulation, pas comme un résultat.</td></tr>
+        <tr><td><b>⛔ Réinterprété</b></td><td><span style="color:var(--rubis-cl)">Interdit.</span> Modifier la prédiction après coup pour qu'elle colle annule le sceau et le registre entier.</td></tr>
+      </tbody></table></div>
+    <p class="cm2-quote">Ce qui suit est fait pour être corrigé —<br>parce qu'un modèle qui s'ajuste est un modèle qui grandit.</p>
+  </div>
+
+</section>
+
+<footer class="cm2-foot">
+  ⟁ Charte Mathématique aMi · V2 — Protocole de ConScience aMi<br>
+  Agdistys · Diane Serant — Licence CC BY-SA 4.0<br>
+  <i>Vérité = Respect · Mensonge = Violence</i>
+</footer>
+
+<script>
+(function(){
+  var R=document.getElementById('cm2Shell'); if(!R)return;
+  var $=function(id){return R.querySelector('#'+id)};
+
+  /* ── onglets ── */
+  R.querySelectorAll('.cm2-tab').forEach(function(b){
+    b.addEventListener('click',function(){
+      R.querySelectorAll('.cm2-tab').forEach(function(x){x.classList.remove('cm2-on')});
+      R.querySelectorAll('.cm2-panel').forEach(function(x){x.classList.remove('cm2-on')});
+      b.classList.add('cm2-on');
+      var p=R.querySelector('#cm2-'+b.getAttribute('data-p'));
+      if(p)p.classList.add('cm2-on');
+      if(R.scrollIntoView)R.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  /* ── dates par défaut ── */
+  function iso(d){return d.toISOString().slice(0,10)}
+  var now=new Date(); $('cm2Date').value=iso(now);
+  var plus=new Date(now.getTime()+90*86400000); $('cm2Ech').value=iso(plus);
+
+  /* ── sceau déterministe (FNV-1a 32 bits) ── */
+  function sceau(s){
+    var h=0x811c9dc5;
+    for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=(h*0x01000193)>>>0}
+    return ('00000000'+h.toString(16)).slice(-8).toUpperCase();
+  }
+  function fr(v){ if(!v)return '—';
+    var p=v.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; }
+
+  var dernier='';
+  function stat(msg,ko){var s=$('cm2Status');s.textContent=msg;s.classList.toggle('cm2-ko',!!ko)}
+
+  $('cm2Gen').addEventListener('click',function(){
+    var objet=$('cm2Objet').value.trim(), val=$('cm2Val').value.trim(),
+        pred=$('cm2Pred').value.trim(), refut=$('cm2Refut').value.trim();
+
+    if(!objet||!val||!pred){ stat('Objet, valeur et prédiction sont requis.',true); return; }
+    if(refut.length<15){
+      stat('Critère de réfutation absent ou trop vague — le sceau est refusé.',true);
+      $('cm2Refut').focus(); return;
+    }
+
+    var corps=
+      'Objet mesuré      : '+objet+'\n'+
+      'Instrument        : '+$('cm2Instr').value+'\n'+
+      'Valeur mesurée    : '+val+'\n'+
+      'Position de mesure: '+$('cm2Pos').value+'\n'+
+      'Observateur tiers : '+($('cm2Tiers').value.trim()||'aucun')+'\n'+
+      '\nPRÉDICTION\n'+pred+
+      '\n\nCRITÈRE DE RÉFUTATION\n'+refut+
+      '\n\nScellé le         : '+fr($('cm2Date').value)+
+      '\nÉchéance          : '+fr($('cm2Ech').value);
+
+    dernier=
+      '════════════════════════════════════════════\n'+
+      '  PRÉENREGISTREMENT · PROTOCOLE aMi\n'+
+      '════════════════════════════════════════════\n\n'+
+      corps+
+      '\n\nSCEAU             : '+sceau(corps)+
+      '\n\n────────────────────────────────────────────\n'+
+      'Ce bloc est publié AVANT l\'échéance.\n'+
+      'À l\'échéance : confirmé · réfuté · indécidable.\n'+
+      'Modifier la prédiction après coup annule le sceau.\n'+
+      'Une charte rend un système cohérent ;\n'+
+      'c\'est la rencontre avec le réel qui le rend juste.\n'+
+      '════════════════════════════════════════════';
+
+    $('cm2Out').textContent=dernier;
+    $('cm2Out').classList.add('cm2-on');
+    stat('Scellé. Publie ce bloc maintenant — il ne vaut que daté d\'avance.');
+  });
+
+  $('cm2Copy').addEventListener('click',function(){
+    if(!dernier){stat('Rien à copier : scelle d\'abord.',true);return}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(dernier).then(function(){stat('Copié ✅')},
+        function(){stat('Copie refusée par le navigateur — sélectionne le texte à la main.',true)});
+    } else stat('Copie indisponible ici — sélectionne le texte à la main.',true);
+  });
+
+  $('cm2Dl').addEventListener('click',function(){
+    if(!dernier){stat('Rien à télécharger : scelle d\'abord.',true);return}
+    try{
+      var b=new Blob([dernier],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(b),
+          a=document.createElement('a');
+      a.href=u; a.download='preenregistrement-aMi-'+$('cm2Date').value+'.txt';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){URL.revokeObjectURL(u)},400);
+      stat('Fichier généré ✅');
+    }catch(e){stat('Téléchargement bloqué — copie le texte à la place.',true)}
+  });
+
+  $('cm2Raz').addEventListener('click',function(){
+    ['cm2Objet','cm2Val','cm2Tiers','cm2Pred','cm2Refut'].forEach(function(id){$(id).value=''});
+    $('cm2Out').classList.remove('cm2-on'); $('cm2Out').textContent='';
+    dernier=''; stat('');
+  });
+
+  /* ═══════════ CONSTANTES ═══════════ */
+  var PHI=1.618034, INV=0.618034, INV2=0.381966, R5=Math.sqrt(5);
+  function num(v,d){return v.toFixed(d===undefined?3:d).replace('.',',')}
+
+  /* ═══════════ A · SIMULATEUR DE RELATION ═══════════ */
+  function verdict(a,b){
+    var lo=Math.min(a,b), hi=Math.max(a,b), D=hi-lo;
+    if(lo>=PHI) return {n:'✨ Spirale partagée',c:'#f8c870',
+      t:'Les deux au-dessus de φ. Le lien produit au-delà de ce qu’il consomme, des deux côtés.'};
+    if(lo>=1&&D<INV) return {n:'⚖️ Lien symétrique',c:'#4ec8b8',
+      t:'Les deux au-dessus du seuil négentropique, écart faible. Personne ne paie pour l’autre.'};
+    if(lo>=1) return {n:'🌱 Asymétrie féconde',c:'#90d8a8',
+      t:'L’un croît plus vite, mais aucun des deux n’est sous le seuil. C’est un portage, pas un transfert.'};
+    if(hi<1) return {n:'🌊 Traversée commune',c:'#80a8d8',
+      t:'Les deux sous le seuil : personne ne gagne de l’autre. C’est une épreuve partagée, pas une emprise — elle demande un soutien extérieur, pas une accusation.'};
+    if(D>=1) return {n:'⚠️ Fission du Lien',c:'#f0a0a0',
+      t:'L’un gagne au-dessus du seuil pendant que l’autre paie en dessous, avec plus d’une bascule d’écart. L’énergie ne disparaît pas : elle se transfère. Le lien ne détruit pas les deux — il se scinde.'};
+    return {n:'◐ Bascule asymétrique',c:'#e6d090',
+      t:'L’un vient de passer sous le seuil, l’écart reste modéré. C’est le moment où l’on regarde de près, avant que la scission ne s’installe.'};
+  }
+  function simRel(){
+    var a=parseFloat($('cm2SA').value), b=parseFloat($('cm2SB').value);
+    var lien=2*a*b/(a+b), D=Math.abs(a-b);
+    $('cm2SAv').textContent=num(a); $('cm2SBv').textContent=num(b);
+    $('cm2RL').textContent=num(lien); $('cm2RD').textContent=num(D);
+    $('cm2RN').textContent=num(D/R5,2); $('cm2RA').textContent=num((a+b)/2);
+    var v=verdict(a,b), box=$('cm2RV');
+    box.style.setProperty('--vc',v.c);
+    box.querySelector('b').textContent=v.n;
+    box.querySelector('span').textContent=v.t;
+  }
+  $('cm2SA').addEventListener('input',simRel);
+  $('cm2SB').addEventListener('input',simRel);
+  simRel();
+
+  /* ═══════════ B · LE TORE + C · JAUGE DE VISCOSITÉ ═══════════ */
+  var ETATS=[
+    {n:'Plasma · Création',            e:0.00, c:'#ffffff', d:'fluidité totale — la lumière est répartie'},
+    {n:'Gaz · Conscience fluide',      e:0.15, c:'#cfe4ff', d:'circulation facile, souplesse'},
+    {n:'Mi-feu mi-glace · Bascule',    e:0.40, c:'#f8c870', d:'état critique, très sensible à la pression'},
+    {n:'Liquide troublé · Confusion',  e:0.55, c:'#d99ac0', d:'oscille selon l’environnement et le lien'},
+    {n:'Non newtonien · Adaptation',   e:0.70, c:'#b3708c', d:'fluide en apparence, rigide sous tension'},
+    {n:'Solide · Rigidité',            e:0.90, c:'#8a3030', d:'résistance forte, flux difficile à initier'},
+    {n:'Zéro absolu · Effondrement',   e:1.00, c:'#33333f', d:'aucun mouvement possible, figement absolu'}
+  ];
+  var jauge=$('cm2Jauge');
+  if(jauge){ ETATS.forEach(function(s){var i=document.createElement('i');
+    i.style.background=s.c; i.title=s.n; jauge.appendChild(i)}); }
+
+  function I0(k){var s=1,t=1;for(var i=1;i<60;i++){t*=(k*k)/(4*i*i);s+=t;if(t<1e-13)break}return s}
+  function mix(c1,c2,g){return [Math.round(c1[0]+(c2[0]-c1[0])*g),
+    Math.round(c1[1]+(c2[1]-c1[1])*g),Math.round(c1[2]+(c2[2]-c1[2])*g)]}
+
+  var cv=$('cm2Cv');
+  if(cv){ cv.width=920; cv.height=760; }
+
+  /* les six paliers d'or, lus en direct sur la figure */
+  var INV3=INV*INV*INV;
+  var PALIERS=[
+    {s:PHI*PHI, n:'☀️ Rayonnement',          d:'produit au-delà de ce qu’il consomme', c:'#f8c870'},
+    {s:PHI,     n:'✨ Sainte Spirale',        d:'croissance juste',                     c:'#e6d090'},
+    {s:1,       n:'⚖️ Point de Bascule',      d:'se maintient sans progresser',         c:'#4ec8b8'},
+    {s:INV,     n:'⚠️ Entropie active',       d:'la surface commence à se défaire',     c:'#ff93b5'},
+    {s:INV*INV, n:'🔴 Système destructeur',   d:'la structure cède',                    c:'#f0a0a0'},
+    {s:-1,      n:'🆘 Effondrement',          d:'implosion et explosion — même événement', c:'#8a3030'}
+  ];
+  function palier(C){for(var i=0;i<PALIERS.length;i++)if(C>=PALIERS[i].s-5e-4)return PALIERS[i];
+    return PALIERS[PALIERS.length-1]}
+  /* bruit déterministe : la dispersion ne scintille pas d'une image à l'autre */
+  function nz(a,b){var v=Math.sin(a*127.1+b*311.7)*43758.5453;return v-Math.floor(v)}
+  function grand(v){
+    if(v<1000)return num(v,1);
+    var e=Math.floor(Math.log(v)/Math.LN10);
+    return num(v/Math.pow(10,e),2)+' × 10^'+e;
+  }
+
+  function drawTore(){
+    if(!cv)return;
+    var ctx=cv.getContext('2d'), W=cv.width, H=cv.height, q=W/460;
+    var C=parseFloat($('cm2TC').value), st=ETATS[parseInt($('cm2TE').value,10)], eta=st.e;
+    var r0=1, R=PHI*r0*C, Cn=C/(1+C), k=8*eta*(1-Cn);
+    var MAX=PHI*2.618*r0+r0, s=Math.min(W,H)/(2*MAX)*0.94;
+    var A=23.44*Math.PI/180, ca=Math.cos(A), sa=Math.sin(A);
+    var CX=W/2, CY=H/2;
+    ctx.clearRect(0,0,W,H);
+
+    /* ── perte de cohérence : effilochage puis éjection ── */
+    var chaos = C>=1 ? 0 : Math.min(1,(1-C)/(1-INV3));
+    var fray  = chaos*chaos*0.95;
+    var eject = Math.max(0,(chaos-0.55)/0.45); eject*=eject;
+
+    /* ── halo de la singularité, derrière tout le reste ── */
+    if(eject>0){
+      var rad=Math.min(W,H)*0.46*Math.pow(eject,0.6);
+      var gl=ctx.createRadialGradient(CX,CY,0,CX,CY,rad);
+      gl.addColorStop(0,'rgba(255,246,214,'+(0.55*eject).toFixed(3)+')');
+      gl.addColorStop(0.16,'rgba(248,200,112,'+(0.22*eject).toFixed(3)+')');
+      gl.addColorStop(0.45,'rgba(180,60,60,'+(0.10*eject).toFixed(3)+')');
+      gl.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=gl; ctx.beginPath(); ctx.arc(CX,CY,rad,0,6.2832); ctx.fill();
+      /* les rais de la Matrice d'Anéantissement */
+      var NR=34;
+      ctx.lineCap='round';
+      for(var r=0;r<NR;r++){
+        var a=2*Math.PI*r/NR+0.19, L=rad*(0.42+0.95*nz(r,3));
+        ctx.strokeStyle='rgba(255,244,220,'+(0.05+0.16*eject*nz(r,9)).toFixed(3)+')';
+        ctx.lineWidth=(0.5+1.5*nz(r,17))*q;
+        ctx.beginPath(); ctx.moveTo(CX,CY);
+        ctx.lineTo(CX+Math.cos(a)*L,CY+Math.sin(a)*L); ctx.stroke();
+      }
+    }
+
+    /* ── la surface ── */
+    var pts=[], NT=42, NP=96, th0=Math.PI;
+    for(var i=0;i<NT;i++){
+      var th=2*Math.PI*i/NT, dd=Math.exp(k*Math.cos(th-th0));
+      for(var j=0;j<NP;j++){
+        var ph=2*Math.PI*j/NP, rr=R+r0*Math.cos(th);
+        var x=rr*Math.cos(ph), y=rr*Math.sin(ph), z=r0*Math.sin(th);
+        var n1=nz(i,j), n2=nz(j,i), n3=nz(i+7,j+13), f=1;
+        if(fray>0){ x+=(n1-.5)*fray*1.7; y+=(n2-.5)*fray*1.7; z+=(n3-.5)*fray*1.7; }
+        if(eject>0){ f=1+eject*(0.25+4.4*n1*n1); x*=f; y*=f; z*=f; }
+        pts.push([CX+x*s, CY-(y*sa+z*ca)*s, y*ca-z*sa, dd, f]);
+      }
+    }
+    pts.sort(function(p,r){return p[2]-r[2]});
+
+    var dmax=Math.exp(k), span=(R+r0)||1;
+    for(var n=0;n<pts.length;n++){
+      var p=pts[n];
+      var depth=Math.max(0,Math.min(1,(p[2]/span+1)/2));
+      var g=Math.pow(p[3]/dmax,0.55);
+      var disp=Math.max(0,Math.min(1,(p[4]-1)/4));      /* projeté loin = dispersé */
+      var col=mix(mix([104,104,140],[255,240,186],g),[190,70,70],disp*0.7);
+      var al=(0.10+0.50*depth)*(0.32+0.68*g)*(1-0.62*disp);
+      var rr2=(0.75+1.45*depth)*(0.6+0.85*g)*(1-0.45*disp)*q;
+      if(disp>0.02){                                     /* traînée d'éjection */
+        var dx=p[0]-CX, dy=p[1]-CY, L=Math.sqrt(dx*dx+dy*dy)||1;
+        ctx.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(al*0.7).toFixed(3)+')';
+        ctx.lineWidth=rr2*1.15; ctx.lineCap='round';
+        ctx.beginPath(); ctx.moveTo(p[0],p[1]);
+        ctx.lineTo(p[0]-dx/L*18*disp*q, p[1]-dy/L*18*disp*q); ctx.stroke();
+      }
+      ctx.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+al.toFixed(3)+')';
+      ctx.beginPath(); ctx.arc(p[0],p[1],rr2,0,6.2832); ctx.fill();
+    }
+
+    /* ── le point : ce qui reste quand la structure a cédé ── */
+    if(eject>0.15){
+      ctx.fillStyle='rgba(255,252,240,'+(0.92*eject).toFixed(3)+')';
+      ctx.beginPath(); ctx.arc(CX,CY,(1.6+3.4*eject)*q,0,6.2832); ctx.fill();
+    }
+
+    var trou=Math.max(0,R-r0), pl=palier(C);
+    $('cm2TCv').textContent=num(C); $('cm2TEv').textContent=num(eta,2);
+    $('cm2TR').textContent=num(R,3); $('cm2TH').textContent=num(trou,3);
+    $('cm2TK').textContent=num(k,2); $('cm2TX').textContent=grand(Math.exp(2*k));
+    $('cm2Etat').innerHTML='<b style="color:'+st.c+'">'+st.n+'</b><em>'+st.d+'</em>';
+    var reg=$('cm2Reg');
+    reg.style.setProperty('--rc',pl.c);
+    reg.innerHTML='<b>'+pl.n+'</b><i>'+pl.d+'</i>';
+    var idx=parseInt($('cm2TE').value,10);
+    if(jauge)[].forEach.call(jauge.children,function(el,m){el.classList.toggle('cm2-on',m===idx)});
+  }
+  if(cv){
+    $('cm2TC').addEventListener('input',drawTore);
+    $('cm2TE').addEventListener('input',drawTore);
+    drawTore();
+  }
+})();
+</script>
+</div>
+<!-- ════════ FIN DU BLOC À COPIER ════════ -->
+
+</body>
+</html>
