@@ -2081,4 +2081,12 @@
       <image:caption>violence et conflit.png</image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://agdistys.github.io/Schemas/Societe/violence%20et%20respect.png</loc>
+    <lastmod>2026-08-23T16:32:22+02:00</lastmod>
+    <image:image>
+      <image:loc>https://agdistys.github.io/Schemas/Societe/violence%20et%20respect.png</image:loc>
+      <image:caption>violence et respect.png</image:caption>
+    </image:image>
+  </url>
 </urlset>
